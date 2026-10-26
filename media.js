@@ -13,7 +13,7 @@
   const promise=(async()=>{
    const next=new Image();next.decoding='async';next.fetchPriority=img.fetchPriority||'auto';next.src=url;
    try{await next.decode();if(generations.get(img)!==generation||img.dataset.src!==url||!active(img))return false;img.src=url;img.dispatchEvent(new CustomEvent('mediaready'));return true;}
-   catch{if(generations.get(img)===generation){img.dispatchEvent(new CustomEvent('mediaerror'));}return false;}
+   catch{if(generations.get(img)===generation&&img.dataset.src===url&&active(img)){img.dispatchEvent(new CustomEvent('mediaerror'));}return false;}
    finally{if(tasks.get(img)?.promise===promise)tasks.delete(img);}
   })();tasks.set(img,{url,promise});return promise;
  }
