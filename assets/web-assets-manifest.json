@@ -7,7 +7,7 @@
     "coi-serviceworker.js": "976974652ae67e45e4b67aff5a3176efbb234523f019c758e3ce45da64d36710",
     "flasher.css": "1531e96d524bb78e9d8633d1423e837504abae408bd6086607310ec2fa866b66",
     "flasher.js": "62d259ac45eb7010b45ca5699370fac2574a6f706f2184430252f1cdcc37b2aa",
-    "index.html": "64d668bb6ed72673877fdae92d27b46099365902084497c5647679e3b95532f2",
+    "index.html": "ecc191a80b07ae371d8a554f2d8a18537724ac5864dc26272068333166a74185",
     "install-loader.js": "0031591a103e1911b71f8beed8fc6224d2ca24cd161d7f153a79c28fc704d886",
     "legal.html": "c4691d81a0cefaa14bd2c7d4951dbcf021effb97159d53e3c4b670d2b13454c0",
     "media.js": "cec55393ea243577e3ad0849d38aa68a9ed4ddd4709a65e6c3b117876e545f80",
@@ -917,6 +917,23 @@
       "bytes": 1304,
       "codepoints": 1,
       "sha256": "f01014381602357f6a02491b44c9b7d3d431ba54def098227d740da4fae7d1f8"
+    }
+  ],
+  "fontStyles": [
+    {
+      "file": "assets/fonts/web-fonts.css",
+      "bytes": 61938,
+      "sha256": "a7784c8411efe65adf3a4e32fc84e5862746e7c779a4078c039b751369071cf7"
+    },
+    {
+      "file": "assets/fonts/web-fonts-core.css",
+      "bytes": 5237,
+      "sha256": "e3b5ad159fe7774c53f5ef72de4391117f5e4d9c45d2f56c62035031d8cd89eb"
+    },
+    {
+      "file": "assets/fonts/web-fonts-extra.css",
+      "bytes": 56701,
+      "sha256": "0cd5a1838c8feb9d75471b339fc901ae15024643d5517a1c80722d5049a9f212"
     }
   ],
   "screens": [
