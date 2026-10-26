@@ -15,8 +15,8 @@
   },
   "files": {
     "index.html": {
-      "bytes": 522,
-      "sha256": "334f66737a1c242d0300b85a4ea7ed816f5a2ae884cd6f17732487ddf379a0d6"
+      "bytes": 539,
+      "sha256": "0bdca82123cb7003ee50ebf5154b36b967f7e47a7eeda1005b70ebe114711acd"
     },
     "reader.data": {
       "bytes": 29770400,
@@ -31,8 +31,8 @@
       "sha256": "1d458ce7b88e36d68fd39c7f3dc436eac2ab4d932e21b6fbc03daaf27d594b35"
     },
     "runtime.js": {
-      "bytes": 16191,
-      "sha256": "fa1d1a215073c86d38627ba0d905fb41decf5baeb1f97ab369849310d20decb8"
+      "bytes": 16315,
+      "sha256": "0510f7f099a4094d7052411fe84a4da6266db9ad611a82b9c31d69f5aa9380f3"
     }
   }
 }

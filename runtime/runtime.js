@@ -11,8 +11,9 @@ var Module;
  const failure=(error,id,fatal=false)=>{const message=String(error?.message||error);state.lastError=message;if(fatal)state.error=message;emit('error',{id,message,sequence:state.sequence});if(fatal&&parent===window){canvas.hidden=true;let alert=document.getElementById('runtime-error');if(!alert){alert=document.createElement('p');alert.id='runtime-error';alert.setAttribute('role','alert');alert.style.cssText='padding:24px;font:16px/1.6 system-ui,sans-serif';document.body.append(alert);}alert.textContent=message;}};
  Object.defineProperty(window,'ZhijianRuntime',{value:Object.freeze({readState:()=>structuredClone(state)}),writable:false,configurable:false});
  function parseConfig(){
-  const query=new URLSearchParams(location.search),allowed=new Set(['theme','night','reading','book','layout']);
+  const query=new URLSearchParams(location.search),allowed=new Set(['theme','night','reading','book','layout','runtime_rev']);
   for(const key of query.keys())if(!allowed.has(key)||query.getAll(key).length!==1)throw Error('不支持的体验配置：'+key);
+  if(query.has('runtime_rev')&&query.get('runtime_rev')!=='20261026-perf1')throw Error('体验配置无效');
   const config={layout:query.get('layout')??'standard',theme:query.get('theme')??'chan',night:query.get('night')??'0',reading:query.get('reading')??'horizontal',book:query.has('book')?query.get('book'):null};
   if(!['standard','alternate'].includes(config.layout)||!['chan','soviet','bauhaus','cat'].includes(config.theme)||!['0','1'].includes(config.night)||!['horizontal','rtl','ltr'].includes(config.reading)||(config.book!==null&&!['0','1','2'].includes(config.book)))throw Error('体验配置无效');
   return config;
