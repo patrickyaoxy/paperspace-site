@@ -1,0 +1,1386 @@
+{
+  "fontSourceSha256": "4baa9679b0aae3983a8b03c49f5cccce796b503b95e900120e8e6f3c07a6519c",
+  "fontSourceBytes": 26198796,
+  "fontCodepoints": 46946,
+  "fontParts": [
+    {
+      "file": "assets/fonts/web/core.woff2",
+      "bytes": 182976,
+      "codepoints": 854
+    },
+    {
+      "file": "assets/fonts/web/u00000.woff2",
+      "bytes": 44116,
+      "codepoints": 749
+    },
+    {
+      "file": "assets/fonts/web/u00400.woff2",
+      "bytes": 11556,
+      "codepoints": 156
+    },
+    {
+      "file": "assets/fonts/web/u00c00.woff2",
+      "bytes": 1116,
+      "codepoints": 3
+    },
+    {
+      "file": "assets/fonts/web/u01c00.woff2",
+      "bytes": 20752,
+      "codepoints": 552
+    },
+    {
+      "file": "assets/fonts/web/u02000.woff2",
+      "bytes": 32380,
+      "codepoints": 434
+    },
+    {
+      "file": "assets/fonts/web/u02400.woff2",
+      "bytes": 34932,
+      "codepoints": 531
+    },
+    {
+      "file": "assets/fonts/web/u02800.woff2",
+      "bytes": 2752,
+      "codepoints": 31
+    },
+    {
+      "file": "assets/fonts/web/u02c00.woff2",
+      "bytes": 56992,
+      "codepoints": 356
+    },
+    {
+      "file": "assets/fonts/web/u03000.woff2",
+      "bytes": 117892,
+      "codepoints": 996
+    },
+    {
+      "file": "assets/fonts/web/u03400.woff2",
+      "bytes": 291700,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u03800.woff2",
+      "bytes": 312944,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u03c00.woff2",
+      "bytes": 328132,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u04000.woff2",
+      "bytes": 325468,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u04400.woff2",
+      "bytes": 342280,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u04800.woff2",
+      "bytes": 365596,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u04c00.woff2",
+      "bytes": 270724,
+      "codepoints": 957
+    },
+    {
+      "file": "assets/fonts/web/u05000.woff2",
+      "bytes": 243836,
+      "codepoints": 941
+    },
+    {
+      "file": "assets/fonts/web/u05400.woff2",
+      "bytes": 245140,
+      "codepoints": 989
+    },
+    {
+      "file": "assets/fonts/web/u05800.woff2",
+      "bytes": 285528,
+      "codepoints": 983
+    },
+    {
+      "file": "assets/fonts/web/u05c00.woff2",
+      "bytes": 251592,
+      "codepoints": 965
+    },
+    {
+      "file": "assets/fonts/web/u06000.woff2",
+      "bytes": 265668,
+      "codepoints": 976
+    },
+    {
+      "file": "assets/fonts/web/u06400.woff2",
+      "bytes": 281252,
+      "codepoints": 967
+    },
+    {
+      "file": "assets/fonts/web/u06800.woff2",
+      "bytes": 315724,
+      "codepoints": 995
+    },
+    {
+      "file": "assets/fonts/web/u06c00.woff2",
+      "bytes": 265896,
+      "codepoints": 998
+    },
+    {
+      "file": "assets/fonts/web/u07000.woff2",
+      "bytes": 290056,
+      "codepoints": 1006
+    },
+    {
+      "file": "assets/fonts/web/u07400.woff2",
+      "bytes": 284732,
+      "codepoints": 1000
+    },
+    {
+      "file": "assets/fonts/web/u07800.woff2",
+      "bytes": 274924,
+      "codepoints": 990
+    },
+    {
+      "file": "assets/fonts/web/u07c00.woff2",
+      "bytes": 306000,
+      "codepoints": 987
+    },
+    {
+      "file": "assets/fonts/web/u08000.woff2",
+      "bytes": 258576,
+      "codepoints": 1001
+    },
+    {
+      "file": "assets/fonts/web/u08400.woff2",
+      "bytes": 328504,
+      "codepoints": 1022
+    },
+    {
+      "file": "assets/fonts/web/u08800.woff2",
+      "bytes": 302164,
+      "codepoints": 989
+    },
+    {
+      "file": "assets/fonts/web/u08c00.woff2",
+      "bytes": 282136,
+      "codepoints": 983
+    },
+    {
+      "file": "assets/fonts/web/u09000.woff2",
+      "bytes": 297756,
+      "codepoints": 1003
+    },
+    {
+      "file": "assets/fonts/web/u09400.woff2",
+      "bytes": 310064,
+      "codepoints": 993
+    },
+    {
+      "file": "assets/fonts/web/u09800.woff2",
+      "bytes": 318360,
+      "codepoints": 1011
+    },
+    {
+      "file": "assets/fonts/web/u09c00.woff2",
+      "bytes": 349272,
+      "codepoints": 1020
+    },
+    {
+      "file": "assets/fonts/web/u0a400.woff2",
+      "bytes": 5824,
+      "codepoints": 65
+    },
+    {
+      "file": "assets/fonts/web/u0a800.woff2",
+      "bytes": 1000,
+      "codepoints": 1
+    },
+    {
+      "file": "assets/fonts/web/u0ac00.woff2",
+      "bytes": 33056,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0b000.woff2",
+      "bytes": 30044,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0b400.woff2",
+      "bytes": 32128,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0b800.woff2",
+      "bytes": 34016,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0bc00.woff2",
+      "bytes": 31472,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0c000.woff2",
+      "bytes": 31968,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0c400.woff2",
+      "bytes": 33940,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0c800.woff2",
+      "bytes": 34240,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0cc00.woff2",
+      "bytes": 30760,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0d000.woff2",
+      "bytes": 33492,
+      "codepoints": 1024
+    },
+    {
+      "file": "assets/fonts/web/u0d400.woff2",
+      "bytes": 37972,
+      "codepoints": 932
+    },
+    {
+      "file": "assets/fonts/web/u0e000.woff2",
+      "bytes": 1736,
+      "codepoints": 21
+    },
+    {
+      "file": "assets/fonts/web/u0e400.woff2",
+      "bytes": 6320,
+      "codepoints": 8
+    },
+    {
+      "file": "assets/fonts/web/u0ec00.woff2",
+      "bytes": 892,
+      "codepoints": 1
+    },
+    {
+      "file": "assets/fonts/web/u0f000.woff2",
+      "bytes": 1004,
+      "codepoints": 1
+    },
+    {
+      "file": "assets/fonts/web/u0f800.woff2",
+      "bytes": 127412,
+      "codepoints": 373
+    },
+    {
+      "file": "assets/fonts/web/u0fc00.woff2",
+      "bytes": 26072,
+      "codepoints": 289
+    },
+    {
+      "file": "assets/fonts/web/u10400.woff2",
+      "bytes": 948,
+      "codepoints": 1
+    },
+    {
+      "file": "assets/fonts/web/u11c00.woff2",
+      "bytes": 948,
+      "codepoints": 1
+    },
+    {
+      "file": "assets/fonts/web/u16c00.woff2",
+      "bytes": 1484,
+      "codepoints": 4
+    },
+    {
+      "file": "assets/fonts/web/u1b000.woff2",
+      "bytes": 1280,
+      "codepoints": 2
+    },
+    {
+      "file": "assets/fonts/web/u1d000.woff2",
+      "bytes": 2824,
+      "codepoints": 110
+    },
+    {
+      "file": "assets/fonts/web/u1f000.woff2",
+      "bytes": 47576,
+      "codepoints": 282
+    },
+    {
+      "file": "assets/fonts/web/u1f400.woff2",
+      "bytes": 940,
+      "codepoints": 2
+    },
+    {
+      "file": "assets/fonts/web/u1f800.woff2",
+      "bytes": 4892,
+      "codepoints": 14
+    },
+    {
+      "file": "assets/fonts/web/u20000.woff2",
+      "bytes": 19084,
+      "codepoints": 78
+    },
+    {
+      "file": "assets/fonts/web/u20400.woff2",
+      "bytes": 16556,
+      "codepoints": 52
+    },
+    {
+      "file": "assets/fonts/web/u20800.woff2",
+      "bytes": 14500,
+      "codepoints": 46
+    },
+    {
+      "file": "assets/fonts/web/u20c00.woff2",
+      "bytes": 22700,
+      "codepoints": 70
+    },
+    {
+      "file": "assets/fonts/web/u21000.woff2",
+      "bytes": 18068,
+      "codepoints": 50
+    },
+    {
+      "file": "assets/fonts/web/u21400.woff2",
+      "bytes": 13224,
+      "codepoints": 33
+    },
+    {
+      "file": "assets/fonts/web/u21800.woff2",
+      "bytes": 11832,
+      "codepoints": 30
+    },
+    {
+      "file": "assets/fonts/web/u21c00.woff2",
+      "bytes": 24676,
+      "codepoints": 73
+    },
+    {
+      "file": "assets/fonts/web/u22000.woff2",
+      "bytes": 8896,
+      "codepoints": 24
+    },
+    {
+      "file": "assets/fonts/web/u22400.woff2",
+      "bytes": 12308,
+      "codepoints": 37
+    },
+    {
+      "file": "assets/fonts/web/u22800.woff2",
+      "bytes": 18820,
+      "codepoints": 46
+    },
+    {
+      "file": "assets/fonts/web/u22c00.woff2",
+      "bytes": 22180,
+      "codepoints": 48
+    },
+    {
+      "file": "assets/fonts/web/u23000.woff2",
+      "bytes": 15240,
+      "codepoints": 43
+    },
+    {
+      "file": "assets/fonts/web/u23400.woff2",
+      "bytes": 21540,
+      "codepoints": 47
+    },
+    {
+      "file": "assets/fonts/web/u23800.woff2",
+      "bytes": 12552,
+      "codepoints": 29
+    },
+    {
+      "file": "assets/fonts/web/u23c00.woff2",
+      "bytes": 16320,
+      "codepoints": 47
+    },
+    {
+      "file": "assets/fonts/web/u24000.woff2",
+      "bytes": 16260,
+      "codepoints": 38
+    },
+    {
+      "file": "assets/fonts/web/u24400.woff2",
+      "bytes": 19764,
+      "codepoints": 52
+    },
+    {
+      "file": "assets/fonts/web/u24800.woff2",
+      "bytes": 16248,
+      "codepoints": 39
+    },
+    {
+      "file": "assets/fonts/web/u24c00.woff2",
+      "bytes": 17320,
+      "codepoints": 48
+    },
+    {
+      "file": "assets/fonts/web/u25000.woff2",
+      "bytes": 14736,
+      "codepoints": 44
+    },
+    {
+      "file": "assets/fonts/web/u25400.woff2",
+      "bytes": 16200,
+      "codepoints": 45
+    },
+    {
+      "file": "assets/fonts/web/u25800.woff2",
+      "bytes": 16952,
+      "codepoints": 39
+    },
+    {
+      "file": "assets/fonts/web/u25c00.woff2",
+      "bytes": 27492,
+      "codepoints": 60
+    },
+    {
+      "file": "assets/fonts/web/u26000.woff2",
+      "bytes": 21744,
+      "codepoints": 54
+    },
+    {
+      "file": "assets/fonts/web/u26400.woff2",
+      "bytes": 16416,
+      "codepoints": 43
+    },
+    {
+      "file": "assets/fonts/web/u26800.woff2",
+      "bytes": 18944,
+      "codepoints": 50
+    },
+    {
+      "file": "assets/fonts/web/u26c00.woff2",
+      "bytes": 18724,
+      "codepoints": 41
+    },
+    {
+      "file": "assets/fonts/web/u27000.woff2",
+      "bytes": 23804,
+      "codepoints": 53
+    },
+    {
+      "file": "assets/fonts/web/u27400.woff2",
+      "bytes": 22000,
+      "codepoints": 48
+    },
+    {
+      "file": "assets/fonts/web/u27800.woff2",
+      "bytes": 18072,
+      "codepoints": 40
+    },
+    {
+      "file": "assets/fonts/web/u27c00.woff2",
+      "bytes": 17352,
+      "codepoints": 43
+    },
+    {
+      "file": "assets/fonts/web/u28000.woff2",
+      "bytes": 22472,
+      "codepoints": 52
+    },
+    {
+      "file": "assets/fonts/web/u28400.woff2",
+      "bytes": 19824,
+      "codepoints": 55
+    },
+    {
+      "file": "assets/fonts/web/u28800.woff2",
+      "bytes": 17800,
+      "codepoints": 37
+    },
+    {
+      "file": "assets/fonts/web/u28c00.woff2",
+      "bytes": 22092,
+      "codepoints": 55
+    },
+    {
+      "file": "assets/fonts/web/u29000.woff2",
+      "bytes": 15448,
+      "codepoints": 31
+    },
+    {
+      "file": "assets/fonts/web/u29400.woff2",
+      "bytes": 17236,
+      "codepoints": 39
+    },
+    {
+      "file": "assets/fonts/web/u29800.woff2",
+      "bytes": 16948,
+      "codepoints": 38
+    },
+    {
+      "file": "assets/fonts/web/u29c00.woff2",
+      "bytes": 31412,
+      "codepoints": 66
+    },
+    {
+      "file": "assets/fonts/web/u2a000.woff2",
+      "bytes": 29648,
+      "codepoints": 61
+    },
+    {
+      "file": "assets/fonts/web/u2a400.woff2",
+      "bytes": 22912,
+      "codepoints": 51
+    },
+    {
+      "file": "assets/fonts/web/u2a800.woff2",
+      "bytes": 9892,
+      "codepoints": 28
+    },
+    {
+      "file": "assets/fonts/web/u2ac00.woff2",
+      "bytes": 5208,
+      "codepoints": 13
+    },
+    {
+      "file": "assets/fonts/web/u2b000.woff2",
+      "bytes": 16104,
+      "codepoints": 42
+    },
+    {
+      "file": "assets/fonts/web/u2b400.woff2",
+      "bytes": 43136,
+      "codepoints": 122
+    },
+    {
+      "file": "assets/fonts/web/u2b800.woff2",
+      "bytes": 16104,
+      "codepoints": 47
+    },
+    {
+      "file": "assets/fonts/web/u2bc00.woff2",
+      "bytes": 12040,
+      "codepoints": 33
+    },
+    {
+      "file": "assets/fonts/web/u2c000.woff2",
+      "bytes": 12836,
+      "codepoints": 36
+    },
+    {
+      "file": "assets/fonts/web/u2c400.woff2",
+      "bytes": 13296,
+      "codepoints": 38
+    },
+    {
+      "file": "assets/fonts/web/u2c800.woff2",
+      "bytes": 22692,
+      "codepoints": 69
+    },
+    {
+      "file": "assets/fonts/web/u2cc00.woff2",
+      "bytes": 17848,
+      "codepoints": 49
+    },
+    {
+      "file": "assets/fonts/web/u2d000.woff2",
+      "bytes": 4448,
+      "codepoints": 10
+    },
+    {
+      "file": "assets/fonts/web/u2d400.woff2",
+      "bytes": 3088,
+      "codepoints": 8
+    },
+    {
+      "file": "assets/fonts/web/u2d800.woff2",
+      "bytes": 3476,
+      "codepoints": 7
+    },
+    {
+      "file": "assets/fonts/web/u2dc00.woff2",
+      "bytes": 3852,
+      "codepoints": 9
+    },
+    {
+      "file": "assets/fonts/web/u2e000.woff2",
+      "bytes": 6728,
+      "codepoints": 16
+    },
+    {
+      "file": "assets/fonts/web/u2e400.woff2",
+      "bytes": 8240,
+      "codepoints": 19
+    },
+    {
+      "file": "assets/fonts/web/u2e800.woff2",
+      "bytes": 14424,
+      "codepoints": 34
+    },
+    {
+      "file": "assets/fonts/web/u2ec00.woff2",
+      "bytes": 4772,
+      "codepoints": 11
+    },
+    {
+      "file": "assets/fonts/web/u2f800.woff2",
+      "bytes": 17064,
+      "codepoints": 49
+    },
+    {
+      "file": "assets/fonts/web/u30000.woff2",
+      "bytes": 13320,
+      "codepoints": 55
+    },
+    {
+      "file": "assets/fonts/web/u30400.woff2",
+      "bytes": 11100,
+      "codepoints": 38
+    },
+    {
+      "file": "assets/fonts/web/u30800.woff2",
+      "bytes": 13692,
+      "codepoints": 44
+    },
+    {
+      "file": "assets/fonts/web/u30c00.woff2",
+      "bytes": 20720,
+      "codepoints": 60
+    },
+    {
+      "file": "assets/fonts/web/u31000.woff2",
+      "bytes": 22020,
+      "codepoints": 54
+    },
+    {
+      "file": "assets/fonts/web/u31400.woff2",
+      "bytes": 6956,
+      "codepoints": 15
+    },
+    {
+      "file": "assets/fonts/web/u31800.woff2",
+      "bytes": 3892,
+      "codepoints": 8
+    },
+    {
+      "file": "assets/fonts/web/u31c00.woff2",
+      "bytes": 7816,
+      "codepoints": 17
+    },
+    {
+      "file": "assets/fonts/web/u32000.woff2",
+      "bytes": 10156,
+      "codepoints": 28
+    },
+    {
+      "file": "assets/fonts/web/u32400.woff2",
+      "bytes": 3324,
+      "codepoints": 7
+    },
+    {
+      "file": "assets/fonts/web/u32800.woff2",
+      "bytes": 2712,
+      "codepoints": 4
+    },
+    {
+      "file": "assets/fonts/web/u32c00.woff2",
+      "bytes": 4332,
+      "codepoints": 10
+    },
+    {
+      "file": "assets/fonts/web/u33000.woff2",
+      "bytes": 3960,
+      "codepoints": 9
+    },
+    {
+      "file": "assets/fonts/web/u33400.woff2",
+      "bytes": 1688,
+      "codepoints": 2
+    },
+    {
+      "file": "assets/fonts/web/u3d000.woff2",
+      "bytes": 2652,
+      "codepoints": 6
+    },
+    {
+      "file": "assets/fonts/web/u3d800.woff2",
+      "bytes": 1296,
+      "codepoints": 1
+    },
+    {
+      "file": "assets/fonts/web/u3dc00.woff2",
+      "bytes": 1592,
+      "codepoints": 2
+    },
+    {
+      "file": "assets/fonts/web/u3e000.woff2",
+      "bytes": 2232,
+      "codepoints": 5
+    },
+    {
+      "file": "assets/fonts/web/u3e400.woff2",
+      "bytes": 1776,
+      "codepoints": 3
+    },
+    {
+      "file": "assets/fonts/web/u3ec00.woff2",
+      "bytes": 2268,
+      "codepoints": 4
+    },
+    {
+      "file": "assets/fonts/web/u3f000.woff2",
+      "bytes": 1492,
+      "codepoints": 2
+    },
+    {
+      "file": "assets/fonts/web/u3f400.woff2",
+      "bytes": 1224,
+      "codepoints": 1
+    },
+    {
+      "file": "assets/fonts/web/u3f800.woff2",
+      "bytes": 5808,
+      "codepoints": 24
+    },
+    {
+      "file": "assets/fonts/web/u3fc00.woff2",
+      "bytes": 1432,
+      "codepoints": 2
+    },
+    {
+      "file": "assets/fonts/web/uffc00.woff2",
+      "bytes": 1288,
+      "codepoints": 1
+    }
+  ],
+  "screens": [
+    {
+      "source": "assets/screens/app-center.png",
+      "file": "assets/screens-web/app-center.webp",
+      "sourceBytes": 15700,
+      "bytes": 8792,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "2e34a9b49eb07e001c94d7ead0decbb84535c168f37d397c23492db1f04728d6"
+    },
+    {
+      "source": "assets/screens/home-alternate-night.png",
+      "file": "assets/screens-web/home-alternate-night.webp",
+      "sourceBytes": 59301,
+      "bytes": 12058,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "5d0250e67719d4999ab7cdb6efc3fc53c19b110d501b4d31fa1aed2904af4ebc"
+    },
+    {
+      "source": "assets/screens/home-alternate.png",
+      "file": "assets/screens-web/home-alternate.webp",
+      "sourceBytes": 59056,
+      "bytes": 12058,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "02d114e53be226226cccfaedd82c72dab89c00702321552e65077f7f19ec57f7"
+    },
+    {
+      "source": "assets/screens/home-bauhaus-night.png",
+      "file": "assets/screens-web/home-bauhaus-night.webp",
+      "sourceBytes": 65730,
+      "bytes": 14328,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "500f3c29ad3fbba8bd5978f9fe88bdc523998e780e178409a878a0a8728896ab"
+    },
+    {
+      "source": "assets/screens/home-bauhaus.png",
+      "file": "assets/screens-web/home-bauhaus.webp",
+      "sourceBytes": 65679,
+      "bytes": 14322,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "cf7d8c5230175859197f37599affbf890933a96a33c645e554dee38d621ead55"
+    },
+    {
+      "source": "assets/screens/home-cat-night.png",
+      "file": "assets/screens-web/home-cat-night.webp",
+      "sourceBytes": 71277,
+      "bytes": 16466,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "326c2dc735f8fc531bb572481308a7f38ee3b22a229ea2f369eeb380978e9bf0"
+    },
+    {
+      "source": "assets/screens/home-cat.png",
+      "file": "assets/screens-web/home-cat.webp",
+      "sourceBytes": 71207,
+      "bytes": 16470,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "b60df3a9932257d16a206ecfb22314a33cc6f02fc1b6ee69d23f3e2866c5f907"
+    },
+    {
+      "source": "assets/screens/home-chan-day.png",
+      "file": "assets/screens-web/home-chan-day.webp",
+      "sourceBytes": 70973,
+      "bytes": 16862,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "06208fe174237b098910347800fe048ed1503611933c3434b10846d128346137"
+    },
+    {
+      "source": "assets/screens/home-chan-night.png",
+      "file": "assets/screens-web/home-chan-night.webp",
+      "sourceBytes": 71047,
+      "bytes": 16860,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "3e488b015053dedb6c854fc6ddf6b210fca812a95305d585512174a4c41f8d10"
+    },
+    {
+      "source": "assets/screens/home-chan.png",
+      "file": "assets/screens-web/home-chan.webp",
+      "sourceBytes": 70973,
+      "bytes": 16862,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "06208fe174237b098910347800fe048ed1503611933c3434b10846d128346137"
+    },
+    {
+      "source": "assets/screens/home-soviet-night.png",
+      "file": "assets/screens-web/home-soviet-night.webp",
+      "sourceBytes": 71102,
+      "bytes": 17040,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "7223bbe2bbbffe94fa0af3298a027a351228bae4ae2576702cdcb051526dd386"
+    },
+    {
+      "source": "assets/screens/home-soviet.png",
+      "file": "assets/screens-web/home-soviet.webp",
+      "sourceBytes": 71022,
+      "bytes": 17042,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "2ddb3474012b4f89e3847db1f84101751b082e74e746f7bac707eca51dd4d5de"
+    },
+    {
+      "source": "assets/screens/home.png",
+      "file": "assets/screens-web/home.webp",
+      "sourceBytes": 70973,
+      "bytes": 16862,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "06208fe174237b098910347800fe048ed1503611933c3434b10846d128346137"
+    },
+    {
+      "source": "assets/screens/icon-editor.png",
+      "file": "assets/screens-web/icon-editor.webp",
+      "sourceBytes": 20336,
+      "bytes": 11406,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "291164fbe808488a97003f33cec6a39bd080be606dd2f75b8f81099b510eb207"
+    },
+    {
+      "source": "assets/screens/lock-bauhaus-book-0-night.png",
+      "file": "assets/screens-web/lock-bauhaus-book-0-night.webp",
+      "sourceBytes": 228040,
+      "bytes": 76166,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "c77e707c5bb915778e477516ab5e01c91a71f61c8b0c6ba5eb536121301b204d"
+    },
+    {
+      "source": "assets/screens/lock-bauhaus-book-0.png",
+      "file": "assets/screens-web/lock-bauhaus-book-0.webp",
+      "sourceBytes": 228157,
+      "bytes": 76138,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "06fdb148fdb9fc6f3f84c7c14fef5c4127be26fe8a91e7da29d33aea9817528f"
+    },
+    {
+      "source": "assets/screens/lock-bauhaus-book-1-night.png",
+      "file": "assets/screens-web/lock-bauhaus-book-1-night.webp",
+      "sourceBytes": 229321,
+      "bytes": 77328,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "f8773ea46b4b74e45fd3b0414a8fb548b838ae6bddfd4fba2ee0c6414e4c6764"
+    },
+    {
+      "source": "assets/screens/lock-bauhaus-book-1.png",
+      "file": "assets/screens-web/lock-bauhaus-book-1.webp",
+      "sourceBytes": 229424,
+      "bytes": 77306,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "a0d573d37a8fe6cc98c507cf9194af5c57324e8cb698b016f637df8083c8cc77"
+    },
+    {
+      "source": "assets/screens/lock-bauhaus-book-2-night.png",
+      "file": "assets/screens-web/lock-bauhaus-book-2-night.webp",
+      "sourceBytes": 230720,
+      "bytes": 77348,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "5cd59a0c9d651bee3ed7398eae875211f5ca890dbb20cf99c8822989b1aafdc0"
+    },
+    {
+      "source": "assets/screens/lock-bauhaus-book-2.png",
+      "file": "assets/screens-web/lock-bauhaus-book-2.webp",
+      "sourceBytes": 230823,
+      "bytes": 78004,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "f8854d9fd670e7edbea352c59d613e69f22af9351b511be2db84ac2ca3d16d55"
+    },
+    {
+      "source": "assets/screens/lock-bauhaus-night.png",
+      "file": "assets/screens-web/lock-bauhaus-night.webp",
+      "sourceBytes": 228040,
+      "bytes": 76166,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "c77e707c5bb915778e477516ab5e01c91a71f61c8b0c6ba5eb536121301b204d"
+    },
+    {
+      "source": "assets/screens/lock-bauhaus.png",
+      "file": "assets/screens-web/lock-bauhaus.webp",
+      "sourceBytes": 228157,
+      "bytes": 76138,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "06fdb148fdb9fc6f3f84c7c14fef5c4127be26fe8a91e7da29d33aea9817528f"
+    },
+    {
+      "source": "assets/screens/lock-cat-book-0-night.png",
+      "file": "assets/screens-web/lock-cat-book-0-night.webp",
+      "sourceBytes": 65819,
+      "bytes": 15986,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "38fdb09d9d2844b11a898f0ac9c2ff95d5bef5cad0216eac59f791651c5ccdd8"
+    },
+    {
+      "source": "assets/screens/lock-cat-book-0.png",
+      "file": "assets/screens-web/lock-cat-book-0.webp",
+      "sourceBytes": 65777,
+      "bytes": 15990,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "43bcca167219ac4446e611dd20c61fcfabc9234a5e2711e55ac1ed14717a2740"
+    },
+    {
+      "source": "assets/screens/lock-cat-book-1-night.png",
+      "file": "assets/screens-web/lock-cat-book-1-night.webp",
+      "sourceBytes": 67374,
+      "bytes": 16486,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "ccb55d1014a6580e90a003bad89cd93e7a526d380e5c76022e4dcf197b098006"
+    },
+    {
+      "source": "assets/screens/lock-cat-book-1.png",
+      "file": "assets/screens-web/lock-cat-book-1.webp",
+      "sourceBytes": 67364,
+      "bytes": 16482,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "a71d694ce8a9bd34c3d9a6508361677cecd7a96bcafd933c121983a9b8046399"
+    },
+    {
+      "source": "assets/screens/lock-cat-book-2-night.png",
+      "file": "assets/screens-web/lock-cat-book-2-night.webp",
+      "sourceBytes": 68987,
+      "bytes": 17240,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "3c78c7942893803c14c4e6fe5669dfb2ee43df46f28af4e0f2746fc75da67f08"
+    },
+    {
+      "source": "assets/screens/lock-cat-book-2.png",
+      "file": "assets/screens-web/lock-cat-book-2.webp",
+      "sourceBytes": 68954,
+      "bytes": 17242,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "4643803f6c2a9e3172f36c4625b91ac18a44f8eb396494fc91168d15b24f519c"
+    },
+    {
+      "source": "assets/screens/lock-cat-night.png",
+      "file": "assets/screens-web/lock-cat-night.webp",
+      "sourceBytes": 65819,
+      "bytes": 15986,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "38fdb09d9d2844b11a898f0ac9c2ff95d5bef5cad0216eac59f791651c5ccdd8"
+    },
+    {
+      "source": "assets/screens/lock-cat.png",
+      "file": "assets/screens-web/lock-cat.webp",
+      "sourceBytes": 65777,
+      "bytes": 15990,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "43bcca167219ac4446e611dd20c61fcfabc9234a5e2711e55ac1ed14717a2740"
+    },
+    {
+      "source": "assets/screens/lock-chan-book-0-night.png",
+      "file": "assets/screens-web/lock-chan-book-0-night.webp",
+      "sourceBytes": 224418,
+      "bytes": 93414,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "92bf85e2b4d7eadeafd426ecfbe4a387f3fdef32f3e06ca7e935c7f95be88b01"
+    },
+    {
+      "source": "assets/screens/lock-chan-book-0.png",
+      "file": "assets/screens-web/lock-chan-book-0.webp",
+      "sourceBytes": 224789,
+      "bytes": 93266,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "fe19909a4d1091f4bdcd39822230bf2b906b03c3b495db0484a7cb1f64c65d51"
+    },
+    {
+      "source": "assets/screens/lock-chan-book-1-night.png",
+      "file": "assets/screens-web/lock-chan-book-1-night.webp",
+      "sourceBytes": 226003,
+      "bytes": 91314,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "4534c39876e6067f2a263587c817e571cc553d72f11dc5785819f96c1f603b8a"
+    },
+    {
+      "source": "assets/screens/lock-chan-book-1.png",
+      "file": "assets/screens-web/lock-chan-book-1.webp",
+      "sourceBytes": 225961,
+      "bytes": 91424,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "d08a510cae263969eb8a76b290390f24d4df5d5f58ca6a5e9ab6eab6675c1aa9"
+    },
+    {
+      "source": "assets/screens/lock-chan-book-2-night.png",
+      "file": "assets/screens-web/lock-chan-book-2-night.webp",
+      "sourceBytes": 227410,
+      "bytes": 92024,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "f1095842dfb8e64fe716bcc8f751ae68bad87227cb4185e08322df33035f467f"
+    },
+    {
+      "source": "assets/screens/lock-chan-book-2.png",
+      "file": "assets/screens-web/lock-chan-book-2.webp",
+      "sourceBytes": 227752,
+      "bytes": 94442,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "9df43dba4d42e3f8cb5fc256b5beabd03d2b5190f6304864a39aff56f992d43f"
+    },
+    {
+      "source": "assets/screens/lock-chan-night.png",
+      "file": "assets/screens-web/lock-chan-night.webp",
+      "sourceBytes": 224418,
+      "bytes": 93414,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "92bf85e2b4d7eadeafd426ecfbe4a387f3fdef32f3e06ca7e935c7f95be88b01"
+    },
+    {
+      "source": "assets/screens/lock-chan.png",
+      "file": "assets/screens-web/lock-chan.webp",
+      "sourceBytes": 224789,
+      "bytes": 93266,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "fe19909a4d1091f4bdcd39822230bf2b906b03c3b495db0484a7cb1f64c65d51"
+    },
+    {
+      "source": "assets/screens/lock-soviet-book-0-night.png",
+      "file": "assets/screens-web/lock-soviet-book-0-night.webp",
+      "sourceBytes": 222433,
+      "bytes": 94880,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "d1b8ee1b401759b2923908c7d639b9077a6ef6090f5e12ad361914056d7fa8bc"
+    },
+    {
+      "source": "assets/screens/lock-soviet-book-0.png",
+      "file": "assets/screens-web/lock-soviet-book-0.webp",
+      "sourceBytes": 222352,
+      "bytes": 94920,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "83fb1d87b30642fbedfaf0a5d8103869e04975dbae3898ce28efa17340f4bad2"
+    },
+    {
+      "source": "assets/screens/lock-soviet-book-1-night.png",
+      "file": "assets/screens-web/lock-soviet-book-1-night.webp",
+      "sourceBytes": 224070,
+      "bytes": 95706,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "3cdfe7d68ab01b16ad269ee2517a81dc9ab87f93dfc2c384ab7e949388cf643d"
+    },
+    {
+      "source": "assets/screens/lock-soviet-book-1.png",
+      "file": "assets/screens-web/lock-soviet-book-1.webp",
+      "sourceBytes": 223983,
+      "bytes": 95604,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "8397b53be5e497792ca27509f77bc8003f3791920db5e564d4b3564c5e1e5d9b"
+    },
+    {
+      "source": "assets/screens/lock-soviet-book-2-night.png",
+      "file": "assets/screens-web/lock-soviet-book-2-night.webp",
+      "sourceBytes": 225362,
+      "bytes": 96218,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "18ee1a7120c51cca748b9bcb05bc316dfa64c132c3363400e312286f07eb97d5"
+    },
+    {
+      "source": "assets/screens/lock-soviet-book-2.png",
+      "file": "assets/screens-web/lock-soviet-book-2.webp",
+      "sourceBytes": 225267,
+      "bytes": 96120,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "257037409d1b3eee363914190d2bbfdebbc8711b3ecd0553722311229a2e79e7"
+    },
+    {
+      "source": "assets/screens/lock-soviet-night.png",
+      "file": "assets/screens-web/lock-soviet-night.webp",
+      "sourceBytes": 222433,
+      "bytes": 94880,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "d1b8ee1b401759b2923908c7d639b9077a6ef6090f5e12ad361914056d7fa8bc"
+    },
+    {
+      "source": "assets/screens/lock-soviet.png",
+      "file": "assets/screens-web/lock-soviet.webp",
+      "sourceBytes": 222352,
+      "bytes": 94920,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "83fb1d87b30642fbedfaf0a5d8103869e04975dbae3898ce28efa17340f4bad2"
+    },
+    {
+      "source": "assets/screens/operation-appearance-cat.png",
+      "file": "assets/screens-web/operation-appearance-cat.webp",
+      "sourceBytes": 70671,
+      "bytes": 14750,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "3bb728b324244a6b8ed3a32a1733c8b84ebf5451f8f6e63c6d16368d2f81fb72"
+    },
+    {
+      "source": "assets/screens/operation-appearance.png",
+      "file": "assets/screens-web/operation-appearance.webp",
+      "sourceBytes": 70671,
+      "bytes": 14750,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "3bb728b324244a6b8ed3a32a1733c8b84ebf5451f8f6e63c6d16368d2f81fb72"
+    },
+    {
+      "source": "assets/screens/operation-settings-cat.png",
+      "file": "assets/screens-web/operation-settings-cat.webp",
+      "sourceBytes": 65101,
+      "bytes": 12582,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "150dd086f973f05b49d479c8dc65ca7ddcc7878d2c6592c677bc8959d3ae5083"
+    },
+    {
+      "source": "assets/screens/operation-settings.png",
+      "file": "assets/screens-web/operation-settings.webp",
+      "sourceBytes": 65101,
+      "bytes": 12582,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "150dd086f973f05b49d479c8dc65ca7ddcc7878d2c6592c677bc8959d3ae5083"
+    },
+    {
+      "source": "assets/screens/reading-horizontal.png",
+      "file": "assets/screens-web/reading-horizontal.webp",
+      "sourceBytes": 211094,
+      "bytes": 56412,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "786521cf573fbbe2219a6556e81d0121318f0584756fd31c71209b23679795c1"
+    },
+    {
+      "source": "assets/screens/reading-vertical-ltr.png",
+      "file": "assets/screens-web/reading-vertical-ltr.webp",
+      "sourceBytes": 175371,
+      "bytes": 48372,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "cedb5ae0a2c9f4f76882438fcadc51c362a4598f756448131d77ce348f769305"
+    },
+    {
+      "source": "assets/screens/reading-vertical-rtl.png",
+      "file": "assets/screens-web/reading-vertical-rtl.webp",
+      "sourceBytes": 175452,
+      "bytes": 48568,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "f6b46268aa06ae14140b10f02b6081453396a5851762f0207b716f155ad56d49"
+    },
+    {
+      "source": "assets/screens/widget-detail-cat.png",
+      "file": "assets/screens-web/widget-detail-cat.webp",
+      "sourceBytes": 49106,
+      "bytes": 8928,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "4893eb3e925e55636c4c56288e724b6d52320683891ecb32d2d872e1e12aac4c"
+    },
+    {
+      "source": "assets/screens/widget-detail.png",
+      "file": "assets/screens-web/widget-detail.webp",
+      "sourceBytes": 49106,
+      "bytes": 8928,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "4893eb3e925e55636c4c56288e724b6d52320683891ecb32d2d872e1e12aac4c"
+    },
+    {
+      "source": "assets/screens/widget-editor-cat.png",
+      "file": "assets/screens-web/widget-editor-cat.webp",
+      "sourceBytes": 68753,
+      "bytes": 10416,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "c995f1e1556efde56c7796761f5d64dbd75329537b4fd0313455331f2f518f58"
+    },
+    {
+      "source": "assets/screens/widget-editor.png",
+      "file": "assets/screens-web/widget-editor.webp",
+      "sourceBytes": 68753,
+      "bytes": 10416,
+      "size": [
+        684,
+        1216
+      ],
+      "rgbaSha256": "c995f1e1556efde56c7796761f5d64dbd75329537b4fd0313455331f2f518f58"
+    }
+  ]
+}
