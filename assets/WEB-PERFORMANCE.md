@@ -4,7 +4,7 @@
 
 |需求与公共路径|正常结果|失败、退出、重入|
 |---|---|---|
-|网页字体，`assets/fonts/web-fonts.css`|同源同字形，核心与其余 Unicode 范围互斥且覆盖原 cmap；核心 182,976 B，原 TTF 26,198,796 B|原 TTF 与 OFL 保留，完整字体下载链接保留；未知页面字符按需加载原字体其余字形|
+|网页字体，`assets/fonts/web-fonts.css`|同源同字形，核心与其余 Unicode 范围互斥且覆盖原 cmap；核心 183,180 B，原 TTF 26,198,796 B|原 TTF 与 OFL 保留，完整字体下载链接保留；未知页面字符按需加载原字体其余字形|
 |57 张截图，`media.js`|无损 WebP，原始 7,885,900 B → 2,705,940 B；RGBA 解码逐像素一致；原 684×1216 PNG 保留|先解码后替换；失败保留上一完整帧并提示；同一图可重试|
 |首页/锁屏/阅读/导览共享媒体入口|只有当前 route、非 hidden、非折叠内容、距视口约250px的图片开始加载；首页主帧 high 优先，明确尺寸；自动演示等首帧与字体齐备|离页/隐藏暂停演示；减少动效沿用；所有动态换帧都接同一入口，未请求图片不记加载失败|
 |启动与资源反馈，`v2.js`|先让 busy 实际呈现，再 `PaperspaceRuntimeAssets.prepare`；下载展示实际 received/total，解压/校验只展示阶段|Stop、离页、pagehide 取消在途资源，epoch 拒绝旧异步完成；下载与90s初始化计时分开；90s在资源校验完成后开始|
@@ -13,7 +13,7 @@
 
 `media.js` 是 app、hero 操作回放、主页日夜比较、阅读、锁屏和放大查看的共同媒体路径。父页资源加载器由另一个开发任务提供，集成契约为 `prepare({onProgress})`、`cancel()`、`getBundle()`；本次真实联调只读其提交 `3e364ad65ad209269296b96f903a4128cd508557`。
 
-开发自测：`node --check` 三个受影响脚本、`git diff --check`；`/usr/bin/python3 scripts/build-web-assets.py` 完成所有46,946 cmap 字符的 advance、展开轮廓与 hint 指令核对，150个网页分片共10,264,040 B，57图像素校验成功。清单在相邻 `web-assets-manifest.json`。原 TTF SHA-256 仍为 `4baa9679b0aae3983a8b03c49f5cccce796b503b95e900120e8e6f3c07a6519c`。
+开发自测：`node --check` 三个受影响脚本、`git diff --check`；`/usr/bin/python3 scripts/build-web-assets.py` 完成所有46,946 cmap 字符的 advance、展开轮廓与 hint 指令核对，150个网页分片共10,264,960 B，57图像素校验成功。清单在相邻 `web-assets-manifest.json`。原 TTF SHA-256 仍为 `4baa9679b0aae3983a8b03c49f5cccce796b503b95e900120e8e6f3c07a6519c`。
 
 本机 Chromium + Playwright 开发自测通过：直达 experience 时首页与折叠导览不加载、未点击启动无 data/wasm 下载；首页仅视口附近请求；图片失败保旧与同源重试；三种阅读方向；四主题锁屏加日夜/书2；684×1216实际像素查看；页面未含字符“龘”按需请求原字体分片；下载中 Stop 与离页取消后旧 promise 不建 iframe；实际 WASM 首次2个 gzip请求，主题重启不再下载；短书快开不更换 iframe，严格业务帧门禁通过，无 JS 异常。
 
@@ -21,4 +21,9 @@
 
 未测：独立冻结候选 QA、公开站点发布后检查、实体墨水屏触控/刷新/残影/功耗与硬件。未尝试绕过公网 Chromium 证书错误；所有浏览器开发验证使用本机 HTTP COOP/COEP 服务。`firmware-target.json` 仍是 schema2/disabled，writer 与生产固件均未更改。
 
-生成器静态修整待跑：固定公共 UI 输入清单（不受新根目录加载器影响），记录逐输入 SHA-256，并将字体 header 时间归一到原字体以确保重新生成稳定。此修整尚未重生成，须待协调者正式基线测量窗口结束后执行，再以新候选冻结并复核字节统计。
+
+最终增量修复：旧图片请求 A 晚失败时，只有 generation、当前 source 和 active 均匹配才报告错误；画面 alt、当前场景标题和选择状态均在同源解码成功后提交，屏外延迟请求保留提交回调，失败保留旧描述与选择。锁屏待完成的日夜与书籍选择按最新用户意图组合，成功后一起提交。destroy 清理旧 pointer、capture 和网站触控环，pointerup 只接收同 epoch 输入。
+
+定向开发自测通过：A在途→B屏外未请求→A失败不污染→B可见成功；阅读横→竖失败保留原像素/alt/选择→同目标重试成功；锁屏猫咪失败/重试；折叠scene延迟至显示后再更新标题；慢日夜请求期间选择书2保留组合意图；真实 WASM old down→Stop→fresh ready→old up零命令，fresh click一条真实ARM TAP进入view13/seq16。首次 gesture 测试夹具未扣屏幕边框，源坐标129被断言为130；保留原FAIL，修正夹具按实际border内坐标后通过，不改变产品坐标或弱化断言。
+
+固定13个公共 UI 输入和原字体 header 时间后完整生成成功，实测110.459秒；46,946 glyph advance/轮廓/hint 与57图像素断言均通过。随后给 app.js/v2.js/v2.css 加同一ASCII缓存revision，iframe携带固定runtime_rev（child键校验由协调者整合）。`--verify-existing --refresh-input-hashes` 严格证明当前glyph集合、字体与图像字节均匹配既有产物，仅刷新13输入来源hash，耗时42.121秒；不重新压图或保存字体。第二次只读稳定性复核耗时52.401秒，通过全部46,946字形与57图断言，209个产物hash全部不变。

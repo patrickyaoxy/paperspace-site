@@ -1,757 +1,922 @@
 {
   "fontSourceSha256": "4baa9679b0aae3983a8b03c49f5cccce796b503b95e900120e8e6f3c07a6519c",
   "fontSourceBytes": 26198796,
+  "fontInputs": {
+    "app.js": "c62cc848f070e1fcfeec123dc44b1ae69d60a811c3c7b2f2b52a5aa50d6d4216",
+    "coi-bootstrap.js": "dac152b33eadba1b041733f1a229bfbe10e64f679e9c1b86d29f7bd4f366b08c",
+    "coi-serviceworker.js": "976974652ae67e45e4b67aff5a3176efbb234523f019c758e3ce45da64d36710",
+    "flasher.css": "1531e96d524bb78e9d8633d1423e837504abae408bd6086607310ec2fa866b66",
+    "flasher.js": "62d259ac45eb7010b45ca5699370fac2574a6f706f2184430252f1cdcc37b2aa",
+    "index.html": "64d668bb6ed72673877fdae92d27b46099365902084497c5647679e3b95532f2",
+    "install-loader.js": "0031591a103e1911b71f8beed8fc6224d2ca24cd161d7f153a79c28fc704d886",
+    "legal.html": "c4691d81a0cefaa14bd2c7d4951dbcf021effb97159d53e3c4b670d2b13454c0",
+    "media.js": "cec55393ea243577e3ad0849d38aa68a9ed4ddd4709a65e6c3b117876e545f80",
+    "real-flasher-ui.js": "77508f97b3148b3a3052436c066f8f313ac801a26f8e19717344be0c88b9d7d1",
+    "style.css": "0088b62488381a15e76ed3b1209058bcab8ca0c57323edd911ada7f5758e4289",
+    "v2.css": "e167473cfd4f3d5da5a12f7a614e1ecfeb0f33d528b9c76b1d5901c48b219fd2",
+    "v2.js": "49cc547cc87acd259fde33907699cd1892d4c07b1bb9512a0c5e7259e76743f6"
+  },
   "fontCodepoints": 46946,
   "fontParts": [
     {
       "file": "assets/fonts/web/core.woff2",
-      "bytes": 182976,
-      "codepoints": 854
+      "bytes": 183180,
+      "codepoints": 855,
+      "sha256": "efbd261736923fc07b093c70c5159389a76f7894c45ee92fff800fd9361e2aaa"
     },
     {
       "file": "assets/fonts/web/u00000.woff2",
-      "bytes": 44116,
-      "codepoints": 749
+      "bytes": 44108,
+      "codepoints": 749,
+      "sha256": "0a5eadf0bbf70194959f1539092e5a9260ceec60697cd0a2a6f37efdc03982c3"
     },
     {
       "file": "assets/fonts/web/u00400.woff2",
       "bytes": 11556,
-      "codepoints": 156
+      "codepoints": 156,
+      "sha256": "dc78f1b3cea3ec3318a41e066f7af441d549f712b6e5ef935e6acb618a533b59"
     },
     {
       "file": "assets/fonts/web/u00c00.woff2",
       "bytes": 1116,
-      "codepoints": 3
+      "codepoints": 3,
+      "sha256": "c20f89d828b1907984fe7936739e5401d19ca8b4f436dfaf344bb2229df0409c"
     },
     {
       "file": "assets/fonts/web/u01c00.woff2",
-      "bytes": 20752,
-      "codepoints": 552
+      "bytes": 20776,
+      "codepoints": 552,
+      "sha256": "a954a52dfd8332406a1bc79b5a8ad5131b831ea6bbe89ac9cba1fc9866e491bb"
     },
     {
       "file": "assets/fonts/web/u02000.woff2",
-      "bytes": 32380,
-      "codepoints": 434
+      "bytes": 32392,
+      "codepoints": 434,
+      "sha256": "3d5464de71e62957ef7052f04f7a32b2d8fdabb9034a8998a0fdd0f8e4a9459f"
     },
     {
       "file": "assets/fonts/web/u02400.woff2",
-      "bytes": 34932,
-      "codepoints": 531
+      "bytes": 34912,
+      "codepoints": 531,
+      "sha256": "845300a80f6926b6abe5ac0b9a775cfe5029fa578fff2a022913bc05552d6c26"
     },
     {
       "file": "assets/fonts/web/u02800.woff2",
-      "bytes": 2752,
-      "codepoints": 31
+      "bytes": 2720,
+      "codepoints": 31,
+      "sha256": "6aa80345f38a359e9e7bd7d80ae947a239cba18bab88a54eb83fbdaecce2deff"
     },
     {
       "file": "assets/fonts/web/u02c00.woff2",
-      "bytes": 56992,
-      "codepoints": 356
+      "bytes": 57000,
+      "codepoints": 356,
+      "sha256": "4bde9094a6ab5f398fff993cb1225f82847db819f354b00432a144cfc0136d49"
     },
     {
       "file": "assets/fonts/web/u03000.woff2",
-      "bytes": 117892,
-      "codepoints": 996
+      "bytes": 117960,
+      "codepoints": 996,
+      "sha256": "3462859e53b8002960707c40e2d913c2c831b3353009b48a2d2fcd1935f532de"
     },
     {
       "file": "assets/fonts/web/u03400.woff2",
-      "bytes": 291700,
-      "codepoints": 1024
+      "bytes": 291964,
+      "codepoints": 1024,
+      "sha256": "1e9c447abc0992284fe224a54912f98d1a7086efdfb178aeeea3cc5c690b0472"
     },
     {
       "file": "assets/fonts/web/u03800.woff2",
-      "bytes": 312944,
-      "codepoints": 1024
+      "bytes": 313236,
+      "codepoints": 1024,
+      "sha256": "ec786f5ac64bdc5b0af5e42dfc8cf77756c5dbb2a5aef855789611af0671f325"
     },
     {
       "file": "assets/fonts/web/u03c00.woff2",
-      "bytes": 328132,
-      "codepoints": 1024
+      "bytes": 328176,
+      "codepoints": 1024,
+      "sha256": "903c73232706c794d06a9fa2130635fd1fceca45c176fc9d7a13475705445ec1"
     },
     {
       "file": "assets/fonts/web/u04000.woff2",
-      "bytes": 325468,
-      "codepoints": 1024
+      "bytes": 325336,
+      "codepoints": 1024,
+      "sha256": "4e93c35ff4f8aea3d97acd169a0bc9d4e0d641253da33b6ceea8b0edc8656db0"
     },
     {
       "file": "assets/fonts/web/u04400.woff2",
-      "bytes": 342280,
-      "codepoints": 1024
+      "bytes": 342272,
+      "codepoints": 1024,
+      "sha256": "fd3cde9c8b7b14fc7674147de6ed9292b377c30fa348cdccd130fd180e3863ac"
     },
     {
       "file": "assets/fonts/web/u04800.woff2",
-      "bytes": 365596,
-      "codepoints": 1024
+      "bytes": 365496,
+      "codepoints": 1024,
+      "sha256": "49bfa98576ff6136eb90064dbf9aea89d6f00feb4cb2d1d940863234e8dc52d5"
     },
     {
       "file": "assets/fonts/web/u04c00.woff2",
-      "bytes": 270724,
-      "codepoints": 957
+      "bytes": 270292,
+      "codepoints": 957,
+      "sha256": "10807f945bc3c3a9abddc65d7b27e5aa1b03fba3c912b84a9fba4d7e564acbc4"
     },
     {
       "file": "assets/fonts/web/u05000.woff2",
-      "bytes": 243836,
-      "codepoints": 941
+      "bytes": 243992,
+      "codepoints": 941,
+      "sha256": "83c24e15d3ec75e1f266cba0c7a173e51796cbce2e932c98230db661e88d7978"
     },
     {
       "file": "assets/fonts/web/u05400.woff2",
-      "bytes": 245140,
-      "codepoints": 989
+      "bytes": 244860,
+      "codepoints": 988,
+      "sha256": "d3e75414a77f83b3df6a093dd55900e4e0314593eac98b11893f817337f7487a"
     },
     {
       "file": "assets/fonts/web/u05800.woff2",
-      "bytes": 285528,
-      "codepoints": 983
+      "bytes": 285524,
+      "codepoints": 983,
+      "sha256": "7d8323e557ff9c274d3377209d637fbf525c25226b567a378f1e7a9728d01a70"
     },
     {
       "file": "assets/fonts/web/u05c00.woff2",
-      "bytes": 251592,
-      "codepoints": 965
+      "bytes": 251728,
+      "codepoints": 965,
+      "sha256": "9914ac9d7ef8804490865bf7a2daf5101a2a9ca8b1168d24af8190497aa8fe2a"
     },
     {
       "file": "assets/fonts/web/u06000.woff2",
-      "bytes": 265668,
-      "codepoints": 976
+      "bytes": 265396,
+      "codepoints": 976,
+      "sha256": "5e69922218dc32891dcc8a55e24943c94ff7641074776b5faf7683c9b3a3e9c1"
     },
     {
       "file": "assets/fonts/web/u06400.woff2",
-      "bytes": 281252,
-      "codepoints": 967
+      "bytes": 281264,
+      "codepoints": 967,
+      "sha256": "17a9684b695deab68833dbae0e9b66c9571e4c95fea98fb7734bacf5e49bc5fa"
     },
     {
       "file": "assets/fonts/web/u06800.woff2",
-      "bytes": 315724,
-      "codepoints": 995
+      "bytes": 315992,
+      "codepoints": 995,
+      "sha256": "8a7e87d79c7f16813eb5f501eab8cc3695479ac2c22cb2d3414d6cf67f124bf4"
     },
     {
       "file": "assets/fonts/web/u06c00.woff2",
-      "bytes": 265896,
-      "codepoints": 998
+      "bytes": 266016,
+      "codepoints": 998,
+      "sha256": "3c172257ecf89cac8bfc564c3d2d1db3ffcf6b837540dbb2cf4f0ffd47b11880"
     },
     {
       "file": "assets/fonts/web/u07000.woff2",
-      "bytes": 290056,
-      "codepoints": 1006
+      "bytes": 290064,
+      "codepoints": 1006,
+      "sha256": "3b45316e2feb309953de40f53636aecc62e18f3bfd3e003e60ead6274a3fa330"
     },
     {
       "file": "assets/fonts/web/u07400.woff2",
-      "bytes": 284732,
-      "codepoints": 1000
+      "bytes": 284752,
+      "codepoints": 1000,
+      "sha256": "8b3f1789d0970dcc3e02bd79030852d2a94dbcfcd7015ad19ba69d24a4f34592"
     },
     {
       "file": "assets/fonts/web/u07800.woff2",
-      "bytes": 274924,
-      "codepoints": 990
+      "bytes": 274828,
+      "codepoints": 990,
+      "sha256": "5a6802afd0176a5452186179c1cd34b2506c7e7dfd44544a18137caf6477d5e5"
     },
     {
       "file": "assets/fonts/web/u07c00.woff2",
-      "bytes": 306000,
-      "codepoints": 987
+      "bytes": 305916,
+      "codepoints": 987,
+      "sha256": "2c45d9993afdf6152e2eac06523489cb344dc32bd089b408bab8afa1aee60d30"
     },
     {
       "file": "assets/fonts/web/u08000.woff2",
-      "bytes": 258576,
-      "codepoints": 1001
+      "bytes": 258700,
+      "codepoints": 1001,
+      "sha256": "1bbc44ef64a473620431d1181a85f54f78ba97d218502679d7ec047f1c1c17cd"
     },
     {
       "file": "assets/fonts/web/u08400.woff2",
-      "bytes": 328504,
-      "codepoints": 1022
+      "bytes": 328436,
+      "codepoints": 1022,
+      "sha256": "f9cc47a2c47ad32c298760ae55be6ac3622bdfc95dc9b4e200b0d6cad6f32402"
     },
     {
       "file": "assets/fonts/web/u08800.woff2",
-      "bytes": 302164,
-      "codepoints": 989
+      "bytes": 302144,
+      "codepoints": 989,
+      "sha256": "62e120d9980f6194727abcb1ae426dcd63bc51755c2461ec9bf2040ee1989013"
     },
     {
       "file": "assets/fonts/web/u08c00.woff2",
-      "bytes": 282136,
-      "codepoints": 983
+      "bytes": 282144,
+      "codepoints": 983,
+      "sha256": "cc7ebf226550cca79e8b04cafcc510dfe40d21420ac81ff4248ec05d3a2d360d"
     },
     {
       "file": "assets/fonts/web/u09000.woff2",
-      "bytes": 297756,
-      "codepoints": 1003
+      "bytes": 297900,
+      "codepoints": 1003,
+      "sha256": "54c175a40ad9ee94b8c144846720a727f83aa1f1869e7cb1197a90b8886d5210"
     },
     {
       "file": "assets/fonts/web/u09400.woff2",
-      "bytes": 310064,
-      "codepoints": 993
+      "bytes": 310188,
+      "codepoints": 993,
+      "sha256": "66e798811067190849601f8f939fadb69a8019e7b64f3e88c32e7486761240d4"
     },
     {
       "file": "assets/fonts/web/u09800.woff2",
-      "bytes": 318360,
-      "codepoints": 1011
+      "bytes": 318496,
+      "codepoints": 1011,
+      "sha256": "dab61ec7ef7ca7756f95547aa9829ebd9a7417a1ec14361d357138abce2a71a1"
     },
     {
       "file": "assets/fonts/web/u09c00.woff2",
-      "bytes": 349272,
-      "codepoints": 1020
+      "bytes": 349280,
+      "codepoints": 1020,
+      "sha256": "676e710f4180a5d53a74bd6d93315b74ce655f9db26458781de525a2ca8b1a8c"
     },
     {
       "file": "assets/fonts/web/u0a400.woff2",
-      "bytes": 5824,
-      "codepoints": 65
+      "bytes": 5832,
+      "codepoints": 65,
+      "sha256": "490691e279ddb716262b73d9384619adf286638c9d14461b0687a0fc58ca94ad"
     },
     {
       "file": "assets/fonts/web/u0a800.woff2",
       "bytes": 1000,
-      "codepoints": 1
+      "codepoints": 1,
+      "sha256": "2b39688531667645ef551fc65ea5eb7dad58d06c392ff8d1c36cf00e47d62a09"
     },
     {
       "file": "assets/fonts/web/u0ac00.woff2",
-      "bytes": 33056,
-      "codepoints": 1024
+      "bytes": 33032,
+      "codepoints": 1024,
+      "sha256": "c8aed4c8fceb5272c667a75ab3344f3f8ca81818a43f668ac939b2e509fd5504"
     },
     {
       "file": "assets/fonts/web/u0b000.woff2",
       "bytes": 30044,
-      "codepoints": 1024
+      "codepoints": 1024,
+      "sha256": "11cc50078d40bf8fb0f842682002f3df9fad77107f5df64c19a40d8c2710f5e9"
     },
     {
       "file": "assets/fonts/web/u0b400.woff2",
-      "bytes": 32128,
-      "codepoints": 1024
+      "bytes": 32088,
+      "codepoints": 1024,
+      "sha256": "b0310a7a54627948c21ebe2fd8276166a2ff67002cd1b6016fc459e3d7e69ba7"
     },
     {
       "file": "assets/fonts/web/u0b800.woff2",
-      "bytes": 34016,
-      "codepoints": 1024
+      "bytes": 34020,
+      "codepoints": 1024,
+      "sha256": "457c909a6fb6d0ea07f9be785bf983cfb0a963ca1db5c42c845c21381c0e0fde"
     },
     {
       "file": "assets/fonts/web/u0bc00.woff2",
-      "bytes": 31472,
-      "codepoints": 1024
+      "bytes": 31492,
+      "codepoints": 1024,
+      "sha256": "5216acec38cb0b929c483a1cb8fa86b0a813734dfef77972941991f79cdf927c"
     },
     {
       "file": "assets/fonts/web/u0c000.woff2",
-      "bytes": 31968,
-      "codepoints": 1024
+      "bytes": 31944,
+      "codepoints": 1024,
+      "sha256": "2ceefa9ee9946183fb82874a50f990f81c5d6e94635ea6513dda6052db19121c"
     },
     {
       "file": "assets/fonts/web/u0c400.woff2",
-      "bytes": 33940,
-      "codepoints": 1024
+      "bytes": 33912,
+      "codepoints": 1024,
+      "sha256": "7f2f1d76da25f23b3bcca0ba2e29bf8174c32720b3df0d1792d2454c1ea48791"
     },
     {
       "file": "assets/fonts/web/u0c800.woff2",
-      "bytes": 34240,
-      "codepoints": 1024
+      "bytes": 34196,
+      "codepoints": 1024,
+      "sha256": "cad257f2e9fc96122a9c53a13329d9bf6ed1431a788a826ce4d3af7187834de7"
     },
     {
       "file": "assets/fonts/web/u0cc00.woff2",
-      "bytes": 30760,
-      "codepoints": 1024
+      "bytes": 30748,
+      "codepoints": 1024,
+      "sha256": "a7f89920334ffa6ea3ed1202baa8b4e503538d4d9109d9cce4c61a6e3180cee4"
     },
     {
       "file": "assets/fonts/web/u0d000.woff2",
-      "bytes": 33492,
-      "codepoints": 1024
+      "bytes": 33508,
+      "codepoints": 1024,
+      "sha256": "40b6f8d32ea8d00281eb5a2d4d7c49043db9b115c6ab016824368d830437a66c"
     },
     {
       "file": "assets/fonts/web/u0d400.woff2",
-      "bytes": 37972,
-      "codepoints": 932
+      "bytes": 38000,
+      "codepoints": 932,
+      "sha256": "2e2d225d8b83d28faa1fd925ce660abcad9f453f8d69745d011e18a7019d1d8f"
     },
     {
       "file": "assets/fonts/web/u0e000.woff2",
       "bytes": 1736,
-      "codepoints": 21
+      "codepoints": 21,
+      "sha256": "1ae05f1d95bb73b81a58c80b52a68459e1b10cf9bb2eca6179766d057b7f61c4"
     },
     {
       "file": "assets/fonts/web/u0e400.woff2",
-      "bytes": 6320,
-      "codepoints": 8
+      "bytes": 6316,
+      "codepoints": 8,
+      "sha256": "a085e4f678643498881b19719c890dede2f506480ad49f3aca4771e3e7095522"
     },
     {
       "file": "assets/fonts/web/u0ec00.woff2",
-      "bytes": 892,
-      "codepoints": 1
+      "bytes": 896,
+      "codepoints": 1,
+      "sha256": "8c382e9a5fa92db89a5d69c6e56e2c7a7beb2582f8e9f2ce36dca3aa46b4f2a1"
     },
     {
       "file": "assets/fonts/web/u0f000.woff2",
-      "bytes": 1004,
-      "codepoints": 1
+      "bytes": 992,
+      "codepoints": 1,
+      "sha256": "c52176c258f58f1f00ab4598256c3c8b87e66c29e4f8e69f1ac38150cf708e2e"
     },
     {
       "file": "assets/fonts/web/u0f800.woff2",
-      "bytes": 127412,
-      "codepoints": 373
+      "bytes": 127444,
+      "codepoints": 373,
+      "sha256": "9b680a24a4c7e9d5d4aac2a87c171f31081198f57f93ca2bc218a68f00f785c4"
     },
     {
       "file": "assets/fonts/web/u0fc00.woff2",
-      "bytes": 26072,
-      "codepoints": 289
+      "bytes": 26076,
+      "codepoints": 289,
+      "sha256": "a531d6d468c2630aa52dd20ca3d6989046b2dbb853eb5641e9635c0cf13586ea"
     },
     {
       "file": "assets/fonts/web/u10400.woff2",
-      "bytes": 948,
-      "codepoints": 1
+      "bytes": 956,
+      "codepoints": 1,
+      "sha256": "5cee837312aabaf8677ac92cfb00ab25a3555f17135aba9509836d858242f805"
     },
     {
       "file": "assets/fonts/web/u11c00.woff2",
-      "bytes": 948,
-      "codepoints": 1
+      "bytes": 940,
+      "codepoints": 1,
+      "sha256": "9377dd23a7012669cefad8d6b9f378edb116d49c6212842f6ab1f430419cea48"
     },
     {
       "file": "assets/fonts/web/u16c00.woff2",
-      "bytes": 1484,
-      "codepoints": 4
+      "bytes": 1464,
+      "codepoints": 4,
+      "sha256": "9a76ae9a058dd5241686b833d22abfd4d37beb9da6d73f9bf5a2f06161191e5d"
     },
     {
       "file": "assets/fonts/web/u1b000.woff2",
-      "bytes": 1280,
-      "codepoints": 2
+      "bytes": 1268,
+      "codepoints": 2,
+      "sha256": "10a362556088e0f006be35dee2d4565f5cc4f61a44325444e2b160a0e88e2ec8"
     },
     {
       "file": "assets/fonts/web/u1d000.woff2",
-      "bytes": 2824,
-      "codepoints": 110
+      "bytes": 2840,
+      "codepoints": 110,
+      "sha256": "b91eac5e043bbc48e2f7a4fbe6d588e196bbdaecafddc4f26bd9c08702bcc8e1"
     },
     {
       "file": "assets/fonts/web/u1f000.woff2",
-      "bytes": 47576,
-      "codepoints": 282
+      "bytes": 47588,
+      "codepoints": 282,
+      "sha256": "b3bfa45d8a599db93d3aed708237e3d8ae3666e20f67ab86a12e0d6ae8636a77"
     },
     {
       "file": "assets/fonts/web/u1f400.woff2",
-      "bytes": 940,
-      "codepoints": 2
+      "bytes": 944,
+      "codepoints": 2,
+      "sha256": "81a2ec3a69e8bbd837a892a7403b54c703b3f5b1ec7ed6180aa33002402965cf"
     },
     {
       "file": "assets/fonts/web/u1f800.woff2",
-      "bytes": 4892,
-      "codepoints": 14
+      "bytes": 4888,
+      "codepoints": 14,
+      "sha256": "e3f7e9de40270f5859e50e084cedd961c93ed01efccbf4f05a4b1c895c480579"
     },
     {
       "file": "assets/fonts/web/u20000.woff2",
-      "bytes": 19084,
-      "codepoints": 78
+      "bytes": 19064,
+      "codepoints": 78,
+      "sha256": "948f7da6afb2e7e3703676ed9c3877bb8f2e367ed3ed9ddcdc1805fe520d7b46"
     },
     {
       "file": "assets/fonts/web/u20400.woff2",
-      "bytes": 16556,
-      "codepoints": 52
+      "bytes": 16560,
+      "codepoints": 52,
+      "sha256": "9a0a7a91e2477071f7bef9f9ec6d80b12d915e193ddb4989d19e780dfdb269f1"
     },
     {
       "file": "assets/fonts/web/u20800.woff2",
-      "bytes": 14500,
-      "codepoints": 46
+      "bytes": 14492,
+      "codepoints": 46,
+      "sha256": "a63a0dbf697fce1445b2197f7b8eed1363c0d1da18ff8141c63368b3bec52589"
     },
     {
       "file": "assets/fonts/web/u20c00.woff2",
-      "bytes": 22700,
-      "codepoints": 70
+      "bytes": 22704,
+      "codepoints": 70,
+      "sha256": "9ae20fe3f91ac82f1d79a3f67c05ecc225220c4d17379aedddc1dd77190b6397"
     },
     {
       "file": "assets/fonts/web/u21000.woff2",
       "bytes": 18068,
-      "codepoints": 50
+      "codepoints": 50,
+      "sha256": "8268a93765f9db0491110a2b9bc7fc209d9b946773aea8f471e60826e8b12d16"
     },
     {
       "file": "assets/fonts/web/u21400.woff2",
-      "bytes": 13224,
-      "codepoints": 33
+      "bytes": 13208,
+      "codepoints": 33,
+      "sha256": "9ead3d086586ee994c563a00c9bea79dc50f5d35405b4ee8a54b6494a3c5c2e3"
     },
     {
       "file": "assets/fonts/web/u21800.woff2",
-      "bytes": 11832,
-      "codepoints": 30
+      "bytes": 11828,
+      "codepoints": 30,
+      "sha256": "59a3df5a1743ad6e76a4dad080e1309fb6946b6f7033d42fab4df927c1b33e13"
     },
     {
       "file": "assets/fonts/web/u21c00.woff2",
       "bytes": 24676,
-      "codepoints": 73
+      "codepoints": 73,
+      "sha256": "e7f18d1242cf25dcc916a385b479a5591bd6390e8891c31e89d8821d9e7aa0d9"
     },
     {
       "file": "assets/fonts/web/u22000.woff2",
       "bytes": 8896,
-      "codepoints": 24
+      "codepoints": 24,
+      "sha256": "3557eafe4e4828cd4b2db9ddaa15ab7c4fb683d248f7c40d0f7f30df17d6888a"
     },
     {
       "file": "assets/fonts/web/u22400.woff2",
-      "bytes": 12308,
-      "codepoints": 37
+      "bytes": 12312,
+      "codepoints": 37,
+      "sha256": "21a6a68353925d76d1d51ad181364eba4b48644ade4c8e8d5bd1a91ca7b89042"
     },
     {
       "file": "assets/fonts/web/u22800.woff2",
-      "bytes": 18820,
-      "codepoints": 46
+      "bytes": 18812,
+      "codepoints": 46,
+      "sha256": "9586af33b3258d17cabece1af053a27f063925a2c66013bf54566980911db4c8"
     },
     {
       "file": "assets/fonts/web/u22c00.woff2",
-      "bytes": 22180,
-      "codepoints": 48
+      "bytes": 22168,
+      "codepoints": 48,
+      "sha256": "01c91a80e4e23300280ba5a4224c682a3781530d56a68391e003ef2cc84b7ece"
     },
     {
       "file": "assets/fonts/web/u23000.woff2",
-      "bytes": 15240,
-      "codepoints": 43
+      "bytes": 15276,
+      "codepoints": 43,
+      "sha256": "1f145b128f36a7d29c34486c7dab237497666acb2eaa6bbc2b4084a76c8dbbf9"
     },
     {
       "file": "assets/fonts/web/u23400.woff2",
-      "bytes": 21540,
-      "codepoints": 47
+      "bytes": 21596,
+      "codepoints": 47,
+      "sha256": "9f36da6e5ef41bdc1e199637cfabf237223fa2894b9127a586787e52189cb4c7"
     },
     {
       "file": "assets/fonts/web/u23800.woff2",
-      "bytes": 12552,
-      "codepoints": 29
+      "bytes": 12556,
+      "codepoints": 29,
+      "sha256": "ea6df1ab37ac6eb0b0607f4ec3703df9e5cfdfca09652e4621623aa5e2835e13"
     },
     {
       "file": "assets/fonts/web/u23c00.woff2",
-      "bytes": 16320,
-      "codepoints": 47
+      "bytes": 16336,
+      "codepoints": 47,
+      "sha256": "268d67fe4e1d262b41a203d1a8798686533cfaf86a68341f30da6d3bbf141cc0"
     },
     {
       "file": "assets/fonts/web/u24000.woff2",
-      "bytes": 16260,
-      "codepoints": 38
+      "bytes": 16296,
+      "codepoints": 38,
+      "sha256": "8f7204478b34057273a12a483057fea4b7175d9eb5943d9758d2f2049fca7433"
     },
     {
       "file": "assets/fonts/web/u24400.woff2",
       "bytes": 19764,
-      "codepoints": 52
+      "codepoints": 52,
+      "sha256": "674e7646da94bcd258eace1cbde949971b58f6f6514781645925be7270c2ece8"
     },
     {
       "file": "assets/fonts/web/u24800.woff2",
       "bytes": 16248,
-      "codepoints": 39
+      "codepoints": 39,
+      "sha256": "59e4d8e4fdddda9bcf88775ab356b5620c355cfb31029c7055f03d0ac4b10bb8"
     },
     {
       "file": "assets/fonts/web/u24c00.woff2",
-      "bytes": 17320,
-      "codepoints": 48
+      "bytes": 17340,
+      "codepoints": 48,
+      "sha256": "a34a1ee6b81abe282ffdf324b8cadad99ef351431eeab3c00ca52e6f52c08dfa"
     },
     {
       "file": "assets/fonts/web/u25000.woff2",
-      "bytes": 14736,
-      "codepoints": 44
+      "bytes": 14728,
+      "codepoints": 44,
+      "sha256": "74058b60f089d5be8cc03137e77df69af660fb736e3de709b50c6883f14027d3"
     },
     {
       "file": "assets/fonts/web/u25400.woff2",
-      "bytes": 16200,
-      "codepoints": 45
+      "bytes": 16228,
+      "codepoints": 45,
+      "sha256": "c400d6a764084700e2c334f6f954133f3b0b19bf7fd647cf8100a38f297701d8"
     },
     {
       "file": "assets/fonts/web/u25800.woff2",
-      "bytes": 16952,
-      "codepoints": 39
+      "bytes": 16956,
+      "codepoints": 39,
+      "sha256": "bbafe382840df79d37ec667999b5d027c037926b0261ef5a98b8f31b06ed184a"
     },
     {
       "file": "assets/fonts/web/u25c00.woff2",
-      "bytes": 27492,
-      "codepoints": 60
+      "bytes": 27472,
+      "codepoints": 60,
+      "sha256": "768a66bc020c04d6569d4cf211b07f1c1a04e4681362aab05371d62d2b2106de"
     },
     {
       "file": "assets/fonts/web/u26000.woff2",
-      "bytes": 21744,
-      "codepoints": 54
+      "bytes": 21784,
+      "codepoints": 54,
+      "sha256": "98cf54414784e5b56a7da81c310fd30885aacd65d5b77f0681dacca34998f226"
     },
     {
       "file": "assets/fonts/web/u26400.woff2",
-      "bytes": 16416,
-      "codepoints": 43
+      "bytes": 16432,
+      "codepoints": 43,
+      "sha256": "0cc90ab1e512e10e6d0c9a621e01cf93b3076161496ed4cfd0d51f0ab6788496"
     },
     {
       "file": "assets/fonts/web/u26800.woff2",
       "bytes": 18944,
-      "codepoints": 50
+      "codepoints": 50,
+      "sha256": "2bf81d076d26f638efeb66d619bdad1574608f5a219edfbf9621e7100fec5822"
     },
     {
       "file": "assets/fonts/web/u26c00.woff2",
-      "bytes": 18724,
-      "codepoints": 41
+      "bytes": 18736,
+      "codepoints": 41,
+      "sha256": "f4be9344c986b4f7b79b10ef4f7bd43f683945aa37316bd8de642a39166d0cbf"
     },
     {
       "file": "assets/fonts/web/u27000.woff2",
-      "bytes": 23804,
-      "codepoints": 53
+      "bytes": 23808,
+      "codepoints": 53,
+      "sha256": "8699ade12b0af4b3b78573acb14832769e9f8ab892e073a78d0c3507a40e66fe"
     },
     {
       "file": "assets/fonts/web/u27400.woff2",
-      "bytes": 22000,
-      "codepoints": 48
+      "bytes": 22020,
+      "codepoints": 48,
+      "sha256": "09a850b2b2b70724602656394f6a5834b3f0c9a1cc80992a11d255d88c89899d"
     },
     {
       "file": "assets/fonts/web/u27800.woff2",
-      "bytes": 18072,
-      "codepoints": 40
+      "bytes": 18080,
+      "codepoints": 40,
+      "sha256": "3005e1f0f6bb93122559388c41be73249df4e32e075d120ce0ba5350ffd84e26"
     },
     {
       "file": "assets/fonts/web/u27c00.woff2",
-      "bytes": 17352,
-      "codepoints": 43
+      "bytes": 17376,
+      "codepoints": 43,
+      "sha256": "00389da9fedbd8a6c04ee82381d9e80ea61f36eabe6c27e50b7b89a88e5ddaaf"
     },
     {
       "file": "assets/fonts/web/u28000.woff2",
-      "bytes": 22472,
-      "codepoints": 52
+      "bytes": 22432,
+      "codepoints": 52,
+      "sha256": "c2d30697a3b1db3c423f370f5f4526fe9932c346a7113b8b969ea2c6b23d38a8"
     },
     {
       "file": "assets/fonts/web/u28400.woff2",
-      "bytes": 19824,
-      "codepoints": 55
+      "bytes": 19820,
+      "codepoints": 55,
+      "sha256": "51f9b360ee60c45403dc83a550caa45701b3a65909f45fe2a16fa182f438ebea"
     },
     {
       "file": "assets/fonts/web/u28800.woff2",
-      "bytes": 17800,
-      "codepoints": 37
+      "bytes": 17796,
+      "codepoints": 37,
+      "sha256": "0d1f8653314cc8e267995f4096a21f943c13f2af0cf43d3243093e1db7b602a7"
     },
     {
       "file": "assets/fonts/web/u28c00.woff2",
-      "bytes": 22092,
-      "codepoints": 55
+      "bytes": 22108,
+      "codepoints": 55,
+      "sha256": "b490811411fa8a4397f1abb710f1ffbbee3949d13d65f3b543fc9828db1ea3c8"
     },
     {
       "file": "assets/fonts/web/u29000.woff2",
-      "bytes": 15448,
-      "codepoints": 31
+      "bytes": 15444,
+      "codepoints": 31,
+      "sha256": "6b17c8460429033307bdb7e2dc3f8d05af6a97d06989f5660c0b60219f367223"
     },
     {
       "file": "assets/fonts/web/u29400.woff2",
       "bytes": 17236,
-      "codepoints": 39
+      "codepoints": 39,
+      "sha256": "b6e7d4ee5bb63847fa8928d5fea58655bff1c1c05abd7ccec18c42a7b4eb9baf"
     },
     {
       "file": "assets/fonts/web/u29800.woff2",
       "bytes": 16948,
-      "codepoints": 38
+      "codepoints": 38,
+      "sha256": "735dbcbf386a27471f49c7a0b9e0790b965fdb0c384a5c1d9372e79c7b6c3c53"
     },
     {
       "file": "assets/fonts/web/u29c00.woff2",
-      "bytes": 31412,
-      "codepoints": 66
+      "bytes": 31416,
+      "codepoints": 66,
+      "sha256": "395dc5a4396e1c4eee9debd793c8c7614541fcc07c0d84979bb71c50b1ffac97"
     },
     {
       "file": "assets/fonts/web/u2a000.woff2",
-      "bytes": 29648,
-      "codepoints": 61
+      "bytes": 29652,
+      "codepoints": 61,
+      "sha256": "f2ba9f4072d7bb0292ff8f0fac6d1e59e38e42d194389e9bcda2c26c068f8d52"
     },
     {
       "file": "assets/fonts/web/u2a400.woff2",
-      "bytes": 22912,
-      "codepoints": 51
+      "bytes": 22940,
+      "codepoints": 51,
+      "sha256": "0f7a5f9b1d1a6857faaa09c3abeb5bf259b87e9419d67fd2a511618ab7eb3705"
     },
     {
       "file": "assets/fonts/web/u2a800.woff2",
       "bytes": 9892,
-      "codepoints": 28
+      "codepoints": 28,
+      "sha256": "868caffe248adb9906ec94d53e8439acf3c0f087a427cd41b43769654828b3ea"
     },
     {
       "file": "assets/fonts/web/u2ac00.woff2",
-      "bytes": 5208,
-      "codepoints": 13
+      "bytes": 5212,
+      "codepoints": 13,
+      "sha256": "96b14671e82edc152142587b0c1714ccfc0b1a0d191cd0deca7c33151e141dac"
     },
     {
       "file": "assets/fonts/web/u2b000.woff2",
-      "bytes": 16104,
-      "codepoints": 42
+      "bytes": 16112,
+      "codepoints": 42,
+      "sha256": "c438f7a2c52405be5eda2fd8dabdaac3f5271a7d469fba106466f8505b35cf6d"
     },
     {
       "file": "assets/fonts/web/u2b400.woff2",
-      "bytes": 43136,
-      "codepoints": 122
+      "bytes": 43124,
+      "codepoints": 122,
+      "sha256": "70125e5ed21fce39861b869318e6bb7058385af129533a7707c1bbe37c72b6b3"
     },
     {
       "file": "assets/fonts/web/u2b800.woff2",
-      "bytes": 16104,
-      "codepoints": 47
+      "bytes": 16084,
+      "codepoints": 47,
+      "sha256": "7a9863af46a8c85b5d954e68e344ecc2e5c11f6a40f32130a9c972744a16fcdc"
     },
     {
       "file": "assets/fonts/web/u2bc00.woff2",
-      "bytes": 12040,
-      "codepoints": 33
+      "bytes": 12048,
+      "codepoints": 33,
+      "sha256": "91c89ab09c5ea7b8281bb144c680def7a66bea88dbc0752142c93cd5b4437b95"
     },
     {
       "file": "assets/fonts/web/u2c000.woff2",
       "bytes": 12836,
-      "codepoints": 36
+      "codepoints": 36,
+      "sha256": "93c64412c561df6cb38f1c338124342a0124006ee0276775d839a86ea71016b5"
     },
     {
       "file": "assets/fonts/web/u2c400.woff2",
       "bytes": 13296,
-      "codepoints": 38
+      "codepoints": 38,
+      "sha256": "5560003527bc8269fcdbf3c94d6d9050fe1331b1bde213bd475e80d6444f318d"
     },
     {
       "file": "assets/fonts/web/u2c800.woff2",
-      "bytes": 22692,
-      "codepoints": 69
+      "bytes": 22700,
+      "codepoints": 69,
+      "sha256": "a637ad503252589f4cfed113f916fbc3c96d0bd635de0f76a2d3be1d69b9020c"
     },
     {
       "file": "assets/fonts/web/u2cc00.woff2",
       "bytes": 17848,
-      "codepoints": 49
+      "codepoints": 49,
+      "sha256": "4850f834795893ea3bf4e5e51f0c815854154b58af88fb041cba64c6874408c9"
     },
     {
       "file": "assets/fonts/web/u2d000.woff2",
       "bytes": 4448,
-      "codepoints": 10
+      "codepoints": 10,
+      "sha256": "03f848eea1e12435fddc274506d79b666dd2ff337707251791cd9f50a6d7b048"
     },
     {
       "file": "assets/fonts/web/u2d400.woff2",
-      "bytes": 3088,
-      "codepoints": 8
+      "bytes": 3020,
+      "codepoints": 8,
+      "sha256": "fa73cefe7002caf6dbf152dd3cdd941da6864070a698975f0cfbe9b252066892"
     },
     {
       "file": "assets/fonts/web/u2d800.woff2",
-      "bytes": 3476,
-      "codepoints": 7
+      "bytes": 3468,
+      "codepoints": 7,
+      "sha256": "db5e96b2e07329e0173bdd264d3bb575213fd6d61f630cce9129e10275474c39"
     },
     {
       "file": "assets/fonts/web/u2dc00.woff2",
-      "bytes": 3852,
-      "codepoints": 9
+      "bytes": 3840,
+      "codepoints": 9,
+      "sha256": "4de98cc26847c32a82674b274d1ea8b7247e09494ac565319f85ae9a0bc98139"
     },
     {
       "file": "assets/fonts/web/u2e000.woff2",
-      "bytes": 6728,
-      "codepoints": 16
+      "bytes": 6724,
+      "codepoints": 16,
+      "sha256": "0de4af1bfb590c11892455732ea3f94e15dcd9b2620007bd5142e05b9645a427"
     },
     {
       "file": "assets/fonts/web/u2e400.woff2",
       "bytes": 8240,
-      "codepoints": 19
+      "codepoints": 19,
+      "sha256": "acde8dffefb7df20c6dd453c624347b3f6e3db156b3784b6a4ab195b0bd62f37"
     },
     {
       "file": "assets/fonts/web/u2e800.woff2",
-      "bytes": 14424,
-      "codepoints": 34
+      "bytes": 14464,
+      "codepoints": 34,
+      "sha256": "0f4128801561b77d0a5d748c526608c2b3dffe37d9c1eb83540b352b1a6ca71e"
     },
     {
       "file": "assets/fonts/web/u2ec00.woff2",
-      "bytes": 4772,
-      "codepoints": 11
+      "bytes": 4760,
+      "codepoints": 11,
+      "sha256": "3ef1a1a4dfe3f15bc312bac71bc4db6afcc87888f36924bec9d2ae6a89fbe3b5"
     },
     {
       "file": "assets/fonts/web/u2f800.woff2",
-      "bytes": 17064,
-      "codepoints": 49
+      "bytes": 17068,
+      "codepoints": 49,
+      "sha256": "722346849dec271d0a937b3b41cd21572d1fe70c623f2ef92240b3ee02708a4e"
     },
     {
       "file": "assets/fonts/web/u30000.woff2",
       "bytes": 13320,
-      "codepoints": 55
+      "codepoints": 55,
+      "sha256": "6b8a36707ae80ff6efd800f31285d9eaa26c3d3af2790e8e1d1535626cf1fe7c"
     },
     {
       "file": "assets/fonts/web/u30400.woff2",
       "bytes": 11100,
-      "codepoints": 38
+      "codepoints": 38,
+      "sha256": "472ed035ebc356efc73a7c4aa775443a3127c7df4de7a18c7fe2dd2161c387ae"
     },
     {
       "file": "assets/fonts/web/u30800.woff2",
-      "bytes": 13692,
-      "codepoints": 44
+      "bytes": 13700,
+      "codepoints": 44,
+      "sha256": "902bd8f5b13b6d38cad27fdcf2b92ca2c8d5a32ce89085048ca2473da425d5a9"
     },
     {
       "file": "assets/fonts/web/u30c00.woff2",
-      "bytes": 20720,
-      "codepoints": 60
+      "bytes": 20724,
+      "codepoints": 60,
+      "sha256": "2be1be7076f40cd55db5e907528ebf5eeb1b6ed3babb37fe1573520bb5f1a971"
     },
     {
       "file": "assets/fonts/web/u31000.woff2",
-      "bytes": 22020,
-      "codepoints": 54
+      "bytes": 22012,
+      "codepoints": 54,
+      "sha256": "a3352f7ca0e64151441f781b862a9aa47ae9461dcf80aaa82a15ee423d0ff750"
     },
     {
       "file": "assets/fonts/web/u31400.woff2",
       "bytes": 6956,
-      "codepoints": 15
+      "codepoints": 15,
+      "sha256": "babfd1147ab837ef195f41aea87ad250ea68bcf6456b60d6ce040748985a1efc"
     },
     {
       "file": "assets/fonts/web/u31800.woff2",
-      "bytes": 3892,
-      "codepoints": 8
+      "bytes": 3944,
+      "codepoints": 8,
+      "sha256": "098bdaed8ff794936a18e967e99e878273c2f370a03fdd18ae83acfb30c6436f"
     },
     {
       "file": "assets/fonts/web/u31c00.woff2",
-      "bytes": 7816,
-      "codepoints": 17
+      "bytes": 7808,
+      "codepoints": 17,
+      "sha256": "840dc49619f2dce961402d4fafb0fdb7a19ff795c19da58aeebef5fa5a28b12b"
     },
     {
       "file": "assets/fonts/web/u32000.woff2",
       "bytes": 10156,
-      "codepoints": 28
+      "codepoints": 28,
+      "sha256": "07b7213e5d1960c34d0ef1a86fd5b32d46b2f188059cd151dfda5957c075b28f"
     },
     {
       "file": "assets/fonts/web/u32400.woff2",
-      "bytes": 3324,
-      "codepoints": 7
+      "bytes": 3328,
+      "codepoints": 7,
+      "sha256": "d5f1c4c9ce7699ecd40b19270b569a989342d0fff95a39b91124e3bd4a457f5a"
     },
     {
       "file": "assets/fonts/web/u32800.woff2",
-      "bytes": 2712,
-      "codepoints": 4
+      "bytes": 2720,
+      "codepoints": 4,
+      "sha256": "bf9254d63f5c6bf3569011cfa0c56bbbd6e5fc1cad6053b28b841e318c1ef53d"
     },
     {
       "file": "assets/fonts/web/u32c00.woff2",
-      "bytes": 4332,
-      "codepoints": 10
+      "bytes": 4328,
+      "codepoints": 10,
+      "sha256": "2e42a105abc8b89ba95c88dee997cad973b6d8b8de52acf9ba04b4c97f60c5e3"
     },
     {
       "file": "assets/fonts/web/u33000.woff2",
-      "bytes": 3960,
-      "codepoints": 9
+      "bytes": 4020,
+      "codepoints": 9,
+      "sha256": "1800352d9d0c728f010fd6b13e81504fda71682b1bfde2a1a9b9571d605fa795"
     },
     {
       "file": "assets/fonts/web/u33400.woff2",
-      "bytes": 1688,
-      "codepoints": 2
+      "bytes": 1636,
+      "codepoints": 2,
+      "sha256": "1c2b6a0b35e409ecf13d2e428059b32061eb44459d480a40998f6480adf8ce2a"
     },
     {
       "file": "assets/fonts/web/u3d000.woff2",
-      "bytes": 2652,
-      "codepoints": 6
+      "bytes": 2680,
+      "codepoints": 6,
+      "sha256": "14b1f08a3fd3ca7796aec764edc35a202aaf1712652973926532cd37ee1c524e"
     },
     {
       "file": "assets/fonts/web/u3d800.woff2",
-      "bytes": 1296,
-      "codepoints": 1
+      "bytes": 1364,
+      "codepoints": 1,
+      "sha256": "87898f070c87cbc6ae7ab73d7bdb88353e295609de45eb703d37b49d69b50113"
     },
     {
       "file": "assets/fonts/web/u3dc00.woff2",
-      "bytes": 1592,
-      "codepoints": 2
+      "bytes": 1580,
+      "codepoints": 2,
+      "sha256": "dcef203e11b35cf6e90922a2ca141fd7b2f6cb32382bcb665d6bcef338134ab2"
     },
     {
       "file": "assets/fonts/web/u3e000.woff2",
       "bytes": 2232,
-      "codepoints": 5
+      "codepoints": 5,
+      "sha256": "1d47477171981e40eb5844c994cb389c4949907bc02b2f9d24d4fe592fd9dcb0"
     },
     {
       "file": "assets/fonts/web/u3e400.woff2",
-      "bytes": 1776,
-      "codepoints": 3
+      "bytes": 1804,
+      "codepoints": 3,
+      "sha256": "3885dddf7bbc1cf80c7206a700901580df37c5b38fa7243f88b078a0d6db226a"
     },
     {
       "file": "assets/fonts/web/u3ec00.woff2",
-      "bytes": 2268,
-      "codepoints": 4
+      "bytes": 2244,
+      "codepoints": 4,
+      "sha256": "0c9d8512af89e043f8e931fb0a610310261e464a73ad02b5800c6583111c2e3f"
     },
     {
       "file": "assets/fonts/web/u3f000.woff2",
-      "bytes": 1492,
-      "codepoints": 2
+      "bytes": 1488,
+      "codepoints": 2,
+      "sha256": "7ec6758c67835469792fc09b430ac0f4ec5f8518f137169c0ef5ede3f0487669"
     },
     {
       "file": "assets/fonts/web/u3f400.woff2",
-      "bytes": 1224,
-      "codepoints": 1
+      "bytes": 1240,
+      "codepoints": 1,
+      "sha256": "761fc8d425732a9acf1c84065069df4c46ff6bbe185ea29a0fc8a86a0a8b0e1f"
     },
     {
       "file": "assets/fonts/web/u3f800.woff2",
-      "bytes": 5808,
-      "codepoints": 24
+      "bytes": 5812,
+      "codepoints": 24,
+      "sha256": "353ef11dcd895ea488712160b842d3c776921faf7e0fcf340885c1ed515897ae"
     },
     {
       "file": "assets/fonts/web/u3fc00.woff2",
-      "bytes": 1432,
-      "codepoints": 2
+      "bytes": 1444,
+      "codepoints": 2,
+      "sha256": "31cd6096b32dfcb86c0b7ce0fc6fb6154ac56f46e348a751be80b691f28115d2"
     },
     {
       "file": "assets/fonts/web/uffc00.woff2",
-      "bytes": 1288,
-      "codepoints": 1
+      "bytes": 1304,
+      "codepoints": 1,
+      "sha256": "f01014381602357f6a02491b44c9b7d3d431ba54def098227d740da4fae7d1f8"
     }
   ],
   "screens": [
@@ -764,7 +929,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "2e34a9b49eb07e001c94d7ead0decbb84535c168f37d397c23492db1f04728d6"
+      "rgbaSha256": "2e34a9b49eb07e001c94d7ead0decbb84535c168f37d397c23492db1f04728d6",
+      "sourceSha256": "ddaa1968fe869fd0423209209d1416115e9adc6d8d5bb3bdf05a1f140e0d3d8d",
+      "sha256": "9b92ecb12c68a884735423732864663e433903c9393f6355416abf05e9cc3b48"
     },
     {
       "source": "assets/screens/home-alternate-night.png",
@@ -775,7 +942,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "5d0250e67719d4999ab7cdb6efc3fc53c19b110d501b4d31fa1aed2904af4ebc"
+      "rgbaSha256": "5d0250e67719d4999ab7cdb6efc3fc53c19b110d501b4d31fa1aed2904af4ebc",
+      "sourceSha256": "fc8aad95c8a71c972a7c3a8aeee53065e113e94b6e53e375989ea45aab25d4a7",
+      "sha256": "317906e551c2e62d52acb443f72b7170ac4c7a442c977692bacb6a978ea94515"
     },
     {
       "source": "assets/screens/home-alternate.png",
@@ -786,7 +955,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "02d114e53be226226cccfaedd82c72dab89c00702321552e65077f7f19ec57f7"
+      "rgbaSha256": "02d114e53be226226cccfaedd82c72dab89c00702321552e65077f7f19ec57f7",
+      "sourceSha256": "0d1a773fe665660ad9d5b2a421b7b1e50f9b305cadc1cb48517149aa3cadf104",
+      "sha256": "49f5cc697f2646598529e6ebd36f93e78b00259c502b7e15f7889393f92a24bb"
     },
     {
       "source": "assets/screens/home-bauhaus-night.png",
@@ -797,7 +968,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "500f3c29ad3fbba8bd5978f9fe88bdc523998e780e178409a878a0a8728896ab"
+      "rgbaSha256": "500f3c29ad3fbba8bd5978f9fe88bdc523998e780e178409a878a0a8728896ab",
+      "sourceSha256": "5afcebc9fe43f5325cf3e0de2826cd191b9cde3594c2d7608b3ea242819fa672",
+      "sha256": "ed540affe2cf0e067ab0ecb78f097423258eb9e62bdae9186ffa85e9c9b0b8f8"
     },
     {
       "source": "assets/screens/home-bauhaus.png",
@@ -808,7 +981,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "cf7d8c5230175859197f37599affbf890933a96a33c645e554dee38d621ead55"
+      "rgbaSha256": "cf7d8c5230175859197f37599affbf890933a96a33c645e554dee38d621ead55",
+      "sourceSha256": "3c7a97a4c15419197dae6b99c9f066afd8ecef04d4859fa1beae88d9bcda546d",
+      "sha256": "1f5b234a1b6e0979567c951abcce03295879256c2a7d39cd4b62f321c5d6591c"
     },
     {
       "source": "assets/screens/home-cat-night.png",
@@ -819,7 +994,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "326c2dc735f8fc531bb572481308a7f38ee3b22a229ea2f369eeb380978e9bf0"
+      "rgbaSha256": "326c2dc735f8fc531bb572481308a7f38ee3b22a229ea2f369eeb380978e9bf0",
+      "sourceSha256": "d9f36cc7ce5e1f3235f681640df7849e152ad2c29545f44896253e2de1259e27",
+      "sha256": "3b6924d0633b7eea30bc349dc314d34299161b08760c83d168bb40013aba4404"
     },
     {
       "source": "assets/screens/home-cat.png",
@@ -830,7 +1007,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "b60df3a9932257d16a206ecfb22314a33cc6f02fc1b6ee69d23f3e2866c5f907"
+      "rgbaSha256": "b60df3a9932257d16a206ecfb22314a33cc6f02fc1b6ee69d23f3e2866c5f907",
+      "sourceSha256": "e5b03967788698266b90eb36a6019c850f7f59568f0d0ad93ea0d0e8f939a092",
+      "sha256": "a3e05ab8ba58fddb11db24879f1b4dec3872f6b1a4690edea0be3ba2a86d11d6"
     },
     {
       "source": "assets/screens/home-chan-day.png",
@@ -841,7 +1020,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "06208fe174237b098910347800fe048ed1503611933c3434b10846d128346137"
+      "rgbaSha256": "06208fe174237b098910347800fe048ed1503611933c3434b10846d128346137",
+      "sourceSha256": "ef18e3fc3943f6ec64f4ef97cbe60c506c899aa861613015a0c0316cf4d14495",
+      "sha256": "cf9b2354f1739c1fc16fdcff2d03d5f283fe9d21fa88b860350206039b33dba8"
     },
     {
       "source": "assets/screens/home-chan-night.png",
@@ -852,7 +1033,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "3e488b015053dedb6c854fc6ddf6b210fca812a95305d585512174a4c41f8d10"
+      "rgbaSha256": "3e488b015053dedb6c854fc6ddf6b210fca812a95305d585512174a4c41f8d10",
+      "sourceSha256": "00a75480e8f3e9e16509f5333d68b9b5a0c9726298182a7a70fe7aad4a90cf3b",
+      "sha256": "f6883a20c5c24a5b7c89048fac9b0e81df785ce88a5d003244292f93aa255f89"
     },
     {
       "source": "assets/screens/home-chan.png",
@@ -863,7 +1046,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "06208fe174237b098910347800fe048ed1503611933c3434b10846d128346137"
+      "rgbaSha256": "06208fe174237b098910347800fe048ed1503611933c3434b10846d128346137",
+      "sourceSha256": "ef18e3fc3943f6ec64f4ef97cbe60c506c899aa861613015a0c0316cf4d14495",
+      "sha256": "cf9b2354f1739c1fc16fdcff2d03d5f283fe9d21fa88b860350206039b33dba8"
     },
     {
       "source": "assets/screens/home-soviet-night.png",
@@ -874,7 +1059,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "7223bbe2bbbffe94fa0af3298a027a351228bae4ae2576702cdcb051526dd386"
+      "rgbaSha256": "7223bbe2bbbffe94fa0af3298a027a351228bae4ae2576702cdcb051526dd386",
+      "sourceSha256": "e839ed840d56f257194a780a7c0120f559294f9498074fe0628b8d515d8fe3bb",
+      "sha256": "49a9aa101eb7d06c55ddea34fd03597d6408e442b721930dcedb9a0c6f2b3abe"
     },
     {
       "source": "assets/screens/home-soviet.png",
@@ -885,7 +1072,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "2ddb3474012b4f89e3847db1f84101751b082e74e746f7bac707eca51dd4d5de"
+      "rgbaSha256": "2ddb3474012b4f89e3847db1f84101751b082e74e746f7bac707eca51dd4d5de",
+      "sourceSha256": "d02c2c44ba1d96f4e43025c2c7009843a7595c49020030ef2e5c692969a8def0",
+      "sha256": "f1bb48408e5074413380fe2f27c0610c2c4fdcffae2337087e62f2b3ff128fa6"
     },
     {
       "source": "assets/screens/home.png",
@@ -896,7 +1085,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "06208fe174237b098910347800fe048ed1503611933c3434b10846d128346137"
+      "rgbaSha256": "06208fe174237b098910347800fe048ed1503611933c3434b10846d128346137",
+      "sourceSha256": "ef18e3fc3943f6ec64f4ef97cbe60c506c899aa861613015a0c0316cf4d14495",
+      "sha256": "cf9b2354f1739c1fc16fdcff2d03d5f283fe9d21fa88b860350206039b33dba8"
     },
     {
       "source": "assets/screens/icon-editor.png",
@@ -907,7 +1098,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "291164fbe808488a97003f33cec6a39bd080be606dd2f75b8f81099b510eb207"
+      "rgbaSha256": "291164fbe808488a97003f33cec6a39bd080be606dd2f75b8f81099b510eb207",
+      "sourceSha256": "818a54137be84e6c13f150158f8005c32f1791510e04071a213abfee3bbf2a04",
+      "sha256": "2b1c1b8c4c40b2a76f4901aeb6997d7302991fe8510e3ae693d81eae97506ac1"
     },
     {
       "source": "assets/screens/lock-bauhaus-book-0-night.png",
@@ -918,7 +1111,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "c77e707c5bb915778e477516ab5e01c91a71f61c8b0c6ba5eb536121301b204d"
+      "rgbaSha256": "c77e707c5bb915778e477516ab5e01c91a71f61c8b0c6ba5eb536121301b204d",
+      "sourceSha256": "6fb75e25033bf270c94890e50b5c3794aa06bb0f25dbe1158c53d551736cdb5b",
+      "sha256": "44200d936a459eb87f0b4e8a145913251db2c533801ea76ada941f6b09e0225b"
     },
     {
       "source": "assets/screens/lock-bauhaus-book-0.png",
@@ -929,7 +1124,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "06fdb148fdb9fc6f3f84c7c14fef5c4127be26fe8a91e7da29d33aea9817528f"
+      "rgbaSha256": "06fdb148fdb9fc6f3f84c7c14fef5c4127be26fe8a91e7da29d33aea9817528f",
+      "sourceSha256": "e69bd8a4d41ff5f78e130d2d364202dcb69bfc208a6dc8c8ece0c0455eb82f4d",
+      "sha256": "c8e2420ed30fbf83a481fadc112cf7b6d2de4cff36ef691c233244eec5a05556"
     },
     {
       "source": "assets/screens/lock-bauhaus-book-1-night.png",
@@ -940,7 +1137,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "f8773ea46b4b74e45fd3b0414a8fb548b838ae6bddfd4fba2ee0c6414e4c6764"
+      "rgbaSha256": "f8773ea46b4b74e45fd3b0414a8fb548b838ae6bddfd4fba2ee0c6414e4c6764",
+      "sourceSha256": "6d6ba9df815fd6719428c2dbc1de51198de328efe8e2b4a35d8ea0ccfd26825c",
+      "sha256": "3faca541b79371c90f7f61dfe15313f79c43e5f3060d3a649bffee2d572d95b7"
     },
     {
       "source": "assets/screens/lock-bauhaus-book-1.png",
@@ -951,7 +1150,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "a0d573d37a8fe6cc98c507cf9194af5c57324e8cb698b016f637df8083c8cc77"
+      "rgbaSha256": "a0d573d37a8fe6cc98c507cf9194af5c57324e8cb698b016f637df8083c8cc77",
+      "sourceSha256": "a2ede57ad45ec3ec506064c4f073fbacb43ccaeb787b2b7ee65aca227d43fa00",
+      "sha256": "f2aa4d5d579f1cb941d0f785a02f5f9fe8e2236319855006ab4918b42934e5ad"
     },
     {
       "source": "assets/screens/lock-bauhaus-book-2-night.png",
@@ -962,7 +1163,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "5cd59a0c9d651bee3ed7398eae875211f5ca890dbb20cf99c8822989b1aafdc0"
+      "rgbaSha256": "5cd59a0c9d651bee3ed7398eae875211f5ca890dbb20cf99c8822989b1aafdc0",
+      "sourceSha256": "9ea6ec201375603c7430fc8353398506f7c261bf64b2132b2882714ebe2845fa",
+      "sha256": "c124b8d8fda3bf0102a451d5583b980e577670efaba1e8cd3fef453ef31ae026"
     },
     {
       "source": "assets/screens/lock-bauhaus-book-2.png",
@@ -973,7 +1176,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "f8854d9fd670e7edbea352c59d613e69f22af9351b511be2db84ac2ca3d16d55"
+      "rgbaSha256": "f8854d9fd670e7edbea352c59d613e69f22af9351b511be2db84ac2ca3d16d55",
+      "sourceSha256": "cb26ae224e074c74969c81b42a1ff25084ef27a24a0a14a80ab65b7b92c8d4c0",
+      "sha256": "8bf2a5c3123b970c1193caf52660b28019ad6fd14445ed3382720496208cfffe"
     },
     {
       "source": "assets/screens/lock-bauhaus-night.png",
@@ -984,7 +1189,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "c77e707c5bb915778e477516ab5e01c91a71f61c8b0c6ba5eb536121301b204d"
+      "rgbaSha256": "c77e707c5bb915778e477516ab5e01c91a71f61c8b0c6ba5eb536121301b204d",
+      "sourceSha256": "6fb75e25033bf270c94890e50b5c3794aa06bb0f25dbe1158c53d551736cdb5b",
+      "sha256": "44200d936a459eb87f0b4e8a145913251db2c533801ea76ada941f6b09e0225b"
     },
     {
       "source": "assets/screens/lock-bauhaus.png",
@@ -995,7 +1202,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "06fdb148fdb9fc6f3f84c7c14fef5c4127be26fe8a91e7da29d33aea9817528f"
+      "rgbaSha256": "06fdb148fdb9fc6f3f84c7c14fef5c4127be26fe8a91e7da29d33aea9817528f",
+      "sourceSha256": "e69bd8a4d41ff5f78e130d2d364202dcb69bfc208a6dc8c8ece0c0455eb82f4d",
+      "sha256": "c8e2420ed30fbf83a481fadc112cf7b6d2de4cff36ef691c233244eec5a05556"
     },
     {
       "source": "assets/screens/lock-cat-book-0-night.png",
@@ -1006,7 +1215,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "38fdb09d9d2844b11a898f0ac9c2ff95d5bef5cad0216eac59f791651c5ccdd8"
+      "rgbaSha256": "38fdb09d9d2844b11a898f0ac9c2ff95d5bef5cad0216eac59f791651c5ccdd8",
+      "sourceSha256": "7503354c12b689de4b57577590bd55ecb4f923cda227adfe2d94144a8fa544cd",
+      "sha256": "216251763d657bc6741218ccf8a8124327a41a6638550d90a7c96289e9772f37"
     },
     {
       "source": "assets/screens/lock-cat-book-0.png",
@@ -1017,7 +1228,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "43bcca167219ac4446e611dd20c61fcfabc9234a5e2711e55ac1ed14717a2740"
+      "rgbaSha256": "43bcca167219ac4446e611dd20c61fcfabc9234a5e2711e55ac1ed14717a2740",
+      "sourceSha256": "aef9408725fcea3723dd80947454ce49cb15c3ea87012dfafd64fbb640fc0b6e",
+      "sha256": "8edfb3f82f7fb5f760c0498d0a535bb8056b1ed32ea57b61e2a16e6f402643c8"
     },
     {
       "source": "assets/screens/lock-cat-book-1-night.png",
@@ -1028,7 +1241,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "ccb55d1014a6580e90a003bad89cd93e7a526d380e5c76022e4dcf197b098006"
+      "rgbaSha256": "ccb55d1014a6580e90a003bad89cd93e7a526d380e5c76022e4dcf197b098006",
+      "sourceSha256": "ee32f1085581166c8691df801ea5eefc5a8daf9d07228015548caa89a5a6b844",
+      "sha256": "b6f46ad3c9a9df8ac41d3b508cff4d8d06eda677d2e22f19d6748b51647445d6"
     },
     {
       "source": "assets/screens/lock-cat-book-1.png",
@@ -1039,7 +1254,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "a71d694ce8a9bd34c3d9a6508361677cecd7a96bcafd933c121983a9b8046399"
+      "rgbaSha256": "a71d694ce8a9bd34c3d9a6508361677cecd7a96bcafd933c121983a9b8046399",
+      "sourceSha256": "89d3f29e918c339f6265363c85d5e63045b4931a7c1a68c1bfa16179fb6a3366",
+      "sha256": "f701bbfb843515bb9646e59d7305ca7efa1726dbf7cc7554ef23e9499400bf35"
     },
     {
       "source": "assets/screens/lock-cat-book-2-night.png",
@@ -1050,7 +1267,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "3c78c7942893803c14c4e6fe5669dfb2ee43df46f28af4e0f2746fc75da67f08"
+      "rgbaSha256": "3c78c7942893803c14c4e6fe5669dfb2ee43df46f28af4e0f2746fc75da67f08",
+      "sourceSha256": "7cc1801e772ac24e5636983bda889eb7ca40631ece0b46af8cdf02421a7360dd",
+      "sha256": "ec8632ef0734542634ba705ff344f56801e54e6e0bf4375fda151937a78f6553"
     },
     {
       "source": "assets/screens/lock-cat-book-2.png",
@@ -1061,7 +1280,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "4643803f6c2a9e3172f36c4625b91ac18a44f8eb396494fc91168d15b24f519c"
+      "rgbaSha256": "4643803f6c2a9e3172f36c4625b91ac18a44f8eb396494fc91168d15b24f519c",
+      "sourceSha256": "5e9897ceb1c3e49af7694f0f01e7f28a78590171b07e33c717311a746d825f7a",
+      "sha256": "3e0e8385cecc8438a9030115465db4401f25659980b707ba8f9e073b7326d6e1"
     },
     {
       "source": "assets/screens/lock-cat-night.png",
@@ -1072,7 +1293,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "38fdb09d9d2844b11a898f0ac9c2ff95d5bef5cad0216eac59f791651c5ccdd8"
+      "rgbaSha256": "38fdb09d9d2844b11a898f0ac9c2ff95d5bef5cad0216eac59f791651c5ccdd8",
+      "sourceSha256": "7503354c12b689de4b57577590bd55ecb4f923cda227adfe2d94144a8fa544cd",
+      "sha256": "216251763d657bc6741218ccf8a8124327a41a6638550d90a7c96289e9772f37"
     },
     {
       "source": "assets/screens/lock-cat.png",
@@ -1083,7 +1306,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "43bcca167219ac4446e611dd20c61fcfabc9234a5e2711e55ac1ed14717a2740"
+      "rgbaSha256": "43bcca167219ac4446e611dd20c61fcfabc9234a5e2711e55ac1ed14717a2740",
+      "sourceSha256": "aef9408725fcea3723dd80947454ce49cb15c3ea87012dfafd64fbb640fc0b6e",
+      "sha256": "8edfb3f82f7fb5f760c0498d0a535bb8056b1ed32ea57b61e2a16e6f402643c8"
     },
     {
       "source": "assets/screens/lock-chan-book-0-night.png",
@@ -1094,7 +1319,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "92bf85e2b4d7eadeafd426ecfbe4a387f3fdef32f3e06ca7e935c7f95be88b01"
+      "rgbaSha256": "92bf85e2b4d7eadeafd426ecfbe4a387f3fdef32f3e06ca7e935c7f95be88b01",
+      "sourceSha256": "4dfb7a40927f2027c2580c47e7e4138a9d3a5ec5b80ef4dd88ac91de0315bde4",
+      "sha256": "c332ccea1ac4b14643b2991bdd9129c523f145d4b9320e454e77ef5f26146683"
     },
     {
       "source": "assets/screens/lock-chan-book-0.png",
@@ -1105,7 +1332,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "fe19909a4d1091f4bdcd39822230bf2b906b03c3b495db0484a7cb1f64c65d51"
+      "rgbaSha256": "fe19909a4d1091f4bdcd39822230bf2b906b03c3b495db0484a7cb1f64c65d51",
+      "sourceSha256": "a762644fc63a037a061748e80dba99d8ae7dec46459bef5a14e78a86ad7b9ec5",
+      "sha256": "f17f28bb60b7c38c5cc8e37dc75d6b6b72a8343faf6f75319a08ea25d0023a6c"
     },
     {
       "source": "assets/screens/lock-chan-book-1-night.png",
@@ -1116,7 +1345,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "4534c39876e6067f2a263587c817e571cc553d72f11dc5785819f96c1f603b8a"
+      "rgbaSha256": "4534c39876e6067f2a263587c817e571cc553d72f11dc5785819f96c1f603b8a",
+      "sourceSha256": "ab3361076888573bb18c75778c44562d2eb1ec7be41bd1d566476b9196736d6f",
+      "sha256": "8281640d9415aa0b32ae579d13cbd3a10c879e7014a75b597ae58e7e52222cb3"
     },
     {
       "source": "assets/screens/lock-chan-book-1.png",
@@ -1127,7 +1358,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "d08a510cae263969eb8a76b290390f24d4df5d5f58ca6a5e9ab6eab6675c1aa9"
+      "rgbaSha256": "d08a510cae263969eb8a76b290390f24d4df5d5f58ca6a5e9ab6eab6675c1aa9",
+      "sourceSha256": "0a9357d40f4c184cf34cf7462ed583e150503404d0264e2b171f664371b9b492",
+      "sha256": "48a13174476bde992236e887b4ec76e513ed576672874d445e675daa62ce3906"
     },
     {
       "source": "assets/screens/lock-chan-book-2-night.png",
@@ -1138,7 +1371,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "f1095842dfb8e64fe716bcc8f751ae68bad87227cb4185e08322df33035f467f"
+      "rgbaSha256": "f1095842dfb8e64fe716bcc8f751ae68bad87227cb4185e08322df33035f467f",
+      "sourceSha256": "e829f6fecf48bb3bc3eba70f2fd4e565ae767e73c97f8b2ee5f37daf70bd54c1",
+      "sha256": "efc06bbda29d56070551a53987b052163a92b11ea8f252ca835e5645a635a753"
     },
     {
       "source": "assets/screens/lock-chan-book-2.png",
@@ -1149,7 +1384,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "9df43dba4d42e3f8cb5fc256b5beabd03d2b5190f6304864a39aff56f992d43f"
+      "rgbaSha256": "9df43dba4d42e3f8cb5fc256b5beabd03d2b5190f6304864a39aff56f992d43f",
+      "sourceSha256": "8f588124e03a8b21d5f08a69fb15a305c0191744cfee7d7009c07d3b7f7bb1d5",
+      "sha256": "f2bd9063c178312fe781827acc11f1e63733bb1f2a4b00a3c204ade79ee2ddf2"
     },
     {
       "source": "assets/screens/lock-chan-night.png",
@@ -1160,7 +1397,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "92bf85e2b4d7eadeafd426ecfbe4a387f3fdef32f3e06ca7e935c7f95be88b01"
+      "rgbaSha256": "92bf85e2b4d7eadeafd426ecfbe4a387f3fdef32f3e06ca7e935c7f95be88b01",
+      "sourceSha256": "4dfb7a40927f2027c2580c47e7e4138a9d3a5ec5b80ef4dd88ac91de0315bde4",
+      "sha256": "c332ccea1ac4b14643b2991bdd9129c523f145d4b9320e454e77ef5f26146683"
     },
     {
       "source": "assets/screens/lock-chan.png",
@@ -1171,7 +1410,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "fe19909a4d1091f4bdcd39822230bf2b906b03c3b495db0484a7cb1f64c65d51"
+      "rgbaSha256": "fe19909a4d1091f4bdcd39822230bf2b906b03c3b495db0484a7cb1f64c65d51",
+      "sourceSha256": "a762644fc63a037a061748e80dba99d8ae7dec46459bef5a14e78a86ad7b9ec5",
+      "sha256": "f17f28bb60b7c38c5cc8e37dc75d6b6b72a8343faf6f75319a08ea25d0023a6c"
     },
     {
       "source": "assets/screens/lock-soviet-book-0-night.png",
@@ -1182,7 +1423,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "d1b8ee1b401759b2923908c7d639b9077a6ef6090f5e12ad361914056d7fa8bc"
+      "rgbaSha256": "d1b8ee1b401759b2923908c7d639b9077a6ef6090f5e12ad361914056d7fa8bc",
+      "sourceSha256": "eae31cc7342d42537e543f3a9d24ef804b6fd3831ef0dda46490f7b5bb965698",
+      "sha256": "403c1fd86c64fc27127a13b535e1f591e7554a968c252c712493005411626656"
     },
     {
       "source": "assets/screens/lock-soviet-book-0.png",
@@ -1193,7 +1436,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "83fb1d87b30642fbedfaf0a5d8103869e04975dbae3898ce28efa17340f4bad2"
+      "rgbaSha256": "83fb1d87b30642fbedfaf0a5d8103869e04975dbae3898ce28efa17340f4bad2",
+      "sourceSha256": "b32c0cecdf7874491c6e931ec0a0db1ab9359755148527e13918836ba67ac5eb",
+      "sha256": "01225260c569afc219d9945918520236f3032079d4e866abbef40ee90941edef"
     },
     {
       "source": "assets/screens/lock-soviet-book-1-night.png",
@@ -1204,7 +1449,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "3cdfe7d68ab01b16ad269ee2517a81dc9ab87f93dfc2c384ab7e949388cf643d"
+      "rgbaSha256": "3cdfe7d68ab01b16ad269ee2517a81dc9ab87f93dfc2c384ab7e949388cf643d",
+      "sourceSha256": "3bc3009035f70602b509a1c815456939a2a8ce6cbc031d27e9364c8510e6cbd1",
+      "sha256": "7bed26ef0b3da0c314ac41eadfa71808f88f8605d23270f250e395e4bd90aca3"
     },
     {
       "source": "assets/screens/lock-soviet-book-1.png",
@@ -1215,7 +1462,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "8397b53be5e497792ca27509f77bc8003f3791920db5e564d4b3564c5e1e5d9b"
+      "rgbaSha256": "8397b53be5e497792ca27509f77bc8003f3791920db5e564d4b3564c5e1e5d9b",
+      "sourceSha256": "66c346df9f7c97cf35844af9660cdaf0153b6295057c1c754fb028c3fd61ecdf",
+      "sha256": "295c4dfd3b4e783369888c15f0d1244a1d779c6d97b5c00c9350e0c277427724"
     },
     {
       "source": "assets/screens/lock-soviet-book-2-night.png",
@@ -1226,7 +1475,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "18ee1a7120c51cca748b9bcb05bc316dfa64c132c3363400e312286f07eb97d5"
+      "rgbaSha256": "18ee1a7120c51cca748b9bcb05bc316dfa64c132c3363400e312286f07eb97d5",
+      "sourceSha256": "d288cfe3bca120c4a5be46ab78102c97f2c3e321fac0378eff65911b837db3da",
+      "sha256": "25eb773dcff3ab3b454ccbb1f4abfce4788aae516225562b36c21404d07fc4b6"
     },
     {
       "source": "assets/screens/lock-soviet-book-2.png",
@@ -1237,7 +1488,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "257037409d1b3eee363914190d2bbfdebbc8711b3ecd0553722311229a2e79e7"
+      "rgbaSha256": "257037409d1b3eee363914190d2bbfdebbc8711b3ecd0553722311229a2e79e7",
+      "sourceSha256": "f86946f353b525d928278a6e16665c7690d227c409481df3e7ac523429713630",
+      "sha256": "72e98141bbe29212029d8d8f4b69b88d4e1a8c6b7a1d970cafd41b31f2d8a729"
     },
     {
       "source": "assets/screens/lock-soviet-night.png",
@@ -1248,7 +1501,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "d1b8ee1b401759b2923908c7d639b9077a6ef6090f5e12ad361914056d7fa8bc"
+      "rgbaSha256": "d1b8ee1b401759b2923908c7d639b9077a6ef6090f5e12ad361914056d7fa8bc",
+      "sourceSha256": "eae31cc7342d42537e543f3a9d24ef804b6fd3831ef0dda46490f7b5bb965698",
+      "sha256": "403c1fd86c64fc27127a13b535e1f591e7554a968c252c712493005411626656"
     },
     {
       "source": "assets/screens/lock-soviet.png",
@@ -1259,7 +1514,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "83fb1d87b30642fbedfaf0a5d8103869e04975dbae3898ce28efa17340f4bad2"
+      "rgbaSha256": "83fb1d87b30642fbedfaf0a5d8103869e04975dbae3898ce28efa17340f4bad2",
+      "sourceSha256": "b32c0cecdf7874491c6e931ec0a0db1ab9359755148527e13918836ba67ac5eb",
+      "sha256": "01225260c569afc219d9945918520236f3032079d4e866abbef40ee90941edef"
     },
     {
       "source": "assets/screens/operation-appearance-cat.png",
@@ -1270,7 +1527,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "3bb728b324244a6b8ed3a32a1733c8b84ebf5451f8f6e63c6d16368d2f81fb72"
+      "rgbaSha256": "3bb728b324244a6b8ed3a32a1733c8b84ebf5451f8f6e63c6d16368d2f81fb72",
+      "sourceSha256": "f11ee0c0bb28e4307b6ee2515ecbf4b006b6c7cb639d23428539f9f657828788",
+      "sha256": "da5a722008c5145c53183a64ccfb48271c603f95c0e8a13419aab7159e951d01"
     },
     {
       "source": "assets/screens/operation-appearance.png",
@@ -1281,7 +1540,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "3bb728b324244a6b8ed3a32a1733c8b84ebf5451f8f6e63c6d16368d2f81fb72"
+      "rgbaSha256": "3bb728b324244a6b8ed3a32a1733c8b84ebf5451f8f6e63c6d16368d2f81fb72",
+      "sourceSha256": "f11ee0c0bb28e4307b6ee2515ecbf4b006b6c7cb639d23428539f9f657828788",
+      "sha256": "da5a722008c5145c53183a64ccfb48271c603f95c0e8a13419aab7159e951d01"
     },
     {
       "source": "assets/screens/operation-settings-cat.png",
@@ -1292,7 +1553,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "150dd086f973f05b49d479c8dc65ca7ddcc7878d2c6592c677bc8959d3ae5083"
+      "rgbaSha256": "150dd086f973f05b49d479c8dc65ca7ddcc7878d2c6592c677bc8959d3ae5083",
+      "sourceSha256": "18617ffd4e115fba8cde004b738d881b76fe1638a28aaa0c3324e97203888a87",
+      "sha256": "1fc358c57340bfd41c5868f15a8bde84ff8b9502ae974ef5188944ea300af896"
     },
     {
       "source": "assets/screens/operation-settings.png",
@@ -1303,7 +1566,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "150dd086f973f05b49d479c8dc65ca7ddcc7878d2c6592c677bc8959d3ae5083"
+      "rgbaSha256": "150dd086f973f05b49d479c8dc65ca7ddcc7878d2c6592c677bc8959d3ae5083",
+      "sourceSha256": "18617ffd4e115fba8cde004b738d881b76fe1638a28aaa0c3324e97203888a87",
+      "sha256": "1fc358c57340bfd41c5868f15a8bde84ff8b9502ae974ef5188944ea300af896"
     },
     {
       "source": "assets/screens/reading-horizontal.png",
@@ -1314,7 +1579,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "786521cf573fbbe2219a6556e81d0121318f0584756fd31c71209b23679795c1"
+      "rgbaSha256": "786521cf573fbbe2219a6556e81d0121318f0584756fd31c71209b23679795c1",
+      "sourceSha256": "96a47d27f50b91af305c72094cf93097f59b3e18c1374e3111554afdcffd3447",
+      "sha256": "eb341489c2c687a7674a7791f698714ea9fecbd3a3bd5f4d280bada54d3eb889"
     },
     {
       "source": "assets/screens/reading-vertical-ltr.png",
@@ -1325,7 +1592,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "cedb5ae0a2c9f4f76882438fcadc51c362a4598f756448131d77ce348f769305"
+      "rgbaSha256": "cedb5ae0a2c9f4f76882438fcadc51c362a4598f756448131d77ce348f769305",
+      "sourceSha256": "aad9bb745c5a64ebf0af11a8bc0596e6edeffbe7078f7e002250df62f50a2f48",
+      "sha256": "74b11ed2f24089d009a712befd39a1e027aca8cc1ee37095ad54c6a06267dc29"
     },
     {
       "source": "assets/screens/reading-vertical-rtl.png",
@@ -1336,7 +1605,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "f6b46268aa06ae14140b10f02b6081453396a5851762f0207b716f155ad56d49"
+      "rgbaSha256": "f6b46268aa06ae14140b10f02b6081453396a5851762f0207b716f155ad56d49",
+      "sourceSha256": "b12419179f3a47415fc16caff0d2ae33982cd852eb92466fe18c144435af1780",
+      "sha256": "b00b6a0ff650f606d1b85e566c96120435620aab02732daad420d5ac2e077a5e"
     },
     {
       "source": "assets/screens/widget-detail-cat.png",
@@ -1347,7 +1618,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "4893eb3e925e55636c4c56288e724b6d52320683891ecb32d2d872e1e12aac4c"
+      "rgbaSha256": "4893eb3e925e55636c4c56288e724b6d52320683891ecb32d2d872e1e12aac4c",
+      "sourceSha256": "493514db65bf0a6b5d517dadd9e346a9139829a95013ad53d67ee4948053ed17",
+      "sha256": "589e3df479fcc26e8dde8aa98d15cdbd06b89ea4bd3f560b330b340b29c97cd6"
     },
     {
       "source": "assets/screens/widget-detail.png",
@@ -1358,7 +1631,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "4893eb3e925e55636c4c56288e724b6d52320683891ecb32d2d872e1e12aac4c"
+      "rgbaSha256": "4893eb3e925e55636c4c56288e724b6d52320683891ecb32d2d872e1e12aac4c",
+      "sourceSha256": "493514db65bf0a6b5d517dadd9e346a9139829a95013ad53d67ee4948053ed17",
+      "sha256": "589e3df479fcc26e8dde8aa98d15cdbd06b89ea4bd3f560b330b340b29c97cd6"
     },
     {
       "source": "assets/screens/widget-editor-cat.png",
@@ -1369,7 +1644,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "c995f1e1556efde56c7796761f5d64dbd75329537b4fd0313455331f2f518f58"
+      "rgbaSha256": "c995f1e1556efde56c7796761f5d64dbd75329537b4fd0313455331f2f518f58",
+      "sourceSha256": "07d8b187fa640a416c0a36a5b4f08f0cc0db194dc086ab525bd6947eea05f98f",
+      "sha256": "b94d99ed0c5e918996fef030a5234e582ea98af95d24b7c597b995bef4cb354f"
     },
     {
       "source": "assets/screens/widget-editor.png",
@@ -1380,7 +1657,9 @@
         684,
         1216
       ],
-      "rgbaSha256": "c995f1e1556efde56c7796761f5d64dbd75329537b4fd0313455331f2f518f58"
+      "rgbaSha256": "c995f1e1556efde56c7796761f5d64dbd75329537b4fd0313455331f2f518f58",
+      "sourceSha256": "07d8b187fa640a416c0a36a5b4f08f0cc0db194dc086ab525bd6947eea05f98f",
+      "sha256": "b94d99ed0c5e918996fef030a5234e582ea98af95d24b7c597b995bef4cb354f"
     }
   ]
 }
