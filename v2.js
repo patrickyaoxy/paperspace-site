@@ -115,7 +115,7 @@
   progress={label:'正在初始化同源程序',detail:'运行资源已校验。正在初始化同源程序与隔离演示卡。'};paint();
   await nextPaint();if(generation!==epoch)return;
   iframe=document.createElement('iframe');iframe.id='live-frame';iframe.title='纸间 v2.0.8 同源实时画面';iframe.setAttribute('aria-hidden','true');iframe.tabIndex=-1;
-  const args=new URLSearchParams({runtime_rev:'20261026-perf1',theme:config.theme,night:config.night?'1':'0',reading:config.reading});if(config.book!==null)args.set('book',String(config.book));
+  const args=new URLSearchParams({runtime_rev:'20261026-reading1',theme:config.theme,night:config.night?'1':'0',reading:config.reading});if(config.book!==null)args.set('book',String(config.book));
   iframe.src='runtime/index.html?'+args;iframe.onload=()=>{if(generation===epoch&&!iframe?.contentDocument?.querySelector('canvas'))fail('运行文件缺失。请完整解压 ZIP，然后重新启动预览。');};iframe.onerror=()=>{if(generation===epoch)fail('浏览器程序加载失败。请确认完整解压后重新启动预览。');};host.append(iframe);
   // Resource download has its own bounded network lifetime. This timeout starts only after verification.
   bootTimer=setTimeout(()=>{if(generation===epoch&&!ready)fail('程序初始化超时。可停止后重新启动；没有连接设备。');},90000);

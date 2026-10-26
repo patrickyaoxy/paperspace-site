@@ -2,7 +2,7 @@
 // One delivery path for captured frames. Pending images never masquerade as failures.
 (()=>{
  const generations=new WeakMap(),tasks=new WeakMap(),commits=new WeakMap();
- const source=url=>url.replace(/^assets\/screens\/(.+)\.png$/,'assets/screens-web/$1.webp');
+ const source=url=>{const mapped=url.replace(/^assets\/screens\/(.+)\.png$/,'assets/screens-web/$1.webp');return /^assets\/screens-web\/reading-(horizontal|vertical-(ltr|rtl))\.webp$/.test(mapped)?mapped+'?v=20261026-reading1':mapped;};
  const active=img=>{const page=img.closest('[data-page]');const requested=location.hash.slice(1);const route=['experience','guide','flash'].includes(requested)?requested:'home';return (!page||page.dataset.page===route)&&!img.closest('[hidden]')&&!img.closest('details:not([open])');};
  const near=img=>{const r=img.getBoundingClientRect();return active(img)&&r.width>0&&r.height>0&&r.top<innerHeight+250&&r.bottom>-250;};
  function ready(img,url){const commit=commits.get(img);if(commit?.url===url){commits.delete(img);if(commit.alt!==undefined)img.alt=commit.alt;commit.onReady?.();}img.dispatchEvent(new CustomEvent('mediaready'));}
