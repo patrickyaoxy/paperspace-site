@@ -20,3 +20,5 @@
 最早原始联调测试仅等待 busy=false 和 view13，遗漏了随后 canvas 帧更新；保留原日志并明确不据此判定业务画面完成。纠正测试记录了原 complete (view0/frame15) 到后续阅读帧(view13/frame16)的真实差异；修复父页短书门禁后重新通过严格断言。开发证据与脚本保留在独占 `/tmp/paperspace-assets-*`，协调者交接文件 `/tmp/perf-assets-handoff.json`。
 
 未测：独立冻结候选 QA、公开站点发布后检查、实体墨水屏触控/刷新/残影/功耗与硬件。未尝试绕过公网 Chromium 证书错误；所有浏览器开发验证使用本机 HTTP COOP/COEP 服务。`firmware-target.json` 仍是 schema2/disabled，writer 与生产固件均未更改。
+
+生成器静态修整待跑：固定公共 UI 输入清单（不受新根目录加载器影响），记录逐输入 SHA-256，并将字体 header 时间归一到原字体以确保重新生成稳定。此修整尚未重生成，须待协调者正式基线测量窗口结束后执行，再以新候选冻结并复核字节统计。
