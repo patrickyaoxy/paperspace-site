@@ -1,0 +1,738 @@
+firmware/read_pico_firmware/components/e0470_epaper_waveform/e0470_epaper_waveform.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/components/e0470_epaper_waveform/e0470_waveform_trim.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/components/read_pico/read_pico_epd_timing.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/components/read_pico/buzzer_duty_map.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/components/continuous_du/continuous_du.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/display.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/memory_ledger.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/reading_ripple.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ghost_lab.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/system_animation.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/animation_work.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/animation_atlas.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/animation_pipeline.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/vendor/lz4/lz4.c
+   Copyright (C) 2011-2023, Yann Collet.
+       * Redistributions of source code must retain the above copyright
+   copyright notice, this list of conditions and the following disclaimer
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+
+firmware/read_pico_firmware/main/sleep.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/system_backup.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ui/ui_kit.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ui/refresh_regions.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ui/dot_brush.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ui/dot_text.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ui/ui_menu.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ui/datamatrix.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/font/font_owner.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/ttf_font_host.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/system_font_host.c
+ * SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/port/font_preview_host.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/port/host_sd_path.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_heap.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/book_semantics.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/pbook.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_cover_cache.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/book/epub_zip.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/epub_xml.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/epub_image.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/epub_jpeg.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/epub_webp.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/epub_png.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/epub_import.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/book_notes.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/book_page.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_vertical.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_vertical_pager.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_annotation_pager.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_note_flow.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_annotation_resume.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/shelf.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/library_index.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/txt_stream.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/txt_import.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/pdf_import.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/favorites.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/stats.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_eta.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_auto_rotation.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_bookmark.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_bookmark_store.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/organizer.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/focus_timer.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/reader_presets.c
+ * SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/book/reader_background.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/lock_image.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/book/lock_image_worker.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/home/home_config.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_precompose.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/assets/builtin_images.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/widget_resource.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/widget_json.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_editor.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_layout.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_input.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_actions.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_app_nav.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/lockscreen/lockscreen.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/lockscreen/almanac.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/lockscreen/background.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/lockscreen/catalog.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/lockscreen/preview.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/book/reader_selection.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_data.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_store.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_text.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/files/file_paths.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/services/storage_service.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/services/usb_storage_service.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/services/usb_storage_io.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/services/productivity_service.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/services/focus_service.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/services/network_service.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/services/time_service.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/services/firmware_update.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/files/wifi_files.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/files/file_delete.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/files/file_text.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/files/file_browser.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/files/file_image_sequence.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/files/file_sha256.c
+/* SPDX-License-Identifier: Apache-2.0 */
+
+firmware/read_pico_firmware/main/home/home_widgets.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/widget_card.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/home/home_card_layout.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/app/usb_diag.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/app/usb_diag_runtime.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_usb_diag.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/app/app_loop.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/app/reader_orientation.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/app/reader_orientation_settings.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/app/app_registry.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/factory/pmu_selftest.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/factory/vcom_setup.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_axis.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_font_pick.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_home.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_ioe.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_key.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_pmu.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_power.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_reading.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_reader.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_center.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/lightapp/lightapp_store.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/lightapp/lightapp_background.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_lightapp.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/browser/browser_document.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/browser/browser_view.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/lightapp/lightapp.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ui/ascii_keyboard.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/files/wifi_station.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/files/wifi_diagnostics.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ui/vendor/pico_pinyin/read_pico_search.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/ui/touch_debug.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_refresh.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_ghost_lab.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_sd.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_selftest.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_sleep.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/apps/app_touch.c
+ * SPDX-FileCopyrightText: 2026 mindreset
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jcomapi.c
+ * Copyright (C) 1994-1997, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdapimin.c
+ * Copyright (C) 1994-1998, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdapistd.c
+ * Copyright (C) 1994-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdatasrc.c
+ * Copyright (C) 1994-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdcoefct.c
+ * Copyright (C) 1994-1997, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdcolor.c
+ * Copyright (C) 1991-1997, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jddctmgr.c
+ * Copyright (C) 1994-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdhuff.c
+ * Copyright (C) 1991-1997, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdinput.c
+ * Copyright (C) 1991-1997, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdmainct.c
+ * Copyright (C) 1994-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdmarker.c
+ * Copyright (C) 1991-1998, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdmaster.c
+ * Copyright (C) 1991-1997, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdmerge.c
+ * Copyright (C) 1994-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdpostct.c
+ * Copyright (C) 1994-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdsample.c
+ * Copyright (C) 1991-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jdtrans.c
+ * Copyright (C) 1995-1997, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jerror.c
+ * Copyright (C) 1991-1998, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jidctflt.c
+ * Copyright (C) 1994-1998, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jidctfst.c
+ * Copyright (C) 1994-1998, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jidctint.c
+ * Copyright (C) 1991-1998, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jquant1.c
+ * Copyright (C) 1991-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jquant2.c
+ * Copyright (C) 1991-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jutils.c
+ * Copyright (C) 1991-1996, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/ijg/jmemmgr.c
+ * Copyright (C) 1991-1997, Thomas G. Lane.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/alpha_dec.c
+// Copyright 2011 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/buffer_dec.c
+// Copyright 2011 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/frame_dec.c
+// Copyright 2010 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/idec_dec.c
+// Copyright 2011 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/io_dec.c
+// Copyright 2011 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/quant_dec.c
+// Copyright 2010 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/tree_dec.c
+// Copyright 2010 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/vp8_dec.c
+// Copyright 2010 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/vp8l_dec.c
+// Copyright 2012 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dec/webp_dec.c
+// Copyright 2010 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dsp/alpha_processing.c
+// Copyright 2013 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dsp/cpu.c
+// Copyright 2011 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dsp/dec.c
+// Copyright 2010 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dsp/dec_clip_tables.c
+// Copyright 2014 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dsp/filters.c
+// Copyright 2011 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dsp/lossless.c
+// Copyright 2012 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dsp/rescaler.c
+// Copyright 2014 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dsp/upsampling.c
+// Copyright 2011 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/dsp/yuv.c
+// Copyright 2010 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/bit_reader_utils.c
+// Copyright 2010 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/color_cache_utils.c
+// Copyright 2012 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/filters_utils.c
+// Copyright 2011 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/huffman_utils.c
+// Copyright 2012 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/palette.c
+// Copyright 2023 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/quant_levels_dec_utils.c
+// Copyright 2013 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/rescaler_utils.c
+// Copyright 2012 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/random_utils.c
+// Copyright 2013 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/thread_utils.c
+// Copyright 2011 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/book/vendor/libwebp/src/utils/utils.c
+// Copyright 2012 Google Inc. All Rights Reserved.
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lapi.c
+** See Copyright Notice in lua.h
+  "$LuaVersion: " LUA_COPYRIGHT " $"
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lauxlib.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lbaselib.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lcode.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lctype.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/ldebug.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/ldo.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/ldump.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lfunc.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lgc.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/llex.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lmem.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lobject.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lopcodes.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lparser.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lstate.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lstring.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/ltable.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/ltm.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lundump.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lvm.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/main/lightapp/vendor/lua/lzio.c
+** See Copyright Notice in lua.h
+
+firmware/read_pico_firmware/port/freertos_shim.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_idf_glue.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/epd_board_host.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/epd_lcd_host.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/epdiy_ve_fallback.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/settings_host.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_book_path.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_home_path.c
+/* SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_touch.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_imu.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_pmu.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_power.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_board.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/input_host.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/frame_export.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/font_probe.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/native_pages.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/port/host_main.c
+ * SPDX-License-Identifier: Apache-2.0
+
+firmware/read_pico_firmware/main/book/vendor/crosspdf/lib/uzlib/src/tinflate.c
+ * Copyright (c) 2003 by Joergen Ibsen / Jibz
+ * Copyright (c) 2014-2018 by Paul Sokolovsky
+
+firmware/read_pico_firmware/main/book/pdf_engine.cpp
+/* SPDX-License-Identifier: Apache-2.0

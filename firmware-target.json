@@ -1,0 +1,6 @@
+{
+  "schema": 2,
+  "enabled": false,
+  "unavailable_reason": "尚无 v2.0.8 正式可分发目标包与精确机型验收；官网 USB 应用槽恢复暂未开放。日常升级按正式包说明使用固件内置 TF 流程。",
+  "target": null
+}

@@ -1,0 +1,28 @@
+This combined browser program uses the modified epdiy library under LGPL-3.0-or-later.
+The library, its use, corresponding modified source, and application relink materials are
+identified in relink-plan.json, sources/, objects/, RELINK-INSTRUCTIONS.md and LICENSES/.
+GNU GPLv3 and LGPLv3 full license texts accompany this packet. Recombining with an
+interface-compatible modified library and reverse engineering to debug those modifications
+are not restricted by these packet terms. See APPLICATION-RELINK-PERMISSION.txt.
+
+This software is based in part on the work of the Independent JPEG Group.
+No author, upstream project or toolchain vendor endorsement is implied.
+All separate copyright, license and disclaimer texts in LICENSES remain applicable.
+The corresponding materials are distributed separately from the complete application source repository.
+
+Library-related host support source is also supplied for epd_lcd_host.c,
+epd_board_host.c and epdiy_ve_fallback.c. Existing Apache SPDX notices are retained.
+epdiy_ve_fallback.c describes itself as line-by-line ports of upstream epdiy C
+reference semantics; its library-derived portions are treated as covered library
+material for this packet's source/relink provision, not hidden as application-only
+objects. This provision does not remove any original third-party notice or limit
+the rights under LGPL-3.0-or-later applicable to upstream-derived portions.
+
+Upstream identity: https://github.com/vroland/epdiy, tag 2.0.0 (without a v prefix),
+commit 1b089e60a90d861d9a61ce1b3334c3646028013c. That tag's src C/header/assembly
+files examined do not supply a separate author/year copyright notice for epdiy.
+No name/year is invented here. The FSF copyright in the GNU license is for the
+license document, not evidence of epdiy authorship. The README's David Bird 2018
+notice applies to the weather example, not this linked library. Original upstream
+license text, exact-file notice scan and fork modification record are retained
+under LICENSES and provenance/upstream-notices.

@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "source": {
+    "tag": "v2.0.8",
+    "tag_object": "acb367c417207757c2253401f065b9462d159ba5",
+    "commit": "79f2f5ad303b9a588d551e3e0eb4b6e5735bc56b",
+    "tree": "ece5b78a3dee90448ee8ba57adf85eca08e728c7",
+    "production_source_modified": false
+  },
+  "toolchain": {
+    "sdk": "4.0.17",
+    "emsdk_git": "d7b4130688bfa348392b921ab04015aa15c4f154",
+    "sdk_release": "41d2106c68c28e101e6252a48e22c78b07722508",
+    "emcc_git": "bb11bae9af3a6551132655a0908f86889d2d423b"
+  },
+  "files": {
+    "index.html": {
+      "bytes": 522,
+      "sha256": "334f66737a1c242d0300b85a4ea7ed816f5a2ae884cd6f17732487ddf379a0d6"
+    },
+    "reader.data": {
+      "bytes": 29770400,
+      "sha256": "361e0e7a55dd4b403c74826b003e4e1b256cc8564654928e419b09253465f080"
+    },
+    "reader.js": {
+      "bytes": 223779,
+      "sha256": "a87a2704c140682c7362a9a380b8728fc9da42168a57b429b70dee3c1da7dfba"
+    },
+    "reader.wasm": {
+      "bytes": 3943347,
+      "sha256": "1d458ce7b88e36d68fd39c7f3dc436eac2ab4d932e21b6fbc03daaf27d594b35"
+    },
+    "runtime.js": {
+      "bytes": 14328,
+      "sha256": "de8fa8ad7308f4086b6320a9b8a703f569d6d823c495f5e7dfb6d09405ecff58"
+    }
+  }
+}

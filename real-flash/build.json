@@ -1,0 +1,22 @@
+{
+  "scope": "REAL_SERIAL_APP_SLOT_RECOVERY",
+  "sdk": {
+    "name": "esptool-js",
+    "version": "0.7.0"
+  },
+  "enabledByDefault": false,
+  "realDeviceTest": "NOT_RUN",
+  "wholeChipErase": "FORBIDDEN",
+  "ota": "UNSUPPORTED",
+  "source_sha256": {
+    "entry.mjs": "5891e563ec2485ad4250635452ef5dffe345b9b5251258b562dab1ac341ec5e2",
+    "policy.mjs": "c88c5a7cf767a2977bfc0f81a778b3ed9f4c0e34591410ca25ea60cc41611e08",
+    "session.mjs": "0d0f7f2b1124b08b4be0a944670b76c870451848c3283f3b7fd0d06d3e412b6f",
+    "validation.mjs": "7fc7618697c60c204bf0c431abfd58421d6a2a3acde6b4e6240696308a5ded74",
+    "build.mjs": "0dbd4b5910bb16eb24a6febe0e1681fd4cd081d46538f7ac9d5e08bf7c61e61f"
+  },
+  "dependencyLockSha256": "1793e2ff41262ee6cc79eff2906b07dc1d427abf9ad4a7e6f28918c0d0f0add4",
+  "engine_sha256": "1546783551abd1652883c62195b8f717c9e5c34def84d1fefcb200ab631099f5",
+  "engine_bytes": 343619,
+  "externalImports": []
+}

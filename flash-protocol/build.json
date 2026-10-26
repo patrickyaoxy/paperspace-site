@@ -1,0 +1,35 @@
+{
+  "scope": "MOCK_ONLY",
+  "sdk": {
+    "name": "esptool-js",
+    "version": "0.7.0",
+    "gitHead": "4d8e8fe092f3425a4b85d1e883f4cc078a5efdd3"
+  },
+  "bundler": {
+    "name": "esbuild",
+    "version": "0.28.2"
+  },
+  "md5": {
+    "name": "spark-md5",
+    "version": "3.0.2"
+  },
+  "formalVerified": false,
+  "stubUpload": "NOT_RUN",
+  "realDeviceEnabled": false,
+  "inputs": {
+    "adapter.mjs": "17d7d71e93cf677a1a0af58724d15c1751473e7c0b684d295063c208bb7466c8",
+    "mock-serial.mjs": "ff6e0bbf6f5290287367207d71fe6ab66030be80932b6f78318821352fd55d52",
+    "browser-hash.mjs": "95bcc70398b25df93686364a2b1389ca50a1198c8b08fdeb368b6cd5303336c3",
+    "browser/entry.mjs": "a1a9893b3cb4eaea4becfe2fb5b91f9be5a5ffa2bef85b129c375b5f6da38d00",
+    "browser/synthetic-vector.generated.json": "ab7651a0c800ea1d6c1296f3d168982cc849a252a00a467a15732bd6a4454dfe",
+    "build-browser.mjs": "5f4367e4e304d8a304c50e03c95f5e3c910cd0254f8e665da13a52cbf8f00421",
+    "package-lock.json": "1793e2ff41262ee6cc79eff2906b07dc1d427abf9ad4a7e6f28918c0d0f0add4"
+  },
+  "engine_sha256": "0852f236e322aa3689e12c2588d7c5b911c4f9642ba82c7616087186322fdd77",
+  "engine_bytes": 432573,
+  "externalImports": [],
+  "outputs": [
+    "sites/zhijian/dist/flash-protocol/engine.js.LEGAL.txt",
+    "sites/zhijian/dist/flash-protocol/engine.js"
+  ]
+}
