@@ -2,11 +2,13 @@
 var Module;
 (() => {
  const WIDTH=684,HEIGHT=1216,canvas=document.querySelector('canvas'),context=canvas.getContext('2d',{alpha:false});
- const state={initialized:false,ready:false,busy:false,stopped:false,error:null,sequence:null,logs:[],observations:[],receipts:[],frames:[],books:0,fontReady:false,prepareStart:0,prepareDone:0,lastInput:0,config:null};
+ const state={initialized:false,ready:false,busy:false,stopped:false,error:null,sequence:null,logs:[],observations:[],receipts:[],frames:[],books:0,fontReady:false,prepareStart:0,prepareDone:0,lastInput:0,config:null,frameMetrics:{headerReads:0,headerBytes:0,fullReads:0,fullBytes:0,imageAllocations:0}};
  let logSerial=0,ticket=0,pointer=null,internalId=0,frameTimer=null;
+ const frameHeader=new Uint8Array(36),frameHeaderView=new DataView(frameHeader.buffer),frameLength=36+WIDTH*HEIGHT;
+ let frameBytes=null,frameImage=null;
  const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
  const emit=(event,extra={})=>{if(parent!==window)parent.postMessage({type:'zhijian-runtime',event,...extra},location.origin);};
- const failure=(error,id,fatal=false)=>{const message=String(error?.message||error);state.lastError=message;if(fatal)state.error=message;emit('error',{id,message,sequence:state.sequence});};
+ const failure=(error,id,fatal=false)=>{const message=String(error?.message||error);state.lastError=message;if(fatal)state.error=message;emit('error',{id,message,sequence:state.sequence});if(fatal&&parent===window){canvas.hidden=true;let alert=document.getElementById('runtime-error');if(!alert){alert=document.createElement('p');alert.id='runtime-error';alert.setAttribute('role','alert');alert.style.cssText='padding:24px;font:16px/1.6 system-ui,sans-serif';document.body.append(alert);}alert.textContent=message;}};
  Object.defineProperty(window,'ZhijianRuntime',{value:Object.freeze({readState:()=>structuredClone(state)}),writable:false,configurable:false});
  function parseConfig(){
   const query=new URLSearchParams(location.search),allowed=new Set(['theme','night','reading','book','layout']);
@@ -31,16 +33,30 @@ var Module;
   match=/P7_PREPARE done generation=(\d+)/.exec(line);if(match)state.prepareDone=Number(match[1]);
   match=/p3_frame (.*)/.exec(line);if(match){try{state.readingSnapshot=fields(match[1]);const id=/book_id=(\d+)/.exec(match[1]);if(id)state.readingSnapshot.bookId=BigInt(id[1]).toString(16).padStart(16,'0');}catch(error){failure(error);}}
  }
+ function frameSequence(bytes){
+  if(String.fromCharCode(...bytes.subarray(0,8))!=='PLFB001\0')throw Error('原始帧格式无效');
+  const view=bytes===frameHeader?frameHeaderView:new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
+  if(view.getUint32(8,true)!==WIDTH||view.getUint32(12,true)!==HEIGHT)throw Error('原始帧尺寸无效');
+  return view.getUint32(16,true);
+ }
  function refreshFrame(){
   if(!state.initialized||state.stopped)return false;
+  let stream;
   try{
-   const bytes=Module.FS.readFile('/run/frame.plfb');if(bytes.length!==36+WIDTH*HEIGHT)return false;
-   if(String.fromCharCode(...bytes.subarray(0,8))!=='PLFB001\0')throw Error('原始帧格式无效');
-   const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);if(view.getUint32(8,true)!==WIDTH||view.getUint32(12,true)!==HEIGHT)throw Error('原始帧尺寸无效');
-   const sequence=view.getUint32(16,true);if(sequence===state.sequence)return true;
-   const image=context.createImageData(WIDTH,HEIGHT);for(let i=0,j=36;i<WIDTH*HEIGHT;i++,j++){const v=bytes[j],at=i*4;image.data[at]=v;image.data[at+1]=v;image.data[at+2]=v;image.data[at+3]=255;}
-   context.putImageData(image,0,0);state.sequence=sequence;state.frames.push(sequence);if(state.frames.length>200)state.frames.shift();emit('frame',{sequence});return true;
+   // Native publishes by atomic rename. Retain this inode for header and pixels.
+   stream=Module.FS.open('/run/frame.plfb','r');
+   const read=Module.FS.read(stream,frameHeader,0,36,0);state.frameMetrics.headerReads++;state.frameMetrics.headerBytes+=read;
+   if(read!==36||Module.FS.fstat(stream.fd).size!==frameLength)return false;
+   let sequence=frameSequence(frameHeader);if(sequence===state.sequence)return true;
+   frameBytes??=new Uint8Array(frameLength);
+   const fullRead=Module.FS.read(stream,frameBytes,0,frameLength,0);state.frameMetrics.fullReads++;state.frameMetrics.fullBytes+=fullRead;
+   if(fullRead!==frameLength)return false;sequence=frameSequence(frameBytes);
+   if(sequence===state.sequence)return true;
+   if(!frameImage){frameImage=context.createImageData(WIDTH,HEIGHT);state.frameMetrics.imageAllocations++;for(let i=3;i<frameImage.data.length;i+=4)frameImage.data[i]=255;}
+   for(let i=0,j=36;i<WIDTH*HEIGHT;i++,j++){const v=frameBytes[j],at=i*4;frameImage.data[at]=v;frameImage.data[at+1]=v;frameImage.data[at+2]=v;}
+   context.putImageData(frameImage,0,0);state.sequence=sequence;state.frames.push(sequence);if(state.frames.length>200)state.frames.shift();emit('frame',{sequence});return true;
   }catch(error){if(!String(error).includes('FS error')&&!String(error).includes('ErrnoError'))failure(error);return false;}
+  finally{if(stream)Module.FS.close(stream);}
  }
  async function until(predicate,timeout=30000){const deadline=performance.now()+timeout;while(performance.now()<deadline){if(state.stopped)throw Error('体验已停止');if(state.error)throw Error(state.error);const value=predicate();if(value)return value;await sleep(30);}throw Error('真实运行时响应超时');}
  async function send(command){
@@ -101,7 +117,9 @@ var Module;
  }
  try{
   state.config=parseConfig();if(!crossOriginIsolated||typeof SharedArrayBuffer==='undefined')throw Error('真实体验需要跨源隔离与共享内存支持');
-  Module={preRun:[()=>Object.assign(Module.ENV,{PAPERLAB_MODE:'loop',PAPERLAB_SD_ROOT:'/sdcard',PAPERLAB_SETTINGS_PATH:'/run/settings.ini',PAPERLAB_NVS_PATH:'/run/nvs.bin',PAPERLAB_FRAME_PATH:'/run/frame.plfb',PAPERLAB_SPIRAM_LIMIT_MB:'8',PAPERLAB_FAKE_UNIX:'1792938300',PAPERLAB_FAKE_TIME_SYNCED:'1',PAPERLAB_SEED_EXAMPLES:'0'})],
+  if(parent===window)throw Error('请从官网点击“开始体验”，以准备并校验真实程序资源');
+  const bundle=parent.PaperspaceRuntimeAssets?.getBundle();if(!bundle)throw Error('真实程序资源尚未准备完成，请从官网重新开始体验');
+  Module={wasmBinary:bundle.wasm,getPreloadedPackage:(name,size)=>{if(!name.endsWith('reader.data')||size!==bundle.data.byteLength)throw Error('真实程序资源包身份不符');return bundle.data;},preRun:[()=>Object.assign(Module.ENV,{PAPERLAB_MODE:'loop',PAPERLAB_SD_ROOT:'/sdcard',PAPERLAB_SETTINGS_PATH:'/run/settings.ini',PAPERLAB_NVS_PATH:'/run/nvs.bin',PAPERLAB_FRAME_PATH:'/run/frame.plfb',PAPERLAB_SPIRAM_LIMIT_MB:'8',PAPERLAB_FAKE_UNIX:'1792938300',PAPERLAB_FAKE_TIME_SYNCED:'1',PAPERLAB_SEED_EXAMPLES:'0'})],
    print:log,printErr:log,onAbort:error=>failure(Error('真实程序终止：'+error),undefined,true),onRuntimeInitialized:()=>{
     try{
      Module.FS.mkdirTree('/run');let settings=new TextDecoder().decode(Module.FS.readFile('/demo-settings.ini'));const values=Object.fromEntries(settings.trim().split('\n').map(line=>{const at=line.indexOf('=');return [line.slice(0,at),line.slice(at+1)];}));
