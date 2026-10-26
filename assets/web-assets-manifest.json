@@ -1590,41 +1590,41 @@
     {
       "source": "assets/screens/reading-horizontal.png",
       "file": "assets/screens-web/reading-horizontal.webp",
-      "sourceBytes": 211094,
-      "bytes": 56412,
+      "sourceBytes": 211406,
+      "bytes": 56554,
       "size": [
         684,
         1216
       ],
-      "rgbaSha256": "786521cf573fbbe2219a6556e81d0121318f0584756fd31c71209b23679795c1",
-      "sourceSha256": "96a47d27f50b91af305c72094cf93097f59b3e18c1374e3111554afdcffd3447",
-      "sha256": "eb341489c2c687a7674a7791f698714ea9fecbd3a3bd5f4d280bada54d3eb889"
+      "rgbaSha256": "0e4348044173d39ffea20d47c9c267b09ed7c0deec17743eaac3fcdaef83defd",
+      "sourceSha256": "da20af1281146c8263ccda4421ff0b6947c2b9aade51ab5d946b192156397782",
+      "sha256": "f28d16cc1a9839df20babddb65deddb78d90b87b76dbcfe935cfd5a17e5b5247"
     },
     {
       "source": "assets/screens/reading-vertical-ltr.png",
       "file": "assets/screens-web/reading-vertical-ltr.webp",
-      "sourceBytes": 175371,
-      "bytes": 48372,
+      "sourceBytes": 176954,
+      "bytes": 48776,
       "size": [
         684,
         1216
       ],
-      "rgbaSha256": "cedb5ae0a2c9f4f76882438fcadc51c362a4598f756448131d77ce348f769305",
-      "sourceSha256": "aad9bb745c5a64ebf0af11a8bc0596e6edeffbe7078f7e002250df62f50a2f48",
-      "sha256": "74b11ed2f24089d009a712befd39a1e027aca8cc1ee37095ad54c6a06267dc29"
+      "rgbaSha256": "898877d323db6817697d576c49c89e3176fe30483b2ac55dbf7b31f680eef05d",
+      "sourceSha256": "f424a704fa4cdb5d23aa363f675ebac60183e3a21bbd53b6ac7abaff50a3da58",
+      "sha256": "51e6b0869961c1832913d7228e80aab38c735aff1d2b160f244c917b1200fdc5"
     },
     {
       "source": "assets/screens/reading-vertical-rtl.png",
       "file": "assets/screens-web/reading-vertical-rtl.webp",
-      "sourceBytes": 175452,
-      "bytes": 48568,
+      "sourceBytes": 177870,
+      "bytes": 48736,
       "size": [
         684,
         1216
       ],
-      "rgbaSha256": "f6b46268aa06ae14140b10f02b6081453396a5851762f0207b716f155ad56d49",
-      "sourceSha256": "b12419179f3a47415fc16caff0d2ae33982cd852eb92466fe18c144435af1780",
-      "sha256": "b00b6a0ff650f606d1b85e566c96120435620aab02732daad420d5ac2e077a5e"
+      "rgbaSha256": "accb06198b944cae3aa8a86867e478599a6ac4c468e41af07aaef43fc4ac7af5",
+      "sourceSha256": "31b72cc4f93e93d1392a734bc6bed6a6bfe62ba0326283221f493588759cc68b",
+      "sha256": "fed6307b872bfa693f970190eb55951bdbec7fef6892e2f462d813ddcab2ca94"
     },
     {
       "source": "assets/screens/widget-detail-cat.png",
