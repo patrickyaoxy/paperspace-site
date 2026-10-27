@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "purpose": "Minimal owner-pinned install manifest; archive manifest retained unchanged",
+  "parent_archive_manifest_sha256": "cf94d104215412d0e4ec61098c0ffdce1d70096059b3e1c70e0f2acd816d7971",
+  "install_manifest_sha256": "c03d3958c77228a99d866141d4eaa2262cb4385867c85094ad9ff9f779b572e2",
+  "removed_entries_are_non_flash_archive_materials": true,
+  "original_manifest_file_count": 191,
+  "install_manifest_file_count": 4,
+  "image_files": {
+    "Read_Pico.bin": {
+      "sha256": "71c977630f11a970b7b16c9a7bc29d9e67ea19a0f823093fb17add25102ee76f",
+      "bytes": 4160944,
+      "byte_identical_to_original_package": true
+    },
+    "bootloader/bootloader.bin": {
+      "sha256": "2f3d2e3b17f259b5b2cedda68d214074a906860475d4b681bba97d20c2f0a316",
+      "bytes": 21232,
+      "byte_identical_to_original_package": true
+    },
+    "ota_data_initial.bin": {
+      "sha256": "7d2c7ac4888bfd75cd5f56e8d61f69595121183afc81556c876732fd3782c62f",
+      "bytes": 8192,
+      "byte_identical_to_original_package": true
+    },
+    "partition_table/partition-table.bin": {
+      "sha256": "cd4ff0257b302884afa9c8961a8d3ffa26851b03b8b97db3d602e04f0b88f5ae",
+      "bytes": 3072,
+      "byte_identical_to_original_package": true
+    }
+  },
+  "metadata_equal_except_files": true,
+  "engine_changed": false,
+  "firmware_changed": false,
+  "created_at": "2026-10-27T09:15:53.804776+00:00"
+}

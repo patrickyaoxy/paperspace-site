@@ -1,0 +1,52 @@
+{
+  "suite": "install-manifest-and-public-summary-delta",
+  "checks": [
+    {
+      "id": "NEW-OWNER-PIN",
+      "status": "PASS"
+    },
+    {
+      "id": "NEW-INSTALL-MANIFEST",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-IMAGE-bootloader",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-IMAGE-partitionTable",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-IMAGE-app",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-IMAGE-otaData",
+      "status": "PASS"
+    },
+    {
+      "id": "ROOT-TARGET-STILL-FALSE",
+      "status": "PASS"
+    },
+    {
+      "id": "BASE-UNCHANGED-real-flash/engine.js",
+      "status": "PASS"
+    },
+    {
+      "id": "BASE-UNCHANGED-real-flasher-ui.js",
+      "status": "PASS"
+    },
+    {
+      "id": "BASE-UNCHANGED-firmware-target.json",
+      "status": "PASS"
+    },
+    {
+      "id": "PUBLIC-DOCS-NO-LOCAL-PATHS",
+      "status": "PASS"
+    }
+  ],
+  "protocolSummarySha256": "7ef0e4874b083a3c6d3b990bac661680fdc79a40f8aff3d854a3d9327660e6de",
+  "remoteWritePerformed": false,
+  "deviceWritePerformed": false
+}

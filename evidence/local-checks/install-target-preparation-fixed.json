@@ -1,0 +1,10 @@
+{
+  "sourceSha": "79f2f5ad303b9a588d551e3e0eb4b6e5735bc56b",
+  "manifestSha256": "c03d3958c77228a99d866141d4eaa2262cb4385867c85094ad9ff9f779b572e2",
+  "trustSha256": "9e8e16856f76ec86ed213d190a01f4d2251313bd829bef69265ade335bf210a9",
+  "sdkconfigSha256": "b4f9e5364c17af0041ed2b69f394f9a645a8d2bb338cd6f53e2998fbde2e2bc0",
+  "origin": "MindReset Read Pico 官方 Demo Firmware 二次开发；paperspace 独立维护",
+  "livePolicyChanged": false,
+  "deviceWritePerformed": false,
+  "hardware": "NOT_TESTED"
+}

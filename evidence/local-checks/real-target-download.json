@@ -1,0 +1,57 @@
+{
+  "suite": "real-local-candidate-download",
+  "candidate": "candidates/firmware-target.v2.0.8.json",
+  "candidateSha256": "a83120f82e8e6e3f503e428742adc44911ba695cb572bf3af71df7d77cc69558",
+  "manifestSha256": "cf94d104215412d0e4ec61098c0ffdce1d70096059b3e1c70e0f2acd816d7971",
+  "appSha256": "71c977630f11a970b7b16c9a7bc29d9e67ea19a0f823093fb17add25102ee76f",
+  "engineSha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43",
+  "livePolicySha256": "157d26c84c39e62b95a98c070d5a4489a201f99c38381fa75ed329e9f57d16d2",
+  "checks": [
+    {
+      "id": "REAL-OWNER-POLICY",
+      "status": "PASS"
+    },
+    {
+      "id": "REAL-PINNED-IMAGE-DOWNLOAD",
+      "status": "PASS"
+    },
+    {
+      "id": "REAL-MANIFEST-IDENTITY",
+      "status": "PASS"
+    },
+    {
+      "id": "REAL-CORRUPTED-DOWNLOAD-REJECTED",
+      "status": "PASS"
+    },
+    {
+      "id": "NO-SERIAL-REQUEST",
+      "status": "PASS"
+    },
+    {
+      "id": "LIVE-TARGET-STILL-DISABLED",
+      "status": "PASS"
+    }
+  ],
+  "requests": [
+    "/verify",
+    "/real-flash/engine.js",
+    "/favicon.ico",
+    "/firmware-target.json",
+    "/firmware/v2.0.8/manifest.json",
+    "/firmware/v2.0.8/bootloader/bootloader.bin",
+    "/firmware/v2.0.8/partition_table/partition-table.bin",
+    "/firmware/v2.0.8/Read_Pico.bin",
+    "/firmware/v2.0.8/ota_data_initial.bin",
+    "/firmware/v2.0.8/manifest.json",
+    "/firmware/v2.0.8/bootloader/bootloader.bin",
+    "/firmware/v2.0.8/partition_table/partition-table.bin",
+    "/firmware/v2.0.8/Read_Pico.bin"
+  ],
+  "deviceAccess": false,
+  "deviceWritePerformed": false,
+  "limits": [
+    "Only production owner policy and download APIs exercised",
+    "ESP image bytes checked by generator; no device prepare/execute performed",
+    "Boot/display/data/power-loss behavior remains untested on hardware"
+  ]
+}

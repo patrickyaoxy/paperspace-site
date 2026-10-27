@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-27",
+  "executor": "官网开发子代理（开发自测，非独立QA）",
+  "baseSha": "244bfb7e2ed78678e1f302e75cca9d355af86512",
+  "commands": [
+    {
+      "command": "node tests/installer-regression.mjs",
+      "exitCode": 0,
+      "result": "26 PASS / 0 FAIL",
+      "report": "installer-regression.json"
+    },
+    {
+      "command": "python3 tests/prepare-target-regression.py",
+      "exitCode": 0,
+      "result": "7 PASS / 0 FAIL",
+      "report": "prepare-target-regression.json"
+    },
+    {
+      "command": "REPORT_PATH=evidence/local-checks/installer-regression-known-layout.json node tests/installer-regression.mjs",
+      "exitCode": 0,
+      "result": "29 PASS / 0 FAIL",
+      "report": "installer-regression-known-layout.json"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "python3 scripts/prepare-firmware-target.py --package \"${PACKAGE_DIR}\" --trust \"${REVIEWED_TRUST_JSON}\" --out \"${PRIVATE_STAGING_DIR}\"",
+      "commandRepresentation": "Portable equivalent; original arguments retained privately",
+      "exitCode": 0,
+      "result": "Real pinned four-image candidate generated; root policy unchanged"
+    },
+    {
+      "command": "node tests/real-target-download.mjs",
+      "exitCode": 0,
+      "result": "6 PASS / 0 FAIL",
+      "report": "real-target-download.json"
+    },
+    {
+      "command": "Python bounded HTML/link, copied material SHA/size/reference identity, unchanged browser material, main-flow/no-firmware-ZIP and disabled-target assertions",
+      "exitCode": 0,
+      "result": "13 PASS / 0 FAIL",
+      "report": "esp32s3-material-link-delta.json",
+      "scope": "Material and documentation delta only; did not rerun 29+7+6"
+    },
+    {
+      "command": "node --check app.js",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "Two targeted generator invocations: independently pinned old 191-entry archive refused, new four-image install accepted",
+      "exitCode": 0,
+      "result": "2 PASS / 0 FAIL",
+      "report": "install-manifest-count-guard-delta.json"
+    },
+    {
+      "command": "New unmodified production public-controller protocol group: initial complete blank, 12 selected unaffected cases, one official root-files WL migration positive",
+      "exitCode": 0,
+      "result": "14 new subcases PASS; historical manifest/directory-fixture FAIL retained",
+      "report": "new-protocol-regression-summary.json",
+      "originalProtocolSevenInherited": false
+    }
+  ],
+  "remoteWrites": false,
+  "deviceAccess": false,
+  "s3BuildPerformed": false,
+  "livePolicyEnabled": false
+}

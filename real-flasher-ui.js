@@ -8,9 +8,11 @@ if (root) {
     <button id="install-reload" class="flash-button">重新检查固件 / 重试下载</button>
   </div>
   <p class="flash-note install-beta">公开测试版（Public Beta）· 尚未完成真机验证。写入校验通过不代表设备已正常启动。</p>
+  <p id="install-auto-files" class="flash-note">USB 安装自动获取并核验官网固定固件，无需下载 ZIP、选择本地固件包或手选应用槽。</p>
+  <p id="install-scope" class="flash-warning">单槽迁移正控仅覆盖根目录文件或全空存储。含子目录迁移未验证，本次暂不执行该迁移；请停止迁移并保存备份。</p>
   <ol class="flash-steps install-steps">
     <li><span>01</span><h2>连接并自动检测</h2>
-      <p>自动检查芯片、16 MiB 容量、安全状态与分区，推荐本机可用的安装方式。未知布局不会写入。</p>
+      <p>自动检查芯片、16 MiB 容量、安全状态与分区，仅支持已登记的精确布局。未知布局、未登记的旧双槽 bootloader 均拒绝写入。</p>
       <p id="install-target" class="flash-note">正在核对官网指定的机型与固件。</p>
       <p class="flash-note">连接会尝试重启设备进入下载模式，请先保存阅读进度并退出正在进行的传输；读回校验不能替代启动验收。</p>
       <label class="flash-inject"><input id="install-model" type="checkbox" disabled><span>我已核对设备确为上述机型。芯片识别不能证明板型。</span></label>

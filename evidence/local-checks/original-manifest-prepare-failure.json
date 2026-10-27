@@ -1,0 +1,16 @@
+{
+  "status": "FAIL",
+  "stage": "production_public_controller_prepare",
+  "reason": "Manifest files",
+  "manifestFileCount": 191,
+  "productionLimit": 100,
+  "engineSha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43",
+  "manifestSha256": "cf94d104215412d0e4ec61098c0ffdce1d70096059b3e1c70e0f2acd816d7971",
+  "flashEraseCommands": 0,
+  "ramUploadBlocks": 3,
+  "wholeChipErase": false,
+  "deviceWritePerformed": false,
+  "command": "node smoke.mjs > smoke.log 2>&1",
+  "exitCode": 1,
+  "originalRunEvidence": "Private protocol execution directory; original smoke.log and events preserved"
+}

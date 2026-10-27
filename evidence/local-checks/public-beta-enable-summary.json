@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "suite": "public-beta-enable-and-visible-copy-delta",
+  "baseWebsiteSha": "3fcb274e0d84590f73dd95f3dee8d66599175fdf",
+  "status": "PASS",
+  "enabledPolicyByteIdenticalToReviewedCandidate": true,
+  "enabledPolicySha256": "bc68d65ca9f1a2a059ab59be32fe0ec3520027e507cd48ed1553b991ed4ff208",
+  "manifestSha256": "c03d3958c77228a99d866141d4eaa2262cb4385867c85094ad9ff9f779b572e2",
+  "appSha256": "71c977630f11a970b7b16c9a7bc29d9e67ea19a0f823093fb17add25102ee76f",
+  "engineSha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43",
+  "engineAndFourImagesAndWhitelistUnchanged": true,
+  "uiControlHandlersUnchanged": true,
+  "visibleBrowserChecks": [
+    {
+      "id": "ROOT-ENABLED-REAL-DOWNLOAD",
+      "status": "PASS"
+    },
+    {
+      "id": "AUTO-FIRMWARE-NO-PACK-SELECTION",
+      "status": "PASS"
+    },
+    {
+      "id": "VISIBLE-PUBLIC-BETA-NO-HARDWARE-CLAIM",
+      "status": "PASS"
+    },
+    {
+      "id": "VISIBLE-REGISTERED-LAYOUT-OLD-BOOTLOADER-LIMIT",
+      "status": "PASS"
+    },
+    {
+      "id": "VISIBLE-ROOT-FILES-ONLY-MIGRATION-LIMIT",
+      "status": "PASS"
+    },
+    {
+      "id": "MODEL-ACK-BEFORE-CONNECT-NO-PORT-REQUEST",
+      "status": "PASS"
+    },
+    {
+      "id": "FIVE-PINNED-ASSETS-REQUESTED",
+      "status": "PASS"
+    },
+    {
+      "id": "NO-UNCAUGHT-PAGE-ERROR",
+      "status": "PASS"
+    }
+  ],
+  "lightweightPrepare": {
+    "suite": "enabled-root-real-download-prepare",
+    "status": "PASS",
+    "policySha256": "bc68d65ca9f1a2a059ab59be32fe0ec3520027e507cd48ed1553b991ed4ff208",
+    "manifestSha256": "c03d3958c77228a99d866141d4eaa2262cb4385867c85094ad9ff9f779b572e2",
+    "appSha256": "71c977630f11a970b7b16c9a7bc29d9e67ea19a0f823093fb17add25102ee76f",
+    "engineSha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43",
+    "mode": "first-install",
+    "executable": true,
+    "flashDataBlocks": 0,
+    "flashErases": 0,
+    "ramUploadBlocks": 3,
+    "deviceWritePerformed": false,
+    "longProtocolSuiteRerun": false,
+    "error": null
+  },
+  "localScreenshot": {
+    "file": "enabled-flash-local.png in private enable-local evidence",
+    "sha256": "c98cf113a9c5ff61e65256165046c66e0e519c5b68a52cec6f91038a8d4d5ce3",
+    "inspection": "Viewed actual local index.html#flash installer screenshot; copy visible and readable"
+  },
+  "entryVersion": "20261027-beta-enable-1",
+  "entryVersionChecks": {
+    "indexAppVersion": true,
+    "indexLoaderVersion": true,
+    "moduleVersion": true
+  },
+  "directoryMigrationScope": "Operator limitation displayed; no production parser or directory gate changed",
+  "longProtocolSuiteRerun": false,
+  "realDevicePortRequested": false,
+  "deviceWritePerformed": false,
+  "remoteWritePerformed": false,
+  "validationRole": "Developer bounded local checks; independent enable/copy QA separate"
+}

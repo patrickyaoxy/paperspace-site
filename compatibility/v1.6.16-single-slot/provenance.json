@@ -1,0 +1,59 @@
+{
+  "purpose": "一种精确已知单槽布局，不能推断所有旧机兼容",
+  "sourceRepository": "elink-reader",
+  "sourceCommit": "6e393965f4a53250023a576951080373068ec05e",
+  "sourcePath": "firmware/read_pico_firmware/partitions_16M.csv",
+  "sourceGitBlob": "ce1d0134175eb9ec7b4f433ec79f39b7e69b0200",
+  "csvSha256": "3ff7353b5be8a8914e16eff4d09af0220909b3a3f3912fc82228441f5d295ef0",
+  "generator": "ESP-IDF v6.1 components/partition_table/gen_esp32part.py",
+  "idfCommit": "fff9895c82d744c7237be8847347bdd1b07c6643",
+  "generatorSha256": "02f6c1c5f012393d47987ee64bc50ba319a2eda48cbcec754d8cfaf780cce529",
+  "command": "python3 \"${IDF_PATH}/components/partition_table/gen_esp32part.py\" --flash-size 16MB compatibility/v1.6.16-single-slot/partitions_16M.csv compatibility/v1.6.16-single-slot/partition-table.bin",
+  "stdout": "",
+  "stderr": "Parsing CSV input...\nVerifying table...\n",
+  "exitCode": 0,
+  "binaryBytes": 3072,
+  "binarySha256": "ceb0bf03239c94c30fa19226d32a32ba7cbcabe3c643fda81287662a824e47ec",
+  "partitions": [
+    [
+      "nvs",
+      1,
+      2,
+      36864,
+      20480
+    ],
+    [
+      "phy_init",
+      1,
+      1,
+      57344,
+      4096
+    ],
+    [
+      "factory",
+      0,
+      0,
+      65536,
+      6291456
+    ],
+    [
+      "storage",
+      1,
+      129,
+      6356992,
+      5242880
+    ]
+  ],
+  "migration": {
+    "method": "byte-copy",
+    "format": "esp-idf-wl-fat",
+    "sectorSize": 4096,
+    "sourceLabel": "storage",
+    "targetLabel": "storage"
+  },
+  "acceptedOldDualSlotBootloaders": [],
+  "deviceReadPerformed": false,
+  "deviceWritePerformed": false,
+  "runtimeStorageValidationRequired": "生产引擎仍须读回并验证 WL v2/4096/FAT12，或完整5MiB全FF分支；表相同不证明存储兼容",
+  "commandRepresentation": "Portable equivalent; original command evidence retained privately"
+}

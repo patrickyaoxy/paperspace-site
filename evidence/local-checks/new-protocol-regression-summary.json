@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "suite": "new-production-public-controller-protocol-migration-wl-fat",
+  "status": "PASS_WITH_DECLARED_SCOPE",
+  "passedNewSubcases": 14,
+  "originalSevenResultsInherited": false,
+  "manifestSha256": "c03d3958c77228a99d866141d4eaa2262cb4385867c85094ad9ff9f779b572e2",
+  "ownerCandidateSha256": "bc68d65ca9f1a2a059ab59be32fe0ec3520027e507cd48ed1553b991ed4ff208",
+  "engineSha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43",
+  "engineModified": false,
+  "appSha256": "71c977630f11a970b7b16c9a7bc29d9e67ea19a0f823093fb17add25102ee76f",
+  "sourceSha": "79f2f5ad303b9a588d551e3e0eb4b6e5735bc56b",
+  "oldTableSha256": "ceb0bf03239c94c30fa19226d32a32ba7cbcabe3c643fda81287662a824e47ec",
+  "oldDirectoryFixtureSha256": "706a850324273411e956f2c04cf462dc1dad69a1d2f19ac361ee49bd086984aa",
+  "rootFilesFixtureSha256": "dedccdb023778fd16c02f1e015698a93b807ff0dade6ec9231876d94e8442fc8",
+  "newRootFilesMigration": {
+    "files": 2,
+    "directories": 0,
+    "physicalBytes": 5242880,
+    "sourceAddress": 6356992,
+    "targetAddress": 5308416,
+    "nvsSha256": "4d1e6b48d45e84afb3a8612e480927ae57885c5cc62b693b196a94cb0d4879fa",
+    "phySha256": "118d84a72c3527dc0365a7ed820622122a6f6a39bdd90b160faf056ce6421439",
+    "storageByteIdentical": true,
+    "backupFull16MiBByteIdentical": true
+  },
+  "results": [
+    {
+      "id": "NEW-BLANK-INSTALL-AND-CONFIRMATION",
+      "status": "PASS",
+      "milliseconds": 82518
+    },
+    {
+      "id": "SINGLE-ERASED-STORAGE-PRESERVED",
+      "status": "PASS",
+      "milliseconds": 82419
+    },
+    {
+      "id": "DUAL-TRUSTED-NONBOOT-SLOT-READBACK-BEFORE-COMMIT",
+      "status": "PASS",
+      "milliseconds": 82313
+    },
+    {
+      "id": "UNKNOWN-PARTITION-REFUSE",
+      "status": "PASS",
+      "milliseconds": 315
+    },
+    {
+      "id": "UNKNOWN-BOOTLOADER-REFUSE",
+      "status": "PASS",
+      "milliseconds": 295
+    },
+    {
+      "id": "OTA-CRC-CORRUPTION-REFUSE",
+      "status": "PASS",
+      "milliseconds": 325
+    },
+    {
+      "id": "OTA-PENDING-VERIFY-REFUSE",
+      "status": "PASS",
+      "milliseconds": 307
+    },
+    {
+      "id": "BLANK-TABLE-WITH-DATA-REFUSE",
+      "status": "PASS",
+      "milliseconds": 42378
+    },
+    {
+      "id": "WL-CONFIG-CORRUPTION-BACKUP-ONLY",
+      "status": "PASS",
+      "milliseconds": 57535
+    },
+    {
+      "id": "FAT-COPY-CORRUPTION-BACKUP-ONLY",
+      "status": "PASS",
+      "milliseconds": 55691
+    },
+    {
+      "id": "DUAL-CANCEL-NO-BOOT-COMMIT",
+      "status": "PASS",
+      "milliseconds": 62562
+    },
+    {
+      "id": "DUAL-WRITE-FAILURE-NO-BOOT-COMMIT",
+      "status": "PASS",
+      "milliseconds": 64076
+    },
+    {
+      "id": "DUAL-READBACK-FAILURE-NO-BOOT-COMMIT",
+      "status": "PASS",
+      "milliseconds": 65776
+    },
+    {
+      "id": "SINGLE-ROOT-FILES-WL-FAT-MIGRATION",
+      "status": "PASS",
+      "milliseconds": 76378
+    }
+  ],
+  "riskGroups": [
+    {
+      "id": 1,
+      "scope": "Old 191-entry manifest refuses with zero Flash writes; new four-image manifest accepts",
+      "evidence": "original-manifest-prepare-failure.json / install-manifest-count-guard-delta.json"
+    },
+    {
+      "id": 2,
+      "scope": "Blank full install, complete backup/phrase guards, nonempty whole flash refuses despite blank table"
+    },
+    {
+      "id": 3,
+      "scope": "Exact single-slot root-file real WL/FAT12 and erased storage migration; preserve NVS/PHY/storage"
+    },
+    {
+      "id": 4,
+      "scope": "Trusted dual-slot writes non-boot slot; MD5/readback/padding before OTA commit; original active slot/record preserved"
+    },
+    {
+      "id": 5,
+      "scope": "Unknown table/bootloader and corrupt/pending OTA refuse plan; corrupt WL/FAT permit backup only"
+    },
+    {
+      "id": 6,
+      "scope": "Actual transfer and readback fault injections stop OTA commit"
+    },
+    {
+      "id": 7,
+      "scope": "Cancel after first ACK advances generation and rejects old confirmation, no OTA commit"
+    }
+  ],
+  "sourceReports": [
+    {
+      "file": "runs/final-01/report.json",
+      "sha256": "f9b164c141612cd88b4ca3d80f824ede8eb372ed8bc7f3f4a2515a793b349e69"
+    },
+    {
+      "file": "runs/unaffected-02/report.json",
+      "sha256": "238868bed6e819e9b70c76f16ab337d51a6221571e5cd070c42318d23eee1ad8"
+    },
+    {
+      "file": "runs/root-wl-03/report.json",
+      "sha256": "0a4ddf9163bf4deccb38505a698126e94332ce71fd2b337deb3689e9b83b2267"
+    }
+  ],
+  "testSourceIdentities": {
+    "initialRunnerSha256": "653f522f7c99164cc4575ec1faff0c0bb07d0555c8a2fa7a2d1761965c8eded5",
+    "selectorRunnerSha256": "c5e952ec444aad17ab5f4971f15dd0b3eaed9e2381ba6ccfd4ace65d853fe9cf",
+    "rootOnlyRunnerSha256": "fc57ef26075d47e72d57d18108f663953f0fb579a444ecc3decce605da3a8262",
+    "portModelSha256": "5e87618931f09b6ab56ca2f49525f768317fa3deb6e599495e537c2cfe3829cc",
+    "engineCopyByteIdentical": true,
+    "appAndFixturesMatched": true,
+    "initialPassedCaseReusedWithoutRerun": true
+  },
+  "preservedFailures": [
+    {
+      "case": "Original 191-entry archive manifest prepare",
+      "status": "FAIL",
+      "flashWriteCommands": 0,
+      "reason": "Manifest files",
+      "fix": "Separate four-image install manifest; archive manifest/ZIP unchanged"
+    },
+    {
+      "case": "Official Python generator subdirectory fixture migration positive",
+      "status": "FAIL",
+      "flashWriteCommands": 0,
+      "reason": "FAT_DOT_DIRECTORY",
+      "diagnosis": "Generator virtual root parent cluster 1 differs from runtime FAT12 root parent 0; production safely refuses",
+      "safeRefusalObserved": true,
+      "backupAllowed": true,
+      "originalFixtureUnchanged": true
+    }
+  ],
+  "directoryMigrationPositive": "NOT_RUN",
+  "unknownHistoricalBootloaderBackupPlan": "REFUSED_BEFORE_PLAN",
+  "rootTargetEnabled": false,
+  "realDeviceWritePerformed": false,
+  "hardware": "NOT_TESTED",
+  "validationRole": "Developer execution; independent QA recorded separately",
+  "limits": [
+    "Memory Web Streams device model, no physical USB/UART/flash",
+    "No real boot, display, power-loss or rollback-health validation",
+    "Root-file supported fixture positive does not prove all filesystem states or directory migration",
+    "Original failure reports/logs remain unchanged; public summary does not turn FAIL into PASS"
+  ]
+}

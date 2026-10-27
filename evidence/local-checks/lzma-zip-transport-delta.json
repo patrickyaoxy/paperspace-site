@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "suite": "lzma-zip-public-transport-delta",
+  "baseWebsiteSha": "08f185c7dede7533755628a5d0274f09a83ea92a",
+  "status": "PASS",
+  "publicFilename": "downloads/paperspace-v2.0.8-esp32s3-relink-materials.zip",
+  "zipBytes": 10249671,
+  "zipSha256": "ccfa02be401283b13053a1c5926b2cda9f551ac55cfe942f2f9ba3e065c65b20",
+  "compression": "ZIP LZMA method 14",
+  "manifestSha256": "6b095e2c03f920e3e68238e0ba77f5ea03cb3cbaba7855554bb1fa3fa289c61c",
+  "repackEquivalenceReceiptSha256": "e6ec46e5f85bd3cc64a9e0ace455d9f4f46cb33a677959fd7c8e37beba3d850a",
+  "equivalenceEvidence": "Separate repack author verified all 1230 member bytes, paths, modes and manifest; independent QA reviews equivalence",
+  "checks": [
+    {
+      "id": "NEW-PUBLIC-ZIP-SIZE-HASH",
+      "status": "PASS"
+    },
+    {
+      "id": "CHECKSUM-FILE",
+      "status": "PASS"
+    },
+    {
+      "id": "ZIP-COUNT-AND-LZMA-METHOD",
+      "status": "PASS"
+    },
+    {
+      "id": "PYTHON3-MANIFEST-EXTRACT-READBACK",
+      "status": "PASS"
+    },
+    {
+      "id": "LEGAL-CURRENT-HASH-SIZE-EXTRACTION-COPY",
+      "status": "PASS"
+    },
+    {
+      "id": "EXISTING-PUBLIC-LINKS-PRESERVED",
+      "status": "PASS"
+    },
+    {
+      "id": "DEFLATE-ORIGINAL-RETAINED",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-firmware-target.json",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-candidates/firmware-target.v2.0.8.json",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-firmware/v2.0.8/manifest.json",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-real-flash/engine.js",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-real-flasher-ui.js",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-firmware/v2.0.8/Read_Pico.bin",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-firmware/v2.0.8/ota_data_initial.bin",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-firmware/v2.0.8/bootloader/bootloader.bin",
+      "status": "PASS"
+    },
+    {
+      "id": "UNCHANGED-firmware/v2.0.8/partition_table/partition-table.bin",
+      "status": "PASS"
+    },
+    {
+      "id": "REPACK-EQUIVALENCE-RECEIPT",
+      "status": "PASS"
+    }
+  ],
+  "policySha256": "bc68d65ca9f1a2a059ab59be32fe0ec3520027e507cd48ed1553b991ed4ff208",
+  "rootEnabled": true,
+  "originalDeflateZipUnchanged": true,
+  "longProtocolOrRelinkRerun": false,
+  "remoteWritePerformed": false,
+  "deviceWritePerformed": false
+}

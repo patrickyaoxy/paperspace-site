@@ -1,0 +1,43 @@
+{
+  "suite": "prepare-target-synthetic-regression",
+  "scriptSha256": "b8a3bc9484ea1c291b63ff78a20caff6ffa42968b6b21513172d96833c0cb4a2",
+  "checks": [
+    {
+      "id": "GEN-SYNTHETIC-POSITIVE",
+      "status": "PASS",
+      "observedExit": 0
+    },
+    {
+      "id": "GEN-MANIFEST-PIN-NEGATIVE",
+      "status": "PASS",
+      "observedExit": 1
+    },
+    {
+      "id": "GEN-PATH-NEGATIVE",
+      "status": "PASS",
+      "observedExit": 1
+    },
+    {
+      "id": "GEN-ROLLBACK-NEGATIVE",
+      "status": "PASS",
+      "observedExit": 1
+    },
+    {
+      "id": "GEN-CORRUPTED-IMAGE-NEGATIVE",
+      "status": "PASS",
+      "observedExit": 1
+    },
+    {
+      "id": "GEN-KNOWN-LAYOUT-POSITIVE",
+      "status": "PASS",
+      "observedExit": 0
+    },
+    {
+      "id": "GEN-STORAGE-SIZE-NEGATIVE",
+      "status": "PASS",
+      "observedExit": 1
+    }
+  ],
+  "realFirmwareValidated": false,
+  "deviceWritePerformed": false
+}

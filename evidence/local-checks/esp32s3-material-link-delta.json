@@ -1,0 +1,68 @@
+{
+  "suite": "esp32s3-material-link-delta",
+  "baseWebsiteCandidate": "004b10606f9e7f16ae3ac303f875fc34c24e994a",
+  "materialFile": "downloads/paperspace-v2.0.8-esp32s3-relink-materials.zip",
+  "materialBytes": 14238608,
+  "materialSha256": "2f20bbc2c512783735da5e799443c857c37bcefd058dd504058f28ebbcc9848f",
+  "appSha256": "71c977630f11a970b7b16c9a7bc29d9e67ea19a0f823093fb17add25102ee76f",
+  "legalSha256": "da55b9fca4d6584118b55011c14e6c2d522121764d311963dc7f225164205f00",
+  "appJsSha256": "b38495f5fb3ba9464492d3a1d425abc19cb9e7ca0a153fb897ff63b3bdf03465",
+  "checks": [
+    {
+      "id": "S3-MATERIAL-BYTES-HASH",
+      "status": "PASS"
+    },
+    {
+      "id": "S3-CHECKSUM-FILE",
+      "status": "PASS"
+    },
+    {
+      "id": "LEGAL-NEW-SEPARATE-MATERIAL-AND-SHA-LINKS",
+      "status": "PASS"
+    },
+    {
+      "id": "LEGAL-LOCAL-LINKS-EXIST",
+      "status": "PASS"
+    },
+    {
+      "id": "BROWSER-MATERIAL-LINK-AND-BYTES-PRESERVED",
+      "status": "PASS"
+    },
+    {
+      "id": "S3-REFERENCE-APP-IDENTITY",
+      "status": "PASS"
+    },
+    {
+      "id": "S3-NAMED-INSTRUCTIONS-AND-PERMISSION",
+      "status": "PASS"
+    },
+    {
+      "id": "LEGAL-CLEAR-PUBLIC-BETA-AND-SEPARATE-TOOLCHAIN",
+      "status": "PASS"
+    },
+    {
+      "id": "MAIN-INSTALL-NO-ZIP-INPUT-OR-LINK",
+      "status": "PASS"
+    },
+    {
+      "id": "DOWNLOAD-HELP-AUTO-RAW-IMAGES",
+      "status": "PASS"
+    },
+    {
+      "id": "NO-FIRMWARE-ZIP-DOWNLOAD-LINK",
+      "status": "PASS"
+    },
+    {
+      "id": "LIVE-TARGET-DISABLED",
+      "status": "PASS"
+    },
+    {
+      "id": "PUBLIC-DOCS-NO-LOCAL-COMPILE-PATHS",
+      "status": "PASS"
+    }
+  ],
+  "unchangedSuitesRerun": false,
+  "remoteWritePerformed": false,
+  "deviceWritePerformed": false,
+  "validationRole": "开发者文档与文件接入自测；独立QA另行记录"
+}

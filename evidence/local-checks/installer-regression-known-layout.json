@@ -1,0 +1,131 @@
+{
+  "suite": "installer-local-regression",
+  "engineSha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43",
+  "uiSha256": "58cff447f5d457164f2d3dd5c3de2bb64f7dd7240c18573224d7dcb6b10af697",
+  "livePolicySha256": "157d26c84c39e62b95a98c070d5a4489a201f99c38381fa75ed329e9f57d16d2",
+  "node": "v24.19.0",
+  "checks": [
+    {
+      "id": "POLICY-DISABLED",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-UNAUTHENTICATED",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-PINNED-DOWNLOAD",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-BAD-HASH",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-EXACT-KNOWN-SINGLE",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-KNOWN-STORAGE-SIZE",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-KNOWN-NVS-CHANGED",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-UNKNOWN-FIELDS",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-SOURCE-MISMATCH",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-PARTITION-MISMATCH",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-UNREVIEWED-BOOTLOADER",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-UNSAFE-URL",
+      "status": "PASS"
+    },
+    {
+      "id": "POLICY-IMAGE-GEOMETRY",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-DISABLED-NO-CONNECTION",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-DOWNLOAD-FAILURE",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-CONFIRM-first-install",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-CONFIRM-single-slot-migration",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-CONFIRM-dual-slot-update",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-BLOCKED-BACKUP-ONLY",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-REJECT-UNKNOWN_LAYOUT_REFUSE_WRITE",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-REJECT-BOOTLOADER_CONTRACT_MISMATCH",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-REJECT-OTA_UNCONFIRMED_BOOT",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-BAD-BACKUP",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-ACK-IS-NOT-COMPLETE-CANCEL",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-WRITE-FAIL-incomplete",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-WRITE-FAIL-writeFailure",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-VERIFIED-IS-NOT-BOOT-HEALTH",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-LEAVE-INVALIDATES",
+      "status": "PASS"
+    },
+    {
+      "id": "UI-UNCERTAIN-CLOSE-BLOCKS-RECONNECT",
+      "status": "PASS"
+    }
+  ],
+  "realDeviceWrite": false,
+  "limits": [
+    "UI checks use a substituted in-memory controller",
+    "Production policy/download checks do not validate an ESP image or hardware layout",
+    "Compatibility algorithm/protocol/real hardware still require separate validation"
+  ]
+}
