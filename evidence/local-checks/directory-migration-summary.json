@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "suite": "runtime-directory-single-slot-migration-and-external-recovery",
+  "status": "PASS",
+  "publishedBase": "aa48855f153403f9c6225ce549222837d52e2e17",
+  "engineSha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43",
+  "engineChanged": false,
+  "policySha256": "bc68d65ca9f1a2a059ab59be32fe0ec3520027e507cd48ed1553b991ed4ff208",
+  "manifestSha256": "c03d3958c77228a99d866141d4eaa2262cb4385867c85094ad9ff9f779b572e2",
+  "appSha256": "71c977630f11a970b7b16c9a7bc29d9e67ea19a0f823093fb17add25102ee76f",
+  "fixtureSha256": "638b9e78a9c4b61a50b418bb70298346bc3e07f3ca4d97bbc0a9341cf2bce8cc",
+  "fixtureFrozenIdentitySha256": "f87db8663d74df05a6d711eb19106f6f555ce7bab58be7fdb67ff5c974acec97",
+  "runtimeTree": {
+    "files": 7,
+    "directories": 4,
+    "coverage": [
+      "root files",
+      "two directory levels",
+      "empty directories",
+      "empty file",
+      "four-cluster file",
+      "UTF-8 long name",
+      "same basename with different contents"
+    ]
+  },
+  "groups": [
+    {
+      "id": "normal",
+      "status": "PASS",
+      "milliseconds": 80184,
+      "full16MiBBackupByteIdentical": true,
+      "fiveMiBStorageByteIdentical": true,
+      "nvsPhyAndOutsidePlanUnchanged": true,
+      "runtimeReader": "PASS",
+      "runtimeReaderDiskWrites": 0,
+      "actualFlashSha256": "444dcbe3d3f7fc8eac82b2aea027db2434f9492b3e454c5cf1a6b7003946e1fb"
+    },
+    {
+      "id": "malformed-directory",
+      "status": "PASS",
+      "milliseconds": 10751,
+      "injection": {
+        "kind": "root-child-parent-cluster",
+        "physicalOffset": 32826,
+        "original": 0,
+        "injected": 1,
+        "candidateEntries": 2
+      },
+      "backupAllowed": true,
+      "executable": false,
+      "reason": "FAT_DOT_DIRECTORY",
+      "flashEraseOrDataCommands": 0
+    },
+    {
+      "id": "storage-overlap-interruption-and-protocol-recovery",
+      "status": "PASS",
+      "milliseconds": 98857,
+      "error": "Failed to write to target Flash after seq 258 failed with status 1,193",
+      "firstOverlappingErase": {
+        "address": 5308416,
+        "bytes": 5242880,
+        "oldStorageIntersectionAddress": 6356992,
+        "oldStorageIntersectionBytes": 4194304
+      },
+      "firstOverlappingDataBlock": {
+        "type": "flash-data",
+        "address": 6356992,
+        "size": 4096,
+        "seq": 256
+      },
+      "sourceDamageBeginsWithEraseNotOnlyData": true,
+      "dirtyFlashSha256": "ab1508de547da0696adfdb4e3de75984f27bd334ecd4876704404d45587b7981",
+      "bootPartitionTableOtaUncommitted": true,
+      "sourceStorageActuallyDamaged": true,
+      "completeBackupBytes": 16777216,
+      "completeBackupSha256": "376b58eb964ed5cf357ff6aeb4cc0dfc0a51a0d89b4d3a7a8c1781638aeabfc8",
+      "recoveryWriter": "separate test-only official esptool-js 0.7.0 direct block APIs on MemoryPort",
+      "recoveryRegions": 256,
+      "recoveryBlocks": 4096,
+      "perRegionMd5AndProtocolReadback": true,
+      "wholeFlashReadbackSha256": "376b58eb964ed5cf357ff6aeb4cc0dfc0a51a0d89b4d3a7a8c1781638aeabfc8",
+      "imageHeaderModificationPerformed": false,
+      "wholeChipEraseOpcodePerformed": false,
+      "runtimeReaderOnActualRecoveredFlash": "PASS",
+      "runtimeReaderDiskWrites": 0
+    }
+  ],
+  "ownerReportRefs": [
+    {
+      "file": "runs/normal-01/report.json",
+      "sha256": "9bd7eecbb90c68e1f52cad36b8c046ce4a3ab9afa8bbc8fa69333e9c63a31b7f"
+    },
+    {
+      "file": "runs/malformed-02/report.json",
+      "sha256": "e4b942bafecf3eac22d3c61039886421e25a572fb070e8ce6722e3fcad6ba5d2"
+    },
+    {
+      "file": "runs/recovery-03/report.json",
+      "sha256": "f522c0588b722c9af7108eaedc436839071389fb2e694a977f59b43f9c3b6214"
+    }
+  ],
+  "sourceIdentities": {
+    "runnerSha256": "d2c6a1c3fefe381e17e570cd5ee6b7f60e2d7fe80805cf36e30ede908728f124",
+    "portModelSha256": "5e87618931f09b6ab56ca2f49525f768317fa3deb6e599495e537c2cfe3829cc",
+    "recoveryWriterSha256": "65b653c7f4e7a6a2d793c5b130c6f79a81c05b79530568483cb5d0e5f8d0e6f8",
+    "recoverySdkLockSha256": "64b1bd71ff7c513256da0cff160e208a882a9daca8ff6538b43b706391bb7662"
+  },
+  "independentQaRefs": [
+    {
+      "file": "normal-independent-review.json",
+      "sha256": "885c868726187dd047f736885084d005ff013c297796a2641b1fcf7fad488834"
+    },
+    {
+      "file": "malformed-independent-review.json",
+      "sha256": "a2cd9aa25906baab8bcce51a9c67ce6810a9247f18d03452ba812b63b907db87"
+    },
+    {
+      "file": "recovery-independent-review.json",
+      "sha256": "6e3b33ddc1b4d0058a46cf23fdb7e0f3c3284162f0fe774e98594e3cbab3916d"
+    },
+    {
+      "file": "directory-candidate-visible.json",
+      "sha256": "244b5eb9b767c21ee3ba73e66ad56205d4eb30e32df8a5f1e0ad166663cd11ca"
+    }
+  ],
+  "affectedLocalVisibleChecks": 4,
+  "independentLocalVisibleChecks": 3,
+  "oldFourteenOrS3OrRelinkRerun": false,
+  "oldPythonDirectoryFixtureUnchanged": true,
+  "websiteRecoveryFeature": false,
+  "powerLossAtomicityProven": false,
+  "hardware": "NOT_TESTED",
+  "deviceWritePerformed": false,
+  "remoteWritePerformed": false,
+  "scope": "Only the registered exact single-slot layout and compatible WL v2/4096/FAT12 state; not all old devices or arbitrary WL states"
+}
