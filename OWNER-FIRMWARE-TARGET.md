@@ -1,35 +1,39 @@
-# paperspace 官网固件目标
+# 官网固件目标配置
 
-唯一配置文件是网站根目录的 `firmware-target.json`（开发工作区为 `dist/firmware-target.json`）。当前没有正式可分发的 v2.0.8 目标包，保持 `enabled: false`、`target: null`，页面明确显示尚未开放。不要把本机私测包当正式发布包。
+唯一入口是网站根目录 `firmware-target.json`。访客不必选文件或手选应用槽。只有网站维护者修改固定目标；连接仍须访客主动操作、确认板型，并保存完整备份。当前安装包及其 ESP32-S3 对应许可/重链接材料尚在核验，`enabled:false,target:null`；不能用合成测试向量替代真实发布包。
 
-所有者最少操作：先取得已确认可分发、匹配精确机型的正式包，核原始 manifest、原始应用镜像和分区表；将这三份文件放在网站相对路径或有 CORS 的 HTTPS 地址；编辑下面的配置字段并填真实字节数和 SHA-256；提交网站更新后打开“下载与刷机”，点击“重新检查开放状态”。配置不会上传、发布或签发固件，也不能代替真机验收。
+## 指定目标的最少步骤
 
-顶层恰好四个字段：`schema: 2`、`enabled`、`unavailable_reason`、`target`。关闭时原因必须非空，target 为 null；启用时 target 必须恰好包含：
+1. 将已获分发授权且完成校验/隐私审查的原始镜像、manifest 和对应许可/重链接材料放入版本化目录。公开测试版必须明确标为 Public Beta，不能改成稳定版。不能公开私人工作区、应用 C 源、账号或用户数据。
+2. 在本文件所述 schema 3 中填入包的精确身份、各文件真实地址/字节数/SHA-256、目标表，以及经审查的旧布局与 bootloader 契约。镜像地址必须来自这次构建的实际 `flasher_args.json`，不可把 `update.bin` 当固定地址安装镜像。维护者配置是信任来源，包内自报 hash 不能替代它。
+3. 在隔离测试中验证包、布局、备份、取消和故障路径后更新官网。页面“重新检查固件 / 重试下载”读取同源固定配置，不接受访客覆盖 manifest URL。网站发布不会自动刷设备。
 
-|字段|取值|
+## schema 3
+
+顶层精确字段为 `schema:3, enabled, unavailable_reason, target`。关闭时 `target:null`，给出明确原因。启用后的 target 需包含以下信息（必须填真实值，不提供可直接启用的虚构示例）：
+
+|字段|含义|
 |---|---|
-|board、model|已验证的准确板型、机型标识，操作者仍须主动核对；芯片识别不等于板型认证|
-|project|原应用 descriptor 的 project_name；保留实际技术名称|
-|version、idfVersion|本轮仅 `2.0.8`、`v6.1`|
-|sourceSha|`79f2f5ad303b9a588d551e3e0eb4b6e5735bc56b`|
-|manifest|`{url, sha256, bytes}`，原始 JSON 字节，最多 1 MiB|
-|app|`{file, url, sha256, bytes}`，file 为 manifest 中的原应用成员名；288 字节至 5 MiB|
-|partitionTable|`{file, url, sha256, bytes: 3072}`，精确分区表镜像|
-|partitions|下列六行的二维数组，顺序和数值全部一致|
+|board / model|操作者需确认的准确硬件板型；芯片识别不能证实板型|
+|project / version / idfVersion / sourceSha|与 app descriptor、来源和实际构建对应；本轮固定 2.0.8 / v6.1 / 79f2f5ad303b9a588d551e3e0eb4b6e5735bc56b|
+|manifest|固定 url、sha256、bytes；schema1 原始清单，含精确镜像成员|
+|images|bootloader、partitionTable、app、otaData；每项 file、url、sha256、bytes、address|
+|partitions|目标分区的完整有序行 `[name,type,subtype,address,size]`，与原始表逐项匹配|
+|knownLayouts|经审查的精确旧单槽表 hash、完整行和内部存储迁移契约；不按版本猜测|
+|bootloaderContract|经构建证据核定的 IDF / rollback / antiRollback 契约，不能凭二进制名字填写|
+|acceptedBootloaders|已审查的旧 bootloader 白名单，每项 bytes、sha256、idfVersion、rollback、antiRollback；目标自身自动接受，其余不能凭版本猜|
 
-```json
-[
- ["nvs",1,2,36864,20480],
- ["phy_init",1,1,57344,4096],
- ["ota_0",0,16,65536,5242880],
- ["storage",1,129,5308416,5242880],
- ["ota_1",0,17,10551296,5242880],
- ["otadata",1,0,15794176,8192]
-]
-```
+当前目标六分区：NVS 0x9000/0x5000、PHY 0xE000/0x1000、ota_0 0x10000/0x500000、storage 0x510000/0x500000、ota_1 0xA10000/0x500000、otadata 0xF10000/0x2000。bootloader 地址 0x0、分区表地址 0x8000；app 与全 FF 初始 otadata 必须来自匹配包。完整安装参数不能直接用作保留数据的双槽更新。
 
-SHA-256 必须为 64 位小写十六进制。相对 URL 以配置文件所在目录为基准，例如 `firmware/app.bin` 对应网站根目录的 firmware/app.bin；只允许安全相对路径或 HTTPS 绝对地址，不接受凭据、query、fragment、重定向或父目录跳转。外域必须允许网站 CORS。原始 manifest 必须声明 schema 1、profile product、esp32s3、16MB、精确版本/source_sha，并在 files 中列出上述两个镜像的摘要和长度。修改版本或分区布局需重新审查代码，不能仅改 JSON。
+## 自动推荐与数据保护
 
-普通访客默认使用保留数据的设备内置 TF 更新流程。USB 工具目前只支持既有精确布局上的指定应用槽恢复：用户主动连接 → 芯片、安全状态和分区读回 → 完整 16 MiB 备份下载 → 输入 `RECOVER ota_0 2.0.8` 或对应 ota_1 文字 → 明确点击写入 → MD5 与 SHA-256 读回。未知安全配置拒绝；不会改启动选择、全片擦除、刷入 merged 镜像或自动重启。首次安装、分区迁移和自动 OTA 提交不在当前 USB 模式内。
+- 双槽更新：核对真实表、受信 bootloader、CRC/状态/启动选择及启动镜像；写非启动应用，先完整回读验证，再更新另一个 OTA 元数据扇区。保留 NVS、PHY、内部 FAT 和原有效启动记录，不自动重启。
+- 空白新机：保存完整 16 MiB 备份，确认全片空白后安装匹配底座与应用。只看到空白分区表不足以判断空白设备。
+- 精确已知单槽：仅在分区 hash/行、格式、容量和等长内部存储都相容时搬移，保留 NVS/PHY。分区迁移不是掉电原子事务；中断可能需要按原布局恢复整个备份。实际读回还须通过只读 WL/FAT 验证：当前仅支持 ESP-IDF v6.1 默认 WL v2、4096 字节扇区、5 MiB 分区及结构一致的 FAT12 子集。其他格式或需要状态恢复的快照只允许备份，不能因保守拒绝就断言数据已损坏。未知或更大 FAT 不截断迁移，不自动格式化或清空个人数据。
+- 未知芯片、容量、安全状态、未知表/flags、布局或启动记录不可信时停止。首次/迁移和双槽更新均先读回完整备份，再由操作者确认已保存并输入本次计划确认文字。
 
-写入失败或取消可能已改变目标应用槽，不能承诺自动回滚；备份文件由操作者保存，未验证其实际可恢复性。正式开放前仍需安排真实设备、启动显示与恢复验收。开发验证使用内存端口，不等于硬件通过。
+## 失败与恢复
+
+取消、拔线、切页或写入错误只停止后续命令，已擦写范围不会自动回滚。保留备份及其 SHA-256，记录原芯片/布局与目标计划。双槽应先核实际启动情况，不反复覆盖旧有效槽；首次/迁移中断须由设备负责人用原匹配底座和完整备份恢复，不能把旧 FAT 直接写到猜测的新地址。重新连接会重读与重规划，不复用旧确认。
+
+软件读回成功只证明传输与 Flash 内容/启动记录一致，不证明真实启动、显示、硬件兼容、回滚或物理掉电恢复。开发与独立验收使用内存协议端口，真实设备结果须单列。

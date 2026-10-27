@@ -22,9 +22,14 @@ source=TTFont(FONT,recalcTimestamp=False); available=set(source.getBestCmap())
 INPUTS=('app.js','coi-bootstrap.js','coi-serviceworker.js','flasher.css','flasher.js',
         'index.html','install-loader.js','legal.html','media.js','real-flasher-ui.js',
         'style.css','v2.css','v2.js')
-input_hashes={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in INPUTS}
+input_hashes={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in (*INPUTS,'scripts/build-web-assets.py','scripts/web-font-core-codepoints.json')}
 text=''.join((ROOT/name).read_text() for name in INPUTS)
-core=({ord(c) for c in text}|set(range(32,127)))&available
+# Keep the measured critical font stable when secondary UI/attribution text changes.
+# This versioned source allocation came from the deployed 7aa22e4 CSS, not current outputs.
+allocation=json.loads((ROOT/'scripts/web-font-core-codepoints.json').read_text())
+assert allocation['schema']==1 and allocation['baseline']=='7aa22e47fe160668a06620e5855df85675214c19'
+core=set(allocation['codepoints'])
+assert len(core)==855 and core<=available
 parts=[('core',core)]
 remaining=available-core
 for block in sorted({cp//1024 for cp in remaining}):

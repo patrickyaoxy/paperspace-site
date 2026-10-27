@@ -13,4 +13,10 @@
 
 SDK 内置 stub JSON 原样进入 bundle；真实使用时会在通过 S3/安全状态检查后上传到 RAM。本次只在内存模拟串口验证 stub 上传与写入协议，未操作实际设备，正式固件包目前未配置，默认禁止请求设备与真实写入。本说明不是上游新增 NOTICE，附带许可保留原始版权文字。
 
-SDK 内置 stub 的独立许可与精确来源见 [STUB-SOURCE.md](STUB-SOURCE.md)。
+OTA与WL/FAT只读保护层是本项目独立JavaScript实现，参考ESP-IDF v6.1（固定commit `fff9895c82d744c7237be8847347bdd1b07c6643`）的结构、CRC与启动/地址换算契约；未把以下SDK原码复制进运行bundle：
+
+- `components/bootloader_support/src/bootloader_common_loader.c`、`bootloader_utility.c`、`include/esp_flash_partitions.h`
+- `components/app_update/esp_ota_ops.c`、`components/esp_rom/patches/esp_rom_crc.c`
+- `components/wear_levelling/WL_Flash.cpp`、`private_include/WL_Config.h`、`private_include/WL_State.h`
+
+这些参考文件属于Espressif ESP-IDF，保留其原文件copyright/SPDX（Apache-2.0）；[固定官方来源](https://github.com/espressif/esp-idf/tree/fff9895c82d744c7237be8847347bdd1b07c6643)，[Apache-2.0许可全文](licenses/esptool-js-0.7.0-APACHE-2.0.txt)。私有离线测试使用固定官方Python FAT生成器与官方WL C++主机模型生成合成快照，原文件的版权和许可保留在独立QA证据目录；这些主机工具、合成固件与存储快照均不进入网站bundle、owner策略或生产固件包。许可证说明不代表正式包或硬件已经通过验证。

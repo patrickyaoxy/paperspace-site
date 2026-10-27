@@ -1,5 +1,5 @@
 {
-  "scope": "REAL_SERIAL_APP_SLOT_RECOVERY",
+  "scope": "GUARDED_AUTO_INSTALL_AND_OTA",
   "sdk": {
     "name": "esptool-js",
     "version": "0.7.0"
@@ -7,16 +7,18 @@
   "enabledByDefault": false,
   "realDeviceTest": "NOT_RUN",
   "wholeChipErase": "FORBIDDEN",
-  "ota": "UNSUPPORTED",
+  "ota": "GUARDED_BOOT_SELECTION_ONLY",
   "source_sha256": {
-    "entry.mjs": "5891e563ec2485ad4250635452ef5dffe345b9b5251258b562dab1ac341ec5e2",
-    "policy.mjs": "c88c5a7cf767a2977bfc0f81a778b3ed9f4c0e34591410ca25ea60cc41611e08",
-    "session.mjs": "0d0f7f2b1124b08b4be0a944670b76c870451848c3283f3b7fd0d06d3e412b6f",
-    "validation.mjs": "7fc7618697c60c204bf0c431abfd58421d6a2a3acde6b4e6240696308a5ded74",
-    "build.mjs": "0dbd4b5910bb16eb24a6febe0e1681fd4cd081d46538f7ac9d5e08bf7c61e61f"
+    "build.mjs": "3537cb1df913e66162d2e4d754a06153ee524a490a299fdf2ede4561b6ad5e0e",
+    "entry.mjs": "99bc3cfa52be97034dc995be79baef267d313ed53c98ea117a18d2d6f6f860eb",
+    "ota.mjs": "fb423293df1ef2686889aa9930f724b712234f667f6448eb5ca7e79b98ec4022",
+    "policy.mjs": "04f77784079030d8779f0c3b0e668a1996dc46fa9d43f48ce6d254088c7f2ef7",
+    "session.mjs": "2eac9e1aa984116cafd30007d023638fc7e54d337eabc747135b88ccc5ae8e77",
+    "validation.mjs": "864e590cb54f91f63f3f2292659c22ccaa1b3bfea31a5d67a50490c133984d23",
+    "wl-storage.mjs": "2909b3020636a6aebe10df2800284b9bae4238cd16d923d8b3060793b13ace83"
   },
   "dependencyLockSha256": "1793e2ff41262ee6cc79eff2906b07dc1d427abf9ad4a7e6f28918c0d0f0add4",
-  "engine_sha256": "1546783551abd1652883c62195b8f717c9e5c34def84d1fefcb200ab631099f5",
-  "engine_bytes": 343619,
+  "engine_sha256": "72541cc631a752914a860ab19047650c0daca3bc3b7b7410f241927a5c638f6a",
+  "engine_bytes": 363673,
   "externalImports": []
 }
