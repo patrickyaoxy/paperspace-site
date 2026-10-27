@@ -12,6 +12,7 @@ if (root) {
     <li><span>01</span><h2>连接并自动检测</h2>
       <p>自动检查芯片、16 MiB 容量、安全状态与分区，推荐本机可用的安装方式。未知布局不会写入。</p>
       <p id="install-target" class="flash-note">正在核对官网指定的机型与固件。</p>
+      <p class="flash-note">连接会尝试重启设备进入下载模式，请先保存阅读进度并退出正在进行的传输；读回校验不能替代启动验收。</p>
       <label class="flash-inject"><input id="install-model" type="checkbox" disabled><span>我已核对设备确为上述机型。芯片识别不能证明板型。</span></label>
       <button id="install-connect" class="flash-button" disabled>连接设备并检测</button>
       <p id="install-browser" class="flash-note"></p>
@@ -203,7 +204,7 @@ if (root) {
     if (!available() || !serialSupported || !q('model').checked) throw new Error('请等待官网固件核验完成，并确认实际机型。');
     // Preserve the click's user activation: no await before requestPort inside the controller.
     const pending = session.connectFromUserGesture({board: policy.target.board, model: policy.target.model});
-    phase = 'connecting'; message = '请选择设备串口。正在检查芯片、容量、安全状态与实际布局。'; resetProgress('连接与检测中，不会在此步骤写入闪存。'); render();
+    phase = 'connecting'; message = '请选择设备串口。正在检查芯片、容量、安全状态与实际布局。'; resetProgress('连接与检测中；本阶段不发送闪存写入命令。'); render();
     await pending; if (token !== generation) return;
     connected = !!snapshot()?.connected;
     const prepared = await session.prepare(candidate, {mode: 'auto'}); if (token !== generation) return;
