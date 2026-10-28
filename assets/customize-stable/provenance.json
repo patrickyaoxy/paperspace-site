@@ -1,0 +1,818 @@
+{
+  "product": "paperspace",
+  "version": "2.1.1",
+  "channel": "stable",
+  "sourceSha": "3abe593b3ad208229aaf734b879af2f5081c6cec",
+  "runtime": "unmodified repository native port, 2.1.1-native",
+  "binarySha256": "a3cf73da1700c27e57d6544fd1641d2ec5de6acafefbed3f308c6ce0f1ebad41",
+  "frameSize": [
+    684,
+    1216
+  ],
+  "pixelConversion": "Repository PLFB001 decoder: direct grayscale bytes to lossless PNG; no image redrawing, retouching, filtering or compositing.",
+  "inputs": "Original native UDP touch/keyup input chain; presets serialized with the same home_store API, then loaded/applied through the actual UI.",
+  "demoData": "Existing public website short-book, cover and font fixtures; device settings and data isolated in a temporary native card.",
+  "font": {
+    "name": "LXGW WenKai Mono GB Regular 1.530",
+    "sha256": "4baa9679b0aae3983a8b03c49f5cccce796b503b95e900120e8e6f3c07a6519c",
+    "license": "OFL-1.1; existing website font license retained"
+  },
+  "limits": [
+    "同源模拟器截图，非实机。",
+    "硬件、电池、时间和存储由仓库native适配层代替。",
+    "回放节奏不代表墨水屏光学、刷新时间、残影或功耗。"
+  ],
+  "presets": [
+    {
+      "name": "阅读优先",
+      "frame": "preset-reading-home-settled",
+      "slot": 1,
+      "requiredPages": 1,
+      "configurationValidation": "HOME_CONFIG_OK",
+      "layout": "整行展开的最近阅读 → 半行时间与日程 → 三分之一宽的专注、待办、随手记。",
+      "grays": "书架15、时间1、日程14，底层三卡13／15／11。前景由固件按背景自动选择。"
+    },
+    {
+      "name": "均衡网格",
+      "frame": "preset-balanced-home-settled",
+      "slot": 2,
+      "requiredPages": 1,
+      "configurationValidation": "HOME_CONFIG_OK",
+      "layout": "两张半行标准卡 → 三张紧凑卡 → 阅读与快捷入口 → 整行柱状统计。",
+      "grays": "时间0、快捷入口3；其余卡片12／13／15。深色在上下错位呼应。"
+    },
+    {
+      "name": "大小拼接",
+      "frame": "preset-mosaic-home-settled",
+      "slot": 3,
+      "requiredPages": 1,
+      "configurationValidation": "HOME_CONFIG_OK",
+      "layout": "三分之一宽的展开、紧凑与标准卡拼接 → 整行书架 → 文字统计与快捷入口。",
+      "grays": "时间1、快捷入口3；其余11／12／13／15。半行统计保持文字模式。"
+    },
+    {
+      "name": "横向分层",
+      "frame": "preset-layers-home-settled",
+      "slot": 4,
+      "requiredPages": 1,
+      "configurationValidation": "HOME_CONFIG_OK",
+      "layout": "整行紧凑时间 → 标准书架 → 紧凑专注与待办 → 标准柱状统计。",
+      "grays": "时间2、专注12、统计14，书架与待办15。用灰阶分层，保持一致边界。"
+    },
+    {
+      "name": "深浅对照",
+      "frame": "preset-contrast-home-settled",
+      "slot": 5,
+      "requiredPages": 1,
+      "configurationValidation": "HOME_CONFIG_OK",
+      "layout": "半行时间／日程 → 半行展开阅读／专注 → 三张三分之一标准卡。",
+      "grays": "时间0、专注2、快捷入口1；随手记12，其他15。实际文字由固件自动对比。"
+    }
+  ],
+  "tutorials": {
+    "widgets": [
+      {
+        "frame": "factory-home",
+        "label": "打开设置",
+        "nextAction": "点底部「设置」",
+        "nextInputRegion": [
+          513,
+          1128,
+          171,
+          88
+        ]
+      },
+      {
+        "frame": "settings-reading",
+        "label": "外观标签",
+        "nextAction": "点顶部「外观」",
+        "nextInputRegion": [
+          240,
+          84,
+          196,
+          72
+        ]
+      },
+      {
+        "frame": "settings-appearance",
+        "label": "主页小组件",
+        "nextAction": "点「主页小组件」",
+        "nextInputRegion": [
+          32,
+          244,
+          620,
+          139
+        ]
+      },
+      {
+        "frame": "widgets-list",
+        "label": "选择组件",
+        "nextAction": "点时间组件标题区",
+        "nextInputRegion": [
+          44,
+          180,
+          280,
+          84
+        ]
+      },
+      {
+        "frame": "widget-layout",
+        "label": "调整宽度",
+        "nextAction": "点宽度「−」",
+        "nextInputRegion": [
+          190,
+          615,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widget-width-third",
+        "label": "恢复半行",
+        "nextAction": "点宽度「＋」",
+        "nextInputRegion": [
+          506,
+          615,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widget-width-half",
+        "label": "调整高度",
+        "nextAction": "点高度「＋」",
+        "nextInputRegion": [
+          506,
+          699,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widget-height-expanded",
+        "label": "恢复标准",
+        "nextAction": "点高度「−」",
+        "nextInputRegion": [
+          190,
+          699,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widget-height-standard",
+        "label": "进入外观",
+        "nextAction": "点「外观」标签",
+        "nextInputRegion": [
+          453,
+          531,
+          199,
+          72
+        ]
+      },
+      {
+        "frame": "widget-appearance",
+        "label": "选择灰阶模式",
+        "nextAction": "点「16灰阶」",
+        "nextInputRegion": [
+          348,
+          615,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widget-gray-grid",
+        "label": "选择灰阶1",
+        "nextAction": "点色块「1」",
+        "nextInputRegion": [
+          190,
+          699,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widget-gray-one",
+        "label": "检查整页",
+        "nextAction": "点「整体预览」",
+        "nextInputRegion": [
+          348,
+          1128,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widget-full-preview",
+        "label": "返回详情",
+        "nextAction": "点「返回上级」",
+        "nextInputRegion": [
+          32,
+          1128,
+          620,
+          72
+        ]
+      },
+      {
+        "frame": "widget-return-from-preview",
+        "label": "应用更改",
+        "nextAction": "点「应用更改」",
+        "nextInputRegion": [
+          506,
+          1128,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widget-applied-stays-detail",
+        "label": "返回列表",
+        "nextAction": "点「返回上级」",
+        "nextInputRegion": [
+          32,
+          1128,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widgets-list-applied",
+        "label": "返回设置",
+        "nextAction": "点「返回上级」",
+        "nextInputRegion": [
+          32,
+          1128,
+          146,
+          72
+        ]
+      },
+      {
+        "frame": "widgets-back-to-appearance",
+        "label": "回到首页",
+        "nextAction": "点底部「主页」",
+        "nextInputRegion": [
+          0,
+          1128,
+          171,
+          88
+        ]
+      },
+      {
+        "frame": "widget-final-home",
+        "label": "完整首页",
+        "nextAction": null,
+        "nextInputRegion": null
+      }
+    ],
+    "icons": [
+      {
+        "frame": "widget-final-home",
+        "label": "打开设置",
+        "nextAction": "点底部「设置」",
+        "nextInputRegion": [
+          513,
+          1128,
+          171,
+          88
+        ]
+      },
+      {
+        "frame": "icons-settings",
+        "label": "进入图标编辑",
+        "nextAction": "点「图标编辑」",
+        "nextInputRegion": [
+          32,
+          539,
+          620,
+          139
+        ]
+      },
+      {
+        "frame": "icons-list",
+        "label": "选择设置图标",
+        "nextAction": "点「设置」图标组",
+        "nextInputRegion": [
+          348,
+          319,
+          146,
+          184
+        ]
+      },
+      {
+        "frame": "icon-edit-default",
+        "label": "点按一格",
+        "nextAction": "点第5行、第6列",
+        "nextInputRegion": [
+          318,
+          534,
+          48,
+          48
+        ]
+      },
+      {
+        "frame": "icon-edited",
+        "label": "检查激活态",
+        "nextAction": "点「激活态」",
+        "nextInputRegion": [
+          348,
+          196,
+          304,
+          72
+        ]
+      },
+      {
+        "frame": "icon-active-checked",
+        "label": "回看常态",
+        "nextAction": "点「常态」",
+        "nextInputRegion": [
+          32,
+          196,
+          304,
+          72
+        ]
+      },
+      {
+        "frame": "icon-default-checked",
+        "label": "应用整套",
+        "nextAction": "点「应用整套」",
+        "nextInputRegion": [
+          453,
+          950,
+          199,
+          72
+        ]
+      },
+      {
+        "frame": "icon-applied-stays-editor",
+        "label": "返回图标列表",
+        "nextAction": "点「返回上级」",
+        "nextInputRegion": [
+          32,
+          1128,
+          198,
+          72
+        ]
+      },
+      {
+        "frame": "icon-list-after",
+        "label": "返回设置",
+        "nextAction": "点「返回上级」",
+        "nextInputRegion": [
+          32,
+          1128,
+          198,
+          72
+        ]
+      },
+      {
+        "frame": "icon-settings-back",
+        "label": "回到首页",
+        "nextAction": "点底部「主页」",
+        "nextInputRegion": [
+          0,
+          1128,
+          171,
+          88
+        ]
+      },
+      {
+        "frame": "icon-final-home",
+        "label": "完整首页",
+        "nextAction": null,
+        "nextInputRegion": null
+      }
+    ]
+  },
+  "frames": [
+    {
+      "name": "preset-reading-home-settled",
+      "file": "preset-reading-home-settled.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "c32f838bd29e126e7345c4b2134c884ce619d4e5c3892b6829b12a7386730660",
+      "rawPlfbSha256": "f2f6aba5baaf8cf9399e777918191fe559541b065f346639c0b32b52b6d3fb71",
+      "nativeSequence": 149,
+      "nativeView": 0,
+      "recordedInput": null,
+      "inputReceipt": null,
+      "receiptNote": null
+    },
+    {
+      "name": "preset-balanced-home-settled",
+      "file": "preset-balanced-home-settled.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "efb7cb5392eaddca2a0f4d2f6fa1a7703145cec724775d763b9b490cb3b7a2af",
+      "rawPlfbSha256": "301de5745bf7e8a850fb495d9c94059e930b2c7aa62435cd8e4e60a7333ec56c",
+      "nativeSequence": 168,
+      "nativeView": 0,
+      "recordedInput": null,
+      "inputReceipt": null,
+      "receiptNote": null
+    },
+    {
+      "name": "preset-mosaic-home-settled",
+      "file": "preset-mosaic-home-settled.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "3af2a2b5df35076d3857b5d71ccd82aa2d88af0f00a41f1daf8743950645553a",
+      "rawPlfbSha256": "d24b70af64743219225f955b087508427263adba3efaa8e13f8c82565cb13f4c",
+      "nativeSequence": 190,
+      "nativeView": 0,
+      "recordedInput": null,
+      "inputReceipt": null,
+      "receiptNote": null
+    },
+    {
+      "name": "preset-layers-home-settled",
+      "file": "preset-layers-home-settled.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "282d6bc2bf5f3bf7246b34f62d3b015bd696eccd3fd31299480bc26112f17796",
+      "rawPlfbSha256": "a9b4dc55b731c8464d73881da2fa5e0ae4591e6c47f431c27948f66501c056a2",
+      "nativeSequence": 212,
+      "nativeView": 0,
+      "recordedInput": null,
+      "inputReceipt": null,
+      "receiptNote": null
+    },
+    {
+      "name": "preset-contrast-home-settled",
+      "file": "preset-contrast-home-settled.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "f4203b4fd54acf69de4a0e993289d640bc25a1bdd3d1afd6b2d00905fb330be1",
+      "rawPlfbSha256": "d514bd6bc233a9ccb03549021e1151f76cfed2a4edbb2f1bf91f2b84b4516d08",
+      "nativeSequence": 231,
+      "nativeView": 0,
+      "recordedInput": null,
+      "inputReceipt": null,
+      "receiptNote": null
+    },
+    {
+      "name": "factory-home",
+      "file": "factory-home.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "c96b9ca56af2f8fde63e28686f5627466fe254bed804df5e5e80efbab63cb812",
+      "rawPlfbSha256": "f026b78e51a98509fcc43f939e9ae15bad462d81d8dd770b6b52d25262a86482",
+      "nativeSequence": 10,
+      "nativeView": 0,
+      "recordedInput": null,
+      "inputReceipt": null,
+      "receiptNote": null
+    },
+    {
+      "name": "settings-reading",
+      "file": "settings-reading.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "4aef650b57f91fda45356e6f61231b175eb115eac92a5c39198b7861a2759fa6",
+      "rawPlfbSha256": "7b0c86f9778733a652f4e923740a32cb3765615ba59b52b7862d99f7eaa1e50c",
+      "nativeSequence": 13,
+      "nativeView": 4,
+      "recordedInput": "ARM TAP 598 1160 150",
+      "inputReceipt": "complete id=1 outcome=ACTION down=1 up=1 pmu_consumed=0 from=0 to=4 view=4 frame=13 refresh=6 action_frame_start=12 action_frame_end=13 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "settings-appearance",
+      "file": "settings-appearance.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "8f6e2397504e5f846993a194cd01b691470f640fffd2dddcdd67b493dbcb0b32",
+      "rawPlfbSha256": "ca59ef335b03f0b81bc9a83e6cab7103fb9a06596ecc21ca0e041a9b27ea11de",
+      "nativeSequence": 15,
+      "nativeView": 4,
+      "recordedInput": "ARM TAP 342 120 150",
+      "inputReceipt": "complete id=2 outcome=ACTION down=1 up=1 pmu_consumed=0 from=4 to=4 view=4 frame=15 refresh=8 action_frame_start=13 action_frame_end=14 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "widgets-list",
+      "file": "widgets-list.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "93bcc0b9f8dd1b29760e7e5a2244334604579702ba5f6359f5b5274534402656",
+      "rawPlfbSha256": "7828857565d3deda2403a888ebdbcb1690670e8f0921ae085db9c1a3a610ab4f",
+      "nativeSequence": 17,
+      "nativeView": 5,
+      "recordedInput": "ARM TAP 300 300 150",
+      "inputReceipt": "complete id=3 outcome=ACTION down=1 up=1 pmu_consumed=0 from=4 to=4 view=5 frame=17 refresh=10 action_frame_start=15 action_frame_end=16 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "widget-layout",
+      "file": "widget-layout.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "6411aff7f9caa818a93a21a401a29280daa118b64ddae3cb011d4dc4344587f1",
+      "rawPlfbSha256": "84886ce1523fb9e742d218c5b16f24f7ec5ce51ea1d6bca2a5a1bc64a301bc17",
+      "nativeSequence": 21,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 160 220 150",
+      "inputReceipt": "complete id=4 outcome=ACTION down=1 up=1 pmu_consumed=0 from=5 to=5 view=7 frame=19 refresh=12 action_frame_start=17 action_frame_end=18 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "widget-width-third",
+      "file": "widget-width-third.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "1ab4874e3bb1c9aaa2fefe537175cc27fd9acc0d1dd497700a2aea8b3e91976a",
+      "rawPlfbSha256": "9ebbd6c4bc426976b97223ce8da49e44bd96283f553a30400b7db7d1db141849",
+      "nativeSequence": 30,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 262 650 150",
+      "inputReceipt": "complete id=5 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=7 view=7 frame=23 refresh=15 action_frame_start=22 action_frame_end=23 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "widget-width-half",
+      "file": "widget-width-half.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "90aa6f131336e95581b7279a3d828c5df7e63330e821ec995c754083a3c8f17c",
+      "rawPlfbSha256": "44c35ef900c9a81271ab356cf1289163624fb2c7451d381c026d4daea24a6672",
+      "nativeSequence": 39,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 576 650 150",
+      "inputReceipt": "complete id=6 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=7 view=7 frame=32 refresh=18 action_frame_start=31 action_frame_end=32 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "widget-height-expanded",
+      "file": "widget-height-expanded.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "bb1a8a8a46ad9a3dabdbeed6ada4be5778db870d162897ee3413db1f29d8214c",
+      "rawPlfbSha256": "b4296be4f4544d6966c2487c2a9c1768a90efd6ea78abf235a1ac3602ba8b9b0",
+      "nativeSequence": 45,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 576 735 150",
+      "inputReceipt": "complete id=7 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=7 view=7 frame=41 refresh=21 action_frame_start=40 action_frame_end=41 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "widget-height-standard",
+      "file": "widget-height-standard.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "90aa6f131336e95581b7279a3d828c5df7e63330e821ec995c754083a3c8f17c",
+      "rawPlfbSha256": "a178997b72b5ea4929edb87cd8e113a1904b182c71d4a815f378e626304d1231",
+      "nativeSequence": 54,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 262 735 150",
+      "inputReceipt": "complete id=8 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=7 view=7 frame=47 refresh=24 action_frame_start=46 action_frame_end=47 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "widget-appearance",
+      "file": "widget-appearance.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "685e20ccca9f57be1ad9104cd5cb4fa41139ff88d17034a88f97a18ad208b1cc",
+      "rawPlfbSha256": "4025a5d5d1ff2bdc5d61af38120fe79a14b2be7b4d543e06d00d8c52d4fa2b32",
+      "nativeSequence": 56,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 550 565 150",
+      "inputReceipt": "complete id=9 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=7 view=7 frame=56 refresh=27 action_frame_start=55 action_frame_end=56 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "widget-gray-grid",
+      "file": "widget-gray-grid.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "fe1867a1905874e722b08aba2eab5ce4983cffb36e70cb210c55e77d3808f52c",
+      "rawPlfbSha256": "8b5b5c05c2108b78fc3a7288badae47ad939b59fefcbec1c95200879faad78e9",
+      "nativeSequence": 65,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 420 650 150",
+      "inputReceipt": "complete id=10 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=7 view=7 frame=58 refresh=29 action_frame_start=57 action_frame_end=58 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "widget-gray-one",
+      "file": "widget-gray-one.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "81a997480795941da98edc15b24dfc963626a4eae467ba978f8b3f7087ae7e24",
+      "rawPlfbSha256": "7cc2efbcc5b0c7ff612af01fd66c35bd75f0b9f26043a6feab684c90599648e1",
+      "nativeSequence": 74,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 262 735 150",
+      "inputReceipt": "complete id=11 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=7 view=7 frame=67 refresh=32 action_frame_start=66 action_frame_end=67 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "widget-full-preview",
+      "file": "widget-full-preview.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "3cb068ed3a59e0800cdf6fbef048e3f129cb7da8ec6d10027cf89f4603a5983a",
+      "rawPlfbSha256": "efb508ceaa1996803ee1996afce5af82900208f3405acf108b54b9ef1dd00897",
+      "nativeSequence": 77,
+      "nativeView": 50,
+      "recordedInput": "ARM TAP 420 1165 150",
+      "inputReceipt": "complete id=12 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=50 view=50 frame=76 refresh=35 action_frame_start=75 action_frame_end=76 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "widget-return-from-preview",
+      "file": "widget-return-from-preview.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "81a997480795941da98edc15b24dfc963626a4eae467ba978f8b3f7087ae7e24",
+      "rawPlfbSha256": "1ca2acdbe4dc41ebbee15a40d3918cc4e1107e71b087bc4f702e3acb6257221c",
+      "nativeSequence": 86,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 342 1165 150",
+      "inputReceipt": "complete id=13 outcome=ACTION down=1 up=1 pmu_consumed=0 from=50 to=7 view=7 frame=79 refresh=38 action_frame_start=78 action_frame_end=79 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "widget-applied-stays-detail",
+      "file": "widget-applied-stays-detail.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "671cd91d8fa6dcad2ad59d29fd228facee685060c9e319109b430b9bbcacd67f",
+      "rawPlfbSha256": "32830670c3102f86555dac38e325ac4e46337cb289ce663d5055b3f9f40c2be4",
+      "nativeSequence": 88,
+      "nativeView": 7,
+      "recordedInput": "ARM TAP 575 1165 150",
+      "inputReceipt": "complete id=14 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=7 view=7 frame=88 refresh=41 action_frame_start=87 action_frame_end=88 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "widgets-list-applied",
+      "file": "widgets-list-applied.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "f2dd3c0910549d579b1cf9cf1d942328ada5b1dff5fedbb180fcd0847b56ac39",
+      "rawPlfbSha256": "599b64d8eda8e690807bb08eb2fba28449375cbb665595065177a6043cf71529",
+      "nativeSequence": 90,
+      "nativeView": 5,
+      "recordedInput": "ARM TAP 100 1165 150",
+      "inputReceipt": "complete id=15 outcome=ACTION down=1 up=1 pmu_consumed=0 from=7 to=5 view=5 frame=90 refresh=43 action_frame_start=89 action_frame_end=90 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "widgets-back-to-appearance",
+      "file": "widgets-back-to-appearance.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "ca596f57f15df75c1cb5a294bd74d4e56d1b3e677b45301ec379d85129dce516",
+      "rawPlfbSha256": "c732cfa14cece65eda8f117c3469b6d895c4b436823b97e9d25c0f5adf80e83a",
+      "nativeSequence": 92,
+      "nativeView": 4,
+      "recordedInput": "ARM TAP 100 1165 150",
+      "inputReceipt": "complete id=16 outcome=ACTION down=1 up=1 pmu_consumed=0 from=5 to=4 view=4 frame=92 refresh=45 action_frame_start=91 action_frame_end=92 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "widget-final-home",
+      "file": "widget-final-home.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "d424d9daed853ecf224f82f137922ff41efb0649374d61b7e45737410aee0312",
+      "rawPlfbSha256": "f77a117453f2a9037f890c67126f8e3d759ca22bcc6215dd84f27c3314c419d1",
+      "nativeSequence": 96,
+      "nativeView": 0,
+      "recordedInput": "ARM TAP 85 1165 150",
+      "inputReceipt": "complete id=17 outcome=ACTION down=1 up=1 pmu_consumed=0 from=4 to=0 view=0 frame=95 refresh=47 action_frame_start=94 action_frame_end=95 presented=1",
+      "receiptNote": "原生延迟准备可能在输入回执之后继续导出；此截图绑定实际导出序号及原始PLFB，不以回执序号冒充最终帧。"
+    },
+    {
+      "name": "icons-settings",
+      "file": "icons-settings.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "ca596f57f15df75c1cb5a294bd74d4e56d1b3e677b45301ec379d85129dce516",
+      "rawPlfbSha256": "f65ec65df5b4220da227e806bd7e14028d7928a6a70da9302ae8830354563e6f",
+      "nativeSequence": 99,
+      "nativeView": 4,
+      "recordedInput": "ARM TAP 598 1165 150",
+      "inputReceipt": "complete id=18 outcome=ACTION down=1 up=1 pmu_consumed=0 from=0 to=4 view=4 frame=99 refresh=50 action_frame_start=98 action_frame_end=99 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "icons-list",
+      "file": "icons-list.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "5e2f7f42ca6cd6183b7bfc70da60a88aff2d1e27d0f6d31b8c7cfc4153bbc915",
+      "rawPlfbSha256": "44a045f87f9fd7cb7374a4a59ee0ece7f6124123547ec8059272811bc36b8a69",
+      "nativeSequence": 101,
+      "nativeView": 23,
+      "recordedInput": "ARM TAP 300 600 150",
+      "inputReceipt": "complete id=19 outcome=ACTION down=1 up=1 pmu_consumed=0 from=4 to=4 view=23 frame=101 refresh=52 action_frame_start=99 action_frame_end=100 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "icon-edit-default",
+      "file": "icon-edit-default.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "ea794dc61229df7e7b3792587a63ba0c07c071297d54105291cb5a15b6d33992",
+      "rawPlfbSha256": "566dfb8b013136c3498be3444fd72ca2e04687cd3c362a5723f077e42268ecf9",
+      "nativeSequence": 104,
+      "nativeView": 24,
+      "recordedInput": "ARM TAP 420 410 150",
+      "inputReceipt": "complete id=20 outcome=ACTION down=1 up=1 pmu_consumed=0 from=23 to=23 view=24 frame=104 refresh=55 action_frame_start=102 action_frame_end=103 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "icon-edited",
+      "file": "icon-edited.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "947223063b91af32871cf228fb08788c85c1d982c960d08580c342471940db06",
+      "rawPlfbSha256": "675b14efde6df916f2508b5819c27c00ee10aaf2935466c74789bc0391b2cda7",
+      "nativeSequence": 113,
+      "nativeView": 24,
+      "recordedInput": "ARM TAP 342 558 150",
+      "inputReceipt": "complete id=21 outcome=ACTION down=1 up=1 pmu_consumed=0 from=24 to=24 view=24 frame=113 refresh=56 action_frame_start=104 action_frame_end=113 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "icon-active-checked",
+      "file": "icon-active-checked.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "145866e4eface9411b7fc8f1910cede687a8d3a1ba8abc5f482f502fa6a3a92e",
+      "rawPlfbSha256": "bfacdd16b3aa5ba120f9783fb53c0a6cc1e5ba4a2725e08ec9c40e89810e1499",
+      "nativeSequence": 115,
+      "nativeView": 24,
+      "recordedInput": "ARM TAP 500 232 150",
+      "inputReceipt": "complete id=22 outcome=ACTION down=1 up=1 pmu_consumed=0 from=24 to=24 view=24 frame=115 refresh=58 action_frame_start=114 action_frame_end=115 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "icon-default-checked",
+      "file": "icon-default-checked.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "947223063b91af32871cf228fb08788c85c1d982c960d08580c342471940db06",
+      "rawPlfbSha256": "c5f77457d04f0713271906f221770a9ce045838e03f37d5da3e7dd343a86ea4d",
+      "nativeSequence": 117,
+      "nativeView": 24,
+      "recordedInput": "ARM TAP 180 232 150",
+      "inputReceipt": "complete id=23 outcome=ACTION down=1 up=1 pmu_consumed=0 from=24 to=24 view=24 frame=117 refresh=60 action_frame_start=116 action_frame_end=117 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "icon-applied-stays-editor",
+      "file": "icon-applied-stays-editor.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "193c46a57c6a367e624b2754f81865cbc65510d8518d30d42adb85591ab5f7a5",
+      "rawPlfbSha256": "57e484eb8fe5260697410cac16fe0d19b875aa9afecf2cf38b37eb372fb792e0",
+      "nativeSequence": 119,
+      "nativeView": 24,
+      "recordedInput": "ARM TAP 550 986 150",
+      "inputReceipt": "complete id=24 outcome=ACTION down=1 up=1 pmu_consumed=0 from=24 to=24 view=24 frame=119 refresh=62 action_frame_start=118 action_frame_end=119 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "icon-list-after",
+      "file": "icon-list-after.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "d9f402996ce22588d7401711c82d7fdfb369ae731df88d50a1ed26f85be0f773",
+      "rawPlfbSha256": "2c340d4b693518ef3115f053f4f3c941e8613e9846592241d3fc1270e8a929c3",
+      "nativeSequence": 121,
+      "nativeView": 23,
+      "recordedInput": "ARM TAP 100 1165 150",
+      "inputReceipt": "complete id=25 outcome=ACTION down=1 up=1 pmu_consumed=0 from=24 to=23 view=23 frame=121 refresh=64 action_frame_start=120 action_frame_end=121 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "icon-settings-back",
+      "file": "icon-settings-back.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "9c74dfa3cd46778c6e870fe9e8881bb4037eed808510a320d32be71a5d5de6d3",
+      "rawPlfbSha256": "55a4e67f86e140c8cd7dd323a0ffe44ca1fbeda7da9c53c24e79b3519a8261af",
+      "nativeSequence": 123,
+      "nativeView": 4,
+      "recordedInput": "ARM TAP 100 1165 150",
+      "inputReceipt": "complete id=26 outcome=ACTION down=1 up=1 pmu_consumed=0 from=23 to=4 view=4 frame=123 refresh=66 action_frame_start=122 action_frame_end=123 presented=1",
+      "receiptNote": null
+    },
+    {
+      "name": "icon-final-home",
+      "file": "icon-final-home.png",
+      "width": 684,
+      "height": 1216,
+      "pngSha256": "020ae550bf7aacd44a8ac73110c95e8dc41195ecf8e09521b02e25b76a59013d",
+      "rawPlfbSha256": "ccbabd789e0181ee781cdb58f8cbe73f67994705e5ec9608ba8cf1bce9434638",
+      "nativeSequence": 126,
+      "nativeView": 0,
+      "recordedInput": "ARM TAP 85 1165 150",
+      "inputReceipt": "complete id=27 outcome=ACTION down=1 up=1 pmu_consumed=0 from=4 to=0 view=0 frame=126 refresh=68 action_frame_start=125 action_frame_end=126 presented=1",
+      "receiptNote": null
+    }
+  ]
+}
