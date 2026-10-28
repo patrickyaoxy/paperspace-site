@@ -28,7 +28,7 @@
         "start": 339728,
         "end": 339728,
         "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "afterSha256": "0c8c3195730e439d878bcf546debb77d3860e3bd95f3cadb7687472efef67da4"
+        "afterSha256": "a82a8cc8755102f335a3b0cca7cc7772e5af0e4a5ad0b6e5ffb09d1cf9e814e7"
       },
       {
         "method": "#security field",
@@ -38,11 +38,11 @@
         "afterSha256": "27a86becfba4124cf1ec0b88b10542dbd883528d41e364c6665e3c0b4c19a53a"
       },
       {
-        "method": "constructor loader callee",
+        "method": "constructor serial options and per-session read error observer",
         "start": 339953,
         "end": 341467,
         "beforeSha256": "70a14922cdd5a8610aef5e7b875a74ef9f2356e8b59d3df8faab44aa4bbd4bdb",
-        "afterSha256": "6cc406e0113ba845da52750bfde04194f8da8ce4f95094960360b41c2eaf96de"
+        "afterSha256": "3016f2fa00b400a1bb034d51e3051ab90d45bfded07359e352d87dde2b405b5f"
       },
       {
         "method": "#H",
@@ -52,18 +52,25 @@
         "afterSha256": "360db7b86699d0a28e952dd5fec19e1e6c698c064c015f305ad7205c71ad3749"
       },
       {
+        "method": "#o",
+        "start": 345856,
+        "end": 346216,
+        "beforeSha256": "9faf48fa21a5af1d2313ea543fc40a0519321b2a563ce3392a0cebd58d7a6174",
+        "afterSha256": "4320020032bcf24f87cd59a36ae72e91ddeec298884cacbe4fd5f31d68d11e9a"
+      },
+      {
         "method": "connect",
         "start": 347080,
         "end": 349382,
         "beforeSha256": "5d3b184315b64651bf85e8d933e2494a5db640ca37f88e6b0a8c5070f2b22b64",
-        "afterSha256": "b55ddcd01204f2443dc4a340d9029a0af98944aaddcd19c634717574968cbdd9"
+        "afterSha256": "6ffe605b4ef1f2de6f64eeb3c101439304224480c16e9cfa49992f6945eb5f68"
       },
       {
         "method": "prepare",
         "start": 349797,
         "end": 356444,
         "beforeSha256": "59d6bf93bcc53592b1bba054fac72c47cb1720814532bdd9da70f19818ec91b7",
-        "afterSha256": "7dfec52a9c886ae39f3de12a109e8e02165197127128a5f2bd405bb88c95d6f9"
+        "afterSha256": "845091c7a280c4e216528f104927000334fabbc4b664d057def73615eb746e20"
       },
       {
         "method": "confirm",
@@ -80,11 +87,18 @@
         "afterSha256": "e11522d334b9037a040c8e37d81a024a25baa7ccace72c46f08899fb114bab24"
       },
       {
+        "method": "#v",
+        "start": 358981,
+        "end": 359971,
+        "beforeSha256": "64f180af89fdd032b23049319fd46369424c388bb6ccc8c58f73dea315b98092",
+        "afterSha256": "1e5278ae555b54d4694262a342abe3113a2af625a5711b3f83263e34187027b2"
+      },
+      {
         "method": "execute",
         "start": 359971,
         "end": 361812,
         "beforeSha256": "ddbab9fc6e03d6f0360124894157981d35e1764666a5c7ecbfa5de03b68e621c",
-        "afterSha256": "2c5749ead1577d9c811d449561b4614057c3a9d75c3bbea18acec571e008c4dd"
+        "afterSha256": "ed0b9ecfc227ddb174e6b936682fd3e5ecf84c0825f76913e8fc36a0dba49280"
       },
       {
         "method": "snapshot",
@@ -98,7 +112,14 @@
         "start": 362322,
         "end": 362529,
         "beforeSha256": "e9c7562e5b5ba102331fe7809562e913bc4cdd3709d92b5b87013233624985c9",
-        "afterSha256": "c3be119fddf9d5c3638d5835b74b0a97a1b8b2c2dd90154fed8c0fbea0abbf35"
+        "afterSha256": "18447e6a20fa6814167517083dbe8dfc5ff8079d1eaad02e100677c623c3ffb4"
+      },
+      {
+        "method": "controller clean connection mode forwarding",
+        "start": 362529,
+        "end": 364110,
+        "beforeSha256": "f0973013351fedbfdeeccae3d6bfeeafbb2e4eabeb591eeb6f39779b65f2757c",
+        "afterSha256": "d3a3191c05e0fd708da8d54c8f38fcd532bfad5b5b35c12a97ee470da19c7e91"
       }
     ],
     "allOtherModuleAstEqual": true,
@@ -108,13 +129,15 @@
     "sessionLoaderOnly": true,
     "signedRegisterValuePreserved": true,
     "identityMetadataOnlyChanged": true,
+    "controllerOnlyForwardsConnectionMode": true,
+    "perSessionReadLoopOnlyAddsErrorObserver": true,
     "sdkStubUploadAndPostHandshakeBytesIdentical": true,
-    "serialHandshakeBuild": "paperspace-one-click-serial-1",
-    "maintenanceSourceSha256": "8b712609d07bf0741e9e1ca81f1e4553d5d056bac83dd514868151a32db30dbf",
-    "scriptSha256": "9d94b4ebc0142fad13158a592b1e2b59a591f65103a9a779874e3955ede2ebb0"
+    "serialHandshakeBuild": "paperspace-one-click-serial-2",
+    "maintenanceSourceSha256": "85df48dcedb9eb71237da06402386b9764e269da99082ca16b5a0873fbc77990",
+    "scriptSha256": "999f45c81a059dbc43f2e1ede5ca4be0c35bca42cfdb50fc92bceffb3193a26c"
   },
-  "engine_sha256": "8398f23408564e26c5ba8ee8aef8d2c77f93c91b6dfa771f1990cde345d9fbd9",
-  "engine_bytes": 377093,
+  "engine_sha256": "272f223a5acc71791f88efc4e76662537deacf75aa5f5e9b93fba959a521984f",
+  "engine_bytes": 380101,
   "externalImports": [],
   "deviceTest": "NOT_RUN",
   "cleanReinstall": {
@@ -124,22 +147,39 @@
     "destructiveAcceptance": "explicit-single-plan-single-use",
     "backupRequired": false,
     "unmodifiedOpcodeGuard": true,
-    "verification": "per-64KiB-MD5-and-SHA256-then-full-flash-SHA256",
+    "verification": "device-md5-per-bounded-region",
     "deviceTest": "NOT_RUN",
-    "eraseSegmentMaxBytes": 65536
+    "eraseSegmentMaxBytes": 65536,
+    "oldLayoutReadRequired": false,
+    "sourceIntegrity": "owner-pinned-sha256"
   },
   "serialConnection": {
-    "build": "paperspace-one-click-serial-1",
+    "build": "paperspace-one-click-serial-2",
     "romToStub": "verified-SLIP-OHAI-with-optional-validated-ROM-MEM_END-ACK",
     "handoffDeadlineMs": 3000,
     "memEndTransmissions": 1,
     "diagnostics": [
       "connection.stage",
       "connection.lastOpcode",
-      "connection.handoff"
+      "connection.handoff",
+      "connection.read",
+      "connection.receiveErrors"
     ],
     "unchangedOriginalSDKTransport": true,
     "hardwareAttribution": "UNKNOWN",
-    "deviceTest": "NOT_RUN"
+    "deviceTest": "NOT_RUN",
+    "bufferSize": 65536,
+    "readFlashPacketBytes": 4096,
+    "effectiveStubWindowPackets": 1,
+    "readErrorObservation": "per-session catch observes native error; fatal or already-aborted sessions exit through original reader finally and never acquire a replacement reader",
+    "originalSDKTransportClassByteIdentical": true
+  },
+  "verification": {
+    "method": "device-md5",
+    "md5Verified": "Only after actual stub MD5 matches all written source regions",
+    "readbackSha256": null,
+    "sha256ReadbackVerified": false,
+    "imageSha256": "Source image only; not a device readback hash",
+    "fullFlashSHAReadbackRequired": false
   }
 }

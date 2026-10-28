@@ -1,3 +1,5 @@
+export const verifiedReadLoop = "async function(){for(var t;this.device.readable;){this.reader=(t=this.device.readable)===null||t===void 0?void 0:t.getReader();try{let{value:A,done:i}=await this.reader.read();if(i){this.trace(\"Serial port done\");break}if(A&&A.length){let s=Uint8Array.from(A);this.buffer=this.appendArray(this.buffer,s)}}catch(A){if(this.onSerialReadError?.(A)===true)break;if(A instanceof Error){if([\"BufferOverrunError\",\"FramingError\",\"BreakError\",\"ParityError\"].includes(A.name)){this.trace(`Recoverable serial port error: ${A.message}`);continue}this.trace(`Unrecoverable serial port error: ${A.message}`);break}if(A instanceof DOMException){this.onDeviceLostCallback?this.onDeviceLostCallback():this.trace(`Unrecoverable serial port error: ${A.message}`);break}this.trace(`Unrecoverable serial port error: ${A}`);break}finally{this.reader.releaseLock()}}this.trace(\"readLoop exited\")}";
+const stubReadFlashMethod = "async readFlash(t,A,i=null){const d=this.connection.read={readStart:t,readExpected:A,readReceived:0,acknowledgedReadBytes:0,currentStep:\"command-ack\",dataFrames:0,md5Verified:false};let s=this._appendArray(this._intToByteArray(t),this._intToByteArray(A));s=this._appendArray(s,this._intToByteArray(4096)),s=this._appendArray(s,this._intToByteArray(1024));let reply=await this.command(this.ESP_READ_FLASH,s);if(!Array.isArray(reply)||reply.length!==2||!(reply[1] instanceof Uint8Array)||reply[1].length!==2)throw new Error(\"READ_FLASH_RESPONSE_FORMAT\");if(reply[0]!==0||!reply[1].every(v=>v===0))throw new Error(\"READ_FLASH_COMMAND_FAILED: status=\"+Array.from(reply[1]).join(\",\"));d.currentStep=\"data\";let a=new Uint8Array(0);for(;a.length<A;){let r=await this.transport.read(this.FLASH_READ_TIMEOUT);if(r instanceof Uint8Array)r.length>0&&(a=this._appendArray(a,r),d.readReceived=a.length,d.dataFrames++,await this.transport.write(this._intToByteArray(a.length)),d.acknowledgedReadBytes=a.length,i&&i(r,a.length,A));else throw new u(\"Failed to read memory: \"+r)}d.currentStep=\"trailing-md5\";return a}";
 const stubRunMethod = "async runStub(){if(this.syncStubDetected)return this.info(\"Stub is already running. No upload is necessary.\"),this.IS_STUB=!0,await this.applyUsbFlashWriteSize(),this.chip;if(this.secureDownloadMode)return this.info(\"Stub flasher is not supported in Secure Download Mode, it has been disabled.\"),this.chip;let t=this.chip.getChipRevision?await this.chip.getChipRevision(this):void 0,A=await rt(this.chip.CHIP_NAME,t);if(A===void 0)return this.info(`Stub flasher is not yet supported on ${this.chip.CHIP_NAME}, it has been disabled.`),this.chip;this.info(\"Uploading stub...\");let i=[A.decodedText,A.decodedData];for(let a=0;a<i.length;a++)if(i[a]){let r=a===0?A.text_start:A.data_start,h=i[a].length,o=Math.floor((h+this.ESP_RAM_BLOCK-1)/this.ESP_RAM_BLOCK);await this.memBegin(h,o,this.ESP_RAM_BLOCK,r);for(let g=0;g<o;g++){let R=g*this.ESP_RAM_BLOCK,_=R+this.ESP_RAM_BLOCK;await this.memBlock(i[a].slice(R,_),g)}}this.info(\"Running stub...\"),await this.startVerifiedStub(A.entry);return this.info(\"Stub running...\"),this.IS_STUB=!0,await this.applyUsbFlashWriteSize(),this.chip}";
 export const verifiedLoader = String.raw`class VerifiedESPLoader extends vt {
  async readReg(address,timeout=this.DEFAULT_TIMEOUT){
@@ -10,7 +12,7 @@ export const verifiedLoader = String.raw`class VerifiedESPLoader extends vt {
   this.debug("Read Register Value:"+value);return value;
  }
 
- connection={build:"paperspace-serial-handoff-1",stage:"new",lastOpcode:null,commands:0,events:[],handoff:null};
+ connection={build:"paperspace-serial-read-2",stage:"new",lastOpcode:null,commands:0,events:[],handoff:null};
  setConnectionStage(stage){this.connection.stage=stage;if(this.connection.events.length<32)this.connection.events.push(stage);}
  async command(...args){if(args[0]!=null){this.connection.lastOpcode=args[0];this.connection.commands++;}return super.command(...args);}
  async startVerifiedStub(entry){
@@ -46,6 +48,7 @@ export const verifiedLoader = String.raw`class VerifiedESPLoader extends vt {
  }
 
 ${stubRunMethod}
+${stubReadFlashMethod}
 
 }`;
 export const securityMethod = String.raw`async #H(){
@@ -124,9 +127,21 @@ export const cleanPrepareBody = String.raw`if(A==="clean-reinstall"){
  const digest=await b(image),appDigest=await b(i.app);
  const recovery="若断电、取消或读回失败，设备可能暂时不能启动。重新进入下载模式并干净重装，或用已保存的完整备份和匹配工具恢复；网页无自动回滚。";
  const plan=V({id:this.#s+"-"+(++this.#b)+"-clean-"+digest.slice(0,16),mode:"clean-reinstall",title:"干净重装",impact:"清空全部16 MiB内部Flash，包括内部设置、阅读进度和文件；安装官网匹配的bootloader、分区表、应用与OTA初始记录。TF/SD卡不改动。",warnings:["此操作会清空设备内部数据，备份可选；未备份的数据不能恢复。","尚未完成真机验证。请保持供电和USB连接；全片覆盖可能需要数分钟，完成读回校验仍需检查实际启动。"],recovery,executable:true,blockedReason:null,storageProof:null,backupAllowed:true,generation:this.#s,backupRequired:false,destructive:true,dataEffect:"erase-internal",appPartition:"ota_0",address:0,bytes:iA,wireBytes:iA,eraseBytes:iA,sha256:digest,targetAppSha256:appDigest,version:s.version,confirmationPhrase:null,runningSlot:null,bootSelection:this.#A.bootSelection,boardVerified:false,modelVerified:false,images:validated.map(x=>({kind:x.kind,address:x.address,bytes:x.bytes.length,sha256:s.images[({"partition-table":"partitionTable","otadata-initialize":"otaData"})[x.kind]||x.kind].sha256})),writeRegions:regions.map(region=>({kind:region.kind,address:region.address,eraseBytes:region.wireBytes}))});
- this.#Y.set(plan,{generation:this.#s,regions,conditions:[{address:32768,size:4096,sha256:this.#A.partitionSectorSha256}],metadata:null,migration:null,cleanReinstall:true,backup:null,backupConditions:[],consumed:false});return plan;
+ this.#Y.set(plan,{generation:this.#s,regions,conditions:[],metadata:null,migration:null,cleanReinstall:true,backup:null,backupConditions:[],consumed:false});return plan;
 }`;
 export function replaceExactly(source,oldText,newText){if(source.split(oldText).length!==2)throw Error('Expected unique reviewed fragment: '+oldText);return source.replace(oldText,newText);}
+export const readSessionMethod = String.raw`async #o(t,A){
+ this.#i();f(Number.isSafeInteger(t)&&Number.isSafeInteger(A)&&t>=0&&A>0&&A<=65536&&t+A<=iA,"Read range bound");this.#S={start:t,size:A,ack:0};
+ try{const bytes=await this.#t.readFlash(t,A);f(bytes.length===A,"Short/overlong flash read");const digest=await this.#Q.read(5e3);f(digest.length===16&&Ue(digest)===qt(bytes),"Read trailing MD5 mismatch");const d=this.#t.connection.read;d.md5Verified=true;d.currentStep="complete";return bytes;}
+ catch(error){if(this.#t.connection.read)this.#t.connection.read.failed=true;throw error;}finally{this.#S=null;}
+}`;
+
+export function adaptConstructor(source){
+ let output=replaceExactly(source,'new vt({transport:this.#Q,','new VerifiedESPLoader({transport:this.#Q,serialOptions:{bufferSize:65536},');
+ const setup=';this.#t.connection.serialBufferSize=65536;t.readLoop='+verifiedReadLoop+';t.onSerialReadError=error=>{const d=this.#t.connection,errors=d.receiveErrors||(d.receiveErrors={count:0,events:[]});errors.count++;const name=String(error?.name||"Error").slice(0,64);if(errors.events.length<8)errors.events.push({name,stage:d.stage,currentStep:d.read?.currentStep??null,message:String(error?.message||error).slice(0,160)});if(this.#r.signal.aborted)return true;if(!this.#r.signal.aborted&&(this.#S||this.#e==="writing"||this.#e==="uploading-stub")){this.cancel("SERIAL_RECEIVE_LOSS: "+name);return true;}return false;};t.setDeviceLostCallback';
+ return replaceExactly(output,',t.setDeviceLostCallback',setup);
+}
+
 export function replacements(methods){
  const get=name=>{if(!methods.has(name))throw Error('Missing method '+name);return methods.get(name);};
  let prepare=get('prepare');prepare=replaceExactly(prepare,'backup:null,consumed:!1','backup:null,backupConditions:[],consumed:!1');prepare=replaceExactly(prepare,'backupRequired:!0','backupRequired:h==="single-slot-migration"');
@@ -143,7 +158,7 @@ export function replacements(methods){
  execute=replaceExactly(execute,'Explicit current-session and current-backup confirmation required','Explicit current-session and required-backup confirmation required');
  execute=replaceExactly(execute,'await this.#m(n);let r=','await this.#m(n,s);let r=');
  execute=replaceExactly(execute,'g.kind==="app"&&(o=R)','["app","clean-reinstall"].includes(g.kind)&&(o=R)');
- execute=replaceExactly(execute,'if(n.metadata){let g=','if(n.cleanReinstall){o=await b(await this.#w(0,iA));f(o===t.sha256,"Written full flash readback SHA-256 mismatch")}if(n.metadata){let g=');
+
  let snapshot=get('snapshot');snapshot=replaceExactly(snapshot,'error:this.#E','error:this.#E,security:this.#security?structuredClone(this.#security):null,connection:structuredClone(this.#t.connection)');
  let connect=get('connect');connect=replaceExactly(connect,'FULL_BACKUP_MUST_PROVE_ALL_FLASH_ERASED','FULL_SCAN_REQUIRED_BEFORE_FIRST_WRITE');
  connect=replaceExactly(connect,'await this.#t.detectChip("default_reset",2)','this.#t.setConnectionStage("rom-sync"),await this.#t.detectChip("default_reset",2)');
@@ -157,5 +172,17 @@ export function replacements(methods){
  connect=replaceExactly(connect,'if(h==="dual"&&_?.images){','if(h==="dual"&&_?.images){this.#t.setConnectionStage("existing-bootloader-read");');
  connect=replaceExactly(connect,'this.#M=await this.#o(IA,8192)','this.#t.setConnectionStage("ota-read"),this.#M=await this.#o(IA,8192)');
  connect=replaceExactly(connect,'return this.#i(),this.#A=','return this.#i(),this.#t.setConnectionStage("ready"),this.#A=');
- return new Map([['#H',securityMethod],['#m',prewriteMethod],['confirm',confirmMethod],['prepare',prepare],['execute',execute],['snapshot',snapshot],['connect',connect]]);
+
+ prepare=replaceExactly(prepare,'let C=s.partitions.find(T=>T[0]===this.#A.bootSelection),B=await this.#w(C[3],C[4]),M=B.slice(0,Fi(B));await xi(M,this.#t.chip,this.#n,this.#A.revision,{existing:!0}),a.push({address:C[3],size:M.length,sha256:await b(M)}),','');
+ let write=get('#v');const tail='f(await this.#t.flashMd5sum(t.address,t.bytes.length)===qt(t.bytes),"Written flash MD5 mismatch")';const tailAt=write.indexOf(tail);if(tailAt<0)throw Error('Expected original write verification tail');write=write.slice(0,tailAt)+'const deviceMd5=await this.#t.flashMd5sum(t.address,t.bytes.length);f(deviceMd5===qt(t.bytes),"Written flash MD5 mismatch");A({acknowledgedBytes:this.#d,total:i,stage:"device-md5-verified",region:t.kind,verified:false});this.#C=null;return deviceMd5}';write=replaceExactly(write,'await this.#t.flashFinish(!1,5e3),const','await this.#t.flashFinish(!1,5e3);const');
+ execute=replaceExactly(execute,'readbackSha256:o','readbackSha256:null,sha256ReadbackVerified:false,verificationMethod:"device-md5",imageSha256:t.sha256,verifiedRegionCount:n.regions.length,deviceMd5:t.mode==="dual-slot-update"?o:null');
+ execute=replaceExactly(execute,'partitionSectorSha256:await b(await this.#o(32768,4096))','partitionSectorSha256:null');
+ execute=replaceExactly(execute,'ota:Vt(await this.#o(IA,8192))','ota:n.verifiedOTA??null');
+ execute=replaceExactly(execute,'"OTA_COMMIT_READBACK_MISMATCH")}','"OTA_COMMIT_READBACK_MISMATCH"),n.verifiedOTA=g}');
+ execute=replaceExactly(execute,'stage:"readback-verified"','stage:"device-md5-verified"');
+ connect=replaceExactly(connect,'connect(){','connect({mode:connectionMode="auto"}={}){');
+ const cleanConnect='if(connectionMode==="clean-reinstall"){this.#i();this.#A={chip:"esp32s3",revision:A,mac:i,flashId:s,capacity:iA,partitionSha256:null,partitionSectorSha256:null,partitions:[],layout:"unread",layoutId:null,reason:"EXPLICIT_CLEAN_CONNECTION",ota:null,bootloaderMatched:false,bootloaderIdentity:null,runningSlot:null,bootSelection:null,boardVerified:false,modelVerified:false,operatorSelection:this.#G,stub:"OFFICIAL_SDK_UPLOADED"};this.#t.setConnectionStage("ready-clean");this.#e="ready";return this.snapshot()}';
+ connect=replaceExactly(connect,'this.#t.setConnectionStage("partition-read");let n=',cleanConnect+'this.#t.setConnectionStage("partition-read");let n=');
+
+ return new Map([['#o',readSessionMethod],['#v',write],['#H',securityMethod],['#m',prewriteMethod],['confirm',confirmMethod],['prepare',prepare],['execute',execute],['snapshot',snapshot],['connect',connect]]);
 }
