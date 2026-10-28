@@ -23,8 +23,8 @@
       "sha256": "361e0e7a55dd4b403c74826b003e4e1b256cc8564654928e419b09253465f080"
     },
     "reader.js": {
-      "bytes": 223779,
-      "sha256": "a87a2704c140682c7362a9a380b8728fc9da42168a57b429b70dee3c1da7dfba"
+      "bytes": 223659,
+      "sha256": "3c9d0196c57db6b601eec4eb2ffc69aa1fd5d2c225dfea4f5dd8909fa86109fc"
     },
     "reader.wasm": {
       "bytes": 3943347,
@@ -34,5 +34,10 @@
       "bytes": 16369,
       "sha256": "2f1eb8597d94692d6f6467ec11186bbd721b6d9bd935b7b980b098e31e4d63e7"
     }
+  },
+  "generatedLoaderNormalization": {
+    "method": "Relative resource and dependency identifiers; three string-literal changes",
+    "wasmAndDataModified": false,
+    "applicationSourceModified": false
   }
 }

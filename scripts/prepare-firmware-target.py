@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 import struct
 
-SOURCE = '79f2f5ad303b9a588d551e3e0eb4b6e5735bc56b'
+SOURCE = '3abe593b3ad208229aaf734b879af2f5081c6cec'
 PARTITIONS = [['nvs', 1, 2, 0x9000, 0x5000], ['phy_init', 1, 1, 0xe000, 0x1000],
               ['ota_0', 0, 16, 0x10000, 0x500000], ['storage', 1, 129, 0x510000, 0x500000],
               ['ota_1', 0, 17, 0xa10000, 0x500000], ['otadata', 1, 0, 0xf10000, 0x2000]]
@@ -64,6 +64,15 @@ def image(data, app=False):
         require(data[23] == 1 and struct.unpack_from('<I', data, 32)[0] == 0xabcd5432, 'App descriptor required')
         return {key: data[offset:offset + 32].split(b'\0')[0].decode('ascii') for key, offset in [('version', 48), ('project', 80), ('idfVersion', 144)]}
 
+def stable_channel(data):
+    # Exact on-image ABI from this reviewed source's firmware_channel.{h,c}.
+    require(len(data) >= 320 and struct.unpack_from('<I', data, 28)[0] >= 288,
+            'Stable channel record must be inside the first image segment')
+    expected = struct.pack('<8sHHB3sIIII', b'PAPERCH\0', 1, 32, 2, bytes(3), 0x10000, 1, 0, 0)
+    require(data[288:320] == expected, 'Reviewed 2.1.1 stable channel record required')
+    return {'channel': 'stable', 'offset': 288, 'bytes': 32,
+            'sha256': sha(data[288:320]), 'capabilities': 0x10000, 'layoutAbi': 1}
+
 def rollback_config(data):
     return bool(re.search(r'^CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE=y$', data, re.M)) and not re.search(r'^CONFIG_BOOTLOADER_APP_ANTI_ROLLBACK=y$', data, re.M)
 
@@ -81,10 +90,12 @@ def main():
     manifest_bytes = safe_file(package, 'manifest.json').read_bytes()
     require(sha(manifest_bytes) == trust['manifestSha256'], 'Manifest differs from reviewed pin')
     manifest = json.loads(manifest_bytes)
-    require(manifest['schema'] == 1 and manifest['source_sha'] == SOURCE and manifest['version'] == '2.0.8' and manifest['chip'] == 'esp32s3' and manifest['flash_size'] == '16MB' and manifest['profile'] == 'product' and not manifest.get('synthetic_demo'), 'Unreviewed firmware identity')
+    require(manifest['schema'] == 1 and manifest['source_sha'] == SOURCE and manifest['version'] == '2.1.1' and manifest['chip'] == 'esp32s3' and manifest['flash_size'] == '16MB' and manifest['profile'] == 'product' and not manifest.get('synthetic_demo'), 'Unreviewed firmware identity')
     require(isinstance(manifest.get('files'), dict) and 0 < len(manifest['files']) <= 100, 'Production install manifest requires 1..100 members; use a separately pinned install manifest')
     config = safe_file(trust_root, trust['sdkconfig']).read_text()
     require(rollback_config(config), 'Rollback contract does not match actual sdkconfig')
+    require(re.search(r'^CONFIG_PAPERLAB_CHANNEL_STABLE=y$', config, re.M) and not re.search(r'^CONFIG_PAPERLAB_CHANNEL_Z=y$', config, re.M), 'Actual sdkconfig must select stable channel')
+    require(manifest.get('channel', 'stable') == 'stable', 'Manifest must not claim another channel')
     contract = {'idfVersion': 'v6.1', 'rollback': True, 'antiRollback': False}
     flash_args = json.loads(safe_file(package, 'flasher_args.json').read_bytes())
     require(flash_args['extra_esptool_args']['chip'] == 'esp32s3' and flash_args['flash_settings']['flash_size'] == '16MB', 'Flasher target mismatch')
@@ -98,7 +109,7 @@ def main():
         data = safe_file(package, name).read_bytes()
         expected = manifest['files'][name]
         require(expected['bytes'] == len(data) and expected['sha256'] == sha(data), 'Manifest image mismatch: ' + name)
-        images[role] = {'file': name, 'url': 'firmware/v2.0.8/' + name, 'sha256': sha(data), 'bytes': len(data), 'address': address}
+        images[role] = {'file': name, 'url': 'firmware/v2.1.1/' + name, 'sha256': sha(data), 'bytes': len(data), 'address': address}
         members[name] = data
         mapping[entry['offset']] = name
     require(mapping == flash_args['flash_files'] == manifest['flash_files'], 'Flash file mapping differs')
@@ -107,7 +118,8 @@ def main():
     require(partitions(members[images['partitionTable']['file']]) == PARTITIONS, 'Target partitions differ')
     image(members[images['bootloader']['file']])
     descriptor = image(members[images['app']['file']], app=True)
-    require(descriptor == {'version': '2.0.8', 'project': trust['project'], 'idfVersion': 'v6.1'}, 'App descriptor differs from reviewed identity')
+    channel_proof = stable_channel(members[images['app']['file']])
+    require(descriptor == {'version': '2.1.1', 'project': trust['project'], 'idfVersion': 'v6.1'}, 'App descriptor differs from reviewed identity')
     known = []
     for entry in trust['knownLayouts']:
         data = safe_file(trust_root, entry['partitionFile']).read_bytes()
@@ -129,8 +141,8 @@ def main():
         require(entry['contract'] == contract and rollback_config(old_config) and 32 <= len(data) <= 0x8000, 'Unreviewed accepted bootloader contract')
         accepted.append({'sha256': sha(data), 'bytes': len(data), **contract})
     target = {key: trust[key] for key in ('board', 'model', 'project')}
-    target.update({'version': '2.0.8', 'idfVersion': 'v6.1', 'sourceSha': SOURCE,
-                   'manifest': {'url': 'firmware/v2.0.8/manifest.json', 'sha256': sha(manifest_bytes), 'bytes': len(manifest_bytes)},
+    target.update({'version': '2.1.1', 'idfVersion': 'v6.1', 'sourceSha': SOURCE,
+                   'manifest': {'url': 'firmware/v2.1.1/manifest.json', 'sha256': sha(manifest_bytes), 'bytes': len(manifest_bytes)},
                    'images': images, 'partitions': PARTITIONS, 'knownLayouts': known,
                    'bootloaderContract': contract, 'acceptedBootloaders': accepted})
     # Output is deliberately separate from the live owner policy. A browser regression
@@ -138,11 +150,11 @@ def main():
     require(not args.out.exists(), 'Staging output already exists; preserve it and select a new directory')
     args.out.mkdir(parents=True)
     for name, data in members.items():
-        destination = args.out / 'firmware/v2.0.8' / name
+        destination = args.out / 'firmware/v2.1.1' / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(data)
     (args.out / 'firmware-target.candidate.json').write_text(json.dumps({'schema': 3, 'enabled': True, 'unavailable_reason': '', 'target': target}, ensure_ascii=False, indent=2) + '\n')
-    (args.out / 'preparation-receipt.json').write_text(json.dumps({'sourceSha': SOURCE, 'manifestSha256': sha(manifest_bytes), 'trustSha256': sha(trust_bytes), 'sdkconfigSha256': sha(config.encode()), 'origin': 'MindReset Read Pico 官方 Demo Firmware 二次开发；paperspace 独立维护', 'livePolicyChanged': False, 'deviceWritePerformed': False, 'hardware': 'NOT_TESTED'}, ensure_ascii=False, indent=2) + '\n')
+    (args.out / 'preparation-receipt.json').write_text(json.dumps({'sourceSha': SOURCE, 'manifestSha256': sha(manifest_bytes), 'trustSha256': sha(trust_bytes), 'sdkconfigSha256': sha(config.encode()), 'origin': 'MindReset Read Pico 官方 Demo Firmware 二次开发；paperspace 独立维护', 'channelProof': channel_proof, 'appSha256': images['app']['sha256'], 'livePolicyChanged': False, 'deviceWritePerformed': False, 'hardware': 'NOT_TESTED'}, ensure_ascii=False, indent=2) + '\n')
     print(json.dumps({'out': str(args.out.resolve()), 'manifestSha256': sha(manifest_bytes), 'livePolicyChanged': False}, ensure_ascii=False))
 
 if __name__ == '__main__':

@@ -4,21 +4,107 @@
     "name": "esptool-js",
     "version": "0.7.0"
   },
-  "enabledByDefault": false,
-  "realDeviceTest": "NOT_RUN",
-  "wholeChipErase": "FORBIDDEN",
-  "ota": "GUARDED_BOOT_SELECTION_ONLY",
-  "source_sha256": {
-    "build.mjs": "3537cb1df913e66162d2e4d754a06153ee524a490a299fdf2ede4561b6ad5e0e",
-    "entry.mjs": "99bc3cfa52be97034dc995be79baef267d313ed53c98ea117a18d2d6f6f860eb",
-    "ota.mjs": "fb423293df1ef2686889aa9930f724b712234f667f6448eb5ca7e79b98ec4022",
-    "policy.mjs": "04f77784079030d8779f0c3b0e668a1996dc46fa9d43f48ce6d254088c7f2ef7",
-    "session.mjs": "a22f9300cf955e763ad955372c34b95ae378943e17aad6084b6c22b7b4df6120",
-    "validation.mjs": "864e590cb54f91f63f3f2292659c22ccaa1b3bfea31a5d67a50490c133984d23",
-    "wl-storage.mjs": "2909b3020636a6aebe10df2800284b9bae4238cd16d923d8b3060793b13ace83"
+  "provenanceMode": "compiled-bundle-derived",
+  "baseline": {
+    "commit": "bc5b2694fb848b6b7a2b008e559fe2b8c3eed944",
+    "tree": "4960fade8fbc367fafe2fa7bb4abbd57418ad333",
+    "engineSha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43"
   },
-  "dependencyLockSha256": "1793e2ff41262ee6cc79eff2906b07dc1d427abf9ad4a7e6f28918c0d0f0add4",
-  "engine_sha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43",
-  "engine_bytes": 364241,
-  "externalImports": []
+  "identityAdaptation": {
+    "method": "acorn-ast-range-exact-literal-edits",
+    "parserVersion": "8.15.0",
+    "parserLockSha256": "2bc16c64a91e3ec2e6e8a1e29460c0933675f80d198b63f095d63d10d342ce0b",
+    "scriptSha256": "ab843c4cc1bdc57234d7fa18ff32a0fc428cf2e2581b5c21e28394eb4c258763",
+    "intermediateEngineSha256": "60a95723afb8f3f2c7503cb79a0553287eb6bda6a53bac3b5fcca637b0b912bd",
+    "sourceSha": "3abe593b3ad208229aaf734b879af2f5081c6cec",
+    "version": "2.1.1",
+    "channel": "stable"
+  },
+  "maintenance": {
+    "baselineEngineSha256": "60a95723afb8f3f2c7503cb79a0553287eb6bda6a53bac3b5fcca637b0b912bd",
+    "changedMethods": [
+      {
+        "method": "VerifiedESPLoader adapter",
+        "start": 339728,
+        "end": 339728,
+        "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "afterSha256": "212a9b0c21489fbc45d922e9d145adf47c9604f0155d47bf3014bc28fa6b1968"
+      },
+      {
+        "method": "#security field",
+        "start": 339741,
+        "end": 339741,
+        "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "afterSha256": "27a86becfba4124cf1ec0b88b10542dbd883528d41e364c6665e3c0b4c19a53a"
+      },
+      {
+        "method": "constructor loader callee",
+        "start": 339953,
+        "end": 341467,
+        "beforeSha256": "70a14922cdd5a8610aef5e7b875a74ef9f2356e8b59d3df8faab44aa4bbd4bdb",
+        "afterSha256": "6cc406e0113ba845da52750bfde04194f8da8ce4f95094960360b41c2eaf96de"
+      },
+      {
+        "method": "#H",
+        "start": 345644,
+        "end": 345856,
+        "beforeSha256": "f0b8c427a9077d22d911e03616b27c56590e63e46ebe1bd1e1e1b1f6590d6ff0",
+        "afterSha256": "085d9417a5f0af3c02b33a5f8564e18e8f1eed82207c421e9babc0c4292a42d1"
+      },
+      {
+        "method": "connect",
+        "start": 347080,
+        "end": 349382,
+        "beforeSha256": "5d3b184315b64651bf85e8d933e2494a5db640ca37f88e6b0a8c5070f2b22b64",
+        "afterSha256": "db7f328b6600fdccc998f7630e7b5b7be96a0e83d610ce9237d022df7f7a3469"
+      },
+      {
+        "method": "prepare",
+        "start": 349797,
+        "end": 356444,
+        "beforeSha256": "59d6bf93bcc53592b1bba054fac72c47cb1720814532bdd9da70f19818ec91b7",
+        "afterSha256": "20568c975e9d7a4bc20f6203745ca9832625dc2d0f9e25457d68169c739ba665"
+      },
+      {
+        "method": "confirm",
+        "start": 358158,
+        "end": 358602,
+        "beforeSha256": "c4459563637f16bad5a48617b3c5ea0d96c054654cfe64d8701420ec8a8d4588",
+        "afterSha256": "1cc0dc6bf9a8e039ec904df15674a3b88667eef17d9c48203e16db636df83e06"
+      },
+      {
+        "method": "#m",
+        "start": 358602,
+        "end": 358981,
+        "beforeSha256": "c376b3894cd6301fcd5d284afc7f4a03b8edd2a4b99cebf8cf8ed6324f5b09f3",
+        "afterSha256": "bd4d039cb9c7045da6beb0139a6ce01350cfaae5551c8cb696ed5e9140d84230"
+      },
+      {
+        "method": "execute",
+        "start": 359971,
+        "end": 361812,
+        "beforeSha256": "ddbab9fc6e03d6f0360124894157981d35e1764666a5c7ecbfa5de03b68e621c",
+        "afterSha256": "345caade82afc8914f09a58d4a33742ad68e3e9e637e5c2b82d1c0a7d055a45b"
+      },
+      {
+        "method": "snapshot",
+        "start": 362079,
+        "end": 362320,
+        "beforeSha256": "09d9758efb253340b2d7abcd98ce654f255f367b7e16e16d7873c85bf837ef49",
+        "afterSha256": "f3d8e0c9c79577f54246a0c20477d6f710fc6a9156591aaeecac6d5b30dc8341"
+      }
+    ],
+    "allOtherModuleAstEqual": true,
+    "allOtherSessionAstAndBytesEqual": true,
+    "outsideEditRangesByteEqual": true,
+    "sdkOtaWlEspParsersAndBackupUnchanged": true,
+    "sessionLoaderOnly": true,
+    "signedRegisterValuePreserved": true,
+    "maintenanceSourceSha256": "40d3d096b5e1d2abd49b2c3fc8e8b55899b3f209806945b805e9fcf87ad7b50e",
+    "scriptSha256": "b850f17387d4763c6d22c3816182af1dcb1fdcf0e045cc89a85d20ebe756daf6"
+  },
+  "engine_sha256": "1bbb21dd0490df7417c8ec6abf152378fe03cd097b3b106e4be387bf62e06dd2",
+  "engine_bytes": 369794,
+  "externalImports": [],
+  "deviceTest": "NOT_RUN"
 }

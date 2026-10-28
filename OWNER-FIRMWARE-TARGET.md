@@ -1,12 +1,14 @@
 # 官网固件目标配置
 
-唯一入口是网站根目录 `firmware-target.json`。当前启用 Read Pico / ESP32-S3 / 16MB / Zbit 的 v2.0.8 Public Beta 固定目标，USB 安装自动下载并核验原始镜像，访客不必选择 ZIP、本地固件包或应用槽。只有网站维护者修改固定目标；连接仍须访客主动操作、确认板型，并保存完整备份。ESP32-S3 对应重链接材料由许可页独立提供；Public Beta 尚未完成真机验证，不能用合成向量或软件读回结果替代真实启动/显示/数据验收。
+唯一入口是网站根目录 `firmware-target.json`。当前启用 Read Pico / ESP32-S3 / 16MB / Zbit 的 v2.1.1 正式渠道精简测试候选固定目标，USB 安装自动下载并核验原始镜像，访客不必选择 ZIP、本地固件包或应用槽。只有网站维护者修改固定目标；连接须访客主动操作，并仅连接适用板型；单槽重叠迁移才强制保存完整备份。ESP32-S3 对应重链接材料由许可页独立提供；本构建尚未完成真机验证，不能用合成向量或软件读回结果替代真实启动/显示/数据验收。
 
 ## 指定目标的最少步骤
 
-1. 将已获分发授权且完成校验/隐私审查的原始镜像、manifest 和对应许可/重链接材料放入版本化目录。公开测试版必须明确标为 Public Beta，不能改成稳定版。不能公开私人工作区、应用 C 源、账号或用户数据。
+1. 将已获分发授权且完成校验/隐私审查的原始镜像、manifest 和对应许可/重链接材料放入版本化目录。必须区分正式/探索功能渠道与候选/正式发布阶段；正式渠道测试候选不能写成已完成真机验收或 GitHub Release。不能公开私人工作区、应用 C 源、账号或用户数据。
 2. 在本文件所述 schema 3 中填入包的精确身份、各文件真实地址/字节数/SHA-256、目标表，以及经审查的旧布局与 bootloader 契约。镜像地址必须来自这次构建的实际 `flasher_args.json`，不可把 `update.bin` 当固定地址安装镜像。维护者配置是信任来源，包内自报 hash 不能替代它。
 3. 在隔离测试中验证包、布局、备份、取消和故障路径后更新官网。页面“重新检查固件 / 重试下载”读取同源固定配置，不接受访客覆盖 manifest URL。网站发布不会自动刷设备。
+
+本构建不含独立 HTML 浏览器、PDF、应用中心/Lua 轻应用与开发者实验入口；v2.0.8 浏览器体验及对应指南保留旧身份。生成器须核本次完整 sdkconfig 的 stable 配置和 app offset 288 的 32 字节正式渠道记录，并以精确镜像 hash 绑定；schema 3 不新增渠道字段，也不宣称支持同版本跨渠道更新。
 
 ## schema 3
 
@@ -15,7 +17,7 @@
 |字段|含义|
 |---|---|
 |board / model|操作者需确认的准确硬件板型；芯片识别不能证实板型|
-|project / version / idfVersion / sourceSha|与 app descriptor、来源和实际构建对应；本轮固定 2.0.8 / v6.1 / 79f2f5ad303b9a588d551e3e0eb4b6e5735bc56b|
+|project / version / idfVersion / sourceSha|与 app descriptor、来源和实际构建对应；当前固定 2.1.1 / stable / v6.1 / 3abe593b3ad208229aaf734b879af2f5081c6cec|
 |manifest|固定 url、sha256、bytes；schema1 独立安装清单，仅列四个实际镜像，完整 archive 清单不直接用于安装|
 |images|bootloader、partitionTable、app、otaData；每项 file、url、sha256、bytes、address|
 |partitions|目标分区的完整有序行 `[name,type,subtype,address,size]`，与原始表逐项匹配|
@@ -28,13 +30,23 @@
 ## 自动推荐与数据保护
 
 - 双槽更新：核对真实表、受信 bootloader、CRC/状态/启动选择及启动镜像；写非启动应用，先完整回读验证，再更新另一个 OTA 元数据扇区。保留 NVS、PHY、内部 FAT 和原有效启动记录，不自动重启。
-- 空白新机：保存完整 16 MiB 备份，确认全片空白后安装匹配底座与应用。只看到空白分区表不足以判断空白设备。
+- 空白新机：首次擦除前完整只读扫描 16 MiB，确认全片空白后安装匹配底座与应用，无需强制保存整片备份。只看到空白分区表不足以判断空白设备。
 - 精确已知单槽：仅在分区 hash/行、格式、容量和等长内部存储都相容时搬移，保留 NVS/PHY。分区迁移不是掉电原子事务；中断可能需要按原布局恢复整个备份。实际读回还须通过只读 WL/FAT 验证：当前仅支持 ESP-IDF v6.1 默认 WL v2、4096 字节扇区、5 MiB 分区及结构一致的 FAT12 子集。已知单槽若完整 5 MiB 内部存储每字节均为 FF，按独立空白存储分支原样保持并保留 NVS/PHY，不格式化，也不宣称文件系统已初始化；实际读回、备份和执行前均核全区摘要。其他格式或需要状态恢复的快照只允许备份，不能因保守拒绝就断言数据已损坏。未知或更大 FAT 不截断迁移，不自动格式化或清空个人数据。
 - 单槽迁移的软件验证已覆盖根文件、实际 FatFs 生成的子目录和全空存储，仍限已登记布局与通过只读 WL/FAT12 校验的状态。迁移不是掉电原子事务；中断后可能须由设备负责人借助外部工具按原布局恢复完整备份，网页无自动恢复。未知布局及未登记的旧双槽 bootloader 拒绝写入，不能据版本号推定兼容。
-- 未知芯片、容量、安全状态、未知表/flags、布局或启动记录不可信时停止。首次/迁移和双槽更新均先读回完整备份，再由操作者确认已保存并输入本次计划确认文字。
+- 未知芯片、容量、安全状态、未知表/flags、布局或启动记录不可信时停止。连接后由同一个刷机按钮执行推荐路径；仅单槽重叠迁移须先保存、关闭并读回核验完整备份。无需重复输入计划确认文字。
 
 ## 失败与恢复
 
 取消、拔线、切页或写入错误只停止后续命令，已擦写范围不会自动回滚。保留备份及其 SHA-256，记录原芯片/布局与目标计划。双槽应先核实际启动情况，不反复覆盖旧有效槽；首次/迁移中断须由设备负责人用原匹配底座和完整备份恢复，不能把旧 FAT 直接写到猜测的新地址。重新连接会重读与重规划，不复用旧确认。
 
 软件读回成功只证明传输与 Flash 内容/启动记录一致，不证明真实启动、显示、硬件兼容、回滚或物理掉电恢复。开发与独立验收使用内存协议端口，真实设备结果须单列。
+
+## 生成器输入
+
+在仓库根目录运行 `python3 scripts/prepare-firmware-target.py --package PACKAGE_DIRECTORY --trust TRUST_JSON --out staging/prepared-target`。输出目录必须尚不存在；生成器不直接修改根目标。
+
+`TRUST_JSON` 中的文件路径均相对该 JSON 所在目录，禁止绝对路径或逃逸。必填字段为 `manifestSha256`、`board`、`model`、`project`、`sdkconfig`、`knownLayouts` 与 `acceptedBootloaders`。`sdkconfig` 指向本次构建配置；安装目录必须含本次实际 `flasher_args.json` 与四镜像安装清单。
+
+每个 `knownLayouts` 项包含 `id`、`partitionFile`、`storageMigration`；后者精确字段为 `method:"byte-copy"`、`format:"esp-idf-wl-fat"`、`sectorSize:4096`、`sourceLabel`、`targetLabel`。每个 `acceptedBootloaders` 项包含 `file`、`sdkconfig`、`contract`；当前合同为 `idfVersion:"v6.1"`、`rollback:true`、`antiRollback:false`，每个底座必须有各自匹配证据。
+
+输出包括版本化四镜像与安装清单、`firmware-target.candidate.json` 和准备收据。维护者须核生成结果与实际镜像，再决定是否更新网站根目标；不能从包内自报摘要代替独立核定的清单身份。

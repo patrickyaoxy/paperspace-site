@@ -98,7 +98,7 @@ Module["expectedDataFileDownloads"]++;
       // web worker
       PACKAGE_PATH = encodeURIComponent(location.pathname.substring(0, location.pathname.lastIndexOf("/")) + "/");
     }
-    var PACKAGE_NAME = "/workspace/sites/zhijian/wasm-lab/build/reader.data";
+    var PACKAGE_NAME = "reader.data";
     var REMOTE_PACKAGE_BASE = "reader.data";
     var REMOTE_PACKAGE_NAME = Module["locateFile"] ? Module["locateFile"](REMOTE_PACKAGE_BASE, "") : REMOTE_PACKAGE_BASE;
     var REMOTE_PACKAGE_SIZE = metadata["remote_package_size"];
@@ -197,9 +197,9 @@ Module["expectedDataFileDownloads"]++;
           Module["FS_createDataFile"](name, null, data, true, true, true);
           Module["removeRunDependency"](`fp ${name}`);
         }
-        Module["removeRunDependency"]("datafile_/workspace/sites/zhijian/wasm-lab/build/reader.data");
+        Module["removeRunDependency"]("datafile_reader.data");
       }
-      Module["addRunDependency"]("datafile_/workspace/sites/zhijian/wasm-lab/build/reader.data");
+      Module["addRunDependency"]("datafile_reader.data");
       if (!Module["preloadResults"]) Module["preloadResults"] = {};
       Module["preloadResults"][PACKAGE_NAME] = {
         fromCache: false

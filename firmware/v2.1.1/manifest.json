@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "source_sha": "3abe593b3ad208229aaf734b879af2f5081c6cec",
+  "version": "2.1.1",
+  "tag": "v2.1.1",
+  "profile": "product",
+  "channel": "stable",
+  "candidate_state": "CLOUD_TEST_CANDIDATE",
+  "chip": "esp32s3",
+  "flash_size": "16MB",
+  "idf_version": "ESP-IDF v6.1",
+  "sdk_sha": "fff9895c82d744c7237be8847347bdd1b07c6643",
+  "runtime_flash_mhz": 120,
+  "psram_mhz": 120,
+  "main_stack_bytes": 16384,
+  "app_descriptor": {
+    "version": "2.1.1",
+    "project_name": "Read_Pico",
+    "idf_version": "v6.1",
+    "channel": "stable"
+  },
+  "flash_files": {
+    "0x0": "bootloader/bootloader.bin",
+    "0x8000": "partition_table/partition-table.bin",
+    "0xf10000": "ota_data_initial.bin",
+    "0x10000": "Read_Pico.bin"
+  },
+  "bootloader_contract": {
+    "idfVersion": "v6.1",
+    "rollback": true,
+    "antiRollback": false
+  },
+  "files": {
+    "Read_Pico.bin": {
+      "sha256": "3bd0d10257bdad0020bc72ee7c4f37c0e3d26e2be41132a41f3c7ba4b34e7310",
+      "bytes": 3338288
+    },
+    "bootloader/bootloader.bin": {
+      "sha256": "de9684ab654050d83dbf651b5eeb2d9f42af1ac85a10277c6d1ba7a2f64b8b4e",
+      "bytes": 21232
+    },
+    "partition_table/partition-table.bin": {
+      "sha256": "cd4ff0257b302884afa9c8961a8d3ffa26851b03b8b97db3d602e04f0b88f5ae",
+      "bytes": 3072
+    },
+    "ota_data_initial.bin": {
+      "sha256": "7d2c7ac4888bfd75cd5f56e8d61f69595121183afc81556c876732fd3782c62f",
+      "bytes": 8192
+    }
+  },
+  "hardware": "NOT_TESTED",
+  "origin": {
+    "project": "MindReset Read Pico Demo Firmware",
+    "url": "https://github.com/MindReset/read_pico_firmware",
+    "license": "Apache-2.0"
+  },
+  "normalization": "Canonical ELF removes debug/private build paths; official ELF-to-image; no loadable content change; no image patching"
+}

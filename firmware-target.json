@@ -6,39 +6,39 @@
     "board": "Read Pico",
     "model": "ESP32-S3 / 16MB / Zbit",
     "project": "Read_Pico",
-    "version": "2.0.8",
+    "version": "2.1.1",
     "idfVersion": "v6.1",
-    "sourceSha": "79f2f5ad303b9a588d551e3e0eb4b6e5735bc56b",
+    "sourceSha": "3abe593b3ad208229aaf734b879af2f5081c6cec",
     "manifest": {
-      "url": "firmware/v2.0.8/manifest.json",
-      "sha256": "c03d3958c77228a99d866141d4eaa2262cb4385867c85094ad9ff9f779b572e2",
-      "bytes": 1717
+      "url": "firmware/v2.1.1/manifest.json",
+      "sha256": "3cad0ead16d659ddbde866f2d269294e755b5d592d99940d49f635b6020f2219",
+      "bytes": 1779
     },
     "images": {
       "bootloader": {
         "file": "bootloader/bootloader.bin",
-        "url": "firmware/v2.0.8/bootloader/bootloader.bin",
-        "sha256": "2f3d2e3b17f259b5b2cedda68d214074a906860475d4b681bba97d20c2f0a316",
+        "url": "firmware/v2.1.1/bootloader/bootloader.bin",
+        "sha256": "de9684ab654050d83dbf651b5eeb2d9f42af1ac85a10277c6d1ba7a2f64b8b4e",
         "bytes": 21232,
         "address": 0
       },
       "partitionTable": {
         "file": "partition_table/partition-table.bin",
-        "url": "firmware/v2.0.8/partition_table/partition-table.bin",
+        "url": "firmware/v2.1.1/partition_table/partition-table.bin",
         "sha256": "cd4ff0257b302884afa9c8961a8d3ffa26851b03b8b97db3d602e04f0b88f5ae",
         "bytes": 3072,
         "address": 32768
       },
       "app": {
         "file": "Read_Pico.bin",
-        "url": "firmware/v2.0.8/Read_Pico.bin",
-        "sha256": "71c977630f11a970b7b16c9a7bc29d9e67ea19a0f823093fb17add25102ee76f",
-        "bytes": 4160944,
+        "url": "firmware/v2.1.1/Read_Pico.bin",
+        "sha256": "3bd0d10257bdad0020bc72ee7c4f37c0e3d26e2be41132a41f3c7ba4b34e7310",
+        "bytes": 3338288,
         "address": 65536
       },
       "otaData": {
         "file": "ota_data_initial.bin",
-        "url": "firmware/v2.0.8/ota_data_initial.bin",
+        "url": "firmware/v2.1.1/ota_data_initial.bin",
         "sha256": "7d2c7ac4888bfd75cd5f56e8d61f69595121183afc81556c876732fd3782c62f",
         "bytes": 8192,
         "address": 15794176
@@ -137,6 +137,14 @@
       "rollback": true,
       "antiRollback": false
     },
-    "acceptedBootloaders": []
+    "acceptedBootloaders": [
+      {
+        "sha256": "2f3d2e3b17f259b5b2cedda68d214074a906860475d4b681bba97d20c2f0a316",
+        "bytes": 21232,
+        "idfVersion": "v6.1",
+        "rollback": true,
+        "antiRollback": false
+      }
+    ]
   }
 }
