@@ -139,6 +139,9 @@ export const readSessionMethod = String.raw`async #o(t,A){
 export function adaptConstructor(source){
  let output=replaceExactly(source,'new vt({transport:this.#Q,','new VerifiedESPLoader({transport:this.#Q,serialOptions:{bufferSize:65536},');
  const setup=';this.#t.connection.serialBufferSize=65536;t.readLoop='+verifiedReadLoop+';t.onSerialReadError=error=>{const d=this.#t.connection,errors=d.receiveErrors||(d.receiveErrors={count:0,events:[]});errors.count++;const name=String(error?.name||"Error").slice(0,64);if(errors.events.length<8)errors.events.push({name,stage:d.stage,currentStep:d.read?.currentStep??null,message:String(error?.message||error).slice(0,160)});if(this.#r.signal.aborted)return true;if(!this.#r.signal.aborted&&(this.#S||this.#e==="writing"||this.#e==="uploading-stub")){this.cancel("SERIAL_RECEIVE_LOSS: "+name);return true;}return false;};t.setDeviceLostCallback';
+ output=replaceExactly(output,'this.#e==="connecting","Reset signals forbidden after connection"','["connecting","resetting"].includes(this.#e),"Reset signals require connection or verified restart"');
+ output=replaceExactly(output,'this.#r.signal.aborted||this.cancel("DEVICE_DISCONNECTED")','this.#r.signal.aborted||this.#e==="resetting"||this.cancel("DEVICE_DISCONNECTED")');
+ output=replaceExactly(output,'t.setDeviceLostCallback(()=>this.cancel("DEVICE_DISCONNECTED"))','t.setDeviceLostCallback(()=>{if(this.#e!=="resetting")this.cancel("DEVICE_DISCONNECTED")})');
  return replaceExactly(output,',t.setDeviceLostCallback',setup);
 }
 
@@ -184,5 +187,45 @@ export function replacements(methods){
  const cleanConnect='if(connectionMode==="clean-reinstall"){this.#i();this.#A={chip:"esp32s3",revision:A,mac:i,flashId:s,capacity:iA,partitionSha256:null,partitionSectorSha256:null,partitions:[],layout:"unread",layoutId:null,reason:"EXPLICIT_CLEAN_CONNECTION",ota:null,bootloaderMatched:false,bootloaderIdentity:null,runningSlot:null,bootSelection:null,boardVerified:false,modelVerified:false,operatorSelection:this.#G,stub:"OFFICIAL_SDK_UPLOADED"};this.#t.setConnectionStage("ready-clean");this.#e="ready";return this.snapshot()}';
  connect=replaceExactly(connect,'this.#t.setConnectionStage("partition-read");let n=',cleanConnect+'this.#t.setConnectionStage("partition-read");let n=');
 
- return new Map([['#o',readSessionMethod],['#v',write],['#H',securityMethod],['#m',prewriteMethod],['confirm',confirmMethod],['prepare',prepare],['execute',execute],['snapshot',snapshot],['connect',connect]]);
+ // Read OTA geometry from the verified device table; bind target-required labels and geometry separately.
+ const classification='fA(a)?(h="blank",o="blank-flash-candidate",g="FULL_SCAN_REQUIRED_BEFORE_FIRST_WRITE"):_&&R===_.partitionSha256&&JSON.stringify(r)===JSON.stringify(_.partitions)?(h="dual",o="target-dual",g=null):(this.#B=_?.knownLayouts?.find(w=>w.partitionSha256===R&&JSON.stringify(w.partitions)===JSON.stringify(r))||null,this.#B&&(h="single",o=this.#B.id,g=null));';
+ const geometry='const apps=r.filter(p=>p[1]===0),ota0=apps.find(p=>p[2]===16),ota1=apps.find(p=>p[2]===17),otaData=r.filter(p=>p[1]===1&&p[2]===0);const dual=apps.length===2&&ota0&&ota1&&otaData.length===1&&otaData[0][4]===8192;const appLayoutMismatches=_.partitions.filter(p=>!r.some(q=>JSON.stringify(q)===JSON.stringify(p))).map(p=>({expected:p,actual:r.find(q=>q[0]===p[0])||null})),appLayoutCompatible=dual&&!appLayoutMismatches.length;fA(a)?(h="blank",o="blank-flash-candidate",g="FULL_SCAN_REQUIRED_BEFORE_FIRST_WRITE"):dual?(h="dual",o="device-dual",g=null):(this.#B=_?.knownLayouts?.find(w=>w.partitionSha256===R&&JSON.stringify(w.partitions)===JSON.stringify(r))||null,this.#B&&(h="single",o=this.#B.id,g=null));';
+ connect=replaceExactly(connect,classification,geometry);
+ const bootStart=connect.indexOf('if(h==="dual"&&_?.images){'),bootEnd=connect.indexOf('return this.#i()',bootStart);
+ if(bootStart<0||bootEnd<0)throw Error('Missing reviewed dual discovery');
+ connect=connect.slice(0,bootStart)+'if(h==="dual"){this.#t.setConnectionStage("ota-read");this.#M=await this.#o(otaData[0][3],8192);S=Vt(this.#M);if(!S.safe)g=S.reason;}'+connect.slice(bootEnd);
+ connect=replaceExactly(connect,'bootloaderIdentity:d,runningSlot:null','bootloaderIdentity:d,appLayoutCompatible,appLayoutMismatches,otaDataAddress:h==="dual"?otaData[0][3]:null,runningSlot:null');
+ prepare=replaceExactly(prepare,'f(this.#A.bootloaderMatched,"BOOTLOADER_CONTRACT_MISMATCH");let E=await this.#o(IA,8192);','f(this.#A.appLayoutCompatible,"APP_LAYOUT_INCOMPATIBLE: "+JSON.stringify(this.#A.appLayoutMismatches));let E=await this.#o(this.#A.otaDataAddress,8192);');
+ prepare=replaceExactly(prepare,'g=Ea(Vt(E)),o=g.target','g=Ea(Vt(E)),g.address=this.#A.otaDataAddress+g.index*4096,o=g.target');
+ prepare=replaceExactly(prepare,'a.push({address:IA,size:8192,sha256:await b(E)},{address:0,size:this.#A.bootloaderIdentity.bytes,sha256:this.#A.bootloaderIdentity.sha256})','a.push({address:this.#A.otaDataAddress,size:8192,sha256:await b(E)})');
+ prepare=replaceExactly(prepare,'let I=s.partitions.find(E=>E[0]===o);','let I=g?this.#A.partitions.find(E=>E[1]===0&&E[2]===(o==="ota_0"?16:17)):s.partitions.find(E=>E[0]===o);');
+ // Bootloader selection is a subtype, not a user-chosen label. Preserve the device label separately.
+ prepare=replaceExactly(prepare,'appPartition:o,address:I[3]','appPartition:o,devicePartitionLabel:I[0],otaDataAddress:g?this.#A.otaDataAddress:null,address:I[3]');
+ for(const match of [...prepare.matchAll(/"(?:\\.|[^"\\])*"/g)]){let value;try{value=JSON.parse(match[0]);}catch{continue;}if(value.includes('保留完整备份。提交结果'))prepare=replaceExactly(prepare,match[0],JSON.stringify('失败或中断后断开并重新连接，重新读取启动选择记录后再规划；原启动槽与内部数据保留，完整备份可选。提交结果不确定时以重新读取的元数据为准。'));}
+ execute=execute.replaceAll('this.#o(IA,8192)','this.#o(this.#A.otaDataAddress,8192)');
+ execute=replaceExactly(execute,'let R=await this.#v(g,s,r,h);','if(g.kind==="otadata-commit")this.#t.connection.otaCommitAttempted=true;let R=await this.#v(g,s,r,h);if(g.kind==="app")this.#t.connection.appMd5Verified=true;');
+ execute=replaceExactly(execute,'n.verifiedOTA=g}','n.verifiedOTA=g,this.#t.connection.otaCommitVerified=true}');
+ execute=replaceExactly(execute,'bootloaderMatched:!0,bootloaderIdentity:n.metadata?','bootloaderMatched:n.metadata?this.#A.bootloaderMatched:true,bootloaderIdentity:n.metadata?');
+ execute=replaceExactly(execute,'partitionSha256:this.#n.package.partitionSha256,partitionSectorSha256:null,partitions:this.#n.package.partitions','partitionSha256:n.metadata?this.#A.partitionSha256:this.#n.package.partitionSha256,partitionSectorSha256:n.metadata?this.#A.partitionSectorSha256:null,partitions:n.metadata?this.#A.partitions:this.#n.package.partitions');
+
+ const cancel=String.raw`cancel(t="CANCELLED"){if(this.#r.signal.aborted)return;const resetting=this.#e==="resetting";this.#E=t;this.#s++;this.#C=null;this.#r.abort();this.#e="cancelled";if(!resetting)this.#_();}`;
+ return new Map([['cancel',cancel],['#o',readSessionMethod],['#v',write],['#H',securityMethod],['#m',prewriteMethod],['confirm',confirmMethod],['prepare',prepare],['execute',execute],['snapshot',snapshot],['connect',connect]]);
 }
+
+// Only a completed, verified write can enter this signal-only restart. No Flash commands.
+export const restartMethod=String.raw`restart(){return this.#x(async()=>{
+ f(this.#e==="complete"&&!this.#t.connection.restartAttempted,"RESTART_REQUIRES_UNCONSUMED_VERIFIED_WRITE");this.#t.connection.restartAttempted=true;this.#e="resetting";
+ const info=this.#a.getInfo?.()||{},usb=info.usbVendorId===0x303a;
+ const receipt={writeVerified:true,resetCommandSent:false,bootHealthVerified:false,method:"hard_reset",usbDelay:usb,error:null};
+ this.#t.setConnectionStage("hard-reset");
+ try{await this.#Q.setDTR(false);await this.#Q.setRTS(true);await new Promise(resolve=>setTimeout(resolve,usb?200:100));await this.#Q.setRTS(false);receipt.resetCommandSent=true;if(usb)await new Promise(resolve=>setTimeout(resolve,200));}
+ catch(error){receipt.error=String(error.message||error);}
+ finally{
+  // Release RTS even after cancellation; this is signal cleanup, never a Flash command.
+  if(!receipt.resetCommandSent)try{await this.#g.setRTS(false);}catch(error){receipt.releaseError=String(error.message||error);}
+  await this.#_();receipt.portCloseUncertain=this.#F;
+  if(!this.#r.signal.aborted)this.#e="complete";
+  this.#t.connection.restart=structuredClone(receipt);
+ }
+ return V(receipt);
+ },{fatal:false});}`;

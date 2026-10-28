@@ -21,7 +21,9 @@
     "channel": "stable"
   },
   "maintenance": {
+    "scope": "all",
     "baselineEngineSha256": "60a95723afb8f3f2c7503cb79a0553287eb6bda6a53bac3b5fcca637b0b912bd",
+    "provenanceMode": "compiled-bundle-derived-structural-session-maintenance",
     "changedMethods": [
       {
         "method": "VerifiedESPLoader adapter",
@@ -42,7 +44,7 @@
         "start": 339953,
         "end": 341467,
         "beforeSha256": "70a14922cdd5a8610aef5e7b875a74ef9f2356e8b59d3df8faab44aa4bbd4bdb",
-        "afterSha256": "3016f2fa00b400a1bb034d51e3051ab90d45bfded07359e352d87dde2b405b5f"
+        "afterSha256": "fc50ba5163b5fe13fbcae281c81c3ed6e635cab2b3c26658999d7026825547bc"
       },
       {
         "method": "#H",
@@ -63,14 +65,14 @@
         "start": 347080,
         "end": 349382,
         "beforeSha256": "5d3b184315b64651bf85e8d933e2494a5db640ca37f88e6b0a8c5070f2b22b64",
-        "afterSha256": "6ffe605b4ef1f2de6f64eeb3c101439304224480c16e9cfa49992f6945eb5f68"
+        "afterSha256": "2ad535f5db99d742b45c032e3fe80089df72dc3946954ea8b922890a85ee15cd"
       },
       {
         "method": "prepare",
         "start": 349797,
         "end": 356444,
         "beforeSha256": "59d6bf93bcc53592b1bba054fac72c47cb1720814532bdd9da70f19818ec91b7",
-        "afterSha256": "845091c7a280c4e216528f104927000334fabbc4b664d057def73615eb746e20"
+        "afterSha256": "0e5a70c7ed5babc758fb57acceb2b06980f610c14bc751438858add9e977311c"
       },
       {
         "method": "confirm",
@@ -98,7 +100,14 @@
         "start": 359971,
         "end": 361812,
         "beforeSha256": "ddbab9fc6e03d6f0360124894157981d35e1764666a5c7ecbfa5de03b68e621c",
-        "afterSha256": "ed0b9ecfc227ddb174e6b936682fd3e5ecf84c0825f76913e8fc36a0dba49280"
+        "afterSha256": "49a81620edf9a9dfa402f2e94d34cdce424368b057ce2c644406fe1fa4f2f8bb"
+      },
+      {
+        "method": "cancel",
+        "start": 361812,
+        "end": 361939,
+        "beforeSha256": "31ec051ab550c5f01963523fb9323093bd6b1ccdf2b2b84eb258978f6e9ac12f",
+        "afterSha256": "95a70970f829d600b6b81ddeae6dd2e1135367901f63157d996cf38524f37f0b"
       },
       {
         "method": "snapshot",
@@ -108,18 +117,25 @@
         "afterSha256": "a67567f1a8861f05b04ac56ebe6711e9fc2cc0cced6bac007ce7801aa3be2a33"
       },
       {
+        "method": "verified restart method",
+        "start": 362320,
+        "end": 362320,
+        "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "afterSha256": "c333e88cd9b203fb812c2280de3d18b746d200776d85e18b69d777f29e42e39c"
+      },
+      {
         "method": "exported identity metadata",
         "start": 362322,
         "end": 362529,
         "beforeSha256": "e9c7562e5b5ba102331fe7809562e913bc4cdd3709d92b5b87013233624985c9",
-        "afterSha256": "18447e6a20fa6814167517083dbe8dfc5ff8079d1eaad02e100677c623c3ffb4"
+        "afterSha256": "8e992dd0ad03062e94a96d3c1493feccdf11e98abed5dfe5459ec1c4558e5c56"
       },
       {
         "method": "controller clean connection mode forwarding",
         "start": 362529,
         "end": 364110,
         "beforeSha256": "f0973013351fedbfdeeccae3d6bfeeafbb2e4eabeb591eeb6f39779b65f2757c",
-        "afterSha256": "d3a3191c05e0fd708da8d54c8f38fcd532bfad5b5b35c12a97ee470da19c7e91"
+        "afterSha256": "e30a338cfa6a47c90bba9d427d56d8c889b633880966bb646bb16999517e08de"
       }
     ],
     "allOtherModuleAstEqual": true,
@@ -129,15 +145,20 @@
     "sessionLoaderOnly": true,
     "signedRegisterValuePreserved": true,
     "identityMetadataOnlyChanged": true,
-    "controllerOnlyForwardsConnectionMode": true,
+    "devicePartitionGeometryAndOtaAddress": true,
+    "bootloaderByteAllowlistRequired": false,
+    "verifiedRestartSignalOnly": true,
+    "controllerForwardsConnectionModeAndVerifiedRestart": true,
     "perSessionReadLoopOnlyAddsErrorObserver": true,
     "sdkStubUploadAndPostHandshakeBytesIdentical": true,
-    "serialHandshakeBuild": "paperspace-one-click-serial-2",
-    "maintenanceSourceSha256": "85df48dcedb9eb71237da06402386b9764e269da99082ca16b5a0873fbc77990",
-    "scriptSha256": "999f45c81a059dbc43f2e1ede5ca4be0c35bca42cfdb50fc92bceffb3193a26c"
+    "serialHandshakeBuild": "paperspace-dual-upgrade-1",
+    "engineSha256": "a4462439a8d9cb527c368cad0986fb94f893a6093b6e01af51063b321d74935b",
+    "engineBytes": 382070,
+    "maintenanceSourceSha256": "f022ec92a6931d3d282ac248bd3cf7571248aab98fd45e428e9e7b3dd15a1c9c",
+    "scriptSha256": "9ebadc89cb767eb833e3ab605a5ed9df7fb66071afaf28f92e33074c6be3a5e0"
   },
-  "engine_sha256": "272f223a5acc71791f88efc4e76662537deacf75aa5f5e9b93fba959a521984f",
-  "engine_bytes": 380101,
+  "engine_sha256": "a4462439a8d9cb527c368cad0986fb94f893a6093b6e01af51063b321d74935b",
+  "engine_bytes": 382070,
   "externalImports": [],
   "deviceTest": "NOT_RUN",
   "cleanReinstall": {
@@ -181,5 +202,17 @@
     "sha256ReadbackVerified": false,
     "imageSha256": "Source image only; not a device readback hash",
     "fullFlashSHAReadbackRequired": false
+  },
+  "dualUpgrade": {
+    "build": "paperspace-dual-upgrade-1",
+    "layout": "actual verified partition records; target required tuples; order/hash independent",
+    "bootloaderByteAllowlistRequired": false,
+    "otaSelection": "CRC/state/sequence including blank default ota_0; NEW/PENDING/unknown blocked",
+    "addresses": "actual device app/otadata partitions",
+    "commit": "after application device MD5; opposite metadata sector; readback verified",
+    "restart": "single-use completed-write-only DTR false; RTS assert then release; signal cleanup and close",
+    "resetCommandSent": "host signal API completed, never hardware boot evidence",
+    "bootHealthVerified": false,
+    "deviceTest": "NOT_RUN"
   }
 }

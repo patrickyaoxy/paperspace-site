@@ -5,7 +5,7 @@
 ## 指定目标的最少步骤
 
 1. 将已获分发授权且完成校验/隐私审查的原始镜像、manifest 和对应许可/重链接材料放入版本化目录。必须区分正式/探索功能渠道与候选/正式发布阶段；正式渠道测试候选不能写成已完成真机验收或 GitHub Release。不能公开私人工作区、应用 C 源、账号或用户数据。
-2. 在本文件所述 schema 3 中填入包的精确身份、各文件真实地址/字节数/SHA-256、目标表，以及经审查的旧布局与 bootloader 契约。镜像地址必须来自这次构建的实际 `flasher_args.json`，不可把 `update.bin` 当固定地址安装镜像。维护者配置是信任来源，包内自报 hash 不能替代它。
+2. 在本文件所述 schema 3 中填入包的精确身份、各文件真实地址/字节数/SHA-256、目标表，以及经审查的旧布局与 bootloader 构建资料。镜像地址必须来自这次构建的实际 `flasher_args.json`，不可把 `update.bin` 当固定地址安装镜像。维护者配置是信任来源，包内自报 hash 不能替代它。
 3. 在隔离测试中验证包、布局、备份、取消和故障路径后更新官网。高级选项中的“重新检查官网固件”读取同源固定配置，不接受访客覆盖 manifest URL。网站发布不会自动刷设备。
 
 本构建不含独立 HTML 浏览器、PDF、应用中心/Lua 轻应用与开发者实验入口；v2.0.8 浏览器体验及对应指南保留旧身份。生成器须核本次完整 sdkconfig 的 stable 配置和 app offset 288 的 32 字节正式渠道记录，并以精确镜像 hash 绑定；schema 3 不新增渠道字段，也不宣称支持同版本跨渠道更新。
@@ -23,15 +23,15 @@
 |partitions|目标分区的完整有序行 `[name,type,subtype,address,size]`，与原始表逐项匹配|
 |knownLayouts|保留数据迁移所用的精确旧单槽表 hash、完整行和内部存储契约；不限制干净重装|
 |bootloaderContract|经构建证据核定的 IDF / rollback / antiRollback 契约，不能凭二进制名字填写|
-|acceptedBootloaders|保留数据双槽更新所用旧 bootloader 白名单，每项 bytes、sha256、idfVersion、rollback、antiRollback；干净重装会覆盖旧底座|
+|acceptedBootloaders|旧 bootloader 来源资料，每项 bytes、sha256、idfVersion、rollback、antiRollback；当前保留更新不以字节白名单为门禁，干净重装会覆盖旧底座|
 
 当前目标六分区：NVS 0x9000/0x5000、PHY 0xE000/0x1000、ota_0 0x10000/0x500000、storage 0x510000/0x500000、ota_1 0xA10000/0x500000、otadata 0xF10000/0x2000。bootloader 地址 0x0、分区表地址 0x8000；app 与全 FF 初始 otadata 必须来自匹配包。完整安装参数不能直接用作保留数据的双槽更新。
 
 ## 安装方式与数据影响
 
-常驻说明展示适用机型、断电和数据风险。点击唯一主按钮“连接并刷机”会立即申请浏览器设备选择，随后连接检查与官网固件获取并行；全部必要校验完成后自动刷入。可信双槽保留数据更新，无额外普通升级确认；需要全新安装时，只弹一次明确清空全部16 MiB内部设置、阅读进度和文件的确认。拒绝则零写入。TF/SD卡不改动；独立PMU中的屏幕VCOM标定不清除。备份折叠在高级选项中：可先只读连接，再在独立点击中保存完整备份，关闭文件并回读SHA-256才显示保存成功；它不是全新安装的门槛。未知分区无需先通过迁移格式检查。
+常驻说明展示适用机型、断电和数据风险。点击唯一主按钮“连接并刷机”会立即申请浏览器设备选择，随后连接检查与官网固件获取并行；全部必要校验完成后自动刷入。兼容双槽保留数据更新，无额外普通升级确认。分区或 OTA 无法安全判定时明确停写，不自动转清空；空白、单槽或未知设备可另选全新安装，并只弹一次明确清空全部16 MiB内部设置、阅读进度和文件的确认。拒绝则零写入。TF/SD卡不改动；独立PMU中的屏幕VCOM标定不清除。备份折叠在高级选项中：可先只读连接，再在独立点击中保存完整备份，关闭文件并回读SHA-256才显示保存成功；它不是全新安装的门槛。未知分区无需先通过迁移格式检查。
 
-- 保留数据双槽更新：核对真实表、兼容 bootloader 与 OTA 的 CRC/状态/启动选择；不整片读取或按版本拒绝原启动应用。写非启动应用，先核设备 Flash MD5，再提交并读取校验 OTA 元数据。保留 NVS、PHY、内部 FAT 和原有效启动记录，不自动重启。旧布局或底座白名单仅用于证明此保留方式安全。
+- 保留数据双槽更新：从设备实际表解析两 OTA 槽和 otadata，按目标包必需分区的名称、类型、地址和大小逐项核对；不要求分区表摘要或条目顺序相同。目标应用自身有布局约束，不符时以 `APP_LAYOUT_INCOMPATIBLE` 列出差异并停写。不读取旧 bootloader 白名单或原应用版本。OTA 以 CRC、状态、序号判定启动选择（不能证明原运行槽）；全 FF 且无 factory 的双槽按 ota_0 默认选择，NEW/PENDING_VERIFY 和未知记录明确阻断。写非选中应用槽，经设备 MD5 后才提交另一 OTA 记录并读取核验；原槽、底座、表、NVS、PHY 和 storage 保留。写入核验后自动发送一次 hard_reset，关闭端口，分别记录写入已验、复位指令已发送和启动健康未验。
 - 干净重装：将匹配的四镜像放入全 FF 的 16 MiB 安装图，使用已有受控 FLASH_BEGIN/DATA 在 `[0,16777216)` 内覆盖，按不超过 64 KiB 分段擦写，每段从设备计算实际 Flash MD5 并与源段比较；不使用无边界的整片擦除命令。内部设置、进度、文件及原应用全部清空，TF/SD 卡不改。未知旧 bootloader、损坏/未知分区均可使用此路径，无需旧布局白名单。镜像校验和适用硬件要求保持不变。
 - 引擎兼容接口仍保留 `prepare(candidate,{mode:'auto'})` 的全空新机扫描和已知单槽保留迁移。后者仍需真实布局、兼容 WL/FAT12、完整备份保存及等长搬移；普通界面不默认引导单槽用户走此高级路径。
 
@@ -76,3 +76,5 @@ Flash 厂商没有品牌白名单；有效 RDID 与容量才是协议校验依�
 依据：[准确stub读取实现](https://github.com/espressif/esp-flasher-stub/blob/23959b780454adf885916d42f2274ec648e96a94/src/command_handler.c#L764-L844)、[Web Serial标准](https://wicg.github.io/serial/)、[Chrome的接收错误和缓冲说明](https://developer.chrome.com/docs/capabilities/serial)。连接诊断仅含readStart/readExpected/readReceived/currentStep等计数与状态，不存Flash原始payload。
 
 写后成功回执为 `verificationMethod:"device-md5"`、`md5Verified:true`、`readbackSha256:null`、`sha256ReadbackVerified:false`；`imageSha256`只描述已固定的源安装图。设备MD5与本地源段比较通过才算完成，不重复每段和整片SHA下载校验。双槽保留数据更新仍验证启动选择与OTA提交；不声称已读取验证旧应用或实际启动健康。失败可复制必要日志，剪贴板被拒绝时提供只读文本选择回退，不假报已复制。普通页面不加载或显示协议演练、本地包检查与开发调试入口。
+
+硬复位仅在当前会话写入和 OTA 提交已验后授权一次：先释放 DTR，再 RTS assert→100 ms（Espressif USB 200 ms）→release，USB 再等待 200 ms。依据 [Espressif esp-pylib 1.2.0](https://github.com/espressif/esp-pylib/blob/v1.2.0/esp_pylib/serial_reset.py)。复位失败保留写入核验回执，绝不声称已经启动；取消时尽力释放 RTS 并关闭端口。接收结束/断连的预期抑制仅限这一复位阶段，物理复位、重新枚举、首次健康确认和显示仍待真机验证。
