@@ -1,3 +1,4 @@
+const stubRunMethod = "async runStub(){if(this.syncStubDetected)return this.info(\"Stub is already running. No upload is necessary.\"),this.IS_STUB=!0,await this.applyUsbFlashWriteSize(),this.chip;if(this.secureDownloadMode)return this.info(\"Stub flasher is not supported in Secure Download Mode, it has been disabled.\"),this.chip;let t=this.chip.getChipRevision?await this.chip.getChipRevision(this):void 0,A=await rt(this.chip.CHIP_NAME,t);if(A===void 0)return this.info(`Stub flasher is not yet supported on ${this.chip.CHIP_NAME}, it has been disabled.`),this.chip;this.info(\"Uploading stub...\");let i=[A.decodedText,A.decodedData];for(let a=0;a<i.length;a++)if(i[a]){let r=a===0?A.text_start:A.data_start,h=i[a].length,o=Math.floor((h+this.ESP_RAM_BLOCK-1)/this.ESP_RAM_BLOCK);await this.memBegin(h,o,this.ESP_RAM_BLOCK,r);for(let g=0;g<o;g++){let R=g*this.ESP_RAM_BLOCK,_=R+this.ESP_RAM_BLOCK;await this.memBlock(i[a].slice(R,_),g)}}this.info(\"Running stub...\"),await this.startVerifiedStub(A.entry);return this.info(\"Stub running...\"),this.IS_STUB=!0,await this.applyUsbFlashWriteSize(),this.chip}";
 export const verifiedLoader = String.raw`class VerifiedESPLoader extends vt {
  async readReg(address,timeout=this.DEFAULT_TIMEOUT){
   this.debug("Read Register:"+this.toHex(address));
@@ -8,6 +9,44 @@ export const verifiedLoader = String.raw`class VerifiedESPLoader extends vt {
   if(!Number.isSafeInteger(value)||value< -2147483648||value>4294967295)throw new Error("READ_REG_VALUE_INVALID");
   this.debug("Read Register Value:"+value);return value;
  }
+
+ connection={build:"paperspace-serial-handoff-1",stage:"new",lastOpcode:null,commands:0,events:[],handoff:null};
+ setConnectionStage(stage){this.connection.stage=stage;if(this.connection.events.length<32)this.connection.events.push(stage);}
+ async command(...args){if(args[0]!=null){this.connection.lastOpcode=args[0];this.connection.commands++;}return super.command(...args);}
+ async startVerifiedStub(entry){
+  this.setConnectionStage("stub-handoff");
+  const state={memEndSent:false,ack:false,greeting:false,frames:0,optionalAckTimedOut:false};this.connection.handoff=state;
+  const stop=(code,detail)=>{const error=new Error(code+(detail?": "+detail:""));error.code=code;throw error;};
+  const data=this._appendArray(this._intToByteArray(entry===0?1:0),this._intToByteArray(entry));
+  await this.command(this.ESP_MEM_END,data,0,false);state.memEndSent=true;
+  const deadline=Date.now()+this.DEFAULT_TIMEOUT;
+  for(let count=0;count<8;count++){
+   const remaining=deadline-Date.now();if(remaining<=0)stop("STUB_HANDOFF_TIMEOUT","OHAI greeting not verified");
+   let packet;
+   try{packet=await this.transport.read(remaining);}
+   catch(error){
+    // Only a completely empty optional ROM ACK window may be absent after a verified SLIP OHAI.
+    // Partial frames, invalid SLIP, disconnects, cancellations and explicit command errors still fail.
+    if(state.greeting&&!state.ack&&error.message==="Serial data stream stopped: Possible serial noise or corruption."){state.optionalAckTimedOut=true;break;}
+    if(!state.greeting&&/Serial data stream stopped|No serial data received/.test(error.message))stop("STUB_HANDOFF_TIMEOUT",error.message);
+    throw error;
+   }
+   state.frames++;
+   if(packet instanceof Uint8Array&&packet.length===4&&packet[0]===79&&packet[1]===72&&packet[2]===65&&packet[3]===73){
+    if(state.greeting)stop("STUB_HANDOFF_UNEXPECTED_FRAME","Duplicate OHAI");state.greeting=true;
+   }else{
+    if(!(packet instanceof Uint8Array)||![10,12].includes(packet.length)||packet[0]!==1||packet[1]!==this.ESP_MEM_END||(packet[2]|packet[3]<<8)!==packet.length-8)stop("STUB_HANDOFF_RESPONSE_FORMAT","Expected MEM_END response or SLIP OHAI");
+    if(!packet.subarray(8).every(value=>value===0))stop("STUB_MEM_END_COMMAND_FAILED","status="+Array.from(packet.subarray(8)).join(","));
+    if(state.ack)stop("STUB_HANDOFF_UNEXPECTED_FRAME","Duplicate MEM_END response");state.ack=true;
+   }
+   if(state.greeting&&state.ack)break;
+  }
+  if(!state.greeting)stop("STUB_HANDOFF_TIMEOUT","OHAI greeting not verified");
+  this.setConnectionStage("stub-ready");
+ }
+
+${stubRunMethod}
+
 }`;
 export const securityMethod = String.raw`async #H(){
  const rom=this.#e==="connecting",previous=this.#security;
@@ -105,7 +144,18 @@ export function replacements(methods){
  execute=replaceExactly(execute,'await this.#m(n);let r=','await this.#m(n,s);let r=');
  execute=replaceExactly(execute,'g.kind==="app"&&(o=R)','["app","clean-reinstall"].includes(g.kind)&&(o=R)');
  execute=replaceExactly(execute,'if(n.metadata){let g=','if(n.cleanReinstall){o=await b(await this.#w(0,iA));f(o===t.sha256,"Written full flash readback SHA-256 mismatch")}if(n.metadata){let g=');
- let snapshot=get('snapshot');snapshot=replaceExactly(snapshot,'error:this.#E','error:this.#E,security:this.#security?structuredClone(this.#security):null');
+ let snapshot=get('snapshot');snapshot=replaceExactly(snapshot,'error:this.#E','error:this.#E,security:this.#security?structuredClone(this.#security):null,connection:structuredClone(this.#t.connection)');
  let connect=get('connect');connect=replaceExactly(connect,'FULL_BACKUP_MUST_PROVE_ALL_FLASH_ERASED','FULL_SCAN_REQUIRED_BEFORE_FIRST_WRITE');
+ connect=replaceExactly(connect,'await this.#t.detectChip("default_reset",2)','this.#t.setConnectionStage("rom-sync"),await this.#t.detectChip("default_reset",2)');
+ connect=replaceExactly(connect,'await this.#H()','this.#t.setConnectionStage("rom-security"),await this.#H()');
+ connect=replaceExactly(connect,'A=await t.getMajorChipVersion(this.#t)*100+await t.getMinorChipVersion(this.#t)','A=(this.#t.setConnectionStage("rom-revision"),await t.getMajorChipVersion(this.#t)*100+await t.getMinorChipVersion(this.#t))');
+ connect=replaceExactly(connect,'i=await t.readMac(this.#t)','i=(this.#t.setConnectionStage("rom-mac"),await t.readMac(this.#t))');
+ connect=replaceExactly(connect,'await this.#t.runStub()','this.#t.setConnectionStage("stub-upload"),await this.#t.runStub()');
+ connect=replaceExactly(connect,'await this.#t.flashSpiAttach(0)','this.#t.setConnectionStage("stub-spi-attach"),await this.#t.flashSpiAttach(0)');
+ connect=replaceExactly(connect,'let s=await this.#k()','this.#t.setConnectionStage("flash-id");let s=await this.#k()');
+ connect=replaceExactly(connect,'let n=await this.#o(32768,4096)','this.#t.setConnectionStage("partition-read");let n=await this.#o(32768,4096)');
+ connect=replaceExactly(connect,'if(h==="dual"&&_?.images){','if(h==="dual"&&_?.images){this.#t.setConnectionStage("existing-bootloader-read");');
+ connect=replaceExactly(connect,'this.#M=await this.#o(IA,8192)','this.#t.setConnectionStage("ota-read"),this.#M=await this.#o(IA,8192)');
+ connect=replaceExactly(connect,'return this.#i(),this.#A=','return this.#i(),this.#t.setConnectionStage("ready"),this.#A=');
  return new Map([['#H',securityMethod],['#m',prewriteMethod],['confirm',confirmMethod],['prepare',prepare],['execute',execute],['snapshot',snapshot],['connect',connect]]);
 }

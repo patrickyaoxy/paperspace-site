@@ -1,54 +1,43 @@
 /* paperspace installation UI. Only the fixed-policy controller can access a device. */
-import {loadOwnerPolicy, createController} from './real-flash/engine.js?v=20261028-simple-reinstall-1';
+import {loadOwnerPolicy, createController} from './real-flash/engine.js?v=20261028-one-click-serial-1';
 
 const root = document.getElementById('flash-real-root');
 if (root) {
   root.innerHTML = `<div class="flash-target-status" role="status" aria-live="polite">
-    <strong id="install-heading">正在检查 paperspace 固件</strong><p id="install-status"></p>
-    <button id="install-reload" class="flash-button">重新检查固件 / 重试下载</button>
+    <strong id="install-heading">paperspace 固件安装</strong><p id="install-status"></p>
+    <p id="install-target" class="flash-note">正在核对官网指定的机型与固件。</p>
+    <p id="install-browser" class="flash-note"></p>
+    <button id="install-connect" class="flash-button flash-primary" disabled>连接并刷机</button>
   </div>
-  <p class="flash-note install-beta">v2.1.1 正式渠道精简构建 · 云端测试候选，尚未完成真机验证。写入校验通过不代表设备已正常启动。</p>
-  <p id="install-auto-files" class="flash-note">USB 安装自动获取并核验官网固定固件，无需下载 ZIP、选择本地固件包或手选应用槽。</p>
-  <details class="flash-details"><summary>本次固件功能范围</summary><p id="install-channel-scope" class="flash-note">此安装目标不含独立 HTML 浏览器、PDF、应用中心与 Lua 轻应用，以及开发者实验入口。本站 v2.0.8 浏览器体验、原帧和轻应用指南展示旧版能力，不代表本次精简构建。折叠的本地预检仍限 v2.0.8；2.1.1 使用此固定安装入口。</p></details>
-  <p id="install-scope" class="flash-warning">仅适用官网指定的 ReadPico（ESP32-S3 / 16 MiB）机型。干净重装会清空全部内部设置、阅读进度和文件，TF/SD 卡不改动。真机尚未验证；请保持供电，断电后可能需要重新进入下载模式重装。</p>
-  <ol class="flash-steps install-steps">
-    <li><span>01</span><h2>连接并自动检测</h2>
-      <p>自动检测设备并选择安装方式。</p>
-      <p id="install-target" class="flash-note">正在核对官网指定的机型与固件。</p>
-      <p class="flash-note">连接会重启设备进入下载模式，请先保存阅读进度并结束传输。</p>
-      <button id="install-connect" class="flash-button" disabled>连接设备并检测</button>
-      <p id="install-browser" class="flash-note"></p>
-    </li>
-    <li><span>02</span><h2>确认安装方式</h2>
-      <label for="install-mode">安装方式</label>
-      <select id="install-mode" class="flash-button" disabled><option value="auto">保留数据更新（兼容设备）</option><option value="clean-reinstall">干净重装（清空内部数据）</option></select>
-      <p id="install-plan">连接后自动显示方案与数据影响，无需手选应用槽。</p>
-      <p id="install-blocked" class="flash-note install-blocked" role="status" hidden></p>
-      <div id="install-impact" class="flash-warning install-impact" hidden></div>
-      <ul id="install-warnings" class="install-warnings" hidden></ul>
-      <p class="flash-note">兼容双槽可保留数据更新；其他设备可选择全新安装，备份可选。</p>
-      <button id="install-backup" class="flash-button" disabled>保存可选完整备份</button>
-      <p id="install-backup-info" class="flash-note"></p>
-    </li>
-    <li><span>03</span><h2>写入与验证</h2>
-      <p>保持连接，等待写入与校验完成。</p>
-      <button id="install-write" class="flash-button flash-primary" disabled>开始安装</button>
-      <p id="install-progress-label" class="flash-note" role="status" aria-live="polite">等待连接设备。</p>
-      <progress id="install-progress" value="0" max="100" aria-label="当前阶段进度"></progress>
-      <p id="install-result" class="flash-note" role="status" aria-live="polite"></p>
-    </li>
-  </ol>
+  <p id="install-scope" class="flash-warning">仅适用官网指定的 Read Pico（ESP32-S3 / 16 MiB）。连接会重启设备，请先保存阅读进度。刷入时保持供电与 USB 连接；中断可能无法启动，已写入内容不会自动回滚。需要全新安装时，会另行确认清空全部 16 MiB 内部设置、阅读进度和文件；TF/SD 卡不改动；独立 PMU 中的屏幕 VCOM 标定不清除，备份可选。</p>
+  <p class="flash-note install-beta">v2.1.1 正式渠道精简构建，尚未完成真机验证。写入与读回校验不代表实际启动、显示或硬件验收通过。</p>
+  <p id="install-plan" class="flash-note">选择设备后自动检查、获取官网固件并刷入；兼容双槽保留数据更新。</p>
+  <div id="install-impact" class="flash-warning install-impact" hidden></div>
+  <p id="install-blocked" class="flash-note install-blocked" hidden></p>
+  <ul id="install-warnings" class="install-warnings" hidden></ul>
+  <p id="install-progress-label" class="flash-note" role="status" aria-live="polite">等待连接设备。</p>
+  <progress id="install-progress" value="0" max="100" aria-label="当前阶段进度"></progress>
+  <p id="install-result" class="flash-note" role="status" aria-live="polite"></p>
   <div class="flash-actions"><button id="install-cancel" class="flash-button" disabled>取消当前操作</button><button id="install-disconnect" class="flash-button" disabled>断开设备</button></div>
-  <p id="install-recovery" class="flash-note">取消、断开或离开本页会停止后续写入，已擦写区域不会自动恢复。清装中断可重新进入下载模式重装；如需恢复原数据，请使用事先保存的完整备份与匹配工具。</p>
+  <p id="install-recovery" class="flash-note">失败后可重新进入下载模式再试；如需恢复原数据，请使用事先保存的完整备份与匹配工具。</p>
+  <details id="install-advanced" class="flash-details"><summary>高级选项：可选备份与固件信息</summary>
+    <p class="flash-note">需要留存内部资料时，可先只读连接，再保存完整备份。此处不会刷机；备份结束后重新点击“连接并刷机”。</p>
+    <button id="install-backup-connect" class="flash-button" disabled>仅连接设备以备份</button>
+    <button id="install-backup" class="flash-button" disabled>保存完整备份</button>
+    <p id="install-backup-info" class="flash-note"></p>
+    <button id="install-reload" class="flash-button">重新检查官网固件</button>
+    <p id="install-auto-files" class="flash-note">官网固定固件自动下载并核验，无需 ZIP、本地固件包或手选应用槽。</p>
+    <p id="install-channel-scope" class="flash-note">本次精简固件不含独立 HTML 浏览器、PDF、应用中心、Lua 轻应用及开发者实验入口。本站 v2.0.8 浏览器体验与指南展示旧版能力。</p>
+  </details>
   <details class="flash-details"><summary>查看检测结果与诊断</summary><pre id="install-detail" class="flash-target-details"></pre></details>`;
 
   const q = id => root.querySelector('#install-' + id);
-  const names = {'clean-reinstall':'干净重装（清空内部数据）', 'first-install': '新机首次安装', 'single-slot-migration': '单槽迁移至双槽', 'dual-slot-update': '双槽更新'};
+  const names = {'clean-reinstall':'全新安装（清空内部数据）','dual-slot-update':'保留数据更新'};
   const effects = {'clean-reinstall':'erase-internal', 'first-install': 'initialize-blank', 'single-slot-migration': 'preserve-and-relocate', 'dual-slot-update': 'preserve'};
   const serialSupported = !!(globalThis.isSecureContext && navigator.serial);
   let policy = null, session = null, candidate = null, plan = null, backup = null, backupPlan = null, confirmation = null;
-  let task = null, loadTask = null, closing = null, abort = null, generation = 0, uncertainOwner = null;
-  let backupSaved = false, preserveAvailable = false;
+  let task = null, loadTask = null, closing = null, abort = null, generation = 0, uncertainOwner = null, pendingSelection = null;
+  let backupSaved = false;
   let phase = 'loading', message = '', result = '', lastError = '', progressLabel = '', connected = false, writeStarted = false, recoveryAdvice = '';
 
   function snapshot() { return session?.snapshot() || null; }
@@ -58,8 +47,8 @@ if (root) {
     else if (uncertainOwner && state?.phase === 'closed' && !state.busy && !state.connected) uncertainOwner = null;
     return !!uncertainOwner;
   }
-  const active = () => !!task || !!loadTask || !!closing;
-  const available = () => !!policy?.enabled && !!candidate;
+  const active = () => !!task || !!loadTask || !!closing || !!pendingSelection;
+  const available = () => !!policy?.enabled;
   const recognizedPlan = () => !!plan && !!names[plan.mode] && plan.dataEffect === effects[plan.mode] && plan.backupRequired === (plan.mode === 'single-slot-migration') && (plan.mode !== 'clean-reinstall' || plan.destructive === true) && /^[a-f0-9]{64}$/i.test(plan.sha256 || '');
   const readyPlan = () => recognizedPlan() && plan.executable === true;
   const canBackup = () => recognizedPlan() && plan.backupAllowed === true;
@@ -88,9 +77,10 @@ if (root) {
       [/SECURITY_(?:INFO_FORMAT|UNKNOWN|RESERVED|EFUSE_MISMATCH|EFUSE_RESPONSE|EFUSE_FORMAT|ROM_PROOF)/i, '安全状态格式或交叉核验尚不支持，已停止写入。', '请保留诊断中的只读字段供维护方核对；这不表示设备一定开启了加密，不要修改 eFuse。'],
       [/SECURE_BOOT_ENABLED|SECURE_DOWNLOAD_ENABLED|FLASH_ENCRYPTION_ENABLED|ANTI_ROLLBACK/i, '设备的安全配置或已烧录安全版本与当前镜像不兼容，已停止写入。', '请使用匹配安全配置的官方维护流程；不要为刷机关闭保护或修改 eFuse。'],
       [/CANCELLED|AbortError|aborted|NotFoundError|No port selected/i, '操作已取消或未选择设备。', '需要继续时，重新检查固件并主动连接设备，重新检测后操作。'],
+      [/STUB_HANDOFF|STUB_MEM_END|Serial data stream stopped|No serial data received|Invalid head of packet|Invalid SLIP escape/i, '设备通信或下载模式握手未完成。', '本次没有获得可用的连接；请保持数据线与供电，关闭原会话后重连。可在诊断中查看 connection.stage 和 lastOpcode；这不表示设备启用了安全保护。'],
       [/DEVICE_DISCONNECTED|DISCONNECTED|device has been lost|NetworkError|SERIAL.*(?:READ|WRITE)/i, '设备连接已中断。', '请检查供电与数据线，断开旧会话后重新连接；如已开始写入，请按备份恢复说明处理。'],
       [/Written.*(?:SHA|MD5)|readback.*mismatch/i, '写入区域的读回校验未通过。', '安装尚未完成。请保留完整备份，断开设备后按对应固件包的恢复说明处理。'],
-      [/Owner download SHA|download.*(?:length|limit)|Trusted download|DOWNLOAD|Failed to fetch|fetch failed|下载失败/i, '官网固件下载失败或文件校验未通过。', '设备连接保持关闭。请检查网络，点击“重新检查固件 / 重试下载”；持续失败请联系维护方。'],
+      [/Owner download SHA|download.*(?:length|limit)|Trusted download|DOWNLOAD|Failed to fetch|fetch failed|下载失败/i, '官网固件下载失败或文件校验未通过。', '请检查网络后重新点击“连接并刷机”；持续失败请联系维护方。'],
       [/16MiB|ESP32-S3 required|16 MiB/i, '芯片或闪存容量不符合此固件要求。', '请核对官网指定机型，不要继续刷写。']
     ];
     const match = cases.find(([pattern]) => pattern.test(raw));
@@ -109,34 +99,30 @@ if (root) {
   function render() {
     const busy = active(), held = uncertain();
     q('heading').textContent = held ? '端口关闭尚未确认' : phase === 'loading' ? '正在检查 paperspace 固件' : phase === 'failed' ? '操作未完成' : phase === 'complete' ? '写入与读回校验完成' : phase === 'blocked' ? '设备已识别，写入暂未开放' : !policy?.enabled ? '官网固件暂不可用' : `paperspace 固件 · ${policy.target?.version || ''}`;
-    q('status').textContent = held ? '当前页仍保留原端口所有权，禁止重新连接。请尝试“断开设备”；未确认关闭前不能视为安全结束。' : message || policy?.reason || '请检查网络后重试。';
+    q('status').textContent = pendingSelection && !task ? '请先在浏览器设备选择窗口中完成选择或取消；原选择未结束前不能再次连接。' : held ? '当前页仍保留原端口所有权，禁止重新连接。请尝试“断开设备”；未确认关闭前不能视为安全结束。' : message || policy?.reason || '请检查网络后重试。';
     q('target').textContent = policy?.target ? `官网指定机型：${policy.target.board} / ${policy.target.model}；目标版本：${policy.target.version}。` : '尚无可核验的官网固件包，设备连接与写入保持关闭。';
     q('browser').textContent = serialSupported ? '使用数据线与桌面 Chrome / Edge，点击后选择本设备串口。' : !globalThis.isSecureContext ? '设备连接需要 HTTPS 或 localhost 安全页面，请在安全地址打开。' : '当前浏览器不支持 Web Serial。请使用桌面 Chrome / Edge 打开此页后连接。';
     q('result').textContent = result;
     if (recoveryAdvice) q('recovery').textContent = `${plan ? '本次计划' : '上次计划'}恢复说明：${recoveryAdvice} 取消、断开或离开本页会使确认失效；已经擦写的区域不会自动恢复。`;
     q('reload').disabled = busy || connected || held;
     q('connect').disabled = busy || connected || held || !available() || !serialSupported;
-    q('connect').textContent = phase === 'connecting' ? '正在连接与检测…' : '连接适用设备并检测';
-    q('plan').textContent = plan ? `${plan.executable === false ? '已识别方案（暂不可写）' : '自动推荐'}：${names[plan.mode] || '无法授权的计划'}。` : '连接后自动显示推荐方式与数据影响，无需手选应用槽。';
+    q('connect').textContent = busy ? (phase === 'writing' ? '正在刷入与校验…' : '正在连接并准备刷入…') : '连接并刷机';
+    q('backup-connect').disabled = busy || connected || held || !available() || !serialSupported;
+    q('plan').textContent = plan ? '本次安装方式：'+names[plan.mode]+'。' : '选择设备后自动检查、获取官网固件并刷入；兼容双槽保留数据更新。';
     q('blocked').hidden = !plan || plan.executable !== false;
-    q('blocked').textContent = plan?.executable === false ? blockedExplanation() + (canBackup() ? '当前仅开放只读备份。' : '当前不开放设备读写操作。') : '';
+    q('blocked').textContent = plan?.executable === false ? blockedExplanation() : '';
     q('impact').hidden = !plan;
     q('impact').textContent = plan ? dataImpact() : '';
-    q('mode').disabled = busy || held || !connected || ['complete','failed'].includes(phase);
-    q('mode').value = plan?.mode === 'clean-reinstall' ? 'clean-reinstall' : 'auto';
-    q('mode').querySelector('option[value="auto"]').disabled = !preserveAvailable;
-    q('backup').disabled = busy || held || !connected || !canBackup() || typeof globalThis.showSaveFilePicker !== 'function' || ['complete','failed'].includes(phase);
+    q('backup').disabled = busy || held || !connected || !canBackup() || typeof globalThis.showSaveFilePicker !== 'function';
     q('warnings').replaceChildren();
     for (const warning of (plan?.mode === 'clean-reinstall' ? ['全片传输与读回可能需要数分钟，请保持供电和 USB 连接。'] : plan?.warnings || [])) { const li = document.createElement('li'); li.textContent = String(warning); q('warnings').append(li); }
     q('warnings').hidden = !q('warnings').childElementCount;
     const saveSupported = typeof globalThis.showSaveFilePicker === 'function';
-    q('write').disabled = busy || held || !connected || !(readyPlan() || canBackup()) || ['complete', 'failed'].includes(phase) || (plan?.backupRequired && !saveSupported);
-    q('write').textContent = phase === 'writing' ? '正在刷写与验证…' : phase === 'backing-up' ? '正在保存完整备份…' : plan?.executable === false ? '保存只读备份' : plan?.backupRequired ? '保存完整备份并迁移' : plan?.mode === 'clean-reinstall' ? '清空内部数据并重装' : plan?.mode === 'first-install' ? '安装到空白设备' : '刷入官网固件';
     q('cancel').disabled = !!closing || (!task && !loadTask);
     q('disconnect').disabled = !!closing || (!connected && !task && !held);
     q('backup-info').textContent = plan?.backupRequired && !saveSupported ? '当前浏览器无法验证文件保存完成，迁移暂不可执行。请使用支持文件保存接口的桌面 Chrome / Edge。' : backupSaved ? '完整备份已保存到本机，并按原摘要回读核验。' : backup ? '完整备份已读取，保存尚未完成；尚未开始刷写，可重试保存。' : '';
     q('progress-label').textContent = progressLabel || '等待连接设备。';
-    q('detail').textContent = JSON.stringify({phase, target: policy?.target || null, plan, backupReceipt: backup?.receipt || null, device: snapshot(), error: lastError, deviceTesting: '未完成真机验证', bootHealthVerified: false}, null, 2);
+    q('detail').textContent = JSON.stringify({installerBuild:'paperspace-one-click-serial-1',phase, target: policy?.target || null, plan, backupReceipt: backup?.receipt || null, device: snapshot(), error: lastError, deviceTesting: '未完成真机验证', bootHealthVerified: false}, null, 2);
   }
 
   function progress(event, token) {
@@ -174,7 +160,7 @@ if (root) {
     task = pending; render();
     // Lock before the synchronous action; preserve the click for port/file pickers.
     try { Promise.resolve(action(token, abort.signal)).then(accept, reject); } catch (error) { reject(error); }
-    try { await pending; } catch (error) { if (token === generation) failure(error); }
+    try { await pending; } catch (error) { if (token === generation) { if (/AbortError|NotFoundError|No port selected|CANCELLED_PORT_SELECTION/.test(error?.name+' '+error?.message)) { phase='cancelled';lastError='';message='已取消设备选择或本次操作，未开始新的刷写。'; } else failure(error); } }
     finally { if (task === pending) task = null; render(); }
   }
 
@@ -187,42 +173,49 @@ if (root) {
       const loaded = await loadOwnerPolicy({signal: abort.signal}); if (token !== generation) return;
       policy = loaded;
       if (!policy.enabled) { phase = 'disabled'; message = policy.reason || '固件包尚未就绪，暂不开放设备连接。'; resetProgress('固件包未就绪，连接与写入保持关闭。'); return; }
-      session = createController({policy}); message = '正在下载并核验官网指定固件包，完成后才可连接。'; render();
-      const loadedCandidate = await session.loadCandidate({signal: abort.signal, onProgress: p => progress(p, token)});
-      if (token !== generation) return;
-      candidate = loadedCandidate; phase = 'ready'; message = serialSupported ? '固件已核验。连接适用设备，查看安装方式后开始刷入。' : '固件已核验，请使用支持 Web Serial 的桌面浏览器与安全地址连接。'; resetProgress('固件包已核验，等待连接设备。');
+      phase='ready';message=serialSupported?'连接后自动检查并刷入官网固件。':'请使用支持 Web Serial 的桌面浏览器。';resetProgress('等待连接设备。');
     })();
     loadTask = pending; render();
     try { await pending; } catch (error) { if (token === generation) { candidate = null; failure(error); } }
     finally { if (loadTask === pending) loadTask = null; render(); }
   }
 
-  q('connect').addEventListener('click', () => run(async token => {
-    if (uncertain()) throw new Error('PORT_CLOSE_UNCERTAIN：原端口尚未确认关闭，禁止重连。');
-    if (!available() || !serialSupported) throw new Error('请等待官网固件核验完成，并仅连接上述适用机型。');
-    // Preserve the click's user activation: no await before requestPort inside the controller.
-    const pending = session.connectFromUserGesture({board: policy.target.board, model: policy.target.model});
-    phase = 'connecting'; message = '请选择设备串口。正在检查芯片、容量、安全状态与实际布局。'; resetProgress('连接与检测中；本阶段不发送闪存写入命令。'); render();
-    await pending; if (token !== generation) return;
-    connected = !!snapshot()?.connected;
-    const device = snapshot()?.device;
-    let prepared;
-    if (device && (device.layout !== 'dual' || !device.bootloaderMatched || !device.ota?.safe)) prepared = await session.prepare(candidate, {mode:'clean-reinstall'});
-    else {
-      try { prepared = await session.prepare(candidate, {mode:'auto'}); }
-      catch (error) { if (token !== generation || !snapshot()?.connected) throw error; prepared = await session.prepare(candidate, {mode:'clean-reinstall'}); }
-    }
-    if (token !== generation) return;
-    plan = prepared; preserveAvailable = plan.mode === 'dual-slot-update';
-    if (!recognizedPlan()) throw new Error('设备没有通过自动安装计划检查，禁止写入。');
-    clearConfirmation(); recoveryAdvice = plan.recovery || ''; writeStarted = false;
-    if (!readyPlan()) {
-      phase = 'blocked'; lastError = [plan.blockedReason, plan.storageProof?.reason].filter(Boolean).join(': ');
-      message = blockedExplanation(); resetProgress(canBackup() ? '写入未开放；可读取并保存完整备份。' : '写入未开放，请核对诊断与恢复说明。');
-    } else {
-      phase = 'connected'; message = `检测完成，推荐“${names[plan.mode]}”。请阅读数据影响；干净重装会在写入前请你确认一次。备份可选。`; resetProgress('设备已检测，可以执行上述安全路径。');
-    }
-  }));
+  async function closeSession(owner = session) {
+    if (!owner) return;
+    try { await owner.disconnect(); } catch (error) { lastError=error?.message||String(error); }
+    connected=!!owner.snapshot()?.connected;uncertain();
+  }
+  function startConnection(install = true) {
+    if (active() || connected || uncertain() || !available() || !serialSupported) return;
+    generation++;invalidatePlan();candidate=null;result='';lastError='';writeStarted=false;
+    void run(async (token,signal) => {
+      const owner=session=createController({policy});
+      try {
+        // requestPort is reached synchronously in this click, before any await or download.
+        const connection=owner.connectFromUserGesture({board:policy.target.board,model:policy.target.model});
+        pendingSelection=connection;
+        Promise.resolve(connection).then(()=>{if(pendingSelection===connection)pendingSelection=null;render();},()=>{if(pendingSelection===connection)pendingSelection=null;render();});
+        const download=owner.loadCandidate({signal,onProgress:event=>progress(event,token)});
+        phase='connecting';message=install?'请选择设备，随后自动检查并刷入。':'请选择设备；本次仅连接与备份，不会刷写。';resetProgress('正在连接设备并获取官网固件。');render();
+        const [,loaded]=await abortable(Promise.all([connection,download]),signal);
+        if(token!==generation||signal.aborted)throw new DOMException('操作已取消','AbortError');
+        connected=!!owner.snapshot()?.connected;candidate=loaded;
+        const device=owner.snapshot()?.device;
+        let prepared;
+        if (!install || device && (device.layout!=='dual'||!device.bootloaderMatched||!device.ota?.safe)) prepared=await owner.prepare(candidate,{mode:'clean-reinstall'});
+        else { try { prepared=await owner.prepare(candidate,{mode:'auto'}); } catch(error) { if(token!==generation||!owner.snapshot()?.connected)throw error;prepared=await owner.prepare(candidate,{mode:'clean-reinstall'}); } }
+        if(token!==generation||signal.aborted)throw new DOMException('操作已取消','AbortError');
+        plan=prepared;if(!readyPlan())throw Error('设备没有通过本次安装计划检查，禁止写入。');
+        recoveryAdvice=plan.recovery||'';clearConfirmation();phase='connected';
+        if(install){const written=await performWrite(plan,token,signal);if(!written){await closeSession(owner);invalidatePlan();candidate=null;}}
+        else {message='只读连接已完成。点击高级选项中的“保存完整备份”；本次不会刷写。';resetProgress('等待保存可选备份。');}
+      } catch(error) {
+        owner.cancel();await closeSession(owner);throw error;
+      }
+    });
+  }
+  q('connect').addEventListener('click',()=>startConnection(true));
+  q('backup-connect').addEventListener('click',()=>startConnection(false));
 
   function checkpoint(token, signal, p) {
     if (token !== generation || signal.aborted || plan !== p || !connected || uncertain()) throw new DOMException('操作已取消', 'AbortError');
@@ -238,10 +231,7 @@ if (root) {
   async function performWrite(p, token, signal) {
     checkpoint(token, signal, p);
     if (!readyPlan()) throw new Error('当前计划没有写入授权。');
-    const risk = p.destructive
-      ? `干净重装将清空内部设置、阅读进度和文件，TF/SD 卡不改动。备份可选，未备份的数据无法恢复。\n\n固件尚未经真机验证。请保持供电与 USB 连接；中断可能无法启动，需重新进入下载模式重装。\n\n确认清空内部数据并刷入官网 ${p.version || policy.target.version}？`
-      : `即将刷入官网 ${p.version || policy.target.version}，按上述方案保留内部数据；TF/SD 卡不改动，备份可选。\n\n固件尚未经真机验证。请保持供电与 USB 连接；取消或断电后可能需要重新连接恢复。写入校验不代表正常启动。\n\n确认开始刷入？`;
-    if (!window.confirm(risk)) { message = '已取消本次刷入，未发送擦写命令。'; return; }
+    if (p.destructive && !window.confirm('全新安装会清空全部 16 MiB 内部数据，包括设置、阅读进度和文件。TF/SD 卡不改动；独立 PMU 中的屏幕 VCOM 标定不清除，备份可选；未备份的数据无法恢复。\n\n固件尚未经真机验证。请保持供电与 USB 连接；中断可能无法启动，需要重新进入下载模式重装。\n\n确认清空内部数据并开始安装？')) { phase='cancelled';message='已拒绝清空内部数据，未发送擦写命令。';return false; }
     checkpoint(token, signal, p);
     confirmation = session.confirm(p, {installAccepted: true, destructiveAccepted:p.destructive === true, backupSaved, backupSha256: backup?.receipt.sha256});
     phase = 'writing'; writeStarted = true; message = '正在执行自动选择的范围，请保持供电与连接。'; resetProgress(p.mode === 'first-install' ? '先完整只读扫描全片；确认全 FF 后才写入。' : '正在准备刷写与读回验证。'); render();
@@ -251,7 +241,7 @@ if (root) {
     phase = 'complete'; message = '写入与读回 SHA-256 校验已完成，实际启动与显示仍需设备检查。';
     result = p.mode === 'dual-slot-update' ? '非启动槽与启动选择已校验，保留原底座与原启动应用。请断开并启动设备检查。' : '匹配底座、应用与分区已校验，目标为 ota_0。请断开并启动设备检查。';
     if (backup) backup = {receipt: backup.receipt};
-    resetProgress('读回校验通过；真实启动健康未验证。'); q('progress').value = 100;
+    resetProgress('读回校验通过；真实启动健康未验证。'); q('progress').value = 100;return true;
   }
   async function saveNecessaryBackup(p, token, signal, installAfter = p.backupRequired) {
     if (!canBackup() || typeof globalThis.showSaveFilePicker !== 'function') throw new Error('当前无法验证必要备份保存完成，迁移未执行。');
@@ -285,13 +275,10 @@ if (root) {
       if (writer && !closed) { try { await writer.abort(); } catch {} }
     }
   }
-  q('mode').addEventListener('change', event => { const mode=event.target.value; void run(async token => { const prepared=await session.prepare(candidate,{mode}); if(token!==generation)return; invalidatePlan();plan=prepared;if(!recognizedPlan())throw Error('安装计划未通过检查');recoveryAdvice=plan.recovery||'';phase=readyPlan()?'connected':'blocked';message='已切换安装方式，请查看本次数据影响。';resetProgress('尚未开始擦写。'); }); });
-  q('backup').addEventListener('click', () => void run(async (token,signal) => { const p=plan;checkpoint(token,signal,p);await saveNecessaryBackup(p,token,signal,false); }));
-  q('write').addEventListener('click', () => void run(async (token, signal) => {
-    const p = plan; checkpoint(token, signal, p);
-    if (!(readyPlan() || canBackup())) throw new Error('当前设备没有获准刷写或备份的计划。');
-    if (p.backupRequired) await saveNecessaryBackup(p, token, signal);
-    else await performWrite(p, token, signal);
+  q('backup').addEventListener('click',()=>void run(async(token,signal)=>{
+    const p=plan;checkpoint(token,signal,p);
+    try { await saveNecessaryBackup(p,token,signal,false); }
+    finally { if(token===generation){const saved=backupSaved;await closeSession();invalidatePlan();candidate=null;if(saved){phase='ready';message='完整备份已保存并回读核验。现在可点击“连接并刷机”。';result=message;}} }
   }));
 
   async function stop(disconnect = false) {
@@ -309,7 +296,7 @@ if (root) {
         uncertain(); candidate = null; invalidatePlan();
       }
       phase = completed ? 'complete' : 'cancelled';
-      message = uncertain() ? '原端口关闭仍未确认，当前页继续禁止重连。请再次尝试断开原会话。' : completed ? '设备已断开。写入与读回校验已完成，实际启动健康仍未验证。' : '会话已停止。重新检查固件后，再连接与检测。旧授权不可复用。';
+      message = uncertain() ? '原端口关闭仍未确认，当前页继续禁止重连。请再次尝试断开原会话。' : completed ? '设备已断开。写入与读回校验已完成，实际启动健康仍未验证。' : '会话已停止，可重新点击“连接并刷机”。旧授权不可复用。';
       if (!completed) {
         progressLabel = writeStarted ? '写入已停止，已写区域不会自动恢复；请保留完整备份。' : '当前操作已停止。';
         if (writeStarted) result = '安装没有完成。请保留本机备份，按对应固件包的恢复说明处理。';

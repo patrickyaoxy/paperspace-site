@@ -1,5 +1,5 @@
 {
-  "scope": "GUARDED_INSTALL_CLEAN_REINSTALL_AND_OTA",
+  "scope": "GUARDED_ONE_CLICK_INSTALL_CLEAN_REINSTALL_AND_OTA",
   "sdk": {
     "name": "esptool-js",
     "version": "0.7.0"
@@ -28,7 +28,7 @@
         "start": 339728,
         "end": 339728,
         "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "afterSha256": "212a9b0c21489fbc45d922e9d145adf47c9604f0155d47bf3014bc28fa6b1968"
+        "afterSha256": "0c8c3195730e439d878bcf546debb77d3860e3bd95f3cadb7687472efef67da4"
       },
       {
         "method": "#security field",
@@ -56,7 +56,7 @@
         "start": 347080,
         "end": 349382,
         "beforeSha256": "5d3b184315b64651bf85e8d933e2494a5db640ca37f88e6b0a8c5070f2b22b64",
-        "afterSha256": "db7f328b6600fdccc998f7630e7b5b7be96a0e83d610ce9237d022df7f7a3469"
+        "afterSha256": "b55ddcd01204f2443dc4a340d9029a0af98944aaddcd19c634717574968cbdd9"
       },
       {
         "method": "prepare",
@@ -91,7 +91,14 @@
         "start": 362079,
         "end": 362320,
         "beforeSha256": "09d9758efb253340b2d7abcd98ce654f255f367b7e16e16d7873c85bf837ef49",
-        "afterSha256": "f3d8e0c9c79577f54246a0c20477d6f710fc6a9156591aaeecac6d5b30dc8341"
+        "afterSha256": "a67567f1a8861f05b04ac56ebe6711e9fc2cc0cced6bac007ce7801aa3be2a33"
+      },
+      {
+        "method": "exported identity metadata",
+        "start": 362322,
+        "end": 362529,
+        "beforeSha256": "e9c7562e5b5ba102331fe7809562e913bc4cdd3709d92b5b87013233624985c9",
+        "afterSha256": "c3be119fddf9d5c3638d5835b74b0a97a1b8b2c2dd90154fed8c0fbea0abbf35"
       }
     ],
     "allOtherModuleAstEqual": true,
@@ -100,11 +107,14 @@
     "sdkOtaWlEspParsersAndBackupUnchanged": true,
     "sessionLoaderOnly": true,
     "signedRegisterValuePreserved": true,
-    "maintenanceSourceSha256": "fba20c37cf128a4c38842791361827cf095a8bf13d9eb526f5211255e5accc3b",
-    "scriptSha256": "b850f17387d4763c6d22c3816182af1dcb1fdcf0e045cc89a85d20ebe756daf6"
+    "identityMetadataOnlyChanged": true,
+    "sdkStubUploadAndPostHandshakeBytesIdentical": true,
+    "serialHandshakeBuild": "paperspace-one-click-serial-1",
+    "maintenanceSourceSha256": "8b712609d07bf0741e9e1ca81f1e4553d5d056bac83dd514868151a32db30dbf",
+    "scriptSha256": "9d94b4ebc0142fad13158a592b1e2b59a591f65103a9a779874e3955ede2ebb0"
   },
-  "engine_sha256": "31a6d4203dc3885e20168f29c40b052d31758b5049f461d901f72cee6b046497",
-  "engine_bytes": 372816,
+  "engine_sha256": "8398f23408564e26c5ba8ee8aef8d2c77f93c91b6dfa771f1990cde345d9fbd9",
+  "engine_bytes": 377093,
   "externalImports": [],
   "deviceTest": "NOT_RUN",
   "cleanReinstall": {
@@ -117,5 +127,19 @@
     "verification": "per-64KiB-MD5-and-SHA256-then-full-flash-SHA256",
     "deviceTest": "NOT_RUN",
     "eraseSegmentMaxBytes": 65536
+  },
+  "serialConnection": {
+    "build": "paperspace-one-click-serial-1",
+    "romToStub": "verified-SLIP-OHAI-with-optional-validated-ROM-MEM_END-ACK",
+    "handoffDeadlineMs": 3000,
+    "memEndTransmissions": 1,
+    "diagnostics": [
+      "connection.stage",
+      "connection.lastOpcode",
+      "connection.handoff"
+    ],
+    "unchangedOriginalSDKTransport": true,
+    "hardwareAttribution": "UNKNOWN",
+    "deviceTest": "NOT_RUN"
   }
 }
