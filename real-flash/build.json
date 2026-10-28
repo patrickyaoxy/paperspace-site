@@ -1,5 +1,5 @@
 {
-  "scope": "GUARDED_AUTO_INSTALL_AND_OTA",
+  "scope": "GUARDED_INSTALL_CLEAN_REINSTALL_AND_OTA",
   "sdk": {
     "name": "esptool-js",
     "version": "0.7.0"
@@ -49,7 +49,7 @@
         "start": 345644,
         "end": 345856,
         "beforeSha256": "f0b8c427a9077d22d911e03616b27c56590e63e46ebe1bd1e1e1b1f6590d6ff0",
-        "afterSha256": "085d9417a5f0af3c02b33a5f8564e18e8f1eed82207c421e9babc0c4292a42d1"
+        "afterSha256": "360db7b86699d0a28e952dd5fec19e1e6c698c064c015f305ad7205c71ad3749"
       },
       {
         "method": "connect",
@@ -63,28 +63,28 @@
         "start": 349797,
         "end": 356444,
         "beforeSha256": "59d6bf93bcc53592b1bba054fac72c47cb1720814532bdd9da70f19818ec91b7",
-        "afterSha256": "20568c975e9d7a4bc20f6203745ca9832625dc2d0f9e25457d68169c739ba665"
+        "afterSha256": "7dfec52a9c886ae39f3de12a109e8e02165197127128a5f2bd405bb88c95d6f9"
       },
       {
         "method": "confirm",
         "start": 358158,
         "end": 358602,
         "beforeSha256": "c4459563637f16bad5a48617b3c5ea0d96c054654cfe64d8701420ec8a8d4588",
-        "afterSha256": "1cc0dc6bf9a8e039ec904df15674a3b88667eef17d9c48203e16db636df83e06"
+        "afterSha256": "470b7e4a2a785fdafe41ee45cb1876974fff46ff2d5531055b5189595edd1491"
       },
       {
         "method": "#m",
         "start": 358602,
         "end": 358981,
         "beforeSha256": "c376b3894cd6301fcd5d284afc7f4a03b8edd2a4b99cebf8cf8ed6324f5b09f3",
-        "afterSha256": "bd4d039cb9c7045da6beb0139a6ce01350cfaae5551c8cb696ed5e9140d84230"
+        "afterSha256": "e11522d334b9037a040c8e37d81a024a25baa7ccace72c46f08899fb114bab24"
       },
       {
         "method": "execute",
         "start": 359971,
         "end": 361812,
         "beforeSha256": "ddbab9fc6e03d6f0360124894157981d35e1764666a5c7ecbfa5de03b68e621c",
-        "afterSha256": "345caade82afc8914f09a58d4a33742ad68e3e9e637e5c2b82d1c0a7d055a45b"
+        "afterSha256": "2c5749ead1577d9c811d449561b4614057c3a9d75c3bbea18acec571e008c4dd"
       },
       {
         "method": "snapshot",
@@ -100,11 +100,22 @@
     "sdkOtaWlEspParsersAndBackupUnchanged": true,
     "sessionLoaderOnly": true,
     "signedRegisterValuePreserved": true,
-    "maintenanceSourceSha256": "40d3d096b5e1d2abd49b2c3fc8e8b55899b3f209806945b805e9fcf87ad7b50e",
+    "maintenanceSourceSha256": "fba20c37cf128a4c38842791361827cf095a8bf13d9eb526f5211255e5accc3b",
     "scriptSha256": "b850f17387d4763c6d22c3816182af1dcb1fdcf0e045cc89a85d20ebe756daf6"
   },
-  "engine_sha256": "1bbb21dd0490df7417c8ec6abf152378fe03cd097b3b106e4be387bf62e06dd2",
-  "engine_bytes": 369794,
+  "engine_sha256": "31a6d4203dc3885e20168f29c40b052d31758b5049f461d901f72cee6b046497",
+  "engine_bytes": 372816,
   "externalImports": [],
-  "deviceTest": "NOT_RUN"
+  "deviceTest": "NOT_RUN",
+  "cleanReinstall": {
+    "mode": "clean-reinstall",
+    "flashBytes": 16777216,
+    "method": "bounded-full-flash-FF-image-with-four-verified-images",
+    "destructiveAcceptance": "explicit-single-plan-single-use",
+    "backupRequired": false,
+    "unmodifiedOpcodeGuard": true,
+    "verification": "per-64KiB-MD5-and-SHA256-then-full-flash-SHA256",
+    "deviceTest": "NOT_RUN",
+    "eraseSegmentMaxBytes": 65536
+  }
 }

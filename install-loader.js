@@ -1,6 +1,6 @@
 /* Load failures remain visible; this file never accesses a device. */
 let started=false;
-function start(){if(started||location.hash!=='#flash')return;started=true;import('./real-flasher-ui.js?v=20261028-security-flow-1').catch(()=>{
+function start(){if(started||location.hash!=='#flash')return;started=true;import('./real-flasher-ui.js?v=20261028-simple-reinstall-1').catch(()=>{
  const root=document.getElementById('flash-real-root');
  if(!root)return;
  root.replaceChildren();

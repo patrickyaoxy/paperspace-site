@@ -22,9 +22,9 @@ node scripts/engine-adaptation/maintain-engine.mjs \
 cmp staging/engine-maintained/engine.mjs real-flash/engine.js
 ```
 
-基线 engine SHA-256 为 `f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43`；身份适配中间产物为 `60a95723afb8f3f2c7503cb79a0553287eb6bda6a53bac3b5fcca637b0b912bd`；最终 engine 为 `1bbb21dd0490df7417c8ec6abf152378fe03cd097b3b106e4be387bf62e06dd2`。第一阶段可加 `--inspect` 只读检查，不传 `--outdir`。维护收据逐项绑定变更区间与摘要，并检查范围外字节和未改节点；当前构建来源见 [build.json](../../real-flash/build.json)。
+基线 engine SHA-256 为 `f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43`；身份适配中间产物为 `60a95723afb8f3f2c7503cb79a0553287eb6bda6a53bac3b5fcca637b0b912bd`；最终 engine 为 `31a6d4203dc3885e20168f29c40b052d31758b5049f461d901f72cee6b046497`。第一阶段可加 `--inspect` 只读检查，不传 `--outdir`。维护收据逐项绑定变更区间与摘要，并检查范围外字节和未改节点；当前构建来源见 [build.json](../../real-flash/build.json)。
 
-每会话 adapter 严格检查二元回执、2或4字节的全零命令状态、signed32/uint32整数，保留 SDK 原始 signed 返回值；不修改全局 prototype。ROM 安全证据在 stub 和写前由三个只读 eFuse 字段复核，未知状态或真实保护均拒写，不修改 eFuse。
+每会话 adapter 严格检查二元回执、2或4字节的全零命令状态、signed32/uint32整数，保留 SDK 原始 signed 返回值；不修改全局 prototype。ROM 安全证据在 stub 和写前由三个只读 eFuse 字段复核；只按六个物理key核对，通用wire第七字节仅保留诊断，不把key用途本身当保护启用。不可信读取、未知flags、真实保护或已烧录安全版本高于当前镜像仍拒写，不修改eFuse。官方依据见[校验说明](../../OWNER-FIRMWARE-TARGET.md#必要校验与兼容边界)。
 
 ## 可复现回归
 
@@ -41,6 +41,14 @@ npm install --prefix staging/test-tools --no-save --package-lock=false --ignore-
 NODE_PATH="$PWD/staging/test-tools/node_modules" node tests/installer-flow-regression.mjs staging/ui-regression
 ```
 
-浏览器 runner 默认使用标准系统 Chromium 路径，可用 `CHROMIUM_PATH` 覆盖。报告目录必须尚不存在。固定版本测试预期为24项寄存器回归和16项浏览器流程；输出会记录 engine、模型、runner或页面模块摘要，应与当前文件核对。真实 USB 写入、启动、显示、操作系统文件选择器及物理掉电恢复仍需另行验证。
+浏览器 runner 默认使用标准系统 Chromium 路径，可用 `CHROMIUM_PATH` 覆盖。报告目录必须尚不存在。固定版本测试预期为24项寄存器回归和21项浏览器流程；输出会记录 engine、模型、runner或页面模块摘要，应与当前文件核对。真实 USB 写入、启动、显示、操作系统文件选择器及物理掉电恢复仍需另行验证。
 
-正常可信双槽更新无需整片备份；全片空白设备在首次擦除前完成只读扫描；单槽重叠迁移必须保存完整备份，关闭文件并读回核验后才写入。旧的 `tests/installer-regression.mjs` 对应早期准备合同，不是当前单按钮流程入口。
+普通界面：连接设备→确认一次风险→开始刷入。可信双槽默认保数据；其他状态显示明确的干净重装，内部数据清空且TF/SD不动，完整备份可选。全片覆盖及读回可能需要数分钟，不承诺具体耗时。高级auto兼容接口仍保留全空新机扫描及单槽迁移备份约束，普通界面不默认进入单槽保留迁移。
+
+全片回归使用实际生产controller和SDK，经内存协议端口核对完整16MiB内容、四镜像与其余FF、确认和错误保护：
+
+```sh
+node tests/clean-reinstall-regression.mjs staging/clean-regression
+```
+
+`prepare(candidate,{mode:'clean-reinstall'})`不要求旧布局白名单；`confirm(plan,{installAccepted:true,destructiveAccepted:true})`产生同计划一次性授权。该计划的`sha256`和成功回执`readbackSha256`均是全片安装图摘要，`targetAppSha256`另列应用摘要。现有协议opcode guard、SDK、镜像校验器和完整备份方法字节保持相同。旧的 `tests/installer-regression.mjs` 对应早期准备合同，不是当前单按钮流程入口。
