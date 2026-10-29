@@ -30,7 +30,7 @@
         "start": 339728,
         "end": 339728,
         "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "afterSha256": "a82a8cc8755102f335a3b0cca7cc7772e5af0e4a5ad0b6e5ffb09d1cf9e814e7"
+        "afterSha256": "9b99b1daffd3d4a7d0bf3f53641c374b002059f87d674839359086ea3d017e93"
       },
       {
         "method": "#security field",
@@ -44,7 +44,21 @@
         "start": 339953,
         "end": 341467,
         "beforeSha256": "70a14922cdd5a8610aef5e7b875a74ef9f2356e8b59d3df8faab44aa4bbd4bdb",
-        "afterSha256": "fc50ba5163b5fe13fbcae281c81c3ed6e635cab2b3c26658999d7026825547bc"
+        "afterSha256": "c91209328da8f2c9a2165669d2f14f00438c73b36c55fec69b07b26348e27f68"
+      },
+      {
+        "method": "#N",
+        "start": 342479,
+        "end": 342753,
+        "beforeSha256": "de630b7b9701005b56013794e54cb241c2b2693b672db55234829fe2eb86d441",
+        "afterSha256": "ae15e527c6661ee37a759f7a48e22064006a36fc108f2899d135a7b11be38c26"
+      },
+      {
+        "method": "#W",
+        "start": 342753,
+        "end": 345533,
+        "beforeSha256": "9badfc23bfdde43dd56f94c44d0f3a106d97967a9823ac951250fa21b789f024",
+        "afterSha256": "2c21357ec3111909878449fa4699471821f680ef73c22642bc5a22dc83f56d33"
       },
       {
         "method": "#H",
@@ -93,14 +107,14 @@
         "start": 358981,
         "end": 359971,
         "beforeSha256": "64f180af89fdd032b23049319fd46369424c388bb6ccc8c58f73dea315b98092",
-        "afterSha256": "1e5278ae555b54d4694262a342abe3113a2af625a5711b3f83263e34187027b2"
+        "afterSha256": "98bbc80895a1ffb0ddecb1082609ca10f814e0d1fe837c591ae46b4c1f15d350"
       },
       {
         "method": "execute",
         "start": 359971,
         "end": 361812,
         "beforeSha256": "ddbab9fc6e03d6f0360124894157981d35e1764666a5c7ecbfa5de03b68e621c",
-        "afterSha256": "49a81620edf9a9dfa402f2e94d34cdce424368b057ce2c644406fe1fa4f2f8bb"
+        "afterSha256": "588f738fea33c929e7e25eeb7a82eaebdc816519d3faf75d831718c1df2780db"
       },
       {
         "method": "cancel",
@@ -128,7 +142,7 @@
         "start": 362322,
         "end": 362529,
         "beforeSha256": "e9c7562e5b5ba102331fe7809562e913bc4cdd3709d92b5b87013233624985c9",
-        "afterSha256": "8e992dd0ad03062e94a96d3c1493feccdf11e98abed5dfe5459ec1c4558e5c56"
+        "afterSha256": "43ef95df0e23c8713ba6d85ba6aca91e506b8dbb7cf34b575e10560b4ea2be88"
       },
       {
         "method": "controller clean connection mode forwarding",
@@ -150,15 +164,19 @@
     "verifiedRestartSignalOnly": true,
     "controllerForwardsConnectionModeAndVerifiedRestart": true,
     "perSessionReadLoopOnlyAddsErrorObserver": true,
+    "scopedMd5TransportParserOnlyAddsAbortAndDeadlineChecks": true,
+    "originalTransportReadSha256": "6964e562b6f321a1f52da1600d2ffc879a406c50a3aad53f7c0c0dcc11285bc5",
+    "scopedMd5TransportReadSha256": "b94b029ca3977692fe144e39172af7dcb61bc2feb05c99eec120323edadcf600",
+    "allOtherCommandReadBudgetsCappedAt5000": true,
     "sdkStubUploadAndPostHandshakeBytesIdentical": true,
-    "serialHandshakeBuild": "paperspace-dual-upgrade-1",
-    "engineSha256": "a4462439a8d9cb527c368cad0986fb94f893a6093b6e01af51063b321d74935b",
-    "engineBytes": 382070,
-    "maintenanceSourceSha256": "f022ec92a6931d3d282ac248bd3cf7571248aab98fd45e428e9e7b3dd15a1c9c",
-    "scriptSha256": "9ebadc89cb767eb833e3ab605a5ed9df7fb66071afaf28f92e33074c6be3a5e0"
+    "serialHandshakeBuild": "paperspace-md5-deadline-1",
+    "engineSha256": "24c04fdfdf2d4d434daeda3420efd5e8b5910dedd4ee3df51b55fdada1fbfc57",
+    "engineBytes": 387537,
+    "maintenanceSourceSha256": "7cf081b90158467dbcc67e2efbf365d4107818e4e07f64faa1e5482186453097",
+    "scriptSha256": "90de234a7cc48ecd142f01fbdf4e03eab97d759da459a6de5b74d63e1e055a63"
   },
-  "engine_sha256": "a4462439a8d9cb527c368cad0986fb94f893a6093b6e01af51063b321d74935b",
-  "engine_bytes": 382070,
+  "engine_sha256": "24c04fdfdf2d4d434daeda3420efd5e8b5910dedd4ee3df51b55fdada1fbfc57",
+  "engine_bytes": 387537,
   "externalImports": [],
   "deviceTest": "NOT_RUN",
   "cleanReinstall": {
@@ -175,7 +193,7 @@
     "sourceIntegrity": "owner-pinned-sha256"
   },
   "serialConnection": {
-    "build": "paperspace-one-click-serial-2",
+    "build": "paperspace-md5-deadline-1",
     "romToStub": "verified-SLIP-OHAI-with-optional-validated-ROM-MEM_END-ACK",
     "handoffDeadlineMs": 3000,
     "memEndTransmissions": 1,
@@ -184,7 +202,12 @@
       "connection.lastOpcode",
       "connection.handoff",
       "connection.read",
-      "connection.receiveErrors"
+      "connection.receiveErrors",
+      "connection.write",
+      "connection.md5",
+      "connection.appMd5",
+      "connection.otaCommitAttempted",
+      "connection.otaCommitVerified"
     ],
     "unchangedOriginalSDKTransport": true,
     "hardwareAttribution": "UNKNOWN",
@@ -214,5 +237,18 @@
     "resetCommandSent": "host signal API completed, never hardware boot evidence",
     "bootHealthVerified": false,
     "deviceTest": "NOT_RUN"
+  },
+  "applicationMd5": {
+    "build": "paperspace-md5-deadline-1",
+    "budget": "max(3000,8000*bytes/1000000) milliseconds; exact finished immutable write lease only",
+    "applicationBytes": 3338288,
+    "applicationBudgetMs": 26706.304,
+    "otherReadCapMs": 5000,
+    "absoluteDeadline": "monotonic clock across all SLIP fragments; cancellation stops scoped parser",
+    "reply": "direction 1; opcode 19; payload length 18; digest 16 bytes; status 2 zero bytes; value diagnostic only",
+    "flashEnd": "unchanged false argument / payload 1; no reboot",
+    "diagnostics": "range, source/device MD5, sent/received/elapsed times and precise stages; no raw Flash payload",
+    "deviceTest": "NOT_RUN",
+    "hardwareAttribution": "UNKNOWN"
   }
 }

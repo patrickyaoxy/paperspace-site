@@ -59,6 +59,8 @@ Flash 厂商没有品牌白名单；有效 RDID 与容量才是协议校验依�
 
 设备MD5核验通过不证明真实启动、显示、硬件兼容、回滚或物理掉电恢复。开发与独立验收使用内存协议端口，真实设备结果须单列。不要为刷机修改 eFuse 或关闭保护。
 
+应用完整 ACK 后仍需等待设备计算 MD5。SDK 的大小预算为 `max(3000,8000*bytes/1000000)` 毫秒，本版3338288字节应用为26706.304毫秒；只在已完成写计划的精确MD5命令内使用，其他读取保持5000毫秒上限。MD5采用单调时钟总截止时间，分片不延长预算；取消、断连、非法应答或摘要不匹配均停止，应用MD5真实通过前零OTA提交、零复位。诊断区分应用ACK、FLASH_END发出/应答、MD5发出/收到/通过及OTA提交/回读，并保留摘要、范围和耗时；不记录原始Flash内容。通用“Serial data stream stopped”也可由等待空窗产生，不能据此确定线路噪声或设备断开。
+
 ## 生成器输入
 
 在仓库根目录运行 `python3 scripts/prepare-firmware-target.py --package PACKAGE_DIRECTORY --trust TRUST_JSON --out staging/prepared-target`。输出目录必须尚不存在；生成器不直接修改根目标。

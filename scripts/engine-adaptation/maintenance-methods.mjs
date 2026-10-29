@@ -12,9 +12,19 @@ export const verifiedLoader = String.raw`class VerifiedESPLoader extends vt {
   this.debug("Read Register Value:"+value);return value;
  }
 
- connection={build:"paperspace-serial-read-2",stage:"new",lastOpcode:null,commands:0,events:[],handoff:null};
+ connection={build:"paperspace-md5-deadline-1",stage:"new",lastOpcode:null,commands:0,events:[],handoff:null};
  setConnectionStage(stage){this.connection.stage=stage;if(this.connection.events.length<32)this.connection.events.push(stage);}
  async command(...args){if(args[0]!=null){this.connection.lastOpcode=args[0];this.connection.commands++;}return super.command(...args);}
+ async readPacket(op=null,timeout=this.DEFAULT_TIMEOUT){
+  if(op!==this.ESP_SPI_FLASH_MD5)return super.readPacket(op,timeout);
+  const d=this.connection.md5,packet=await this.transport.read(timeout);
+  d.receivedAt=Date.now();d.elapsedMs=performance.now()-d.sentMonotonicMs;d.receivedCompleteFrames++;d.receivedCompleteFrameBytes=packet?.length??null;
+  this.setConnectionStage(d.region+"-md5-received");
+  if(!(packet instanceof Uint8Array)||packet.length!==26||packet[0]!==1||packet[1]!==op||(packet[2]|packet[3]<<8)!==18)throw new Error("FLASH_MD5_RESPONSE_FORMAT");
+  d.responseValue=new DataView(packet.buffer,packet.byteOffset,packet.byteLength).getUint32(4,true);d.status=Array.from(packet.subarray(24));
+  if(d.status.some(v=>v!==0))throw new Error("FLASH_MD5_COMMAND_FAILED");
+  return [0,packet.slice(8)];
+ }
  async startVerifiedStub(entry){
   this.setConnectionStage("stub-handoff");
   const state={memEndSent:false,ack:false,greeting:false,frames:0,optionalAckTimedOut:false};this.connection.handoff=state;
@@ -136,9 +146,15 @@ export const readSessionMethod = String.raw`async #o(t,A){
  catch(error){if(this.#t.connection.read)this.#t.connection.read.failed=true;throw error;}finally{this.#S=null;}
 }`;
 
-export function adaptConstructor(source){
+export function adaptMd5TransportRead(source){
+ let output=replaceExactly(source,'async read(t){','async function(t,signal,deadline){');
+ const check='if(signal.aborted)throw new Error("CANCELLED");if(performance.now()>=deadline)throw new Error("FLASH_MD5_DEADLINE_EXCEEDED");';
+ output=replaceExactly(output,'for(;;){let n=Date.now();','for(;;){'+check+'let n=Date.now();');
+ return replaceExactly(output,'else await tA(1);','else{'+check+'await tA(1);}');
+}
+export function adaptConstructor(source,transportRead){
  let output=replaceExactly(source,'new vt({transport:this.#Q,','new VerifiedESPLoader({transport:this.#Q,serialOptions:{bufferSize:65536},');
- const setup=';this.#t.connection.serialBufferSize=65536;t.readLoop='+verifiedReadLoop+';t.onSerialReadError=error=>{const d=this.#t.connection,errors=d.receiveErrors||(d.receiveErrors={count:0,events:[]});errors.count++;const name=String(error?.name||"Error").slice(0,64);if(errors.events.length<8)errors.events.push({name,stage:d.stage,currentStep:d.read?.currentStep??null,message:String(error?.message||error).slice(0,160)});if(this.#r.signal.aborted)return true;if(!this.#r.signal.aborted&&(this.#S||this.#e==="writing"||this.#e==="uploading-stub")){this.cancel("SERIAL_RECEIVE_LOSS: "+name);return true;}return false;};t.setDeviceLostCallback';
+ const setup=';this.#t.connection.serialBufferSize=65536;t.readMd5='+adaptMd5TransportRead(transportRead)+';t.readLoop='+verifiedReadLoop+';t.onSerialReadError=error=>{const d=this.#t.connection,errors=d.receiveErrors||(d.receiveErrors={count:0,events:[]});errors.count++;const name=String(error?.name||"Error").slice(0,64);if(errors.events.length<8)errors.events.push({name,stage:d.stage,currentStep:d.read?.currentStep??null,message:String(error?.message||error).slice(0,160)});if(this.#r.signal.aborted)return true;if(!this.#r.signal.aborted&&(this.#S||this.#e==="writing"||this.#e==="uploading-stub")){this.cancel("SERIAL_RECEIVE_LOSS: "+name);return true;}return false;};t.setDeviceLostCallback';
  output=replaceExactly(output,'this.#e==="connecting","Reset signals forbidden after connection"','["connecting","resetting"].includes(this.#e),"Reset signals require connection or verified restart"');
  output=replaceExactly(output,'this.#r.signal.aborted||this.cancel("DEVICE_DISCONNECTED")','this.#r.signal.aborted||this.#e==="resetting"||this.cancel("DEVICE_DISCONNECTED")');
  output=replaceExactly(output,'t.setDeviceLostCallback(()=>this.cancel("DEVICE_DISCONNECTED"))','t.setDeviceLostCallback(()=>{if(this.#e!=="resetting")this.cancel("DEVICE_DISCONNECTED")})');
@@ -177,7 +193,42 @@ export function replacements(methods){
  connect=replaceExactly(connect,'return this.#i(),this.#A=','return this.#i(),this.#t.setConnectionStage("ready"),this.#A=');
 
  prepare=replaceExactly(prepare,'let C=s.partitions.find(T=>T[0]===this.#A.bootSelection),B=await this.#w(C[3],C[4]),M=B.slice(0,Fi(B));await xi(M,this.#t.chip,this.#n,this.#A.revision,{existing:!0}),a.push({address:C[3],size:M.length,sha256:await b(M)}),','');
- let write=get('#v');const tail='f(await this.#t.flashMd5sum(t.address,t.bytes.length)===qt(t.bytes),"Written flash MD5 mismatch")';const tailAt=write.indexOf(tail);if(tailAt<0)throw Error('Expected original write verification tail');write=write.slice(0,tailAt)+'const deviceMd5=await this.#t.flashMd5sum(t.address,t.bytes.length);f(deviceMd5===qt(t.bytes),"Written flash MD5 mismatch");A({acknowledgedBytes:this.#d,total:i,stage:"device-md5-verified",region:t.kind,verified:false});this.#C=null;return deviceMd5}';write=replaceExactly(write,'await this.#t.flashFinish(!1,5e3),const','await this.#t.flashFinish(!1,5e3);const');
+ let write=String.raw`async #v(t,A,i,s){
+  this.#i();this.#e="writing";this.#C={...t,lastSeq:-1,begun:false,finished:false};
+  const d=this.#t.connection.write={region:t.kind,address:t.address,expectedBytes:t.bytes.length,acknowledgedBytes:0,startedAt:Date.now(),flashEndSent:false,flashEndAck:false};
+  this.#t.setConnectionStage(t.kind+"-writing");
+  const n=await this.#t.flashBegin(t.wireBytes,t.address);f(n===t.blocks,"SDK block geometry changed");
+  for(let r=0;r<n;r++){
+   this.#i();await this.#t.flashBlock(t.padded.slice(r*t.blockSize,(r+1)*t.blockSize),r,5e3);
+   d.acknowledgedBytes=Math.min(t.bytes.length,(r+1)*t.blockSize);this.#d=s+d.acknowledgedBytes;
+   A({acknowledgedBytes:this.#d,total:i,stage:t.kind==="otadata-commit"?"otadata-commit":"stub-received-ack",region:t.kind,verified:false});
+  }
+  d.dataAckAt=Date.now();this.#t.setConnectionStage(t.kind+"-data-acknowledged");
+  await this.#t.flashFinish(false,5e3);d.flashEndAck=true;d.flashEndAckAt=Date.now();this.#t.setConnectionStage(t.kind+"-flash-end-acknowledged");
+  const md5=this.#t.connection.md5={region:t.kind,address:t.address,expectedBytes:t.bytes.length,expectedFrameBytes:26,receivedCompleteFrames:0,receivedCompleteFrameBytes:null,readAccounting:"complete-SLIP-frames-only",expected:qt(t.bytes),received:null,budgetMs:this.#t.timeoutPerMb(this.#t.MD5_TIMEOUT_PER_MB,t.bytes.length),sentAt:null,sentMonotonicMs:null,receivedAt:null,elapsedMs:null,verified:false,active:true};
+  try{
+   const deviceMd5=await this.#t.flashMd5sum(t.address,t.bytes.length);md5.received=deviceMd5;
+   f(deviceMd5===md5.expected,"Written flash MD5 mismatch");md5.verified=true;this.#t.setConnectionStage(t.kind+"-md5-verified");
+   A({acknowledgedBytes:this.#d,total:i,stage:"device-md5-verified",region:t.kind,verified:false});this.#C=null;return deviceMd5;
+  }catch(error){md5.error=String(error.message||error).slice(0,160);throw error;}
+  finally{md5.active=false;if(md5.sentAt!==null)md5.elapsedMs=performance.now()-md5.sentMonotonicMs;}
+ }`;
+ // Only the exact finished immutable write lease receives the SDK's MD5 budget.
+ // The outer deadline also bounds Transport.read's per-chunk idle timer.
+ const read=String.raw`async #N(t){
+  this.#i();const signal=this.#r.signal;let onAbort,timer;
+  const cancelled=new Promise((resolve,reject)=>{onAbort=()=>reject(new Error(this.#E||"CANCELLED"));signal.addEventListener("abort",onAbort,{once:true});});
+  const d=this.#t.connection.md5,c=this.#C;
+  const scoped=!!(c&&c.finished&&this.#e==="writing"&&this.#t.connection.lastOpcode===19&&d?.active&&d.sentAt!==null&&d.address===c.address&&d.expectedBytes===c.bytes.length&&d.budgetMs===this.#t.timeoutPerMb(this.#t.MD5_TIMEOUT_PER_MB,c.bytes.length)&&t===d.budgetMs);
+  try{
+   const timeout=scoped?Math.max(0,d.budgetMs-(performance.now()-d.sentMonotonicMs)):Math.min(t,5e3);
+   if(scoped){d.effectiveTimeoutMs=timeout;if(timeout<=0)throw new Error("FLASH_MD5_DEADLINE_EXCEEDED");}
+   const pending=[scoped?this.#g.readMd5(timeout,signal,d.sentMonotonicMs+d.budgetMs):this.#g.read(timeout),cancelled];
+   if(scoped)pending.push(new Promise((resolve,reject)=>{timer=setTimeout(()=>reject(new Error("FLASH_MD5_DEADLINE_EXCEEDED")),timeout);}));
+   const packet=await Promise.race(pending);this.#i();return packet;
+  }catch(error){if(scoped&&performance.now()-d.sentMonotonicMs>=d.budgetMs){d.timedOut=true;throw new Error("FLASH_MD5_DEADLINE_EXCEEDED");}throw error;}finally{clearTimeout(timer);signal.removeEventListener("abort",onAbort);}
+ }`;
+ let wire=get('#W');wire=replaceExactly(wire,'await this.#J(t)}','await this.#J(t);if(t.length>=8&&t[1]===4){const d=this.#t.connection.write;d.flashEndSent=true;d.flashEndSentAt=Date.now();this.#t.setConnectionStage(d.region+"-flash-end-sent");}if(t.length>=8&&t[1]===19){const d=this.#t.connection.md5;d.sentAt=Date.now();d.sentMonotonicMs=performance.now();this.#t.setConnectionStage(d.region+"-md5-sent");}}');
  execute=replaceExactly(execute,'readbackSha256:o','readbackSha256:null,sha256ReadbackVerified:false,verificationMethod:"device-md5",imageSha256:t.sha256,verifiedRegionCount:n.regions.length,deviceMd5:t.mode==="dual-slot-update"?o:null');
  execute=replaceExactly(execute,'partitionSectorSha256:await b(await this.#o(32768,4096))','partitionSectorSha256:null');
  execute=replaceExactly(execute,'ota:Vt(await this.#o(IA,8192))','ota:n.verifiedOTA??null');
@@ -203,13 +254,13 @@ export function replacements(methods){
  prepare=replaceExactly(prepare,'appPartition:o,address:I[3]','appPartition:o,devicePartitionLabel:I[0],otaDataAddress:g?this.#A.otaDataAddress:null,address:I[3]');
  for(const match of [...prepare.matchAll(/"(?:\\.|[^"\\])*"/g)]){let value;try{value=JSON.parse(match[0]);}catch{continue;}if(value.includes('保留完整备份。提交结果'))prepare=replaceExactly(prepare,match[0],JSON.stringify('失败或中断后断开并重新连接，重新读取启动选择记录后再规划；原启动槽与内部数据保留，完整备份可选。提交结果不确定时以重新读取的元数据为准。'));}
  execute=execute.replaceAll('this.#o(IA,8192)','this.#o(this.#A.otaDataAddress,8192)');
- execute=replaceExactly(execute,'let R=await this.#v(g,s,r,h);','if(g.kind==="otadata-commit")this.#t.connection.otaCommitAttempted=true;let R=await this.#v(g,s,r,h);if(g.kind==="app")this.#t.connection.appMd5Verified=true;');
- execute=replaceExactly(execute,'n.verifiedOTA=g}','n.verifiedOTA=g,this.#t.connection.otaCommitVerified=true}');
+ execute=replaceExactly(execute,'let R=await this.#v(g,s,r,h);','if(g.kind==="otadata-commit"){this.#t.connection.otaCommitAttempted=true;this.#t.setConnectionStage("ota-commit-attempted");}let R=await this.#v(g,s,r,h);if(g.kind==="app"){this.#t.connection.appMd5Verified=true;this.#t.connection.appMd5=structuredClone(this.#t.connection.md5);}');
+ execute=replaceExactly(execute,'n.verifiedOTA=g}','n.verifiedOTA=g,this.#t.connection.otaCommitVerified=true,this.#t.setConnectionStage("ota-commit-verified")}');
  execute=replaceExactly(execute,'bootloaderMatched:!0,bootloaderIdentity:n.metadata?','bootloaderMatched:n.metadata?this.#A.bootloaderMatched:true,bootloaderIdentity:n.metadata?');
  execute=replaceExactly(execute,'partitionSha256:this.#n.package.partitionSha256,partitionSectorSha256:null,partitions:this.#n.package.partitions','partitionSha256:n.metadata?this.#A.partitionSha256:this.#n.package.partitionSha256,partitionSectorSha256:n.metadata?this.#A.partitionSectorSha256:null,partitions:n.metadata?this.#A.partitions:this.#n.package.partitions');
 
  const cancel=String.raw`cancel(t="CANCELLED"){if(this.#r.signal.aborted)return;const resetting=this.#e==="resetting";this.#E=t;this.#s++;this.#C=null;this.#r.abort();this.#e="cancelled";if(!resetting)this.#_();}`;
- return new Map([['cancel',cancel],['#o',readSessionMethod],['#v',write],['#H',securityMethod],['#m',prewriteMethod],['confirm',confirmMethod],['prepare',prepare],['execute',execute],['snapshot',snapshot],['connect',connect]]);
+ return new Map([['#N',read],['#W',wire],['cancel',cancel],['#o',readSessionMethod],['#v',write],['#H',securityMethod],['#m',prewriteMethod],['confirm',confirmMethod],['prepare',prepare],['execute',execute],['snapshot',snapshot],['connect',connect]]);
 }
 
 // Only a completed, verified write can enter this signal-only restart. No Flash commands.

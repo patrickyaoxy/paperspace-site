@@ -1,6 +1,6 @@
 # 安装器引擎的可复现维护
 
-工具在完整 SHA-256 固定的已发布编译 bundle 上完成两阶段转换，不声称从原七个模块重新构建。第一阶段使用 Acorn 8.15.0 定位并替换来源、版本和诊断三个身份字面量；第二阶段只允许十个会话方法、一个私有安全字段、完成写入后的一次性硬复位方法、每会话 `VerifiedESPLoader`、构造器唯一 loader callee 、导出身份元数据及controller转发连接模式及硬复位的改动。原 SDK/Transport 类、OTA 记录编解码、WL/FAT、镜像/策略解析及完整备份实现保持 AST 与字节相同；会话按实表绑定应用/OTA地址和目标应用几何。Adapter继承SDK的stub上传与后续USB配置，只替换ROM移交握手；工具逐字节证明该继承方法其余前后缀不变。
+工具在完整 SHA-256 固定的已发布编译 bundle 上完成两阶段转换，不声称从原七个模块重新构建。第一阶段使用 Acorn 8.15.0 定位并替换来源、版本和诊断三个身份字面量；第二阶段只允许十二个会话方法、一个私有安全字段、完成写入后的一次性硬复位方法、每会话 `VerifiedESPLoader`、构造器唯一 loader callee 、导出身份元数据及controller转发连接模式及硬复位的改动。原 SDK/Transport 类、OTA 记录编解码、WL/FAT、镜像/策略解析及完整备份实现保持 AST 与字节相同；会话按实表绑定应用/OTA地址和目标应用几何。Adapter继承SDK的stub上传与后续USB配置，只替换ROM移交握手；工具逐字节证明该继承方法其余前后缀不变。
 
 依赖版本及完整性由本目录 package-lock.json 固定，Acorn [MIT 许可](ACORN-LICENSE-MIT.txt) 随附。Acorn 只用于维护，不进入浏览器运行 bundle。
 
@@ -72,3 +72,7 @@ node tests/read-flash-regression.mjs staging/read-flash-regression
 当前双槽策略从实际表读取地址，并按目标包必需分区 tuple 验证目标应用几何，允许表序/摘要变化。不以旧 bootloader 字节或应用版本拒写；NEW/PENDING 和未知 OTA 明确阻断，不自动清空。全 FF OTA 且无 factory 的兼容双槽正常写 ota_1。应用设备 MD5 后才提交另一 OTA 记录并回读校验。UI 随后调用单次 `restart()`：返回 `writeVerified`、`resetCommandSent`、`bootHealthVerified:false` 和独立错误；不把复位失败改写成刷写失败。RTS 按官方脉冲后释放，finally 尽力释放并关闭端口；仅 resetting 阶段抑制复位引发的接收结束/设备丢失自动取消。
 
 本批有界开发自测：`node tests/dual-upgrade-regression.mjs NEW_REPORT_DIRECTORY`；UI runner 可用 `CASE_IDS` 逗号选择受影响用例。开发自测不等于独立 QA，真实设备启动和 USB 重新枚举未验。
+
+应用 MD5 等待修复使用 `node tests/md5-deadline-regression.mjs NEW_REPORT_DIRECTORY`，可用 `CASE_IDS` 选择定向案例。SDK 按 `max(3000,8000*bytes/1000000)` 毫秒计算预算；3338288 字节应用为 26706.304 毫秒。只有不可变写计划已完成 FLASH_END、实际发送 opcode 19 且范围与 SDK 预算一致时才采用该预算；其他读取仍最多 5000 毫秒。专用每会话 MD5 读取从固定原 Transport.read 精确派生，只插入取消与单调时钟总截止检查，SLIP 解析不变；因此分片不能续期，取消不遗留长预算轮询。原 SDK/Transport 类未修改。MD5 回执严格校验方向、opcode、18 字节 payload、16 字节 digest 与两字节全零状态；value 字段仅诊断。FLASH_END 仍发送不复位参数，真实应用 MD5 通过前不提交 OTA 或复位。
+
+诊断区分应用 ACK、FLASH_END 实际发出/应答、MD5 发出/收到/比对与 OTA 提交/回读，记录范围、预期/收到的摘要及时间，不含原始 Flash 内容。该缺陷可以产生通用空窗错误，但错误文本不证明物理噪声，也不保证本修复解决任一真实设备的全部问题。

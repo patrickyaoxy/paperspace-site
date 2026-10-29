@@ -1,5 +1,5 @@
 /* paperspace installation UI. Only the fixed-policy controller can access a device. */
-import {loadOwnerPolicy, createController} from './real-flash/engine.js?v=20261028-dual-upgrade-1';
+import {loadOwnerPolicy, createController} from './real-flash/engine.js?v=20261029-app-md5-1';
 
 const root = document.getElementById('flash-real-root');
 if (root) {
@@ -158,7 +158,7 @@ if (root) {
 
   function captureFailureLog(error){
     const state=snapshot()||{};
-    return JSON.stringify({installerBuild:'paperspace-dual-upgrade-1',engineBuild:state.connection?.build||null,phase,error:String(error?.message||error),target:policy?.target?{board:policy.target.board,model:policy.target.model,version:policy.target.version,sourceSha:policy.target.sourceSha}:null,plan:plan?{mode:plan.mode,dataEffect:plan.dataEffect}:null,device:{phase:state.phase,connected:state.connected,portCloseUncertain:state.portCloseUncertain,generation:state.generation,acknowledgedBytes:state.acknowledgedBytes||0,error:state.error||null,security:state.security||null,connection:state.connection||null},writeReceipt,resetReceipt,verification:{method:'device-md5',sourceIntegrity:'owner-pinned-sha256',sha256ReadbackVerified:false}},null,2);
+    return JSON.stringify({installerBuild:'paperspace-md5-deadline-1',engineBuild:state.connection?.build||null,phase,error:String(error?.message||error),target:policy?.target?{board:policy.target.board,model:policy.target.model,version:policy.target.version,sourceSha:policy.target.sourceSha}:null,plan:plan?{mode:plan.mode,dataEffect:plan.dataEffect}:null,device:{phase:state.phase,connected:state.connected,portCloseUncertain:state.portCloseUncertain,generation:state.generation,acknowledgedBytes:state.acknowledgedBytes||0,error:state.error||null,security:state.security||null,connection:state.connection||null},writeReceipt,resetReceipt,verification:{method:'device-md5',sourceIntegrity:'owner-pinned-sha256',sha256ReadbackVerified:false}},null,2);
   }
 
   function failure(error) {
@@ -169,6 +169,14 @@ if (root) {
     message = info.title + info.advice;
     progressLabel = writeStarted ? '写入未完成或未通过验证，请保留备份并按原包说明恢复。' : '本次操作未完成，尚未开始新的刷写。';
     result = writeStarted ? '安装没有完成；已擦写的区域不会自动恢复。请重新连接，或按匹配固件与备份的恢复说明处理。' : info.advice + (connected ? ' 请先断开当前设备会话。' : '');
+    const md5 = snapshot()?.connection?.md5;
+    if (writeStarted && md5 && !md5.verified && md5.region !== 'otadata-commit') {
+      message = '设备写后 MD5 核验未完成或未通过，安装尚未完成。';
+      progressLabel = '写入 ACK 不代表设备内容核验通过；请复制失败日志。';
+      result = plan?.mode === 'dual-slot-update' && !snapshot()?.connection?.otaCommitAttempted
+        ? '本次未提交启动切换，也未复位；原选中应用槽与内部数据保留。请关闭旧会话后重新连接、读取实际状态再规划。'
+        : '本次已有区域擦写，不能据此保证原数据或启动记录完整。请关闭旧会话，按匹配固件与已保存备份的说明恢复。';
+    }
     if (snapshot()?.connection?.otaCommitAttempted && !snapshot()?.connection?.otaCommitVerified) {
       const appVerified = snapshot()?.connection?.appMd5Verified === true;
       message = (appVerified ? '备用槽应用已通过设备 MD5 核验；' : '设备已有写入；') + '启动选择提交结果不确定，未自动重试或复位。';
@@ -364,6 +372,6 @@ if (root) {
   window.addEventListener('beforeunload', event => { if (active() || connected || uncertain()) { event.preventDefault(); event.returnValue = ''; } });
   window.addEventListener('pagehide', () => { generation++; abort?.abort(); session?.cancel(); void (uncertainOwner || session)?.disconnect().catch(() => {}); });
   window.addEventListener('pageshow', event => { if (event.persisted) void stop(true); });
-  window.PaperspaceInstaller = Object.freeze({snapshot: () => ({phase, message, result, connected, portCloseUncertain: uncertain(), targetEnabled: !!policy?.enabled, candidateReady: !!candidate, busy: active(), confirmationReady: !!confirmation, planMode: plan?.mode || null, error: lastError, installerBuild:'paperspace-dual-upgrade-1',failureLogReady:!!failureLog,cleanRetryAvailable,writeVerified:writeReceipt?.verified===true,resetCommandSent:resetReceipt?.resetCommandSent===true,bootHealthVerified:false})});
+  window.PaperspaceInstaller = Object.freeze({snapshot: () => ({phase, message, result, connected, portCloseUncertain: uncertain(), targetEnabled: !!policy?.enabled, candidateReady: !!candidate, busy: active(), confirmationReady: !!confirmation, planMode: plan?.mode || null, error: lastError, installerBuild:'paperspace-md5-deadline-1',failureLogReady:!!failureLog,cleanRetryAvailable,writeVerified:writeReceipt?.verified===true,resetCommandSent:resetReceipt?.resetCommandSent===true,bootHealthVerified:false})});
   void reload();
 }
