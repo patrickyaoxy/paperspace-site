@@ -30,14 +30,14 @@
         "start": 339728,
         "end": 339728,
         "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "afterSha256": "9b99b1daffd3d4a7d0bf3f53641c374b002059f87d674839359086ea3d017e93"
+        "afterSha256": "58be51f301ce209aa7dad11f27a3a61bd77618fcdc64e26b27dd05512d7d57cb"
       },
       {
         "method": "#security field",
         "start": 339741,
         "end": 339741,
         "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "afterSha256": "27a86becfba4124cf1ec0b88b10542dbd883528d41e364c6665e3c0b4c19a53a"
+        "afterSha256": "63f6c0cfb0430d26066e05736499121a553866f42e8f5625684f506396753e7d"
       },
       {
         "method": "constructor serial options and per-session read error observer",
@@ -51,14 +51,14 @@
         "start": 342479,
         "end": 342753,
         "beforeSha256": "de630b7b9701005b56013794e54cb241c2b2693b672db55234829fe2eb86d441",
-        "afterSha256": "ae15e527c6661ee37a759f7a48e22064006a36fc108f2899d135a7b11be38c26"
+        "afterSha256": "e80f55c4f815eab373ae2947bfe0c6c072b03dcbdee5e3ff83f24d8ef6128919"
       },
       {
         "method": "#W",
         "start": 342753,
         "end": 345533,
         "beforeSha256": "9badfc23bfdde43dd56f94c44d0f3a106d97967a9823ac951250fa21b789f024",
-        "afterSha256": "2c21357ec3111909878449fa4699471821f680ef73c22642bc5a22dc83f56d33"
+        "afterSha256": "41c04f2b5e2fe8f685760436cbe838a5641d6844663dc149eca970e0f2afa57f"
       },
       {
         "method": "#H",
@@ -100,7 +100,7 @@
         "start": 358602,
         "end": 358981,
         "beforeSha256": "c376b3894cd6301fcd5d284afc7f4a03b8edd2a4b99cebf8cf8ed6324f5b09f3",
-        "afterSha256": "e11522d334b9037a040c8e37d81a024a25baa7ccace72c46f08899fb114bab24"
+        "afterSha256": "5b5bc14a95565c6aca4105e73d7890bb9f10350302c3d9f78cb6c21b663392f0"
       },
       {
         "method": "#v",
@@ -114,7 +114,7 @@
         "start": 359971,
         "end": 361812,
         "beforeSha256": "ddbab9fc6e03d6f0360124894157981d35e1764666a5c7ecbfa5de03b68e621c",
-        "afterSha256": "588f738fea33c929e7e25eeb7a82eaebdc816519d3faf75d831718c1df2780db"
+        "afterSha256": "50ea68672c8d3418af7da754080e804a0c63c73982b4d8c10a37cb04cb6e4321"
       },
       {
         "method": "cancel",
@@ -131,10 +131,18 @@
         "afterSha256": "a67567f1a8861f05b04ac56ebe6711e9fc2cc0cced6bac007ce7801aa3be2a33"
       },
       {
+        "method": "verified OTA digest method",
+        "start": 362320,
+        "end": 362320,
+        "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "afterSha256": "28bbd3197f0fb43ac18a9e5ae85016c7e70d7320c777408af06234a932bb14eb"
+      },
+      {
         "method": "verified restart method",
         "start": 362320,
         "end": 362320,
         "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "verifyOtaDigestsMethod": "async #verifyOtaDigests(plan,phase){\n this.#i();f(plan.metadata&&this.#e===\"writing\"&&!this.#C&&!this.#digestLease&&this.#t.connection.appMd5Verified,\"OTA_DIGEST_REQUIRES_VERIFIED_APP\");\n const ota=this.#A.otaDataAddress;\n f(plan.verifiedDigestConditions?.length===2&&plan.verifiedDigestConditions.some(c=>c.address===32768&&c.size===4096)&&plan.verifiedDigestConditions.some(c=>c.address===ota&&c.size===8192),\"OTA_DIGEST_CONDITIONS_INVALID\");\n let checks;\n if(phase===\"precommit\")checks=plan.verifiedDigestConditions;\n else{\n  f(phase===\"postcommit\",\"OTA_DIGEST_PHASE_INVALID\");\n  const region=plan.regions.find(r=>r.kind===\"otadata-commit\"),previous=Vt(this.#M);\n  f(this.#M.length===8192&&region&&region.bytes.length===4096&&region.wireBytes===4096&&region.address===ota+plan.metadata.index*4096&&previous.safe&&previous.activeIndex!==plan.metadata.index,\"OTA_DIGEST_COMMIT_RANGE_INVALID\");\n  const expected=this.#M.slice();expected.set(region.bytes,region.address-ota);plan.expectedOTA=expected;\n  checks=[Object.freeze({address:ota,size:8192,expected:qt(expected)})];\n }\n const facts=this.#t.connection.otaVerification||(this.#t.connection.otaVerification={method:\"device-md5-verified-expected-OTA\",rawReadbackPerformed:false,checks:[]});\n for(const check of checks){\n  this.#i();const region=phase+\"-\"+(check.address===ota?\"ota\":\"partition\");\n  const lease=this.#digestLease=Object.freeze({...check,budgetMs:this.#t.timeoutPerMb(this.#t.MD5_TIMEOUT_PER_MB,check.size)});\n  const d=this.#t.connection.md5={region,address:check.address,expectedBytes:check.size,expectedFrameBytes:26,receivedCompleteFrames:0,receivedCompleteFrameBytes:null,readAccounting:\"complete-SLIP-frames-only\",expected:check.expected,received:null,budgetMs:lease.budgetMs,sentAt:null,sentMonotonicMs:null,receivedAt:null,elapsedMs:null,verified:false,active:true,readOnly:true,expectedSource:phase===\"precommit\"?\"initial-real-read-sha256-verified-bytes\":\"old-8192-plus-planned-full-4096-sector\"};facts.checks.push(d);\n  try{\n   d.received=await this.#t.flashMd5sum(check.address,check.size);\n   f(d.received===d.expected,phase===\"precommit\"?\"Device precondition changed before OTA commit\":\"OTA_COMMIT_DEVICE_MD5_MISMATCH\");\n   d.verified=true;this.#t.setConnectionStage(region+\"-md5-verified\");\n  }catch(error){d.error=String(error.message||error).slice(0,160);throw error;}\n  finally{d.active=false;if(d.sentAt!==null)d.elapsedMs=performance.now()-d.sentMonotonicMs;this.#digestLease=null;}\n }\n}",
         "afterSha256": "c333e88cd9b203fb812c2280de3d18b746d200776d85e18b69d777f29e42e39c"
       },
       {
@@ -142,7 +150,7 @@
         "start": 362322,
         "end": 362529,
         "beforeSha256": "e9c7562e5b5ba102331fe7809562e913bc4cdd3709d92b5b87013233624985c9",
-        "afterSha256": "43ef95df0e23c8713ba6d85ba6aca91e506b8dbb7cf34b575e10560b4ea2be88"
+        "afterSha256": "149327f88f17c5f73722344a0ba29016e5505951bc4867d314a74b3de7afd078"
       },
       {
         "method": "controller clean connection mode forwarding",
@@ -157,6 +165,10 @@
     "outsideEditRangesByteEqual": true,
     "sdkOtaWlEspParsersAndBackupUnchanged": true,
     "sessionLoaderOnly": true,
+    "readOnlyMd5LeaseFromVerifiedPlanBytes": true,
+    "postAppRawReadFlashEliminatedForDualUpgrade": true,
+    "postCommitFullOtaDeviceDigest": true,
+    "otaExpectedBytesNotClaimedAsRawReadback": true,
     "signedRegisterValuePreserved": true,
     "identityMetadataOnlyChanged": true,
     "devicePartitionGeometryAndOtaAddress": true,
@@ -169,14 +181,14 @@
     "scopedMd5TransportReadSha256": "b94b029ca3977692fe144e39172af7dcb61bc2feb05c99eec120323edadcf600",
     "allOtherCommandReadBudgetsCappedAt5000": true,
     "sdkStubUploadAndPostHandshakeBytesIdentical": true,
-    "serialHandshakeBuild": "paperspace-md5-deadline-1",
-    "engineSha256": "24c04fdfdf2d4d434daeda3420efd5e8b5910dedd4ee3df51b55fdada1fbfc57",
-    "engineBytes": 387537,
-    "maintenanceSourceSha256": "7cf081b90158467dbcc67e2efbf365d4107818e4e07f64faa1e5482186453097",
-    "scriptSha256": "90de234a7cc48ecd142f01fbdf4e03eab97d759da459a6de5b74d63e1e055a63"
+    "serialHandshakeBuild": "paperspace-ota-digest-1",
+    "engineSha256": "6268c0a7bfdd0606af5e3f59660fb47d2fded0b86be85592e760d77d0d7edee0",
+    "engineBytes": 391045,
+    "maintenanceSourceSha256": "1b187deece891646ba237cd423708a8f470a218109e3f71dd2045be3e2bfe765",
+    "scriptSha256": "48150aec94bb32e1941849f166a7cb50abecc3878735ef8f79030a6a2f25def0"
   },
-  "engine_sha256": "24c04fdfdf2d4d434daeda3420efd5e8b5910dedd4ee3df51b55fdada1fbfc57",
-  "engine_bytes": 387537,
+  "engine_sha256": "6268c0a7bfdd0606af5e3f59660fb47d2fded0b86be85592e760d77d0d7edee0",
+  "engine_bytes": 391045,
   "externalImports": [],
   "deviceTest": "NOT_RUN",
   "cleanReinstall": {
@@ -185,15 +197,16 @@
     "method": "bounded-full-flash-FF-image-with-four-verified-images",
     "destructiveAcceptance": "explicit-single-plan-single-use",
     "backupRequired": false,
-    "unmodifiedOpcodeGuard": true,
+    "unmodifiedOpcodeGuard": false,
     "verification": "device-md5-per-bounded-region",
     "deviceTest": "NOT_RUN",
     "eraseSegmentMaxBytes": 65536,
     "oldLayoutReadRequired": false,
-    "sourceIntegrity": "owner-pinned-sha256"
+    "sourceIntegrity": "owner-pinned-sha256",
+    "writeOpcodeRestrictionsUnchanged": true
   },
   "serialConnection": {
-    "build": "paperspace-md5-deadline-1",
+    "build": "paperspace-ota-digest-1",
     "romToStub": "verified-SLIP-OHAI-with-optional-validated-ROM-MEM_END-ACK",
     "handoffDeadlineMs": 3000,
     "memEndTransmissions": 1,
@@ -207,7 +220,9 @@
       "connection.md5",
       "connection.appMd5",
       "connection.otaCommitAttempted",
-      "connection.otaCommitVerified"
+      "connection.otaCommitVerified",
+      "connection.otaCommitMd5",
+      "connection.otaVerification"
     ],
     "unchangedOriginalSDKTransport": true,
     "hardwareAttribution": "UNKNOWN",
@@ -227,19 +242,21 @@
     "fullFlashSHAReadbackRequired": false
   },
   "dualUpgrade": {
-    "build": "paperspace-dual-upgrade-1",
+    "build": "paperspace-ota-digest-1",
     "layout": "actual verified partition records; target required tuples; order/hash independent",
     "bootloaderByteAllowlistRequired": false,
     "otaSelection": "CRC/state/sequence including blank default ota_0; NEW/PENDING/unknown blocked",
     "addresses": "actual device app/otadata partitions",
-    "commit": "after application device MD5; opposite metadata sector; readback verified",
+    "commit": "after actual application MD5 plus latest exact table/OTA device MD5; opposite metadata sector; new full-sector and reconstructed full-OTA device MD5 verified",
     "restart": "single-use completed-write-only DTR false; RTS assert then release; signal cleanup and close",
     "resetCommandSent": "host signal API completed, never hardware boot evidence",
     "bootHealthVerified": false,
-    "deviceTest": "NOT_RUN"
+    "deviceTest": "NOT_RUN",
+    "otaVerificationMethod": "device-md5-verified-expected-OTA",
+    "otaRawReadbackPerformed": false
   },
   "applicationMd5": {
-    "build": "paperspace-md5-deadline-1",
+    "build": "paperspace-ota-digest-1",
     "budget": "max(3000,8000*bytes/1000000) milliseconds; exact finished immutable write lease only",
     "applicationBytes": 3338288,
     "applicationBudgetMs": 26706.304,
@@ -250,5 +267,20 @@
     "diagnostics": "range, source/device MD5, sent/received/elapsed times and precise stages; no raw Flash payload",
     "deviceTest": "NOT_RUN",
     "hardwareAttribution": "UNKNOWN"
+  },
+  "otaDigestChecks": {
+    "build": "paperspace-ota-digest-1",
+    "scope": "dual-slot-update only",
+    "initialProof": "real complete table/OTA reads and parsing; original SHA-256 conditions before any write",
+    "precommit": "security/identity recheck; actual device MD5 of exact table4096 and OTA8192 against digests of original SHA256-verified bytes; no repeated raw reads",
+    "commit": "same original immutable opposite-sector4096 write; actual sector MD5",
+    "postcommit": "old OTA8192 plus planned full new4096 sector => expected8192; actual device MD5 of entire8192; parse verified expected bytes",
+    "readOnlyAuthority": "separate immutable exact-range MD5 lease derived only from verified plan condition bytes and expected OTA transaction bytes; no arbitrary ranges or write lease reuse",
+    "readOnlyBudgetMs": 3000,
+    "verificationMethod": "device-md5-verified-expected-OTA",
+    "rawReadbackPerformed": false,
+    "preserved": "original selected record and application slot, table/bootloader/settings; no reset before all verification succeeds; no retry of uncertain commit",
+    "physicalReadFrameLossCause": "UNKNOWN",
+    "deviceTest": "NOT_RUN"
   }
 }

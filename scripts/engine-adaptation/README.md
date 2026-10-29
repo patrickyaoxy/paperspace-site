@@ -1,6 +1,6 @@
 # 安装器引擎的可复现维护
 
-工具在完整 SHA-256 固定的已发布编译 bundle 上完成两阶段转换，不声称从原七个模块重新构建。第一阶段使用 Acorn 8.15.0 定位并替换来源、版本和诊断三个身份字面量；第二阶段只允许十二个会话方法、一个私有安全字段、完成写入后的一次性硬复位方法、每会话 `VerifiedESPLoader`、构造器唯一 loader callee 、导出身份元数据及controller转发连接模式及硬复位的改动。原 SDK/Transport 类、OTA 记录编解码、WL/FAT、镜像/策略解析及完整备份实现保持 AST 与字节相同；会话按实表绑定应用/OTA地址和目标应用几何。Adapter继承SDK的stub上传与后续USB配置，只替换ROM移交握手；工具逐字节证明该继承方法其余前后缀不变。
+工具在完整 SHA-256 固定的已发布编译 bundle 上完成两阶段转换，不声称从原七个模块重新构建。第一阶段使用 Acorn 8.15.0 定位并替换来源、版本和诊断三个身份字面量；第二阶段只允许十二个会话方法、安全与只读摘要授权私有字段、OTA 摘要检查方法、完成写入后的一次性硬复位方法、每会话 `VerifiedESPLoader`、构造器唯一 loader callee 、导出身份元数据及controller转发连接模式及硬复位的改动。原 SDK/Transport 类、OTA 记录编解码、WL/FAT、镜像/策略解析及完整备份实现保持 AST 与字节相同；会话按实表绑定应用/OTA地址和目标应用几何。Adapter继承SDK的stub上传与后续USB配置，只替换ROM移交握手；工具逐字节证明该继承方法其余前后缀不变。
 
 依赖版本及完整性由本目录 package-lock.json 固定，Acorn [MIT 许可](ACORN-LICENSE-MIT.txt) 随附。Acorn 只用于维护，不进入浏览器运行 bundle。
 
@@ -76,3 +76,9 @@ node tests/read-flash-regression.mjs staging/read-flash-regression
 应用 MD5 等待修复使用 `node tests/md5-deadline-regression.mjs NEW_REPORT_DIRECTORY`，可用 `CASE_IDS` 选择定向案例。SDK 按 `max(3000,8000*bytes/1000000)` 毫秒计算预算；3338288 字节应用为 26706.304 毫秒。只有不可变写计划已完成 FLASH_END、实际发送 opcode 19 且范围与 SDK 预算一致时才采用该预算；其他读取仍最多 5000 毫秒。专用每会话 MD5 读取从固定原 Transport.read 精确派生，只插入取消与单调时钟总截止检查，SLIP 解析不变；因此分片不能续期，取消不遗留长预算轮询。原 SDK/Transport 类未修改。MD5 回执严格校验方向、opcode、18 字节 payload、16 字节 digest 与两字节全零状态；value 字段仅诊断。FLASH_END 仍发送不复位参数，真实应用 MD5 通过前不提交 OTA 或复位。
 
 诊断区分应用 ACK、FLASH_END 实际发出/应答、MD5 发出/收到/比对与 OTA 提交/回读，记录范围、预期/收到的摘要及时间，不含原始 Flash 内容。该缺陷可以产生通用空窗错误，但错误文本不证明物理噪声，也不保证本修复解决任一真实设备的全部问题。
+
+双槽更新的提交前检查仍保留最初实际读取与 SHA-256 条件校验。应用设备 MD5 通过后，再复核安全/身份，并对分区表 4096 字节、OTA 8192 字节各计算一次实际设备 MD5，与先前已完整实读且通过 SHA-256 的字节摘要比较；合并原来的重复 OTA 原始读取。只读摘要授权独立于写授权，精确绑定当前不可变计划的这两个范围，不开放任意地址，不扩大写入范围或超时。其他安装模式保留原读取策略。
+
+新 OTA 扇区 4096 字节仍经实际设备 MD5 核验；再将旧 OTA 8192 字节快照与拟写的完整 4096 字节扇区合成期望值，以设备对整个 8192 字节的实际 MD5 验证原记录与新扇区，再解析该已验证期望值检查记录。回执明确 `otaVerificationMethod:"device-md5-verified-expected-OTA"`、`otaRawReadbackPerformed:false`，不称为原始字节读回。应用、提交扇区与整体 OTA 摘要各自保留诊断；不匹配、状态错误、超时、取消或断连均停止且不自动复位，不确定提交不重放。
+
+本次定向入口为 `node tests/ota-digest-regression.mjs NEW_REPORT_DIRECTORY`，`CASE_IDS` 可筛选；只作有界开发自测。原始 READ_FLASH 在官方 stub 生命周期上合法，取消写后大包读取可减少传输暴露，但未确定某次真实链路丢帧的唯一物理原因，也不保证真实设备所有后续阶段成功。

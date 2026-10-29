@@ -12,8 +12,8 @@ export const verifiedLoader = String.raw`class VerifiedESPLoader extends vt {
   this.debug("Read Register Value:"+value);return value;
  }
 
- connection={build:"paperspace-md5-deadline-1",stage:"new",lastOpcode:null,commands:0,events:[],handoff:null};
- setConnectionStage(stage){this.connection.stage=stage;if(this.connection.events.length<32)this.connection.events.push(stage);}
+ connection={build:"paperspace-ota-digest-1",stage:"new",lastOpcode:null,commands:0,events:[],handoff:null};
+ setConnectionStage(stage){this.connection.stage=stage;if(this.connection.events.length>=32)this.connection.events.shift();this.connection.events.push(stage);}
  async command(...args){if(args[0]!=null){this.connection.lastOpcode=args[0];this.connection.commands++;}return super.command(...args);}
  async readPacket(op=null,timeout=this.DEFAULT_TIMEOUT){
   if(op!==this.ESP_SPI_FLASH_MD5)return super.readPacket(op,timeout);
@@ -117,9 +117,40 @@ export const confirmMethod = String.raw`confirm(t,{installAccepted:A,destructive
  this.#u.set(a,{plan:t,generation:this.#s,backup:t.backupRequired?n.backup:null});return a;
 }`;
 export const prewriteMethod = String.raw`async #m(t,onProgress=()=>{}){
+ this.#t.setConnectionStage(t.metadata&&this.#t.connection.appMd5Verified?"precommit-security":"prewrite-security");
  await this.#H();f(await this.#k()===this.#A.flashId&&await this.#t.chip.readMac(this.#t)===this.#A.mac,"Device identity changed");
- for(let A of [...t.conditions,...t.backupConditions])f(await b(await this.#w(A.address,A.size))===A.sha256,"Device precondition changed before write");
+ if(t.metadata&&this.#t.connection.appMd5Verified){await this.#verifyOtaDigests(t,"precommit");return;}
+ const verified=[];
+ for(let A of [...t.conditions,...t.backupConditions]){const bytes=await this.#w(A.address,A.size);f(await b(bytes)===A.sha256,"Device precondition changed before write");if(t.metadata)verified.push(Object.freeze({address:A.address,size:A.size,expected:qt(bytes)}));}
+ if(t.metadata)t.verifiedDigestConditions=Object.freeze(verified);
  if(!t.cleanReinstall&&this.#A.layout==="blank")for(let address=0;address<iA;address+=65536){this.#i();f(fA(await this.#o(address,Math.min(65536,iA-address))),"BLANK_FLASH_NOT_EMPTY: full read-only scan found existing data");onProgress({stage:"blank-scan",verifiedBytes:address+65536,total:iA,verified:false});}
+}`;
+// Read-only MD5 authority is derived solely from this session's verified plan bytes.
+export const verifyOtaDigestsMethod = String.raw`async #verifyOtaDigests(plan,phase){
+ this.#i();f(plan.metadata&&this.#e==="writing"&&!this.#C&&!this.#digestLease&&this.#t.connection.appMd5Verified,"OTA_DIGEST_REQUIRES_VERIFIED_APP");
+ const ota=this.#A.otaDataAddress;
+ f(plan.verifiedDigestConditions?.length===2&&plan.verifiedDigestConditions.some(c=>c.address===32768&&c.size===4096)&&plan.verifiedDigestConditions.some(c=>c.address===ota&&c.size===8192),"OTA_DIGEST_CONDITIONS_INVALID");
+ let checks;
+ if(phase==="precommit")checks=plan.verifiedDigestConditions;
+ else{
+  f(phase==="postcommit","OTA_DIGEST_PHASE_INVALID");
+  const region=plan.regions.find(r=>r.kind==="otadata-commit"),previous=Vt(this.#M);
+  f(this.#M.length===8192&&region&&region.bytes.length===4096&&region.wireBytes===4096&&region.address===ota+plan.metadata.index*4096&&previous.safe&&previous.activeIndex!==plan.metadata.index,"OTA_DIGEST_COMMIT_RANGE_INVALID");
+  const expected=this.#M.slice();expected.set(region.bytes,region.address-ota);plan.expectedOTA=expected;
+  checks=[Object.freeze({address:ota,size:8192,expected:qt(expected)})];
+ }
+ const facts=this.#t.connection.otaVerification||(this.#t.connection.otaVerification={method:"device-md5-verified-expected-OTA",rawReadbackPerformed:false,checks:[]});
+ for(const check of checks){
+  this.#i();const region=phase+"-"+(check.address===ota?"ota":"partition");
+  const lease=this.#digestLease=Object.freeze({...check,budgetMs:this.#t.timeoutPerMb(this.#t.MD5_TIMEOUT_PER_MB,check.size)});
+  const d=this.#t.connection.md5={region,address:check.address,expectedBytes:check.size,expectedFrameBytes:26,receivedCompleteFrames:0,receivedCompleteFrameBytes:null,readAccounting:"complete-SLIP-frames-only",expected:check.expected,received:null,budgetMs:lease.budgetMs,sentAt:null,sentMonotonicMs:null,receivedAt:null,elapsedMs:null,verified:false,active:true,readOnly:true,expectedSource:phase==="precommit"?"initial-real-read-sha256-verified-bytes":"old-8192-plus-planned-full-4096-sector"};facts.checks.push(d);
+  try{
+   d.received=await this.#t.flashMd5sum(check.address,check.size);
+   f(d.received===d.expected,phase==="precommit"?"Device precondition changed before OTA commit":"OTA_COMMIT_DEVICE_MD5_MISMATCH");
+   d.verified=true;this.#t.setConnectionStage(region+"-md5-verified");
+  }catch(error){d.error=String(error.message||error).slice(0,160);throw error;}
+  finally{d.active=false;if(d.sentAt!==null)d.elapsedMs=performance.now()-d.sentMonotonicMs;this.#digestLease=null;}
+ }
 }`;
 export const cleanPrepareBody = String.raw`if(A==="clean-reinstall"){
  const image=new Uint8Array(iA).fill(255),entries=[
@@ -218,8 +249,10 @@ export function replacements(methods){
  const read=String.raw`async #N(t){
   this.#i();const signal=this.#r.signal;let onAbort,timer;
   const cancelled=new Promise((resolve,reject)=>{onAbort=()=>reject(new Error(this.#E||"CANCELLED"));signal.addEventListener("abort",onAbort,{once:true});});
-  const d=this.#t.connection.md5,c=this.#C;
-  const scoped=!!(c&&c.finished&&this.#e==="writing"&&this.#t.connection.lastOpcode===19&&d?.active&&d.sentAt!==null&&d.address===c.address&&d.expectedBytes===c.bytes.length&&d.budgetMs===this.#t.timeoutPerMb(this.#t.MD5_TIMEOUT_PER_MB,c.bytes.length)&&t===d.budgetMs);
+  const d=this.#t.connection.md5,c=this.#C,q=this.#digestLease;
+  const writeLease=!!(c&&c.finished&&d?.address===c.address&&d.expectedBytes===c.bytes.length&&d.budgetMs===this.#t.timeoutPerMb(this.#t.MD5_TIMEOUT_PER_MB,c.bytes.length));
+  const readLease=!!(!c&&q&&d?.readOnly&&d.address===q.address&&d.expectedBytes===q.size&&d.expected===q.expected&&d.budgetMs===q.budgetMs);
+  const scoped=!!((writeLease||readLease)&&this.#e==="writing"&&this.#t.connection.lastOpcode===19&&d?.active&&d.sentAt!==null&&t===d.budgetMs);
   try{
    const timeout=scoped?Math.max(0,d.budgetMs-(performance.now()-d.sentMonotonicMs)):Math.min(t,5e3);
    if(scoped){d.effectiveTimeoutMs=timeout;if(timeout<=0)throw new Error("FLASH_MD5_DEADLINE_EXCEEDED");}
@@ -229,6 +262,8 @@ export function replacements(methods){
   }catch(error){if(scoped&&performance.now()-d.sentMonotonicMs>=d.budgetMs){d.timedOut=true;throw new Error("FLASH_MD5_DEADLINE_EXCEEDED");}throw error;}finally{clearTimeout(timer);signal.removeEventListener("abort",onAbort);}
  }`;
  let wire=get('#W');wire=replaceExactly(wire,'await this.#J(t)}','await this.#J(t);if(t.length>=8&&t[1]===4){const d=this.#t.connection.write;d.flashEndSent=true;d.flashEndSentAt=Date.now();this.#t.setConnectionStage(d.region+"-flash-end-sent");}if(t.length>=8&&t[1]===19){const d=this.#t.connection.md5;d.sentAt=Date.now();d.sentMonotonicMs=performance.now();this.#t.setConnectionStage(d.region+"-md5-sent");}}');
+ wire=replaceExactly(wire,'[2,3,4,19].includes(A)','([2,3,4].includes(A)||A===19&&!this.#digestLease)');
+ wire=replaceExactly(wire,'}else if([5,6,7].includes(A)){','}else if(A===19){const q=this.#digestLease;f(!s&&this.#e==="writing"&&q&&i.length===16&&U(i)===q.address&&U(i,4)===q.size&&U(i,8)===0&&U(i,12)===0,"Read-only MD5 outside verified plan conditions");}else if([5,6,7].includes(A)){');
  execute=replaceExactly(execute,'readbackSha256:o','readbackSha256:null,sha256ReadbackVerified:false,verificationMethod:"device-md5",imageSha256:t.sha256,verifiedRegionCount:n.regions.length,deviceMd5:t.mode==="dual-slot-update"?o:null');
  execute=replaceExactly(execute,'partitionSectorSha256:await b(await this.#o(32768,4096))','partitionSectorSha256:null');
  execute=replaceExactly(execute,'ota:Vt(await this.#o(IA,8192))','ota:n.verifiedOTA??null');
@@ -254,8 +289,12 @@ export function replacements(methods){
  prepare=replaceExactly(prepare,'appPartition:o,address:I[3]','appPartition:o,devicePartitionLabel:I[0],otaDataAddress:g?this.#A.otaDataAddress:null,address:I[3]');
  for(const match of [...prepare.matchAll(/"(?:\\.|[^"\\])*"/g)]){let value;try{value=JSON.parse(match[0]);}catch{continue;}if(value.includes('保留完整备份。提交结果'))prepare=replaceExactly(prepare,match[0],JSON.stringify('失败或中断后断开并重新连接，重新读取启动选择记录后再规划；原启动槽与内部数据保留，完整备份可选。提交结果不确定时以重新读取的元数据为准。'));}
  execute=execute.replaceAll('this.#o(IA,8192)','this.#o(this.#A.otaDataAddress,8192)');
- execute=replaceExactly(execute,'let R=await this.#v(g,s,r,h);','if(g.kind==="otadata-commit"){this.#t.connection.otaCommitAttempted=true;this.#t.setConnectionStage("ota-commit-attempted");}let R=await this.#v(g,s,r,h);if(g.kind==="app"){this.#t.connection.appMd5Verified=true;this.#t.connection.appMd5=structuredClone(this.#t.connection.md5);}');
+ execute=replaceExactly(execute,'f(vA(await this.#o(this.#A.otaDataAddress,8192),this.#M),"OTA_METADATA_CHANGED_BEFORE_COMMIT"),await this.#m(n)','await this.#m(n)');
+ execute=replaceExactly(execute,'let R=await this.#v(g,s,r,h);','if(g.kind==="otadata-commit"){this.#t.connection.otaCommitAttempted=true;this.#t.setConnectionStage("ota-commit-attempted");}let R=await this.#v(g,s,r,h);if(g.kind==="app"){this.#t.connection.appMd5Verified=true;this.#t.connection.appMd5=structuredClone(this.#t.connection.md5);}if(g.kind==="otadata-commit")this.#t.connection.otaCommitMd5=structuredClone(this.#t.connection.md5);');
+ execute=replaceExactly(execute,'let g=Vt(await this.#o(this.#A.otaDataAddress,8192));','await this.#verifyOtaDigests(n,"postcommit");let g=Vt(n.expectedOTA);');
+ execute=replaceExactly(execute,'OTA_COMMIT_READBACK_MISMATCH','OTA_COMMIT_EXPECTED_RECORD_INVALID');
  execute=replaceExactly(execute,'n.verifiedOTA=g}','n.verifiedOTA=g,this.#t.connection.otaCommitVerified=true,this.#t.setConnectionStage("ota-commit-verified")}');
+ execute=replaceExactly(execute,'otaCommitPerformed:!!n.metadata','otaCommitPerformed:!!n.metadata,otaVerificationMethod:n.metadata?"device-md5-verified-expected-OTA":null,otaRawReadbackPerformed:false');
  execute=replaceExactly(execute,'bootloaderMatched:!0,bootloaderIdentity:n.metadata?','bootloaderMatched:n.metadata?this.#A.bootloaderMatched:true,bootloaderIdentity:n.metadata?');
  execute=replaceExactly(execute,'partitionSha256:this.#n.package.partitionSha256,partitionSectorSha256:null,partitions:this.#n.package.partitions','partitionSha256:n.metadata?this.#A.partitionSha256:this.#n.package.partitionSha256,partitionSectorSha256:n.metadata?this.#A.partitionSectorSha256:null,partitions:n.metadata?this.#A.partitions:this.#n.package.partitions');
 
