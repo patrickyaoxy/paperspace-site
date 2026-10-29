@@ -1,6 +1,6 @@
 # 安装器引擎的可复现维护
 
-工具在完整 SHA-256 固定的已发布编译 bundle 上完成两阶段转换，不声称从原七个模块重新构建。第一阶段使用 Acorn 8.15.0 定位并替换来源、版本和诊断三个身份字面量；第二阶段只允许十二个会话方法、安全与只读摘要授权私有字段、OTA 摘要检查方法、完成写入后的一次性硬复位方法、每会话 `VerifiedESPLoader`、构造器唯一 loader callee 、导出身份元数据及controller转发连接模式及硬复位的改动。原 SDK/Transport 类、OTA 记录编解码、WL/FAT、镜像/策略解析及完整备份实现保持 AST 与字节相同；会话按实表绑定应用/OTA地址和目标应用几何。Adapter继承SDK的stub上传与后续USB配置，只替换ROM移交握手；工具逐字节证明该继承方法其余前后缀不变。
+工具在完整 SHA-256 固定的已发布编译 bundle 上完成两阶段转换，不声称从原七个模块重新构建。第一阶段使用 Acorn 8.15.0 定位并替换来源、版本和诊断三个身份字面量；第二阶段只允许十二个会话方法、安全与只读摘要授权私有字段、OTA 摘要检查方法、完成写入后的一次性硬复位方法、每会话 `VerifiedESPLoader`、构造器唯一 loader callee 、导出身份元数据、controller转发连接模式及硬复位、以及`Aa/$n/Zn`下载函数及下载清理身份检查的改动。原 SDK/Transport 类、OTA 记录编解码、WL/FAT、镜像/策略解析及完整备份实现保持 AST 与字节相同；会话按实表绑定应用/OTA地址和目标应用几何。Adapter继承SDK的stub上传与后续USB配置，只替换ROM移交握手；工具逐字节证明该继承方法其余前后缀不变。
 
 依赖版本及完整性由本目录 package-lock.json 固定，Acorn [MIT 许可](ACORN-LICENSE-MIT.txt) 随附。Acorn 只用于维护，不进入浏览器运行 bundle。
 
@@ -82,3 +82,11 @@ node tests/read-flash-regression.mjs staging/read-flash-regression
 新 OTA 扇区 4096 字节仍经实际设备 MD5 核验；再将旧 OTA 8192 字节快照与拟写的完整 4096 字节扇区合成期望值，以设备对整个 8192 字节的实际 MD5 验证原记录与新扇区，再解析该已验证期望值检查记录。回执明确 `otaVerificationMethod:"device-md5-verified-expected-OTA"`、`otaRawReadbackPerformed:false`，不称为原始字节读回。应用、提交扇区与整体 OTA 摘要各自保留诊断；不匹配、状态错误、超时、取消或断连均停止且不自动复位，不确定提交不重放。
 
 本次定向入口为 `node tests/ota-digest-regression.mjs NEW_REPORT_DIRECTORY`，`CASE_IDS` 可筛选；只作有界开发自测。原始 READ_FLASH 在官方 stub 生命周期上合法，取消写后大包读取可减少传输暴露，但未确定某次真实链路丢帧的唯一物理原因，也不保证真实设备所有后续阶段成功。
+
+候选固件下载使用五文件共享的固定 300 秒总预算；每个请求等待响应头最多 30 秒，响应体连续 30 秒没有新增解码字节也停止。只有非空解码块刷新停滞计时，总预算不续期；计时器与单调时钟检查共同执行边界。owner 配置小请求保留原 15 秒路径。取消或首次失败立即中止当前 fetch、取消并释放 reader，晚响应不能登记候选，不自动重试。全部五文件完成固定解码长度及 owner SHA-256 校验后才登记候选，下载成功也不替代设备侧写前校验。
+
+`Content-Length` 可能描述 gzip 压缩传输字节，不与解码长度做等值比较；解码数据仍受固定最大/精确长度及 SHA-256 约束。同源 HTTPS、拒绝重定向及凭据省略规则保持。失败日志 `download` 区分响应头、停滞、总超时、HTTP、fetch、长度、摘要和取消，并记录文件、阶段、HTTP 状态、解码字节计数、耗时与预算；fetch 的 `TypeError` 不证明某一种底层原因。开发定向入口为 `node tests/download-budget-regression.mjs NEW_REPORT_DIRECTORY`。
+
+生成器只新增 `Aa/$n/Zn` 三个下载函数的审查区间与 controller 的下载清理身份检查。owner 原超时/读取分支精确保留，并以公开基线 `4226a51c8740bae037389fe646eb3354f09b4054` 的完整类摘要核对会话、每会话 adapter、SDK 与 Transport 字节，串口和 OTA 实现不受本次下载修改影响。
+
+整合构建标识为 `paperspace-ota-download-1`；下载诊断保留组件标识 `paperspace-download-budget-1`，串口会话保留组件标识 `paperspace-ota-digest-1`。这三个标识分别表示整合安装器、下载模块和未改动的串口/OTA模块。

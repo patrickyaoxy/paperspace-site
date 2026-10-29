@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "version": "2.1.1",
+  "channel": "stable",
+  "profile": "product",
+  "edition": "slim",
+  "sourceSha": "3abe593b3ad208229aaf734b879af2f5081c6cec",
+  "board": "Read Pico",
+  "chip": "esp32s3",
+  "flashBytes": 16777216,
+  "hardwareValidation": "NOT_TESTED",
+  "package": {
+    "kind": "full-flash-image",
+    "url": "downloads/paperspace-v2.1.1-stable-esp32s3-full.bin",
+    "bytes": 16777216,
+    "sha256": "53af29d3e7dec8d0511c2c81fbfb676e7b23325035b778e6240ad6ae0e640e3e",
+    "checksumUrl": "downloads/paperspace-v2.1.1-stable-esp32s3-full.bin.sha256",
+    "format": "raw-bin",
+    "flashAddress": 0,
+    "flashAddressHex": "0x0",
+    "installationNotesUrl": "firmware/v2.1.1/INSTALL.zh.txt",
+    "mode": "clean-install",
+    "dataEffect": "OverwriteEntire16MiBInternalFlash",
+    "erasesExternalSD": false,
+    "automaticExecution": false
+  },
+  "embeddedImages": [
+    {
+      "file": "bootloader/bootloader.bin",
+      "address": 0,
+      "addressHex": "0x0",
+      "bytes": 21232,
+      "sha256": "de9684ab654050d83dbf651b5eeb2d9f42af1ac85a10277c6d1ba7a2f64b8b4e"
+    },
+    {
+      "file": "partition_table/partition-table.bin",
+      "address": 32768,
+      "addressHex": "0x8000",
+      "bytes": 3072,
+      "sha256": "cd4ff0257b302884afa9c8961a8d3ffa26851b03b8b97db3d602e04f0b88f5ae"
+    },
+    {
+      "file": "Read_Pico.bin",
+      "address": 65536,
+      "addressHex": "0x10000",
+      "bytes": 3338288,
+      "sha256": "3bd0d10257bdad0020bc72ee7c4f37c0e3d26e2be41132a41f3c7ba4b34e7310"
+    },
+    {
+      "file": "ota_data_initial.bin",
+      "address": 15794176,
+      "addressHex": "0xf10000",
+      "bytes": 8192,
+      "sha256": "7d2c7ac4888bfd75cd5f56e8d61f69595121183afc81556c876732fd3782c62f"
+    }
+  ],
+  "padding": "0xFF in every gap and tail up to16MiB",
+  "mergeTool": {
+    "name": "esptool",
+    "version": "5.6.0",
+    "command": "merge-bin",
+    "flashMode": "keep",
+    "flashFrequency": "keep",
+    "flashSize": "keep",
+    "targetOffset": 0,
+    "padToSize": "16MB"
+  },
+  "manifest": {
+    "url": "firmware/v2.1.1/manifest.json",
+    "sha256": "3cad0ead16d659ddbde866f2d269294e755b5d592d99940d49f635b6020f2219",
+    "bytes": 1779
+  },
+  "relinkMaterials": {
+    "url": "downloads/paperspace-v2.1.1-stable-esp32s3-relink-materials.zip",
+    "bytes": 9391512,
+    "sha256": "99aae319373d20174184c10a514cfcae8dabbbfacb334681b73afdd01c01f2de"
+  },
+  "legalUrl": "legal.html"
+}

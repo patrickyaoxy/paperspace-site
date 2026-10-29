@@ -21,10 +21,47 @@
     "channel": "stable"
   },
   "maintenance": {
+    "protectedPublicBase": "4226a51c8740bae037389fe646eb3354f09b4054",
+    "serialSessionSdkAndTransportByteIdenticalToPublicBase": true,
+    "protectedClassSha256": {
+      "pe": "388bc431167e27f3538b4802ff08f0202aeb998366750fdf6008913ec2c706b4",
+      "vt": "cd772f4b33d0e7ea3319ee0a4ffb6d66f2ff2f597f2063edfeaa72a2bf729b65",
+      "BA": "d4fece474a2fcf6231e44905143e3c2fc7f647bc5eeda449ce75b720752595ca",
+      "VerifiedESPLoader": "58be51f301ce209aa7dad11f27a3a61bd77618fcdc64e26b27dd05512d7d57cb"
+    },
+    "downloadSourceCandidate": "499562bb0e9adc28b737bf7a16aa9cff7ba34a64",
+    "candidateDownloadsOnly": true,
+    "owner15sLegacyBranchesBytePreserved": true,
+    "fixedCandidateTotalMs": 300000,
+    "candidateHeadersMs": 30000,
+    "candidateDecodedIdleMs": 30000,
+    "downloadSourceSha256": "bcccb26237b0870742f1a97b4c20fc9708c9cded6283c360141d1fc90eb06d67",
+    "integrationBuild": "paperspace-ota-download-1",
     "scope": "all",
     "baselineEngineSha256": "60a95723afb8f3f2c7503cb79a0553287eb6bda6a53bac3b5fcca637b0b912bd",
     "provenanceMode": "compiled-bundle-derived-structural-session-maintenance",
     "changedMethods": [
+      {
+        "method": "candidate download Zn",
+        "start": 327824,
+        "end": 328283,
+        "beforeSha256": "16020476564b339f74f99c8de181966faf99f230b6ef3c6366786d546700ee19",
+        "afterSha256": "0f3b968eec51af76c1c17158cc66304ce81fd1a1106722c50e51eeb4bbf6fc18"
+      },
+      {
+        "method": "candidate download $n",
+        "start": 328642,
+        "end": 329474,
+        "beforeSha256": "c527c5391d1d006aead02edb93ebd3ecf4b566170eb08e902340ce9d5263cd94",
+        "afterSha256": "ad2bd2fc53f7763205e53080578f51e81b7bcad280087caf1a80bdc447e78910"
+      },
+      {
+        "method": "candidate download Aa",
+        "start": 332169,
+        "end": 332763,
+        "beforeSha256": "31e5644e441581d6c8c7b8a6b80660d238f5959e7d8078dbaa9208bf11d3a744",
+        "afterSha256": "9c4e2f15ab853bb0e4b9b529c5ef161c076ed01e9ab0d5d66629152d7057c681"
+      },
       {
         "method": "VerifiedESPLoader adapter",
         "start": 339728,
@@ -150,14 +187,14 @@
         "start": 362322,
         "end": 362529,
         "beforeSha256": "e9c7562e5b5ba102331fe7809562e913bc4cdd3709d92b5b87013233624985c9",
-        "afterSha256": "149327f88f17c5f73722344a0ba29016e5505951bc4867d314a74b3de7afd078"
+        "afterSha256": "ea5e58347c1e5af6b3cb6757f28c929bc6cb364036e84b5455a9cf9164413c47"
       },
       {
         "method": "controller clean connection mode forwarding",
         "start": 362529,
         "end": 364110,
         "beforeSha256": "f0973013351fedbfdeeccae3d6bfeeafbb2e4eabeb591eeb6f39779b65f2757c",
-        "afterSha256": "e30a338cfa6a47c90bba9d427d56d8c889b633880966bb646bb16999517e08de"
+        "afterSha256": "4876809b2cbd276cfe5df744f4a6e3b1b574a037488fad61c8f49aed524d97c4"
       }
     ],
     "allOtherModuleAstEqual": true,
@@ -182,13 +219,13 @@
     "allOtherCommandReadBudgetsCappedAt5000": true,
     "sdkStubUploadAndPostHandshakeBytesIdentical": true,
     "serialHandshakeBuild": "paperspace-ota-digest-1",
-    "engineSha256": "6268c0a7bfdd0606af5e3f59660fb47d2fded0b86be85592e760d77d0d7edee0",
-    "engineBytes": 391045,
+    "engineSha256": "768be535c301c445d77cebe15109fc257cd52e10fbba2dda645ccf63f5f08058",
+    "engineBytes": 396184,
     "maintenanceSourceSha256": "1b187deece891646ba237cd423708a8f470a218109e3f71dd2045be3e2bfe765",
-    "scriptSha256": "48150aec94bb32e1941849f166a7cb50abecc3878735ef8f79030a6a2f25def0"
+    "scriptSha256": "91c2943528ea39bb2107efc8b2b3f95e67671b633f69cbf6dcebe7c7288e1ed5"
   },
-  "engine_sha256": "6268c0a7bfdd0606af5e3f59660fb47d2fded0b86be85592e760d77d0d7edee0",
-  "engine_bytes": 391045,
+  "engine_sha256": "768be535c301c445d77cebe15109fc257cd52e10fbba2dda645ccf63f5f08058",
+  "engine_bytes": 396184,
   "externalImports": [],
   "deviceTest": "NOT_RUN",
   "cleanReinstall": {
@@ -282,5 +319,23 @@
     "preserved": "original selected record and application slot, table/bootloader/settings; no reset before all verification succeeds; no retry of uncertain commit",
     "physicalReadFrameLossCause": "UNKNOWN",
     "deviceTest": "NOT_RUN"
+  },
+  "integration": {
+    "build": "paperspace-ota-download-1",
+    "base": "4226a51c8740bae037389fe646eb3354f09b4054",
+    "downloadSourceCandidate": "499562bb0e9adc28b737bf7a16aa9cff7ba34a64",
+    "serialOtaComponent": "paperspace-ota-digest-1",
+    "downloadComponent": "paperspace-download-budget-1",
+    "firmwareImagesUnchanged": true,
+    "deviceTest": "NOT_RUN"
+  },
+  "candidateDownload": {
+    "totalMs": 300000,
+    "headersMs": 30000,
+    "decodedBodyIdleMs": 30000,
+    "ownerConfigTotalMs": 15000,
+    "retry": false,
+    "integrity": "owner-pinned decoded max/exact lengths plus SHA-256",
+    "cancellation": "first reason; abort fetch/reader; no late candidate"
   }
 }

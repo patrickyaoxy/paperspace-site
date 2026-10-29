@@ -1,5 +1,5 @@
 /* paperspace installation UI. Only the fixed-policy controller can access a device. */
-import {loadOwnerPolicy, createController} from './real-flash/engine.js?v=20261029-ota-digest-1';
+import {loadOwnerPolicy, createController} from './real-flash/engine.js?v=20261029-ota-download-1';
 
 const root = document.getElementById('flash-real-root');
 if (root) {
@@ -87,6 +87,12 @@ if (root) {
       [/STUB_HANDOFF|STUB_MEM_END|SERIAL_RECEIVE_LOSS|READ_FLASH|Read trailing MD5|Serial data stream stopped|No serial data received|Invalid head of packet|Invalid SLIP escape/i, '设备数据读取或串口通信失败。', '请保持数据线与供电，关闭原会话后重试；可复制失败日志。如果只读检测持续失败，可在新会话中明确选择清空内部数据的全新安装。'],
       [/DEVICE_DISCONNECTED|DISCONNECTED|device has been lost|NetworkError|SERIAL.*(?:READ|WRITE)/i, '设备连接已中断。', '请检查供电与数据线，断开旧会话后重新连接；如已开始写入，请按备份恢复说明处理。'],
       [/Written.*(?:SHA|MD5)|readback.*mismatch/i, '设备中的写入内容未通过核验。', '设备核验没有通过，安装尚未完成。请断开后重新连接；需要恢复原数据时使用已保存的备份。'],
+      [/TRUSTED_DOWNLOAD_HEADERS_TIMEOUT/i, '等待官网响应超时，下载已停止。', '请复制失败日志，稍后重新发起安装。'],
+      [/TRUSTED_DOWNLOAD_STALL_TIMEOUT/i, '固件下载持续没有收到新数据，已停止。', '请复制失败日志，稍后重新发起安装。'],
+      [/TRUSTED_DOWNLOAD_TOTAL_TIMEOUT|TRUSTED_DOWNLOAD_TIMEOUT/i, '下载超过本次总等待预算，已停止。', '请复制失败日志，稍后重新发起安装。'],
+      [/TRUSTED_DOWNLOAD_HTTP_ERROR/i, '官网返回了未成功的下载状态。', '请复制包含文件和状态的失败日志，稍后重试。'],
+      [/TRUSTED_DOWNLOAD_FETCH_FAILED|Failed to fetch|fetch failed/i, '浏览器未能完成下载请求。', '具体原因尚未确认；请复制失败日志供维护方核对。'],
+      [/TRUSTED_DOWNLOAD_(?:SIZE|HASH)/i, '下载文件的长度或内容校验未通过。', '该文件不会用于刷写；请复制失败日志并重新获取官网固件。'],
       [/Owner download SHA|download.*(?:length|limit)|Trusted download|DOWNLOAD|Failed to fetch|fetch failed|下载失败/i, '官网固件下载失败或文件校验未通过。', '请检查网络后重新点击“连接并刷机”；持续失败请联系维护方。'],
       [/16MiB|ESP32-S3 required|16 MiB/i, '芯片或闪存容量不符合此固件要求。', '请核对官网指定机型，不要继续刷写。']
     ];
@@ -158,7 +164,7 @@ if (root) {
 
   function captureFailureLog(error){
     const state=snapshot()||{};
-    return JSON.stringify({installerBuild:'paperspace-ota-digest-1',engineBuild:state.connection?.build||null,phase,error:String(error?.message||error),target:policy?.target?{board:policy.target.board,model:policy.target.model,version:policy.target.version,sourceSha:policy.target.sourceSha}:null,plan:plan?{mode:plan.mode,dataEffect:plan.dataEffect}:null,device:{phase:state.phase,connected:state.connected,portCloseUncertain:state.portCloseUncertain,generation:state.generation,acknowledgedBytes:state.acknowledgedBytes||0,error:state.error||null,security:state.security||null,connection:state.connection||null},writeReceipt,resetReceipt,verification:{method:'device-md5',sourceIntegrity:'owner-pinned-sha256',sha256ReadbackVerified:false}},null,2);
+    return JSON.stringify({installerBuild:'paperspace-ota-download-1',engineBuild:state.connection?.build||null,phase,error:String(error?.message||error),download:error?.download||null,target:policy?.target?{board:policy.target.board,model:policy.target.model,version:policy.target.version,sourceSha:policy.target.sourceSha}:null,plan:plan?{mode:plan.mode,dataEffect:plan.dataEffect}:null,device:{phase:state.phase,connected:state.connected,portCloseUncertain:state.portCloseUncertain,generation:state.generation,acknowledgedBytes:state.acknowledgedBytes||0,error:state.error||null,security:state.security||null,connection:state.connection||null},writeReceipt,resetReceipt,verification:{method:'device-md5',sourceIntegrity:'owner-pinned-sha256',sha256ReadbackVerified:false}},null,2);
   }
 
   function failure(error) {
@@ -377,6 +383,6 @@ if (root) {
   window.addEventListener('beforeunload', event => { if (active() || connected || uncertain()) { event.preventDefault(); event.returnValue = ''; } });
   window.addEventListener('pagehide', () => { generation++; abort?.abort(); session?.cancel(); void (uncertainOwner || session)?.disconnect().catch(() => {}); });
   window.addEventListener('pageshow', event => { if (event.persisted) void stop(true); });
-  window.PaperspaceInstaller = Object.freeze({snapshot: () => ({phase, message, result, connected, portCloseUncertain: uncertain(), targetEnabled: !!policy?.enabled, candidateReady: !!candidate, busy: active(), confirmationReady: !!confirmation, planMode: plan?.mode || null, error: lastError, installerBuild:'paperspace-ota-digest-1',failureLogReady:!!failureLog,cleanRetryAvailable,writeVerified:writeReceipt?.verified===true,resetCommandSent:resetReceipt?.resetCommandSent===true,bootHealthVerified:false})});
+  window.PaperspaceInstaller = Object.freeze({snapshot: () => ({phase, message, result, connected, portCloseUncertain: uncertain(), targetEnabled: !!policy?.enabled, candidateReady: !!candidate, busy: active(), confirmationReady: !!confirmation, planMode: plan?.mode || null, error: lastError, installerBuild:'paperspace-ota-download-1',failureLogReady:!!failureLog,cleanRetryAvailable,writeVerified:writeReceipt?.verified===true,resetCommandSent:resetReceipt?.resetCommandSent===true,bootHealthVerified:false})});
   void reload();
 }

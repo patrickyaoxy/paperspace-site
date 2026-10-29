@@ -1,0 +1,44 @@
+paperspace v2.1.1 stable 精简版 — 完整固件 .bin
+
+适用：Read Pico ESP32-S3 / 16 MiB Flash，匹配原板8 MiB PSRAM及运行时配置。
+源码 v2.1.1 / 3abe593b3ad208229aaf734b879af2f5081c6cec；ESP-IDF v6.1。
+stable是功能渠道；本云构建公开测试版未完成真机安装验收。
+
+下载一个文件：paperspace-v2.1.1-stable-esp32s3-full.bin
+大小：16777216 字节（16 MiB）；起始烧录地址：0x0。
+SHA-256：53af29d3e7dec8d0511c2c81fbfb676e7b23325035b778e6240ad6ae0e640e3e
+
+这是完整重装镜像，不是保留数据的双槽OTA升级。
+写入会擦除/覆盖全部16 MiB内部Flash，包括原系统、两个应用槽、分区表、启动记录、设置、进度及内部文件；没有自动恢复。
+TF/SD卡不改动；独立PMU的VCOM标定不在ESP32 Flash内。本镜像没有未知旧设备出厂数据备份，不能宣称适合任意ESP32-S3板。
+需要原数据可自行先备份；兼容双槽保留数据升级仍使用官网“连接并刷机”。
+
+该BIN通过官方esptool v5.6.0离线merge-bin从已发布四个原始镜像生成，未重编固件或更改镜像头参数。
+从0x0到0x1000000，四段按原manifest偏移嵌入，其余间隙及尾部全为0xFF。
+0x000000 bootloader/bootloader.bin（21232字节）
+0x008000 partition_table/partition-table.bin（3072字节）
+0x010000 Read_Pico.bin（3338288字节）
+0xf10000 ota_data_initial.bin（8192字节）
+这些分段仅用于来源核对，普通使用者只需要完整BIN和0x0一个地址，不用手选分区。
+内部Read_Pico.bin是单独应用镜像，不能当作完整BIN烧到0x0；此下载入口不提供两种固件选择。
+
+GUI工具：选择ESP32-S3，16MB Flash，文件选完整BIN，地址填0x0；不覆盖镜像的Flash mode/freq/size参数。
+esptool v5.x示例（仅文档，不自动执行；PORT替换为实际串口）：
+python -m esptool --chip esp32s3 --port PORT --baud 115200 write-flash --flash-mode keep --flash-freq keep --flash-size keep 0x0 paperspace-v2.1.1-stable-esp32s3-full.bin
+完整16MiB文件本身已覆盖所有扇区，无需先额外执行整片擦除命令。
+不要关闭Secure Boot、Flash Encryption或其他安全设置，不改eFuse，不使用force绕过保护。
+keep保留原镜像头，不能由镜像头80MHz推断或擅改固件120MHz运行时配置。
+v4命令命名不同，请按其官方文档转换；实际启动、显示及USB复位效果仍需设备确认，工具校验通过不等于真机启动已验。
+官方参数：
+https://docs.espressif.com/projects/esptool/en/latest/esp32s3/esptool/basic-commands.html
+https://docs.espressif.com/projects/esptool/en/latest/esp32s3/esptool/flash-modes.html
+
+许可与来源：基于MindReset Read Pico Demo Firmware，paperspace独立维护，非官方发布。
+https://github.com/MindReset/read_pico_firmware
+本软件部分基于Independent JPEG Group的工作。
+this software is based in part on the work of the Independent JPEG Group
+修改版epdiy为LGPL-3.0-or-later；完整许可/版权和匹配修改源、必要编译对象、重链接材料单独公开分发：
+https://patrickyaoxy.github.io/paperspace-site/legal.html
+https://patrickyaoxy.github.io/paperspace-site/downloads/paperspace-v2.1.1-stable-esp32s3-relink-materials.zip
+材料SHA-256：99aae319373d20174184c10a514cfcae8dabbbfacb334681b73afdd01c01f2de
+允许替换兼容库后重链、安装、运行以及为调试修改所需的逆向；私有应用C/C++源码不公开。
