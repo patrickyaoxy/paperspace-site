@@ -1,0 +1,68 @@
+{
+  "mode": "COMPILED_BUNDLE_DERIVED_NOT_ORIGINAL_SOURCE_BUILD",
+  "baseline": {
+    "commit": "91ce874cb34b9415eddb48efdea8357dacf055bc",
+    "engineSha256": "768be535c301c445d77cebe15109fc257cd52e10fbba2dda645ccf63f5f08058",
+    "buildSha256": "7b9436e0ed7935362378b7d64ba6724f137806ffab422a0ffaae9f8530e842ca",
+    "miSourceSha256": "4b8a1e1f628ba7a6108535a0a0da2e0be15353ddae7003228663fea8defc1dce",
+    "miAstSha256": "8877f2c9457ba99e4b17fd818ce3800819a11dd4445dc0ce21ea1004dc6a056d"
+  },
+  "outputSha256": "4d90fbdfa556ad2a4c4993b00223319327500a2db2cd46248005ffae43cfbc9d",
+  "outputBytes": 396186,
+  "scriptSha256": "4723dcfaff00301ee70d76487bd172e66624cb400cc959b581e4dd15bff3d49e",
+  "parserVersion": "8.15.0",
+  "parserLockSha256": "2bc16c64a91e3ec2e6e8a1e29460c0933675f80d198b63f095d63d10d342ce0b",
+  "edits": [
+    {
+      "property": "sourceSha",
+      "old": "3abe593b3ad208229aaf734b879af2f5081c6cec",
+      "next": "48402ef58a1510da46a003c003385be467312ec8",
+      "start": 319057,
+      "end": 319099
+    },
+    {
+      "property": "version",
+      "old": "2.1.1",
+      "next": "2.3.10",
+      "start": 319113,
+      "end": 319120
+    },
+    {
+      "diagnostic": true,
+      "old": "Unreviewed release identity: only pinned v2.1.1 contract supported",
+      "next": "Unreviewed release identity: only pinned v2.3.10 contract supported",
+      "start": 319144,
+      "end": 319212
+    }
+  ],
+  "normalizedAstDifferences": [
+    {
+      "path": "/body/191/body/body/2/expression/expressions/5/arguments/0/left/left/right/value",
+      "before": "3abe593b3ad208229aaf734b879af2f5081c6cec",
+      "after": "48402ef58a1510da46a003c003385be467312ec8"
+    },
+    {
+      "path": "/body/191/body/body/2/expression/expressions/5/arguments/0/left/right/right/value",
+      "before": "2.1.1",
+      "after": "2.3.10"
+    },
+    {
+      "path": "/body/191/body/body/2/expression/expressions/5/arguments/1/value",
+      "before": "Unreviewed release identity: only pinned v2.1.1 contract supported",
+      "after": "Unreviewed release identity: only pinned v2.3.10 contract supported"
+    }
+  ],
+  "assertions": {
+    "fullBaselineHash": true,
+    "uniqueMi": true,
+    "fullOldMiSourceAndAst": true,
+    "exactlyThreeLiteralValues": true,
+    "outsideRangesByteIdentical": true,
+    "allOtherTopLevelAstIdentical": true,
+    "idfAndSixPartitionGuardsUnchanged": true,
+    "variableLengthOffsetsVerified": true
+  },
+  "policyChanged": false,
+  "firmwareGenerated": false,
+  "deviceAccess": false
+}

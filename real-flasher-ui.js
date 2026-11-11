@@ -1,5 +1,5 @@
 /* paperspace installation UI. Only the fixed-policy controller can access a device. */
-import {loadOwnerPolicy, createController} from './real-flash/engine.js?v=20261029-ota-download-1';
+import {loadOwnerPolicy, createController} from './real-flash/engine.js?v=20261111-release2310-1';
 
 const root = document.getElementById('flash-real-root');
 if (root) {

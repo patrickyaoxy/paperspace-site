@@ -6,39 +6,39 @@
     "board": "Read Pico",
     "model": "ESP32-S3 / 16MB / Zbit",
     "project": "Read_Pico",
-    "version": "2.1.1",
+    "version": "2.3.10",
     "idfVersion": "v6.1",
-    "sourceSha": "3abe593b3ad208229aaf734b879af2f5081c6cec",
+    "sourceSha": "48402ef58a1510da46a003c003385be467312ec8",
     "manifest": {
-      "url": "firmware/v2.1.1/manifest.json",
-      "sha256": "3cad0ead16d659ddbde866f2d269294e755b5d592d99940d49f635b6020f2219",
+      "url": "firmware/v2.3.10/manifest.json",
+      "sha256": "1e0186bd94cd28c93f0d519e981cf19cb7a72314be650b54bf9613290970d07d",
       "bytes": 1779
     },
     "images": {
       "bootloader": {
         "file": "bootloader/bootloader.bin",
-        "url": "firmware/v2.1.1/bootloader/bootloader.bin",
-        "sha256": "de9684ab654050d83dbf651b5eeb2d9f42af1ac85a10277c6d1ba7a2f64b8b4e",
-        "bytes": 21232,
+        "url": "firmware/v2.3.10/bootloader/bootloader.bin",
+        "sha256": "9c336c118c590384467b5a83a25efbe9ddc9cd246255f963a41a7c04603cd1fd",
+        "bytes": 14240,
         "address": 0
       },
       "partitionTable": {
         "file": "partition_table/partition-table.bin",
-        "url": "firmware/v2.1.1/partition_table/partition-table.bin",
+        "url": "firmware/v2.3.10/partition_table/partition-table.bin",
         "sha256": "cd4ff0257b302884afa9c8961a8d3ffa26851b03b8b97db3d602e04f0b88f5ae",
         "bytes": 3072,
         "address": 32768
       },
       "app": {
         "file": "Read_Pico.bin",
-        "url": "firmware/v2.1.1/Read_Pico.bin",
-        "sha256": "3bd0d10257bdad0020bc72ee7c4f37c0e3d26e2be41132a41f3c7ba4b34e7310",
-        "bytes": 3338288,
+        "url": "firmware/v2.3.10/Read_Pico.bin",
+        "sha256": "2b7ad243e13abfda1c6f599d172ec12c8f35305384ca319b47da090e7265f87e",
+        "bytes": 3598464,
         "address": 65536
       },
       "otaData": {
         "file": "ota_data_initial.bin",
-        "url": "firmware/v2.1.1/ota_data_initial.bin",
+        "url": "firmware/v2.3.10/ota_data_initial.bin",
         "sha256": "7d2c7ac4888bfd75cd5f56e8d61f69595121183afc81556c876732fd3782c62f",
         "bytes": 8192,
         "address": 15794176

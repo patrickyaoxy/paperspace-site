@@ -90,3 +90,10 @@ node tests/read-flash-regression.mjs staging/read-flash-regression
 生成器只新增 `Aa/$n/Zn` 三个下载函数的审查区间与 controller 的下载清理身份检查。owner 原超时/读取分支精确保留，并以公开基线 `4226a51c8740bae037389fe646eb3354f09b4054` 的完整类摘要核对会话、每会话 adapter、SDK 与 Transport 字节，串口和 OTA 实现不受本次下载修改影响。
 
 整合构建标识为 `paperspace-ota-download-1`；下载诊断保留组件标识 `paperspace-download-budget-1`，串口会话保留组件标识 `paperspace-ota-digest-1`。这三个标识分别表示整合安装器、下载模块和未改动的串口/OTA模块。
+
+
+## v2.3.10 身份与安装器缓存
+
+在 91ce874cb34b9415eddb48efdea8357dacf055bc 基线上运行 adapt-release-2310.mjs，输入该提交的 real-flash/engine.js 和 build.json，并指定新的 --outdir。固定整包及 Mi 源码/AST 摘要，仅修改 sourceSha、version 和诊断三个字面量；支持变长编辑，并验证范围外字节及其余 AST 完全相同。设备安全、分区、OTA、串口和下载策略不改。回归：node tests/release-2310-identity-regression.mjs。
+
+仅安装链 index → install-loader → real-flasher-ui → engine 的 URL 查询版本更新为 20261111-release2310-1；service worker 不缓存内容，2.0.8 WASM与演示加载链保持原样。已打开的旧页面需刷新以取得新安装器。

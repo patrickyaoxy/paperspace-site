@@ -1,6 +1,6 @@
 # 官网固件目标配置
 
-唯一入口是网站根目录 `firmware-target.json`。当前启用 Read Pico / ESP32-S3 / 16MB / Zbit 的 v2.1.1 正式渠道精简测试候选固定目标，USB 安装自动下载并核验原始镜像，访客不必选择 ZIP、本地固件包或应用槽。只有网站维护者修改固定目标；连接须访客主动操作，并仅连接适用板型；干净重装备份可选，写入前明确确认清空内部数据。ESP32-S3 对应重链接材料由许可页独立提供；本构建尚未完成真机验证，不能用合成向量或软件读回结果替代真实启动/显示/数据验收。
+唯一入口是网站根目录 `firmware-target.json`。当前启用 Read Pico / ESP32-S3 / 16MB / Zbit 的 v2.3.10 stable 正式功能渠道固定目标（部分真机检查未完成），USB 安装自动下载并核验原始镜像，访客不必选择 ZIP、本地固件包或应用槽。只有网站维护者修改固定目标；连接须访客主动操作，并仅连接适用板型；干净重装备份可选，写入前明确确认清空内部数据。ESP32-S3 对应重链接材料由许可页独立提供；本构建尚未完成真机验证，不能用合成向量或软件读回结果替代真实启动/显示/数据验收。
 
 ## 指定目标的最少步骤
 
@@ -17,7 +17,7 @@
 |字段|含义|
 |---|---|
 |board / model|操作者需确认的准确硬件板型；芯片识别不能证实板型|
-|project / version / idfVersion / sourceSha|与 app descriptor、来源和实际构建对应；当前固定 2.1.1 / stable / v6.1 / 3abe593b3ad208229aaf734b879af2f5081c6cec|
+|project / version / idfVersion / sourceSha|与 app descriptor、来源和实际构建对应；当前固定 2.3.10 / stable / v6.1 / 48402ef58a1510da46a003c003385be467312ec8|
 |manifest|固定 url、sha256、bytes；schema1 独立安装清单，仅列四个实际镜像，完整 archive 清单不直接用于安装|
 |images|bootloader、partitionTable、app、otaData；每项 file、url、sha256、bytes、address|
 |partitions|目标分区的完整有序行 `[name,type,subtype,address,size]`，与原始表逐项匹配|
@@ -67,7 +67,7 @@ Flash 厂商没有品牌白名单；有效 RDID 与容量才是协议校验依�
 
 ## 生成器输入
 
-在仓库根目录运行 `python3 scripts/prepare-firmware-target.py --package PACKAGE_DIRECTORY --trust TRUST_JSON --out staging/prepared-target`。输出目录必须尚不存在；生成器不直接修改根目标。
+在仓库根目录运行 `python3 scripts/prepare-firmware-target.py --version 2.3.10 --source-sha 48402ef58a1510da46a003c003385be467312ec8 --package PACKAGE_DIRECTORY --trust TRUST_JSON --out staging/prepared-target`。输出目录必须尚不存在；生成器不直接修改根目标。
 
 `TRUST_JSON` 中的文件路径均相对该 JSON 所在目录，禁止绝对路径或逃逸。必填字段为 `manifestSha256`、`board`、`model`、`project`、`sdkconfig`、`knownLayouts` 与 `acceptedBootloaders`。`sdkconfig` 指向本次构建配置；安装目录必须含本次实际 `flasher_args.json` 与四镜像安装清单。
 

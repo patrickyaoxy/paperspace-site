@@ -11,14 +11,56 @@
     "engineSha256": "f82fa742ef5ecb838d4ca28a4cfe2e5d946056e06c65409ab9bf1ed6a677fc43"
   },
   "identityAdaptation": {
-    "method": "acorn-ast-range-exact-literal-edits",
+    "method": "acorn-ast-range-exact-literal-edits-variable-length",
     "parserVersion": "8.15.0",
     "parserLockSha256": "2bc16c64a91e3ec2e6e8a1e29460c0933675f80d198b63f095d63d10d342ce0b",
-    "scriptSha256": "ab843c4cc1bdc57234d7fa18ff32a0fc428cf2e2581b5c21e28394eb4c258763",
-    "intermediateEngineSha256": "60a95723afb8f3f2c7503cb79a0553287eb6bda6a53bac3b5fcca637b0b912bd",
-    "sourceSha": "3abe593b3ad208229aaf734b879af2f5081c6cec",
-    "version": "2.1.1",
-    "channel": "stable"
+    "scriptSha256": "4723dcfaff00301ee70d76487bd172e66624cb400cc959b581e4dd15bff3d49e",
+    "baseline": {
+      "commit": "91ce874cb34b9415eddb48efdea8357dacf055bc",
+      "engineSha256": "768be535c301c445d77cebe15109fc257cd52e10fbba2dda645ccf63f5f08058",
+      "buildSha256": "7b9436e0ed7935362378b7d64ba6724f137806ffab422a0ffaae9f8530e842ca",
+      "miSourceSha256": "4b8a1e1f628ba7a6108535a0a0da2e0be15353ddae7003228663fea8defc1dce",
+      "miAstSha256": "8877f2c9457ba99e4b17fd818ce3800819a11dd4445dc0ce21ea1004dc6a056d"
+    },
+    "previousIdentityAdaptation": {
+      "method": "acorn-ast-range-exact-literal-edits",
+      "parserVersion": "8.15.0",
+      "parserLockSha256": "2bc16c64a91e3ec2e6e8a1e29460c0933675f80d198b63f095d63d10d342ce0b",
+      "scriptSha256": "ab843c4cc1bdc57234d7fa18ff32a0fc428cf2e2581b5c21e28394eb4c258763",
+      "intermediateEngineSha256": "60a95723afb8f3f2c7503cb79a0553287eb6bda6a53bac3b5fcca637b0b912bd",
+      "sourceSha": "3abe593b3ad208229aaf734b879af2f5081c6cec",
+      "version": "2.1.1",
+      "channel": "stable"
+    },
+    "edits": [
+      {
+        "property": "sourceSha",
+        "old": "3abe593b3ad208229aaf734b879af2f5081c6cec",
+        "next": "48402ef58a1510da46a003c003385be467312ec8",
+        "start": 319057,
+        "end": 319099
+      },
+      {
+        "property": "version",
+        "old": "2.1.1",
+        "next": "2.3.10",
+        "start": 319113,
+        "end": 319120
+      },
+      {
+        "diagnostic": true,
+        "old": "Unreviewed release identity: only pinned v2.1.1 contract supported",
+        "next": "Unreviewed release identity: only pinned v2.3.10 contract supported",
+        "start": 319144,
+        "end": 319212
+      }
+    ],
+    "sourceSha": "48402ef58a1510da46a003c003385be467312ec8",
+    "version": "2.3.10",
+    "channel": "stable",
+    "outsideRangesByteIdentical": true,
+    "exactlyThreeLiteralValues": true,
+    "allOtherTopLevelAstIdentical": true
   },
   "maintenance": {
     "protectedPublicBase": "4226a51c8740bae037389fe646eb3354f09b4054",
@@ -224,8 +266,8 @@
     "maintenanceSourceSha256": "1b187deece891646ba237cd423708a8f470a218109e3f71dd2045be3e2bfe765",
     "scriptSha256": "91c2943528ea39bb2107efc8b2b3f95e67671b633f69cbf6dcebe7c7288e1ed5"
   },
-  "engine_sha256": "768be535c301c445d77cebe15109fc257cd52e10fbba2dda645ccf63f5f08058",
-  "engine_bytes": 396184,
+  "engine_sha256": "4d90fbdfa556ad2a4c4993b00223319327500a2db2cd46248005ffae43cfbc9d",
+  "engine_bytes": 396186,
   "externalImports": [],
   "deviceTest": "NOT_RUN",
   "cleanReinstall": {

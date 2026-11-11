@@ -1,0 +1,20 @@
+paperspace v2.3.10 stable 正式功能渠道 — 完整固件与卡内升级
+
+适用 Read Pico / ESP32-S3 / 16 MiB。源码 48402ef58a1510da46a003c003385be467312ec8，ESP-IDF v6.1。
+部分真机验证尚未完成；真实启动、显示、触摸、栈余量和掉电恢复不由软件校验代替。
+
+完整重装文件：paperspace-v2.3.10-stable-esp32s3-full.bin
+字节：16777216；地址0x0；SHA-256：44dc29c187a3cc8eb4b5172c6c6ede68b8198ee27072c68c1300828178d1bbb4
+会覆盖全部16 MiB内部Flash，包括系统、启动记录、设置、进度和内部文件。TF/SD卡不动，PMU VCOM不在内部Flash。网页不会自动回滚。
+仅使用匹配工具，不改Secure Boot、Flash Encryption或eFuse，不force绕过保护。
+命令示例（PORT替换为真实串口，本说明不会执行刷机）：
+python -m esptool --chip esp32s3 --port PORT --baud 115200 write-flash --flash-mode keep --flash-freq keep --flash-size keep 0x0 paperspace-v2.3.10-stable-esp32s3-full.bin
+无需额外整片擦除。
+
+卡内升级应用：paperspace-v2.3.10-stable-esp32s3-update.bin
+下载后核同名.sha256，再改名update.bin放SD卡根目录。
+应用字节：3598464；SHA-256：2b7ad243e13abfda1c6f599d172ec12c8f35305384ca319b47da090e7265f87e
+应用镜像不是完整BIN，绝不能烧到0x0。卡内更新继续检查机型、版本与布局，拒绝时不要强行覆盖。
+
+官网USB保留数据更新按设备实际分区、OTA及安全状态规划；不确定则停止，不自动强制清空。全新安装须另外明确确认。
+累计变化与完整验证边界见 ../../docs/firmware-v2.3.10.md；许可见 ../../legal.html。
